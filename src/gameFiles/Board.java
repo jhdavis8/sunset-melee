@@ -36,6 +36,7 @@ public class Board {
 	public void setUp() {
 		deck = fillDeck();
 		defcon = 5;
+		fillContinents();
 		// More code to follow....
 	}
 	
@@ -71,5 +72,9 @@ public class Board {
 		else toReturn += "USA\n";
 		
 		return toReturn;
+	}
+	
+	private void fillContinents() {
+		
 	}
 }
