@@ -16,6 +16,10 @@ public class Controller {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		System.out.println("Hello, Josh");
+		
+		Board game = new Board();
+		game.setUp();
+		System.out.println(game);
 	}
 
 	private void initialize(Board b) {

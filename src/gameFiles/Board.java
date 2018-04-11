@@ -63,7 +63,7 @@ public class Board {
 		
 		String toReturn = "";
 		toReturn += "TURN:" + turn + ", ACTION ROUND:" + actionRound + "\n";
-		toReturn += "REQUIRED MILITARY\nOPS[" + USMilitaryOps + ", " + USSRMilitaryOps + "]";
+		toReturn += "REQUIRED MILITARY\n\tOPS[" + USMilitaryOps + ", " + USSRMilitaryOps + "]\n";
 		toReturn += "VICTORY POINTS:" + victoryPoints + "\n";
 		toReturn += "DEFCON:" + defcon + "\n";
 		toReturn += "CURRENT PLAYER:";
