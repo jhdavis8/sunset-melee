@@ -1,0 +1,15 @@
+Goals
+
+Week 1
+	- Create demo cards to test logic
+	- Script card logic via the Effects Class
+	- Card toString, basic Text UI
+	- UIText
+		- Card toString
+		- Board toString
+		- Player toString
+		- Country toString (ISO ...)
+	- Set up basic controler logic
+		
+Week 2
+	- Scanner to read and fills cards form a .csv

@@ -23,7 +23,6 @@ public class ScoringCard extends Card {
 	@Override
 	public void runEffect() {
 		Effects.getScoringEffect(effectID);
-
 	}
 	
 

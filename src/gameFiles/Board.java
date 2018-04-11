@@ -32,4 +32,12 @@ public class Board {
 		
 	}
 	
+	public String toString() {
+		
+		String toReturn = "";
+		toReturn += "TURN:" + turn + ", ACTION ROUND:" + actionRound + "\n";
+		toReturn += "";
+		
+		return toReturn;
+	}
 }
