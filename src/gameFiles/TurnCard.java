@@ -7,11 +7,15 @@ package gameFiles;
  * @author Mark
  *
  */
-public class TypeCard extends Card implements Comparable<TypeCard> {
+public class TurnCard extends Card implements Comparable<TurnCard> {
+
+	public TurnCard(String n, String d, int c, int e) {
+		super(n, d, c, e);
+		// TODO Auto-generated constructor stub
+	}
 
 	private int value;
 	private int side;
-	private int effectID;
 	private boolean specialCard;
 	
 	
@@ -33,7 +37,7 @@ public class TypeCard extends Card implements Comparable<TypeCard> {
 	 * return -1 else
 	 */
 	@Override
-	public int compareTo(TypeCard arg0) {
+	public int compareTo(TurnCard arg0) {
 		if (this.cardNum < arg0.cardNum) return 1;
 		else if (this.cardNum == arg0.cardNum) return 0;
 		else return -1;
