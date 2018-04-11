@@ -18,4 +18,25 @@ public class Controller {
 		System.out.println("Hello, Josh");
 	}
 
+	private void initialize(Board b) {
+		
+	}
+	
+	private boolean gameEnd(Board b) {
+		return false;
+		
+	}
+	
+	private void getVictor(Board b) {
+		
+	}
+	
+	private void updateUI(Board b, UICore ui) {
+		
+	}
+	
+	private boolean playerTurn(Board b) {
+		return false;
+		
+	}
 }

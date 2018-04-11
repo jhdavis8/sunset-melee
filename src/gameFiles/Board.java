@@ -20,15 +20,15 @@ public class Board {
 	private int USMilitaryOps;
 	private int USSRMilitaryOps;
 	
-	public void placeInfluence(T side, Country cont, int value) {
+	public void placeInfluence(Side side, Country cont, int value) {
 		
 	}
 	
-	public void rollCoup(T side, Country cont, int value) {
+	public void rollCoup(Side side, Country cont, int value) {
 		
 	}
 	
-	public void rollRealignment(T side, Country cont, int value) {
+	public void rollRealignment(Side side, Country cont, int value) {
 		
 	}
 	

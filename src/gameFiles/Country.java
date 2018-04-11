@@ -16,9 +16,9 @@ public class Country {
 	private int USInfluence;
 	private int USSRInfluence;
 	private boolean battleGround;
-	private ArrayList<T> continents;
+	private ArrayList<Continents> continents;
 	
-	public void modifyInfluence(int value, T side) {
+	public void modifyInfluence(int value, Side side) {
 		
 	}
 	
