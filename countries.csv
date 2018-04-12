@@ -1,20 +1,20 @@
-WEE	CAN	Canada	4	F
-WEE	GBR	United Kingdom	5	F
-WEE	NOR	Norway	4	F
-WEE	SWE	Sweden	4	F
-WEE.EEE	FIN	Finland	4	F
-WEE	DNK	Denmark	3	F
-WEE	DEU	West Germany	4	T
-WEE	BEL	Benelux	3	F
-WEE	FRA	France	3	T
-WEE	ESP	Spain/Portugal	2	F
-WEE	ITA	Italy	2	T
-WEE.EEE	AUT	Austria	4	F
-WEE	GRC	Greece	2	F
-EEE	BGR	Bulgaria	3	F
-WEE	TUR	Turkey	2	F
-EEE	ROU	Romania	3	F
-EEE	HUN	Hungary	3	F
-EEE	CSK	Czechoslovakia	3	F
-EEE	POL	Poland	3	T
-EEE	DDR	East Germany	3	T
+"WEE,CAN,Canada,4,F",,,WEE,CAN,Canada,4,F
+"WEE	GBR	United Kingdom	5	F",,,,,,,
+"WEE	NOR	Norway	4	F",,,,,,,
+"WEE	SWE	Sweden	4	F",,,,,,,
+"WEE.EEE	FIN	Finland	4	F",,,,,,,
+"WEE	DNK	Denmark	3	F",,,,,,,
+"WEE	DEU	West Germany	4	T",,,,,,,
+"WEE	BEL	Benelux	3	F",,,,,,,
+"WEE	FRA	France	3	T",,,,,,,
+"WEE	ESP	Spain/Portugal	2	F",,,,,,,
+"WEE	ITA	Italy	2	T",,,,,,,
+"WEE.EEE	AUT	Austria	4	F",,,,,,,
+"WEE	GRC	Greece	2	F",,,,,,,
+"EEE	BGR	Bulgaria	3	F",,,,,,,
+"WEE	TUR	Turkey	2	F",,,,,,,
+"EEE	ROU	Romania	3	F",,,,,,,
+"EEE	HUN	Hungary	3	F",,,,,,,
+"EEE	CSK	Czechoslovakia	3	F",,,,,,,
+"EEE	POL	Poland	3	T",,,,,,,
+"EEE	DDR	East Germany	3	T",,,,,,,
