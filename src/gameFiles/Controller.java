@@ -17,19 +17,21 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
 		Board game = new Board();
-		game.setUp("C: ", "C: ");
 		UIText UI = new UIText();
+		
+		initialize(game);
+		
 		UI.updateBoard(game);
 		System.out.println(UI.updateUI());
 		
-		
-		Continents[] WestE = {Continents.WEE};
-		Country c = new Country("United Kingdom", "GBR", 5, 5, 0, false, WestE);
-		System.out.println(c);
 	}
 
-	private void initialize(Board b) {
-		
+	private static void initialize(Board b) {
+		b.setUp("C:\\Users\\Mark\\git\\sunset-melee\\cards.csv", "C:\\Users\\Mark\\git\\sunset-melee\\countries.csv");
+		b.placeInfluence(Side.USSR, "DDR", 3);
+		b.placeInfluence(Side.USSR, "FIN", 1);
+		b.placeInfluence(Side.USA, "GBR", 5);
+		b.placeInfluence(Side.USA, "CAN", 2);
 	}
 	
 	private boolean gameEnd(Board b) {

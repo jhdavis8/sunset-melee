@@ -15,10 +15,10 @@ public class UIText implements UICore {
 	public String updateUI() {
 		String toReturn = "GAME INFORMATION AND STATUS\n\n";
 		toReturn += currentBoard;
-		toReturn += "------------------------\n" + "ISO_ISO_STB_US, RA_INFLU\n";
-		toReturn += currentBoard.getWorld();
-				
-		
+		toReturn += "------------------------\n" + "ISO_ISO_CNE_STB_US, RA_INFLU\n";
+		for (Country c : currentBoard.getWorld()) {
+			toReturn += c;
+		}
 		
 		return toReturn;
 	}

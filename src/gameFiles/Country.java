@@ -34,7 +34,8 @@ public class Country {
 
 
 	public void modifyInfluence(int value, Side side) {
-		
+		if (side == Side.USA) USInfluence += value;
+		else USSRInfluence += value;
 	}
 	
 	public String toString() {
@@ -42,15 +43,23 @@ public class Country {
 		for (Continents c : continents) {
 			toReturn += c.toString(c) + "_";
 		}
+		if (continents.size() == 1) toReturn += "..._";
+		
 		toReturn += ISOCode + "_[";
 		toReturn += stabilityNum + "]_";
 		toReturn += "[" + USInfluence + ", " + USSRInfluence + "]_[";
 		
-		if ((USInfluence - USSRInfluence) >= stabilityNum) toReturn += "USA]\n";
-		else if ((USSRInfluence - USInfluence) >= stabilityNum) toReturn += "USSR]\n";
-		else toReturn += "UNK]\n";
+		if ((USInfluence - USSRInfluence) >= stabilityNum) toReturn += "USA]_";
+		else if ((USSRInfluence - USInfluence) >= stabilityNum) toReturn += "USSR]_";
+		else toReturn += "UNK]_";
+		
+		toReturn += name + "\n";
 		
 		return toReturn;
+	}
+	
+	public String getISO() {
+		return ISOCode;
 	}
 	
 }

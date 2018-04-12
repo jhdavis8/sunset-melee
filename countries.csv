@@ -10,6 +10,7 @@ WEE,FRA,France,3,T
 WEE,ESP,Spain/Portugal,2,F
 WEE,ITA,Italy,2,T
 WEE.EEE,AUT,Austria,4,F
+EEE,YUG,Yugoslovia,3,F
 WEE,GRC,Greece,2,F
 EEE,BGR,Bulgaria,3,F
 WEE,TUR,Turkey,2,F
@@ -17,7 +18,7 @@ EEE,ROU,Romania,3,F
 EEE,HUN,Hungary,3,F
 EEE,CSK,Czechoslovakia,3,F
 EEE,POL,Poland,3,T
-EEE,DDR,Germany,3,T
+EEE,DDR,East Germany,3,T
 SCR,MEX,Mexico,2,T
 SCR,GTM,Guatemala,1,F
 SCR,SLC,El  Salvador,1,F

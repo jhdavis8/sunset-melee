@@ -29,4 +29,19 @@ public enum Continents {
 			default:  return "";
 		}
 	}
+	
+	public Continents toEnum(String c) {
+		switch (c) {
+			case "EEE": return EEE;
+			case "WEE": return WEE;
+			case "FFF": return FFF;
+			case "NNN": return NNN;
+			case "SRR": return SRR;
+			case "SCR": return SCR;
+			case "UUU": return UUU;
+			case "ABB": return ABB;
+			case "MMM": return MMM;
+			default:  return null;
+		}
+	}
 }
