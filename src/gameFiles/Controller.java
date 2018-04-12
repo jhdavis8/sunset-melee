@@ -16,9 +16,6 @@ public class Controller {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello, Josh");
-		
 		Board game = new Board();
 		game.setUp();
 		UIText UI = new UIText();
