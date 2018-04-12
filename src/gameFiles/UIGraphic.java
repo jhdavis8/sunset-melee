@@ -2,11 +2,7 @@ package gameFiles;
 
 public class UIGraphic implements UICore {
 
-	@Override
-	public Board currentBoard() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private Board currentBoard;
 
 	@Override
 	public void updateBoard(Board b) {

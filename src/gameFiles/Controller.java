@@ -3,6 +3,8 @@
  */
 package gameFiles;
 
+import java.util.ArrayList;
+
 /**
  * @author Mark Wolgin
  * @author Josh Davis
@@ -19,7 +21,14 @@ public class Controller {
 		
 		Board game = new Board();
 		game.setUp();
-		System.out.println(game);
+		UIText UI = new UIText();
+		UI.updateBoard(game);
+		System.out.println(UI.updateUI());
+		
+		
+		Continents[] WestE = {Continents.WEE};
+		Country c = new Country("United Kingdom", "GBR", 5, 5, 0, false, WestE);
+		System.out.println(c);
 	}
 
 	private void initialize(Board b) {

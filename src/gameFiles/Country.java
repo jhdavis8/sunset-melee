@@ -19,16 +19,20 @@ public class Country {
 	private boolean battleGround;
 	private ArrayList<Continents> continents;
 	
-	public Country(String n, String I, int s, int US, int USSR, boolean b, ArrayList<Continents> c) {
+	public Country(String n, String I, int s, int US, int USSR, boolean b, Continents[] c) {
 		name = n;
 		ISOCode = I;
 		stabilityNum = s;
 		USInfluence = US;
 		USSRInfluence = USSR;
 		battleGround = b;
-		continents = c;
+		continents = new ArrayList<Continents>();
+		for (Continents i : c) {
+			continents.add(i);
+		}
 	}
-	
+
+
 	public void modifyInfluence(int value, Side side) {
 		
 	}
@@ -38,11 +42,12 @@ public class Country {
 		for (Continents c : continents) {
 			toReturn += c.toString(c) + "_";
 		}
-		toReturn += ISOCode + "_";
+		toReturn += ISOCode + "_[";
+		toReturn += stabilityNum + "]_";
 		toReturn += "[" + USInfluence + ", " + USSRInfluence + "]_[";
 		
-		if ((USInfluence - USSRInfluence) > stabilityNum) toReturn += "USA]\n";
-		else if ((USSRInfluence - USInfluence) > stabilityNum) toReturn += "USSR]\n";
+		if ((USInfluence - USSRInfluence) >= stabilityNum) toReturn += "USA]\n";
+		else if ((USSRInfluence - USInfluence) >= stabilityNum) toReturn += "USSR]\n";
 		else toReturn += "UNK]\n";
 		
 		return toReturn;

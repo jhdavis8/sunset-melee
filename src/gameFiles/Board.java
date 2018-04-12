@@ -13,6 +13,7 @@ public class Board {
 	
 	private ArrayList<Card> deck;
 	private ArrayList<Card> discard;
+	private ArrayList<Country> world;
 	private int turn;
 	private int actionRound;
 	private int victoryPoints;
@@ -24,6 +25,7 @@ public class Board {
 	public Board() {
 		deck = new ArrayList<Card>();
 		discard = new ArrayList<Card>();
+		world = new ArrayList<Country>();
 		turn = 0;
 		actionRound = 0;
 		victoryPoints = 0;
@@ -36,10 +38,14 @@ public class Board {
 	public void setUp() {
 		deck = fillDeck();
 		defcon = 5;
-		fillContinents();
+		world = fillCountries();
 		// More code to follow....
 	}
 	
+	private ArrayList<Country> fillCountries() {
+		return null;
+	}
+
 	/**
 	 * @return The complete deck as read from the .csv
 	 */
@@ -73,8 +79,15 @@ public class Board {
 		
 		return toReturn;
 	}
-	
-	private void fillContinents() {
-		
+
+	public ArrayList<Country> getWorld() {
+		return world;
 	}
+
+	public boolean isPlayerTurn() {
+		return playerTurn;
+	}
+	
+	
+	
 }
