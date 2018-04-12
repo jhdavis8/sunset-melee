@@ -17,7 +17,7 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
 		Board game = new Board();
-		game.setUp();
+		game.setUp("C: ", "C: ");
 		UIText UI = new UIText();
 		UI.updateBoard(game);
 		System.out.println(UI.updateUI());

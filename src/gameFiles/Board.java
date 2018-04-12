@@ -3,6 +3,7 @@
  */
 package gameFiles;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +22,8 @@ public class Board {
 	private int USMilitaryOps;
 	private int USSRMilitaryOps;
 	private boolean playerTurn;
+	private File cardCSV;
+	private File continentCSV;
 	
 	public Board() {
 		deck = new ArrayList<Card>();
@@ -35,9 +38,11 @@ public class Board {
 		playerTurn = false;
 	}
 	
-	public void setUp() {
+	public void setUp(String f1, String f2) {
 		deck = fillDeck();
 		defcon = 5;
+		cardCSV = new File(f1);
+		continentCSV = new File(f2);
 		world = fillCountries();
 		// More code to follow....
 	}
