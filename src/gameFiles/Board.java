@@ -43,11 +43,11 @@ public class Board {
 	}
 	
 	public void setUp(String f1, String f2) {
-		deck = fillDeck();
 		defcon = 5;
 		cardCSV = new File(f1);
 		continentCSV = new File(f2);
 		this.fillCountries();
+		this.fillDeck();
 		// More code to follow....
 	}
 
@@ -131,9 +131,39 @@ public class Board {
 	/**
 	 * @return The complete deck as read from the .csv
 	 */
-	private ArrayList<Card> fillDeck() {
+	private void fillDeck() {
+		Scanner scan = null;
 		
-		return null;
+		try {
+			scan = new Scanner(cardCSV);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String[] tempCard = new String[7];
+		
+		scan.useDelimiter("[,|\n]");
+		boolean sc = false;
+		
+		
+		while(scan.hasNext()) {
+			for (int k = 0; k < tempCard.length; k ++) {
+				tempCard[k] = scan.next();
+			}
+			
+			if (tempCard[3].equals("Y")) sc = true;
+			
+			if (tempCard[1].endsWith("*")) tempCard[1] = tempCard[1].substring(0, tempCard[1].length() - 1);
+			
+			if (tempCard[4].equals("Turn")) {
+				deck.add(new TurnCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]), 
+						Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2])));
+			}
+			else {
+				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]), Integer.parseInt(tempCard[0])));
+			}
+		}		
+
 	}
 	
 	public int getVictoryPoints() {
@@ -150,6 +180,10 @@ public class Board {
 
 	public int getDefcon() {
 		return defcon;
+	}
+
+	public ArrayList<Card> getDeck() {
+		return deck;
 	}
 	
 	

@@ -9,13 +9,16 @@ package gameFiles;
  */
 public class TurnCard extends Card implements Comparable<TurnCard> {
 
-	public TurnCard(String n, String d, int c, int e) {
+	public TurnCard(String n, String d, int c, int e, Side s, boolean sc, int v) {
 		super(n, d, c, e);
+		side = s;
+		specialCard = sc;
+		value = v;
 		// TODO Auto-generated constructor stub
 	}
 
 	private int value;
-	private int side;
+	private Side side;
 	private boolean specialCard;
 	
 	
@@ -41,6 +44,18 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 		if (this.cardNum < arg0.cardNum) return 1;
 		else if (this.cardNum == arg0.cardNum) return 0;
 		else return -1;
+	}
+	
+	@Override
+	public String toString() {
+		String toReturn = "";
+		
+		toReturn += String.format("%03d", cardNum) + "_";
+		toReturn += "TCD_" + side + "_";
+		toReturn += String.format("%03d", value) + "_";
+		toReturn += String.format("%03d", effectID) + "_" + name +"\n";
+		
+		return toReturn;
 	}
 
 }

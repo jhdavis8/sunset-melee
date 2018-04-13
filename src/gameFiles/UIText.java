@@ -21,6 +21,10 @@ public class UIText implements UICore {
 				toReturn += c;
 			}
 		}
+		toReturn += "------------------------\n" + "CRD_CLS_TYP_VAL_EID\n";
+		for (Card c : currentBoard.getDeck()) {
+			toReturn += c;
+		}
 		
 		return toReturn;
 	}
