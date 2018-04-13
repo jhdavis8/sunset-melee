@@ -50,7 +50,7 @@ public class Board {
 		this.fillCountries();
 		// More code to follow....
 	}
-	
+
 	private void fillCountries() {
 		
 		Scanner scan = null;
@@ -91,15 +91,7 @@ public class Board {
 			
 		}
 	}
-
-	/**
-	 * @return The complete deck as read from the .csv
-	 */
-	private ArrayList<Card> fillDeck() {
-		
-		return null;
-	}
-
+	
 	public void placeInfluence(Side side, String cont, int value) {
 		int position = 0;
 		for (int k = 0; k < world.size(); k ++) {
@@ -135,12 +127,29 @@ public class Board {
 		return toReturn;
 	}
 
+
+	/**
+	 * @return The complete deck as read from the .csv
+	 */
+	private ArrayList<Card> fillDeck() {
+		
+		return null;
+	}
+	
+	public int getVictoryPoints() {
+		return victoryPoints;
+	}
+
 	public ArrayList<Country> getWorld() {
 		return world;
 	}
 
 	public boolean isPlayerTurn() {
 		return playerTurn;
+	}
+
+	public int getDefcon() {
+		return defcon;
 	}
 	
 	

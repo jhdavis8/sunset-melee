@@ -21,6 +21,10 @@ public class Controller {
 		
 		initialize(game);
 		
+		Player p1 = new Player(Side.USA);
+		
+		System.out.println(p1);
+		
 		UI.updateBoard(game);
 		System.out.println(UI.updateUI());
 		
@@ -35,7 +39,16 @@ public class Controller {
 	}
 	
 	private boolean gameEnd(Board b) {
-		return false;
+		Boolean endGame = false;
+		
+		if (Math.abs(b.getVictoryPoints()) >= 20) {
+			endGame = true;
+		}
+		else if (b.getDefcon() == 0) {
+			endGame = true;
+		}
+		
+		return endGame;
 		
 	}
 	

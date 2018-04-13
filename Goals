@@ -1,21 +1,20 @@
 Goals
 
 Week 1
-	- Create demo cards to test logic
-	- Script card logic via the Effects Class
-	- Card toString, basic Text UI
-	- Build all public method stubs
-	- A countree
-	- JDocs comments for all methods and variables for our ease of use.
-	- UIText
-		- Card toString
-		- Board toString
-		- Player toString
-		- Country toString (ISO ...)
-	- Set up basic controler logic
+	- 	- Create demo cards to test logic
+	- 	- Script card logic via the Effects Class
+	-	- Build all public method stubs
+	- 	- A countree
+	- 	- JDocs comments for all methods and variables for our ease of use.
+	- 	- UIText
+		- 	- Card toString
+		-Done- Board toString
+		-Done- Player toString
+		-Done- Country toString (ISO ...)
+	- 	- Set up basic controler logic
 	
 		
 Week 2
-	- Scanner to read and fills cards form a .csv
-	- Scanner to read and fills countries from a .csv
-		- Link countries together for sother logic.
+	- 	- Scanner to read and fills cards form a .csv
+	- 	- Scanner to read and fills countries from a .csv
+		- 	- Link countries together for sother logic.
