@@ -43,4 +43,10 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 		else return -1;
 	}
 
+	@Override
+	public String toString() {
+		String output = "";
+		return null;
+	}
+
 }

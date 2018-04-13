@@ -14,6 +14,8 @@ public abstract class Card {
 	
 	public abstract void runEffect();
 	
+	public abstract String toString();
+	
 	public Card(String n, String d, int c, int e) {
 		name = n;
 		descrition = d;
