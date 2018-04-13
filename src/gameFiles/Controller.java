@@ -31,7 +31,7 @@ public class Controller {
 	}
 
 	private static void initialize(Board b) {
-		b.setUp("C:\\Users\\Mark\\git\\sunset-melee\\csv\\cards.csv", "C:\\Users\\Mark\\git\\sunset-melee\\csv\\countries.csv");
+		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv");
 		b.placeInfluence(Side.USSR, "DDR", 3);
 		b.placeInfluence(Side.USSR, "FIN", 1);
 		b.placeInfluence(Side.USA, "GBR", 5);

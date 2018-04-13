@@ -44,8 +44,9 @@ public class Board {
 	
 	public void setUp(String f1, String f2) {
 		defcon = 5;
-		cardCSV = new File(f1);
-		continentCSV = new File(f2);
+		String absPath = new File("").getAbsolutePath();
+		cardCSV = new File(absPath + f1);
+		continentCSV = new File(absPath + f2);
 		this.fillCountries();
 		this.fillDeck();
 		// More code to follow....
