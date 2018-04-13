@@ -17,7 +17,9 @@ public class UIText implements UICore {
 		toReturn += currentBoard;
 		toReturn += "------------------------\n" + "ISO_ISO_CNE_STB_US, RA_INFLU\n";
 		for (Country c : currentBoard.getWorld()) {
-			toReturn += c;
+			if (c.getContinent().contains(Continents.EEE) || c.getContinent().contains(Continents.WEE)) {
+				toReturn += c;
+			}
 		}
 		
 		return toReturn;

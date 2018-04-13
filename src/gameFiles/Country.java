@@ -62,4 +62,8 @@ public class Country {
 		return ISOCode;
 	}
 	
+	public ArrayList<Continents> getContinent() {
+		return continents;
+	}
+	
 }
