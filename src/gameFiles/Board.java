@@ -93,17 +93,17 @@ public class Board {
 		}
 	}
 	
-	public void placeInfluence(Side side, String cont, int value) {
-		int position = 0;
-		for (int k = 0; k < world.size(); k ++) {
-			if (world.get(k).getISO().equals(cont)) position = k;
+	public Country getCountry(String check) {
+		for (Country c : world) {
+			if (c.getISO().equals(check)) {
+				return c;
+			}
 		}
-		
-		
-		Country c = world.get(position);
-		c.modifyInfluence(value, side);
-		world.set(position, c);
-		
+		return null;
+	}
+	
+	public void placeInfluence(Side side, Country country, int value) {
+		country.modifyInfluence(value, side);		
 	}
 	
 	public void rollCoup(Side side, String cont, int value) {
@@ -127,7 +127,6 @@ public class Board {
 		
 		return toReturn;
 	}
-
 
 	/**
 	 * @return The complete deck as read from the .csv

@@ -26,16 +26,16 @@ public class Controller {
 		System.out.println(p1);
 		
 		UI.updateBoard(game);
-		System.out.println(UI.updateUI());
-		
+		UI.updateUI();
+		UI.runUI();
 	}
 
 	private static void initialize(Board b) {
 		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv");
-		b.placeInfluence(Side.USSR, "DDR", 3);
-		b.placeInfluence(Side.USSR, "FIN", 1);
-		b.placeInfluence(Side.USA, "GBR", 5);
-		b.placeInfluence(Side.USA, "CAN", 2);
+		b.placeInfluence(Side.USSR, b.getCountry("DDR"), 3);
+		b.placeInfluence(Side.USSR, b.getCountry("FIN"), 1);
+		b.placeInfluence(Side.USA, b.getCountry("GBR"), 5);
+		b.placeInfluence(Side.USA, b.getCountry("CAN"), 2);
 	}
 	
 	private boolean gameEnd(Board b) {
@@ -49,11 +49,10 @@ public class Controller {
 		}
 		
 		return endGame;
-		
 	}
 	
-	private void getVictor(Board b) {
-		
+	private Side getVictor(Board b) {
+		return Side.UNK;
 	}
 	
 	private void updateUI(Board b, UICore ui) {
@@ -62,6 +61,5 @@ public class Controller {
 	
 	private boolean playerTurn(Board b) {
 		return false;
-		
 	}
 }

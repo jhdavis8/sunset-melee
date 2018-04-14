@@ -10,6 +10,6 @@ package gameFiles;
 public interface UICore {
 	
 	public void updateBoard(Board b);
-	public Object updateUI();
+	public void updateUI();
 	
 }
