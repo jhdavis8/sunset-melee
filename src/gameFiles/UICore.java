@@ -4,8 +4,9 @@
 package gameFiles;
 
 /**
- * @author Mark
- *
+ * UICore is the base of all UIElemetns and Interactions with the computer.
+ * @author Mark Wolgin
+ * @author Josh Davis
  */
 public interface UICore {
 	

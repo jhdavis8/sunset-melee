@@ -4,20 +4,32 @@
 package gameFiles;
 
 /**
- * @author Mark
- *
+ * Extends Card and implements Comparable.
+ * @author Mark Wolgin
+ * @author Josh Davis
  */
 public class ScoringCard extends Card implements Comparable<ScoringCard> {
 
 	
 	
+	/**
+	 * Called in Board.setUp(), it takes information and returns the filled Scoring Card.
+	 * @param n Card Name, i.e. Europe Scoring Card.
+	 * @param d Card Description, Information relevant to the card.
+	 * @param c Card Number, The number for the card.
+	 * @param e EffectID, The unique identification code for use with in game logic and the Effects class.
+	 * @param cT Card Timing, Different cards get shuffled into the deck at different points in the game, such
+	 * E - Early Game, M - Mid Game, L - Late Game.
+	 */
 	public ScoringCard(String n, String d, int c, int e, String cT) {
 		super(n, d, c, e, cT);
 		// TODO Auto-generated constructor stub
 	}
 
 	
-	/* (non-Javadoc)
+	/* 
+	 * Calls Effects.getScoringEffect(effectID) to get the correct game logic.
+	 * (non-Javadoc)
 	 * @see gameFiles.Card#runEffect()
 	 */
 	@Override
@@ -25,6 +37,11 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 		Effects.getScoringEffect(effectID);
 	}
 	
+	/* 
+	 * Used to print out important information to the UIText Class.
+	 * (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString() {
 		String toReturn = "";
@@ -37,6 +54,11 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 	}
 
 
+	/* 
+	 * To be used to compare card numbers to allow for sorting.
+	 * (non-Javadoc)
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(ScoringCard arg0) {
 		if (this.cardNum < arg0.cardNum) return 1;
