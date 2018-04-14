@@ -2,17 +2,29 @@ package gameFiles;
 
 import java.util.Scanner;
 
+/**
+ * UI implementation solely based on command prompt
+ * @author Josh Davis
+ * @author Mark Wolgin
+ *
+ */
 public class UIText implements UICore {
 	
 
 	private Board currentBoard;
 
+	/* (non-Javadoc)
+	 * @see gameFiles.UICore#updateBoard(gameFiles.Board)
+	 */
 	@Override
 	public void updateBoard(Board b) {
 		currentBoard = b;
 		
 	}
 
+	/* (non-Javadoc)
+	 * @see gameFiles.UICore#updateUI()
+	 */
 	@Override
 	public void updateUI() {
 		String toReturn = "MAP INFORMATION AND STATUS\n\n";
@@ -32,6 +44,9 @@ public class UIText implements UICore {
 		System.out.println(toReturn);
 	}
 	
+	/**
+	 * TEMPORARY UI loop for testing only
+	 */
 	public void runUI() {
 		Scanner scan = new Scanner(System.in);
 		boolean running = true;
@@ -57,7 +72,11 @@ public class UIText implements UICore {
 			}
 		}
 	}
-
+	
+	/**
+	 * Carries out prompt loops for a complete influence placement
+	 * @param scan Scanner object to read from
+	 */
 	private void promptPlaceInfluence(Scanner scan) {
 		System.out.println("Entering add influence prompt...");
 		boolean checking = true;

@@ -6,7 +6,9 @@ package gameFiles;
 import java.util.ArrayList;
 
 /**
- * @author Mark
+ * Class for Country objects on the map
+ * @author Mark Wolgin
+ * @author Josh Davis
  *
  */
 public class Country {
@@ -19,6 +21,16 @@ public class Country {
 	private boolean battleGround;
 	private ArrayList<Continents> continents;
 	
+	/**
+	 * Constructor for a Country object
+	 * @param n name of country
+	 * @param I ISO code of country
+	 * @param s stability number of country
+	 * @param US current US influence
+	 * @param USSR current USSR influence
+	 * @param b true for battleground countries
+	 * @param c ArrayList of continents the country is a member of
+	 */
 	public Country(String n, String I, int s, int US, int USSR, boolean b, Continents[] c) {
 		name = n;
 		ISOCode = I;
@@ -32,12 +44,19 @@ public class Country {
 		}
 	}
 
-
+	/**
+	 * Adjusts the influence in the country
+	 * @param value amount to adjust by
+	 * @param side which side to add for
+	 */
 	public void modifyInfluence(int value, Side side) {
 		if (side == Side.USA) USInfluence += value;
 		else USSRInfluence += value;
 	}
-	
+
+	/**
+	 * @return String formatted for the country
+	 */
 	public String toString() {
 		String toReturn = "";
 		for (Continents c : continents) {
@@ -58,10 +77,18 @@ public class Country {
 		return toReturn;
 	}
 	
+	/**
+	 * 
+	 * @return the string ISO code
+	 */
 	public String getISO() {
 		return ISOCode;
 	}
 	
+	/**
+	 * 
+	 * @return ArrayList of continent memberships
+	 */
 	public ArrayList<Continents> getContinent() {
 		return continents;
 	}

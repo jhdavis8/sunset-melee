@@ -1,5 +1,11 @@
 package gameFiles;
 
+/**
+ * Enum of all continent codes
+ * @author Josh Davis
+ * @author Mark Wolgin
+ *
+ */
 public enum Continents {
 	EEE, WEE, FFF, NNN, SRR, SCR, UUU, ABB, MMM;
 	
@@ -14,7 +20,11 @@ public enum Continents {
 	 * ABB - Asia
 	 * MMM - Middle East
 	 */
-	
+	/**
+	 * 
+	 * @param c Continents enum type
+	 * @return string form of enum code
+	 */
 	public String toString(Continents c) {
 		switch (c) {
 			case EEE: return "EEE";
@@ -30,6 +40,10 @@ public enum Continents {
 		}
 	}
 	
+	/**
+	 * @param c String code of enum
+	 * @return Continents enum type of code in string
+	 */
 	public Continents toEnum(String c) {
 		switch (c) {
 			case "EEE": return EEE;

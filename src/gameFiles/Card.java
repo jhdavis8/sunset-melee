@@ -1,6 +1,7 @@
 package gameFiles;
 
 /**
+ * Abstract class for all cards 
  * @author Mark Wolgin
  * @author Josh Davis
  *

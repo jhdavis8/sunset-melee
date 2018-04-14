@@ -11,7 +11,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Mark
+ * Class for main game functions, contains ArrayLists for game parts
+ * @author Mark Wolgin
+ * @author Josh Davis
  *
  */
 public class Board {
@@ -29,6 +31,9 @@ public class Board {
 	private File cardCSV;
 	private File continentCSV;
 	
+	/**
+	 * Constructor for the board object with default values
+	 */
 	public Board() {
 		deck = new ArrayList<Card>();
 		discard = new ArrayList<Card>();
@@ -42,6 +47,11 @@ public class Board {
 		playerTurn = false;
 	}
 	
+	/**
+	 * Sets up the board using two file paths
+	 * @param f1 relative path to cards.csv
+	 * @param f2 relative path to countries.csv
+	 */
 	public void setUp(String f1, String f2) {
 		defcon = 5;
 		String absPath = new File("").getAbsolutePath();
@@ -52,6 +62,9 @@ public class Board {
 		// More code to follow....
 	}
 
+	/**
+	 * Builds all the country objects by the csv data
+	 */
 	private void fillCountries() {
 		
 		Scanner scan = null;
@@ -93,6 +106,11 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Returns the country object that matches the ISO string given
+	 * @param check the string with the ISO code
+	 * @return Country object that matches
+	 */
 	public Country getCountry(String check) {
 		for (Country c : world) {
 			if (c.getISO().equals(check)) {
@@ -102,18 +120,39 @@ public class Board {
 		return null;
 	}
 	
+	/**
+	 * Add value influence to country on side
+	 * @param side side to add for
+	 * @param country country to add to
+	 * @param value int amount to add
+	 */
 	public void placeInfluence(Side side, Country country, int value) {
 		country.modifyInfluence(value, side);		
 	}
 	
-	public void rollCoup(Side side, String cont, int value) {
+	/**
+	 * Rolls a coup by the args given
+	 * @param side Side to roll for
+	 * @param country Country to roll on
+	 * @param value int value to apply
+	 */
+	public void rollCoup(Side side, String country, int value) {
 		
 	}
 	
-	public void rollRealignment(Side side, String cont, int value) {
+	/**
+	 * rolls a realignment by the args given
+	 * @param side Side to roll for
+	 * @param country Country to roll on
+	 * @param value int value to use
+	 */
+	public void rollRealignment(Side side, String country, int value) {
 		
 	}
 	
+	/**
+	 * @return a string formatted for the country 
+	 */
 	public String toString() {
 		
 		String toReturn = "";
@@ -129,7 +168,7 @@ public class Board {
 	}
 
 	/**
-	 * @return The complete deck as read from the .csv
+	 * Builds complete deck of card objects as read from the .csv
 	 */
 	private void fillDeck() {
 		Scanner scan = null;
@@ -167,22 +206,34 @@ public class Board {
 
 	}
 	
+	/**
+	 * 
+	 * @return the int number of victory points currently on the board
+	 */
 	public int getVictoryPoints() {
 		return victoryPoints;
 	}
 
+	/**
+	 * 
+	 * @return the ArrayList<Country> of all countries on the board
+	 */
 	public ArrayList<Country> getWorld() {
 		return world;
 	}
 
-	public boolean isPlayerTurn() {
-		return playerTurn;
-	}
-
+	/**
+	 * 
+	 * @return the current defcon level int
+	 */
 	public int getDefcon() {
 		return defcon;
 	}
 
+	/**
+	 * 
+	 * @return the ArrayList deck of cards
+	 */
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}

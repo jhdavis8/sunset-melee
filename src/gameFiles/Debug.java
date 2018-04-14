@@ -5,11 +5,11 @@ package gameFiles;
 import java.util.Scanner;
 
 /**
- * @author Josh
+ * Container for all debugging tools
+ * @author Josh Davis
+ * @author Mark Wolgin
  *
  */
 public class Debug {
-	 public static void debugInterface(Board b) {
-		 
-	 }
+	
 }
