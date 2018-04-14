@@ -9,8 +9,8 @@ package gameFiles;
  */
 public class TurnCard extends Card implements Comparable<TurnCard> {
 
-	public TurnCard(String n, String d, int c, int e, Side s, boolean sc, int v) {
-		super(n, d, c, e);
+	public TurnCard(String n, String d, int c, int e, Side s, boolean sc, int v, String cT) {
+		super(n, d, c, e, cT);
 		side = s;
 		specialCard = sc;
 		value = v;

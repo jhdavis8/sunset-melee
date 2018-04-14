@@ -11,8 +11,8 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 
 	
 	
-	public ScoringCard(String n, String d, int c, int e) {
-		super(n, d, c, e);
+	public ScoringCard(String n, String d, int c, int e, String cT) {
+		super(n, d, c, e, cT);
 		// TODO Auto-generated constructor stub
 	}
 

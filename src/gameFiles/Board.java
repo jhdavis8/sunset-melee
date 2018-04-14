@@ -141,7 +141,7 @@ public class Board {
 			e.printStackTrace();
 		}
 		
-		String[] tempCard = new String[7];
+		String[] tempCard = new String[8];
 		
 		scan.useDelimiter("[,|\n]");
 		boolean sc = false;
@@ -157,11 +157,12 @@ public class Board {
 			if (tempCard[1].endsWith("*")) tempCard[1] = tempCard[1].substring(0, tempCard[1].length() - 1);
 			
 			if (tempCard[4].equals("Turn")) {
-				deck.add(new TurnCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]), 
-						Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2])));
+				deck.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
+						Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
 			}
 			else {
-				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]), Integer.parseInt(tempCard[0])));
+				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]),
+						Integer.parseInt(tempCard[0]), tempCard [7]));
 			}
 		}		
 
