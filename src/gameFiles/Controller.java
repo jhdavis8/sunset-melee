@@ -26,6 +26,8 @@ public class Controller {
 		
 		Player p1 = new Player(Side.USA);
 		
+		//Hello World
+		
 		System.out.println(p1);
 		
 		UI.updateBoard(game);
