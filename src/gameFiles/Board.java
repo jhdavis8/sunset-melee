@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -146,7 +147,30 @@ public class Board {
 	 * @param country Country to roll on
 	 * @param value int value to use
 	 */
-	public void rollRealignment(Side side, String country, int value) {
+	public void rollRealignment(Side side, Country country, int value) {
+		Random randy = new Random();
+		int usRoll = randy.nextInt(7);
+		System.out.println("USA Rolls " + usRoll);
+		int ussrRoll = randy.nextInt(7);
+		System.out.println("USSR Rolls " + ussrRoll);
+		int diff = 0;
+		
+		if (side.equals(Side.USA) && (usRoll > ussrRoll)) {
+			diff = -1 * (usRoll-ussrRoll);
+			country.modifyInfluence(diff, Side.USSR);
+		}
+		else if (side.equals(Side.USA) && (usRoll <= ussrRoll)) {
+			diff = 0;
+		}
+		else if (side.equals(Side.USSR) && (usRoll > ussrRoll)) {
+			diff = -1 * (ussrRoll - usRoll);
+			country.modifyInfluence(diff, Side.USA);
+		}
+		else {
+			diff = 0;
+		}
+		
+		
 		
 	}
 	

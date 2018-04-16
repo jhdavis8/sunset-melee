@@ -61,11 +61,14 @@ public class UIText implements UICore {
 				case ("a"):
 					promptPlaceInfluence(scan);
 					break;
+				case ("r"):
+					promptRollRealignemnt(scan);
+					break;
 				case ("q"):
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("mapstatus | a(dd) | q(uit) | help%n");
+					System.out.printf("mapstatus | a(dd) | r(ealignment) | q(uit) | help%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -73,6 +76,67 @@ public class UIText implements UICore {
 		}
 	}
 	
+	private void promptRollRealignemnt(Scanner scan) {
+		//Does not account for negative influence...
+		System.out.println("Entering realignemnt prompt...");
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println("Please enter a side to realign for:");
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		checking = true;
+		Country country = null;
+		while (checking) {
+			System.out.println("Please enter a country to realign:");
+			input = scan.nextLine();
+			country = currentBoard.getCountry(input);
+			if (country != null && country.opponentHasInfluence(side)) {
+				System.out.printf("Country is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a country!");
+				continue;
+			}
+		}
+		System.out.println(country);
+		checking = true;
+		System.out.println("Rolling for realignment...");
+		currentBoard.rollRealignment(side, country, 0);
+		System.out.println(country);
+		/*
+		int value = -1;
+		while (checking) {
+			System.out.println("Please enter a number of influence to add:");
+			input = scan.nextLine();
+			value = Integer.parseInt(input);
+			if (value > 0) {
+				System.out.printf("Value is: %d%n", value);
+				checking = false;
+			}
+			else {
+				System.out.println("Invalid value!");
+				continue;
+			}
+		}
+		currentBoard.placeInfluence(side, country, value);
+		System.out.println(country);
+		
+		}
+		*/
+	}
+
 	/**
 	 * Carries out prompt loops for a complete influence placement
 	 * @param scan Scanner object to read from

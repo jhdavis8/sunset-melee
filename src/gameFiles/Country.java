@@ -92,5 +92,12 @@ public class Country {
 	public ArrayList<Continents> getContinent() {
 		return continents;
 	}
+
+	public boolean opponentHasInfluence(Side side) {
+		if (side.equals(Side.USA) && USSRInfluence > 0) return true;
+		else if (side.equals(Side.USSR) && USInfluence > 0) return true;
+		
+		else return false;
+	}
 	
 }
