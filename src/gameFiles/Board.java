@@ -138,7 +138,7 @@ public class Board {
 	 * @param value int value to apply
 	 */
 	public void rollCoup(Side side, String country, int value) {
-		
+		// To fill tonight
 	}
 	
 	/**
@@ -149,9 +149,9 @@ public class Board {
 	 */
 	public void rollRealignment(Side side, Country country, int value) {
 		Random randy = new Random();
-		int usRoll = randy.nextInt(7);
+		int usRoll = randy.nextInt(7);   // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USA Rolls " + usRoll);
-		int ussrRoll = randy.nextInt(7);
+		int ussrRoll = randy.nextInt(7); // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USSR Rolls " + ussrRoll);
 		int diff = 0;
 		
@@ -258,6 +258,16 @@ public class Board {
 	public ArrayList<Card> getDeck() {
 		return deck;
 	}
+
+	public Card getCard(int input) {
+		for (Card c : deck) {
+			if (input == c.cardNum) {
+				return c;
+			}
+		}
+		return null;
+	}
+
 	
 	
 }

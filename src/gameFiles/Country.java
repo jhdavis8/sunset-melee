@@ -101,5 +101,12 @@ public class Country {
 		
 		else return false;
 	}
+
+	public boolean userHasInfluence(Side side) {
+		if (side.equals(Side.USA) && USInfluence > 0) return true;
+		else if (side.equals(Side.USSR) && USSRInfluence > 0) return true;
+		
+		else return false;
+	}
 	
 }

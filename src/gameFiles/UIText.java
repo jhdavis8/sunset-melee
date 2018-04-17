@@ -64,11 +64,14 @@ public class UIText implements UICore {
 				case ("r"):
 					promptRollRealignemnt(scan);
 					break;
+				case ("c"):
+					promptRollCoup(scan);
+					break;
 				case ("q"):
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("mapstatus | a(dd) | r(ealignment) | q(uit) | help%n");
+					System.out.printf("mapstatus | a(dd) | r(ealignment) | c(oup) | q(uit) | help%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -76,6 +79,67 @@ public class UIText implements UICore {
 		}
 	}
 	
+	private void promptRollCoup(Scanner scan) {
+		System.out.println("Entering coup prompt...");
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println("Please enter a side to roll a Coup for:");
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		checking = true;
+		Country country = null;
+		while (checking) {
+			System.out.println("Please enter a country to coup:");
+			input = scan.nextLine();
+			country = currentBoard.getCountry(input);
+			if (country != null && country.userHasInfluence(side)) {
+				System.out.printf("Country is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a country!");
+				continue;
+			}
+		}
+		checking = true;
+		Card card = null;
+		while (checking) {
+			//Need to add int checking...
+			for (Card c : currentBoard.getDeck()) {
+				System.out.print(c);
+			}
+			System.out.println("Please select a card:");
+			input = scan.nextLine();
+			card = currentBoard.getCard(Integer.parseInt(input));
+			if (card != null && (card instanceof TurnCard)) {
+				System.out.printf("Card is: %s%n", card);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a valid card!");
+				continue;
+			}
+		}
+		System.out.println(country);
+		checking = true;
+		System.out.println("Rolling a coup...");
+		currentBoard.rollRealignment(side, country, card.cardNum);
+		System.out.println(country);
+		
+		
+	}
+
 	private void promptRollRealignemnt(Scanner scan) {
 		//Does not account for negative influence...
 		System.out.println("Entering realignemnt prompt...");
