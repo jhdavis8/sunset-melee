@@ -103,7 +103,7 @@ public class UIText implements UICore {
 			System.out.println("Please enter a country to coup:");
 			input = scan.nextLine();
 			country = currentBoard.getCountry(input);
-			if (country != null && country.userHasInfluence(side)) {
+			if (country != null && country.opponentHasInfluence(side)) {
 				System.out.printf("Country is: %s%n", side);
 				checking = false;
 			}
