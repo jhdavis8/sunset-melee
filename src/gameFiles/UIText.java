@@ -67,11 +67,30 @@ public class UIText implements UICore {
 				case ("c"):
 					promptRollCoup(scan);
 					break;
+				case ("f"):
+					System.out.println("full - m(ap) c(ards)");
+					command = scan.nextLine();
+					switch (command) {
+						case ("m"):
+							for (Country c : currentBoard.getWorld()) {
+								System.out.print(c);
+							}
+							break;
+						case ("c"):
+							for (Card c : currentBoard.getDeck()) {
+								System.out.print(c);
+							}
+							break;
+						default:
+							System.out.println("Not valid input");
+							break;
+					}
+					break;
 				case ("q"):
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("mapstatus | a(dd) | r(ealignment) | c(oup) | q(uit) | help%n");
+					System.out.printf("mapstatus | a(dd) | r(ealignment) | c(oup) | f(ull) | q(uit) | help%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");

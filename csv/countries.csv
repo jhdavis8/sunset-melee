@@ -29,3 +29,56 @@ SCR,NIC,Nicaragua,1,F
 SCR,CUB,Cuba,3,T
 SCR,HTI,Haiti,1,F
 SCR,DOM,Dominican Republic,1,F
+SRR,COL,Colombia,1,F
+SRR,ECU,Ecuador,2,F
+SRR,PER,Peru,2,F
+SRR,CHL,Chile,3,T
+SRR,ARG,Argentina,2,T
+SRR,PRY,Paraguay,2,F
+SRR,BOL,Bolivia,2,F
+SRR,URY,Uruguay,2,F
+SRR,BRA,Brazil,2,T
+SRR,VEN,Venezuela,2,T
+MMM,SYR,Syria,2,F
+MMM,LBN,Lebanon,1,F
+MMM,ISR,Israel,4,T
+MMM,EGY,Egypt,2,T
+MMM,LBY,Libya,2,T
+MMM,JOR,Jordan,2,F
+MMM,SAU,Saudi Arabia,3,T
+MMM,GLF,Gulf States,3,F
+MMM,IRQ,Iraq,3,T
+MMM,IRN,Iran,2,T
+FFF,TUN,Tunisia,2,F
+FFF,DZA,Algeria,2,T
+FFF,MAR,Morocco,3,F
+FFF,WAS,West African States,2,F
+FFF,CIV,Ivory Coast,2,F
+FFF,NGA,Nigeria,1,T
+FFF,SHS,Saharan States,1,F
+FFF,CMR,Cameroon,1,F
+FFF,ZAR,Zaire,1,T
+FFF,AGO,Angola,1,T
+FFF,ZAF,South Africa,3,T
+FFF,BWA,Botswana,2,F
+FFF,ZWE,Zimbabwe,1,F
+FFF,SES,SE African States,1,F
+FFF,KEN,Kenya,2,F
+FFF,SOM,Somalia,2,F
+FFF,ETH,Ethiopia,1,F
+FFF,SDN,Sudan,1,F
+ABB,AFG,Afghanistan,2,F
+ABB,PAK,Pakistan,2,T
+ABB,IND,India,3,T
+ABB.UUU,BUR,Burma,2,F
+ABB.UUU,KHM,Cambodia,1,F
+ABB.UUU,VNM,Vietnam,1,F
+ABB.UUU,THA,Thailand,2,T
+ABB.UUU,MYS,Malaysia,2,F
+ABB,AUS,Australia,4,F
+ABB.UUU,IDN,Indonesia,1,F
+ABB.UUU,PHL,Philippines,2,F
+ABB,JPN,Japan,4,T
+ABB,TWN,Taiwan,3,F
+ABB,KOR,S. Korea,3,T
+ABB,PRK,N. Korea,3,T
