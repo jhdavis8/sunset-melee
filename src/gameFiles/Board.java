@@ -156,7 +156,7 @@ public class Board {
 		int diff = 0;
 		
 		if (side.equals(Side.USA) && (usRoll > ussrRoll)) {
-			diff = -1 * (usRoll-ussrRoll);
+			diff = -1 * (usRoll - ussrRoll);
 			country.modifyInfluence(diff, Side.USSR);
 		}
 		else if (side.equals(Side.USA) && (usRoll <= ussrRoll)) {
