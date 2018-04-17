@@ -52,6 +52,8 @@ public class Country {
 	public void modifyInfluence(int value, Side side) {
 		if (side == Side.USA) USInfluence += value;
 		else USSRInfluence += value;
+		if (USInfluence < 0) USInfluence = 0;
+		if (USSRInfluence < 0) USSRInfluence = 0;
 	}
 
 	/**

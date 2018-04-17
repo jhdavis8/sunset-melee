@@ -169,9 +169,6 @@ public class Board {
 		else {
 			diff = 0;
 		}
-		
-		
-		
 	}
 	
 	/**
