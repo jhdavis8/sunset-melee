@@ -63,8 +63,16 @@ public class Board {
 		cardCSV = new File(absPath + f1);
 		continentCSV = new File(absPath + f2);
 		this.fillCountries();
+		this.connectCountries();
 		this.fillDeck();
 		// More code to follow....
+	}
+
+	private void connectCountries() {
+		for (Country c : world) {
+			c.connectCountries(world);
+		}
+		
 	}
 
 	/**
@@ -106,7 +114,7 @@ public class Board {
 				cont[k] = Continents.valueOf(tCont[k]);
 			}
 			
-			String[] conCountry = tempCountry[5].split("[.]");
+			String[] conCountry = tempCountry[5].split("[.|\r|\n]");
 			
 			world.add(new Country(tempCountry[2], tempCountry[1], stbNum, 0, 0, bg, cont, conCountry));
 			

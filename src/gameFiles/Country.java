@@ -20,7 +20,8 @@ public class Country {
 	private int USSRInfluence;
 	private boolean battleGround;
 	private ArrayList<Continents> continents;
-	private ArrayList<String> connectedCountries;
+	private String[] cCStrings; 
+	private ArrayList<Country> connectedCountries;
 	
 	/**
 	 * Constructor for a Country object
@@ -43,10 +44,9 @@ public class Country {
 		for (Continents cC : c) {
 			continents.add(cC);
 		}
-		connectedCountries = new ArrayList<String>();
-		for (String cC : i) {
-			connectedCountries.add(cC);
-		}
+		
+		cCStrings = i;
+		
 	}
 
 	/**
@@ -91,10 +91,10 @@ public class Country {
 		else return false;
 	}
 	
-	public ArrayList<Country> connectedCountries(Board b) {
+	private ArrayList<Country> connectedCountries(ArrayList<Country> b) {
 		ArrayList<Country> toReturn = new ArrayList<Country>();
-		for (String s : connectedCountries) {
-			for (Country c : b.getWorld()) {
+		for (String s : cCStrings) {
+			for (Country c : b) {
 				if (c.ISOCode.equals(s)) {
 					toReturn.add(c);
 				}
@@ -103,6 +103,12 @@ public class Country {
 		
 		return toReturn;
 	}
+	
+	public ArrayList<Country> getConnectedCountries() {
+		return connectedCountries;
+	}
+	
+	
 	
 	/**
 	 * @return String formatted for the country
@@ -125,6 +131,10 @@ public class Country {
 		toReturn += name + "\n";
 		
 		return toReturn;
+	}
+
+	public void connectCountries(ArrayList<Country> c) {
+		connectedCountries = connectedCountries(c);
 	}
 	
 }

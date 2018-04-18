@@ -69,7 +69,7 @@ public class UIText implements UICore {
 					break;
 				case ("con"):
 					System.out.println("Input ISO Code...");
-					System.out.println(currentBoard.getCountry(scan.nextLine()).connectedCountries(currentBoard));
+					System.out.println(currentBoard.getCountry(scan.nextLine()).getConnectedCountries());
 					break;
 				case ("f"):
 					System.out.println("full - m(ap) c(ards)");
