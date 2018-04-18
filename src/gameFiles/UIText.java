@@ -67,6 +67,10 @@ public class UIText implements UICore {
 				case ("c"):
 					promptRollCoup(scan);
 					break;
+				case ("con"):
+					System.out.println("Input ISO Code...");
+					System.out.println(currentBoard.getCountry(scan.nextLine()).connectedCountries(currentBoard));
+					break;
 				case ("f"):
 					System.out.println("full - m(ap) c(ards)");
 					command = scan.nextLine();
@@ -90,7 +94,7 @@ public class UIText implements UICore {
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("mapstatus | a(dd) | r(ealignment) | c(oup) | f(ull) | q(uit) | help%n");
+					System.out.printf("mapstatus | a(dd) | r(ealignment) | c(oup) | con(nected Countries) | f(ull) | q(uit) | help%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");

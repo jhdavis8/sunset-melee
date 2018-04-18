@@ -91,6 +91,19 @@ public class Country {
 		else return false;
 	}
 	
+	public ArrayList<Country> connectedCountries(Board b) {
+		ArrayList<Country> toReturn = new ArrayList<Country>();
+		for (String s : connectedCountries) {
+			for (Country c : b.getWorld()) {
+				if (c.ISOCode.equals(s)) {
+					toReturn.add(c);
+				}
+			}
+		}
+		
+		return toReturn;
+	}
+	
 	/**
 	 * @return String formatted for the country
 	 */

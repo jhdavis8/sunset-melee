@@ -31,6 +31,8 @@ public class Board {
 	private boolean playerTurn;
 	private File cardCSV;
 	private File continentCSV;
+	private Player USA;
+	private Player USSR;
 	
 	/**
 	 * Constructor for the board object with default values
@@ -46,6 +48,8 @@ public class Board {
 		USMilitaryOps = 0;
 		USSRMilitaryOps = 0;
 		playerTurn = false;
+		USA = new Player(Side.USA);
+		USSR = new Player(Side.USSR);
 	}
 	
 	/**
@@ -270,6 +274,9 @@ public class Board {
 		return null;
 	}
 
-	
+	public Player getPlayer(Side side) {
+		if (side.equals(Side.USA)) return USA;
+		else return USSR;
+	}
 	
 }
