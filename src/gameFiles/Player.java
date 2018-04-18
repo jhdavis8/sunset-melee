@@ -1,6 +1,7 @@
 package gameFiles;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * @author Mark Wolgin
@@ -53,6 +54,53 @@ public class Player {
 		}
 		
 		return toReturn;
+	}
+	
+	/**
+	 * Add value influence to country on side
+	 * @param country country to add to
+	 * @param value int amount to add
+	 */
+	public void placeInfluence(Country country, int value) {
+		country.modifyInfluence(value, side);		
+	}
+
+	/**
+	 * Rolls a coup by the args given
+	 * @param country Country to roll on
+	 * @param value int value to apply
+	 */
+	public void rollCoup(String country, int value) {
+		// To fill tonight
+	}
+	
+	/**
+	 * rolls a realignment by the args given
+	 * @param country Country to roll on
+	 * @param value int value to use
+	 */
+	public void rollRealignment(Country country, int value) {
+		Random randy = new Random();
+		int usRoll = randy.nextInt(7);   // ADD ONE for each adjacent country and if has more influence then opponent
+		System.out.println("USA Rolls " + usRoll);
+		int ussrRoll = randy.nextInt(7); // ADD ONE for each adjacent country and if has more influence then opponent
+		System.out.println("USSR Rolls " + ussrRoll);
+		int diff = 0;
+		
+		if (side.equals(Side.USA) && (usRoll > ussrRoll)) {
+			diff = -1 * (usRoll - ussrRoll);
+			country.modifyInfluence(diff, Side.USSR);
+		}
+		else if (side.equals(Side.USA) && (usRoll <= ussrRoll)) {
+			diff = 0;
+		}
+		else if (side.equals(Side.USSR) && (usRoll > ussrRoll)) {
+			diff = -1 * (ussrRoll - usRoll);
+			country.modifyInfluence(diff, Side.USA);
+		}
+		else {
+			diff = 0;
+		}
 	}
 
 }
