@@ -181,5 +181,49 @@ public class Board {
 		if (side.equals(Side.USA)) return USA;
 		else return USSR;
 	}
+
+	public void improveDefconStatus() {
+		if (defcon < 5) defcon ++;
+	}
+
+	public void dealCards() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void headlinePhase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void actionRound() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void checkMilitaryOperationsStatus() {
+		victoryPoints += USMilitaryOps - 5;
+		victoryPoints += 5 - USSRMilitaryOps;
+		
+	}
+
+	public void flipChinaCard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void advanceTurn() {
+		turn ++;
+	}
+
+	public void finalScoring() {
+		if (turn < 11) {
+			//Nothing happens, game progresses as normal
+		}
+		else {
+			
+		}
+		
+	}
 	
 }

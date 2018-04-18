@@ -60,7 +60,7 @@ public class Deck {
 			e.printStackTrace();
 		}
 		
-		String[] tempCard = new String[8];
+		String[] tempCard = new String[9];
 		scan.useDelimiter("[,|\n]");
 		boolean sc = false;
 				
@@ -73,13 +73,19 @@ public class Deck {
 			
 			if (tempCard[1].endsWith("*")) tempCard[1] = tempCard[1].substring(0, tempCard[1].length() - 1);
 			
+			int[] pDC = new int[3];
+			String[] numbers = tempCard[8].split("[.|\n|\r]");
+			for (int k = 0; k < numbers.length; k ++) {
+				pDC[k] = Integer.parseInt(numbers[k]);
+			}
+			
 			if (tempCard[4].equals("Turn")) {
 				deck.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
 						 Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
 			}
 			else {
 				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]),
-						 Integer.parseInt(tempCard[0]), tempCard[7]));
+						 Integer.parseInt(tempCard[0]), tempCard[7], pDC[0], pDC[1], pDC[2]));
 			}
 		}		
 	}

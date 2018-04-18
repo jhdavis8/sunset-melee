@@ -11,6 +11,10 @@ package gameFiles;
 public class ScoringCard extends Card implements Comparable<ScoringCard> {
 
 	
+	private int presence;
+	private int control;
+	private int domination;
+	
 	
 	/**
 	 * Called in Board.setUp(), it takes information and returns the filled Scoring Card.
@@ -21,8 +25,12 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 	 * @param cT Card Timing, Different cards get shuffled into the deck at different points in the game, such
 	 * E - Early Game, M - Mid Game, L - Late Game.
 	 */
-	public ScoringCard(String n, String d, int c, int e, String cT) {
+	public ScoringCard(String n, String d, int c, int e, String cT, int p, int dom, int con) {
 		super(n, d, c, e, cT);
+		presence = p;
+		control = con;
+		domination = dom;
+		
 		// TODO Auto-generated constructor stub
 	}
 
