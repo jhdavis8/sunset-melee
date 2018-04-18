@@ -2,6 +2,8 @@ package gameFiles;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import junit.framework.TestCase;
@@ -18,6 +20,12 @@ public class UnitTests {
 		assertEquals(game.getCountry("DDR").getUSSRInfluence(), 3); //USSR influence should be 3 in DDR at game start
 	}
 
+	@Test
+	public void basicGameOpperations() {
+		Board game = new Board();
+		Controller.callInitialize(game);
+		
+	}
 	
 	
 	
