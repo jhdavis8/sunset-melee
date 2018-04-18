@@ -25,6 +25,23 @@ public class UnitTests {
 		Board game = new Board();
 		Controller.callInitialize(game);
 		
+		ArrayList<Card> testAgaints = new ArrayList<Card>();
+		testAgaints.addAll(Deck.getEarlyCards());
+		for (int k = 0; k < 11; k ++) {
+			if (k == 0) {
+				assertEquals(Deck.getDeck(), testAgaints);
+			}
+			else if (k == 4) {
+				testAgaints.addAll(Deck.getMidCard());
+				assertEquals(Deck.getDeck(), testAgaints);
+			}
+			else if (k == 7) {
+				testAgaints.addAll(Deck.getLateCard());
+				assertEquals(Deck.getDeck(), testAgaints);
+			}
+			Controller.turn(game);
+		}
+		
 	}
 	
 	

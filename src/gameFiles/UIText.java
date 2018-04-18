@@ -93,13 +93,15 @@ public class UIText implements UICore {
 							break;
 					}
 					break;
-					
+				case ("t"):
+					Controller.turn(currentBoard);
+					break;
 				case ("q"):
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries)\n"
-							+ "d(raw) | f(ull) -c -m | r(ealignment) | q(uit) | help\n%n");
+					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw)\n"
+							+ "f(ull) -c -m | r(ealignment) | t(urn) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");

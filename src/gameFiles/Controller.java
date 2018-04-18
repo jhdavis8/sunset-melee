@@ -29,7 +29,6 @@ public class Controller {
 		UI.updateBoard(game);
 		UI.updateUI();
 		UI.runUI();
-		turn(game);
 	}
 	
 	/**
@@ -48,7 +47,7 @@ public class Controller {
 		initialize(b);
 	}
 	
-	private static void turn(Board game) {
+	public static void turn(Board game) {
 		game.improveDefconStatus();
 		game.dealCards();
 		game.headlinePhase();

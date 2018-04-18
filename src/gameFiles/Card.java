@@ -23,5 +23,9 @@ public abstract class Card {
 		effectID = e;
 		cardTiming = cT;
 	}
+
+	public String getGameTime() {
+		return cardTiming;
+	}
 	
 }

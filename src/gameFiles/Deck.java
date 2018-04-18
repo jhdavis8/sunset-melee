@@ -6,6 +6,7 @@ package gameFiles;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 
 /**
@@ -18,6 +19,7 @@ public class Deck {
 	/**
 	 * ArrayList of all cards in the game deck
 	 */
+	private static ArrayList<Card> ALL_CARDS;
 	private static ArrayList<Card> deck;
 	
 	/**
@@ -25,12 +27,13 @@ public class Deck {
 	 */
 	private static ArrayList<Card> discard;
 	
-	/**
-	 * @return the ArrayList deck of cards
-	 */
-	public static ArrayList<Card> getDeck() {
-		return deck;
-	}
+	private static ArrayList<Card> earlyCard;
+	private static ArrayList<Card> midCard;
+	private static ArrayList<Card> lateCard;
+	
+	private static boolean addedMidCards = false;
+	private static boolean addedLateCards = false;
+
 	
 	/**
 	 * Return the card specified by the Card number
@@ -51,6 +54,7 @@ public class Deck {
 	 */
 	public static void fillDeck(File cardCSV) {
 		deck = new ArrayList<Card>();
+		ALL_CARDS = new ArrayList<Card>();
 		discard = new ArrayList<Card>();
 		Scanner scan = null;
 		
@@ -80,14 +84,79 @@ public class Deck {
 			}
 			
 			if (tempCard[4].equals("Turn")) {
-				deck.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
+				ALL_CARDS.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
 						 Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
 			}
 			else {
-				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]),
-						 Integer.parseInt(tempCard[0]), tempCard[7], pDC[0], pDC[1], pDC[2]));
+				ALL_CARDS.add(new ScoringCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]),
+						 Integer.parseInt(tempCard[0]), tempCard[6], pDC[0], pDC[1], pDC[2]));
 			}
 		}		
+		fillCompositDecks();
+		addEarlyCards();
 	}
+
+	private static void fillCompositDecks() {
+		earlyCard = new ArrayList<Card>();
+		midCard = new ArrayList<Card>();
+		lateCard = new ArrayList<Card>();
+		String cardTiming = "";
+		for (Card c : ALL_CARDS) {
+			cardTiming = c.getGameTime();
+			if (cardTiming.equals("E")) {
+				earlyCard.add(c);
+			}
+			else if (cardTiming.equals("M")) {
+				midCard.add(c);
+			}
+			else if (cardTiming.equals("L")) {
+				lateCard.add(c);
+			}
+			
+		}
+	}
+	
+	public static void addCards(int t) {
+		if (t > 6 && (!addedLateCards)) {
+			addLateCards();
+			addedLateCards = true;
+		}
+		else if (t > 3 && (!addedMidCards)) {
+			addMidCards();
+			addedMidCards = true;
+		}
+	}
+	
+	private static void addEarlyCards() {
+		deck.addAll(earlyCard);
+	}
+	
+	private static void addMidCards() {
+		deck.addAll(midCard);
+	}
+	
+	private static void addLateCards() {
+		deck.addAll(lateCard);
+	}
+	
+	/**
+	 * @return the ArrayList deck of cards
+	 */
+	public static ArrayList<Card> getDeck() {
+		return deck;
+	}
+
+	public static ArrayList<Card> getEarlyCards() {
+		return earlyCard;
+	}
+
+	public static ArrayList<Card> getMidCard() {
+		return midCard;
+	}
+	
+	public static ArrayList<Card> getLateCard() {
+		return lateCard;
+	}
+	
 	
 }

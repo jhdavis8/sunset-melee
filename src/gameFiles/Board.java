@@ -214,6 +214,7 @@ public class Board {
 
 	public void advanceTurn() {
 		turn ++;
+		Deck.addCards(turn);
 	}
 
 	public void finalScoring() {
