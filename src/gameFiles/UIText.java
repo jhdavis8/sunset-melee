@@ -11,6 +11,9 @@ import java.util.Scanner;
 public class UIText implements UICore {
 	
 
+	/**
+	 * The current Board
+	 */
 	private Board currentBoard;
 
 	/* (non-Javadoc)
@@ -109,6 +112,10 @@ public class UIText implements UICore {
 		}
 	}
 	
+	/**
+	 * Prompt for the ConnectedCountry
+	 * @param scan Scanner
+	 */
 	private void promptConnectedCountry(Scanner scan) {
 		System.out.println("Input ISO Code...");
 		boolean checking = true;
@@ -131,6 +138,10 @@ public class UIText implements UICore {
 		
 	}
 
+	/**
+	 * Prompt the Drawing of a Card
+	 * @param scan Scanner
+	 */
 	private void promptDrawCard(Scanner scan) {
 		System.out.println("Entering draw random card...");
 		boolean checking = true;
@@ -153,6 +164,10 @@ public class UIText implements UICore {
 		
 	}
 
+	/**
+	 * Prompt the rolling of coup
+	 * @param scan Scanner
+	 */
 	private void promptRollCoup(Scanner scan) {
 		System.out.println("Entering coup prompt...");
 		boolean checking = true;
@@ -214,6 +229,10 @@ public class UIText implements UICore {
 		
 	}
 
+	/**
+	 * Prompt the roll of a realignment
+	 * @param scan Scanner
+	 */
 	private void promptRollRealignemnt(Scanner scan) {
 		//Does not account for negative influence...
 		System.out.println("Entering realignemnt prompt...");

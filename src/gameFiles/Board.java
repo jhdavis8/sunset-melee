@@ -17,19 +17,59 @@ import java.util.Scanner;
  * @author Josh Davis
  *
  */
+/**
+ * @author Mark
+ *
+ */
 public class Board {
 	
+	/**
+	 * World is an ArrayList that holds all of the Countries that make up the world
+	 */
 	private ArrayList<Country> world;
+	/**
+	 * int turn is the current turn of the game
+	 */
 	private int turn;
+	/**
+	 * int actionRound is the current action round of the game
+	 */
 	private int actionRound;
+	/**
+	 * int victoryPoints hold the current victory points as a number line from [-20, 20]
+	 */
 	private int victoryPoints;
+	/**
+	 * int defcon is the current defcon level
+	 */
 	private int defcon;
+	/**
+	 * int USMilitaryOps is how many military ops the US has done in a turn
+	 */
 	private int USMilitaryOps;
+	/**
+	 * int USSRMilitaryOps is how many military ops the US has done in a turn
+	 */
 	private int USSRMilitaryOps;
+	/**
+	 * boolean playerTurn holds the current turn
+	 */
 	private boolean playerTurn;
+	/**
+	 * The file information for the card.csv
+	 */
 	private File cardCSV;
+	/**
+	 * The file information for the contries.cvs
+	 */
 	private File continentCSV;
+	/**
+	 * The Player USA
+	 */
 	private Player USA;
+	/**
+	 * The Player USSR
+	 */
 	private Player USSR;
 	
 	/**
@@ -182,41 +222,65 @@ public class Board {
 		else return USSR;
 	}
 
+	/**
+	 * Improves the Defcon staus by one
+	 */
 	public void improveDefconStatus() {
 		if (defcon < 5) defcon ++;
 	}
 
+	/**
+	 * Deals the cards to the players hand
+	 */
 	public void dealCards() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Runs the Headline phase
+	 */
 	public void headlinePhase() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Runs the Action Round
+	 */
 	public void actionRound() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Handles the military operations effect
+	 */
 	public void checkMilitaryOperationsStatus() {
 		victoryPoints += USMilitaryOps - 5;
 		victoryPoints += 5 - USSRMilitaryOps;
 		
 	}
 
+	/**
+	 * Passes the china card if it needs to be passed
+	 */
 	public void flipChinaCard() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	/**
+	 * Advances the turn by one and adds the cards to the deck
+	 */
 	public void advanceTurn() {
 		turn ++;
 		Deck.addCards(turn);
 	}
 
+	/**
+	 * Handles the final scoring if it gets to that point.
+	 */
 	public void finalScoring() {
 		if (turn < 11) {
 			//Nothing happens, game progresses as normal

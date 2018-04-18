@@ -10,6 +10,9 @@ import junit.framework.TestCase;
 
 public class UnitTests {
 	
+	/**
+	 * Tests Correct Setup
+	 */
 	@Test
 	public void correctSetUp() {
 		Board game = new Board();
@@ -20,6 +23,9 @@ public class UnitTests {
 		assertEquals(game.getCountry("DDR").getUSSRInfluence(), 3); //USSR influence should be 3 in DDR at game start
 	}
 
+	/**
+	 * Tests basic game operations
+	 */
 	@Test
 	public void basicGameOpperations() {
 		Board game = new Board();

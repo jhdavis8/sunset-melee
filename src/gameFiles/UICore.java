@@ -10,7 +10,14 @@ package gameFiles;
  */
 public interface UICore {
 	
+	/**
+	 * Updates the local board
+	 * @param b Board
+	 */
 	public void updateBoard(Board b);
+	/**
+	 * Prints out the UI
+	 */
 	public void updateUI();
 	
 }

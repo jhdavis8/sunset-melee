@@ -43,10 +43,18 @@ public class Controller {
 		b.getPlayer(Side.USA).placeInfluence(b.getCountry("CAN"), 2);
 	}
 	
+	/**
+	 * Calls private Controller.initialize(Board b)
+	 * @param b Board
+	 */
 	public static void callInitialize(Board b) {
 		initialize(b);
 	}
 	
+	/**
+	 * Holds the structure of the progression of the game
+	 * @param game Board to use
+	 */
 	public static void turn(Board game) {
 		game.improveDefconStatus();
 		game.dealCards();

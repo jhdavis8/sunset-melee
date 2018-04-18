@@ -77,6 +77,11 @@ public class Country {
 		return continents;
 	}
 
+	/**
+	 * Returns true if the opposite of the side passed has influence on this country
+	 * @param side USA or USSR
+	 * @return	returns true if the the opposite of the side has influence in this country
+	 */
 	public boolean opponentHasInfluence(Side side) {
 		if (side.equals(Side.USA) && USSRInfluence > 0) return true;
 		else if (side.equals(Side.USSR) && USInfluence > 0) return true;
@@ -84,6 +89,11 @@ public class Country {
 		else return false;
 	}
 
+	/**
+	 * Returns true of the Side has influence in this country
+	 * @param side USA or USSR
+	 * @return Returns true of the Side has influence in this country
+	 */
 	public boolean userHasInfluence(Side side) {
 		if (side.equals(Side.USA) && USInfluence > 0) return true;
 		else if (side.equals(Side.USSR) && USSRInfluence > 0) return true;
@@ -91,6 +101,11 @@ public class Country {
 		else return false;
 	}
 	
+	/**
+	 * Returns The list of the connected countries
+	 * @param b ArrayList<Country>
+	 * @return The list of the connected countries
+	 */
 	private ArrayList<Country> connectedCountries(ArrayList<Country> b) {
 		ArrayList<Country> toReturn = new ArrayList<Country>();
 		for (String s : cCStrings) {
@@ -104,6 +119,10 @@ public class Country {
 		return toReturn;
 	}
 	
+	/**
+	 * Returns The list of the connected countries
+	 * @return ArrayList<Country> The list of the connected countries
+	 */
 	public ArrayList<Country> getConnectedCountries() {
 		return connectedCountries;
 	}

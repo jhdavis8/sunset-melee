@@ -52,7 +52,7 @@ public class Player {
 	/**
 	 * Take a card from the deck. If index is less than 0, takes a random card. Currently uses hand instead of deck.
 	 * Card is also added to the hand.
-	 * @param index
+	 * @param index Card Index
 	 * @return the card taken out of the deck
 	 */
 	private Card drawCard(int index) {

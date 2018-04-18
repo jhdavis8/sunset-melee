@@ -11,8 +11,17 @@ package gameFiles;
 public class ScoringCard extends Card implements Comparable<ScoringCard> {
 
 	
+	/**
+	 * int representation of presence
+	 */
 	private int presence;
+	/**
+	 * int representation of control
+	 */
 	private int control;
+	/**
+	 * int representation of domination
+	 */
 	private int domination;
 	
 	
@@ -23,6 +32,9 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 	 * @param c Card Number, The number for the card.
 	 * @param e EffectID, The unique identification code for use with in game logic and the Effects class.
 	 * @param cT Card Timing, Different cards get shuffled into the deck at different points in the game, such
+	 * @param p	Presence
+	 * @param dom Domination
+	 * @param con Control
 	 * E - Early Game, M - Mid Game, L - Late Game.
 	 */
 	public ScoringCard(String n, String d, int c, int e, String cT, int p, int dom, int con) {

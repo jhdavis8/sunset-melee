@@ -20,6 +20,9 @@ public class Deck {
 	 * ArrayList of all cards in the game deck
 	 */
 	private static ArrayList<Card> ALL_CARDS;
+	/**
+	 * Cards currently available in the deck
+	 */
 	private static ArrayList<Card> deck;
 	
 	/**
@@ -27,11 +30,26 @@ public class Deck {
 	 */
 	private static ArrayList<Card> discard;
 	
+	/**
+	 * The earlyCard ArrayList
+	 */
 	private static ArrayList<Card> earlyCard;
+	/**
+	 * The midCard ArrayList
+	 */
 	private static ArrayList<Card> midCard;
+	/**
+	 * The lateCard ArrayList
+	 */
 	private static ArrayList<Card> lateCard;
 	
+	/**
+	 * The boolean if the mid Cards have been added
+	 */
 	private static boolean addedMidCards = false;
+	/**
+	 * The boolean if the late Cards have been added
+	 */
 	private static boolean addedLateCards = false;
 
 	
@@ -96,6 +114,9 @@ public class Deck {
 		addEarlyCards();
 	}
 
+	/**
+	 * Fills all the smaller sub decks
+	 */
 	private static void fillCompositDecks() {
 		earlyCard = new ArrayList<Card>();
 		midCard = new ArrayList<Card>();
@@ -116,6 +137,10 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Adds cards at the appropriate time
+	 * @param t Turn
+	 */
 	public static void addCards(int t) {
 		if (t > 6 && (!addedLateCards)) {
 			addLateCards();
@@ -127,14 +152,23 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Adds the Early Cards
+	 */
 	private static void addEarlyCards() {
 		deck.addAll(earlyCard);
 	}
 	
+	/**
+	 * Adds the Middle Cards
+	 */
 	private static void addMidCards() {
 		deck.addAll(midCard);
 	}
 	
+	/**
+	 * Adds the Late Cards
+	 */
 	private static void addLateCards() {
 		deck.addAll(lateCard);
 	}
@@ -146,14 +180,23 @@ public class Deck {
 		return deck;
 	}
 
+	/**
+	 * @return the ArrayList earlyCard
+	 */
 	public static ArrayList<Card> getEarlyCards() {
 		return earlyCard;
 	}
 
+	/**
+	 * @return the ArrayList midCard
+	 */
 	public static ArrayList<Card> getMidCard() {
 		return midCard;
 	}
 	
+	/**
+	 * @return the ArrayList lateCard
+	 */
 	public static ArrayList<Card> getLateCard() {
 		return lateCard;
 	}
