@@ -20,6 +20,7 @@ public class Country {
 	private int USSRInfluence;
 	private boolean battleGround;
 	private ArrayList<Continents> continents;
+	private ArrayList<String> connectedCountries;
 	
 	/**
 	 * Constructor for a Country object
@@ -31,7 +32,7 @@ public class Country {
 	 * @param b true for battleground countries
 	 * @param c ArrayList of continents the country is a member of
 	 */
-	public Country(String n, String I, int s, int US, int USSR, boolean b, Continents[] c) {
+	public Country(String n, String I, int s, int US, int USSR, boolean b, Continents[] c, String[] i) {
 		name = n;
 		ISOCode = I;
 		stabilityNum = s;
@@ -39,8 +40,12 @@ public class Country {
 		USSRInfluence = USSR;
 		battleGround = b;
 		continents = new ArrayList<Continents>();
-		for (Continents i : c) {
-			continents.add(i);
+		for (Continents cC : c) {
+			continents.add(cC);
+		}
+		connectedCountries = new ArrayList<String>();
+		for (String cC : i) {
+			connectedCountries.add(cC);
 		}
 	}
 
@@ -54,29 +59,6 @@ public class Country {
 		else USSRInfluence += value;
 		if (USInfluence < 0) USInfluence = 0;
 		if (USSRInfluence < 0) USSRInfluence = 0;
-	}
-
-	/**
-	 * @return String formatted for the country
-	 */
-	public String toString() {
-		String toReturn = "";
-		for (Continents c : continents) {
-			toReturn += c.toString(c) + "_";
-		}
-		if (continents.size() == 1) toReturn += "..._";
-		
-		toReturn += ISOCode + "_[";
-		toReturn += stabilityNum + "]_";
-		toReturn += "[" + USInfluence + ", " + USSRInfluence + "]_[";
-		
-		if ((USInfluence - USSRInfluence) >= stabilityNum) toReturn += "USA]_";
-		else if ((USSRInfluence - USInfluence) >= stabilityNum) toReturn += "USSR]_";
-		else toReturn += "UNK]_";
-		
-		toReturn += name + "\n";
-		
-		return toReturn;
 	}
 	
 	/**
@@ -107,6 +89,29 @@ public class Country {
 		else if (side.equals(Side.USSR) && USSRInfluence > 0) return true;
 		
 		else return false;
+	}
+	
+	/**
+	 * @return String formatted for the country
+	 */
+	public String toString() {
+		String toReturn = "";
+		for (Continents c : continents) {
+			toReturn += c.toString(c) + "_";
+		}
+		if (continents.size() == 1) toReturn += "..._";
+		
+		toReturn += ISOCode + "_[";
+		toReturn += stabilityNum + "]_";
+		toReturn += "[" + USInfluence + ", " + USSRInfluence + "]_[";
+		
+		if ((USInfluence - USSRInfluence) >= stabilityNum) toReturn += "USA]_";
+		else if ((USSRInfluence - USInfluence) >= stabilityNum) toReturn += "USSR]_";
+		else toReturn += "UNK]_";
+		
+		toReturn += name + "\n";
+		
+		return toReturn;
 	}
 	
 }

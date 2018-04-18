@@ -1,84 +1,84 @@
-WEE,CAN,Canada,4,F
-WEE,GBR,United Kigndom,5,F
-WEE,NOR,Norway,4,F
-WEE,SWE,Sweden,4,F
-WEE.EEE,FIN,Finland,4,F
-WEE,DNK,Denmark,3,F
-WEE,DEU,West Germany,4,T
-WEE,BEL,Benelux,3,F
-WEE,FRA,France,3,T
-WEE,ESP,Spain/Portugal,2,F
-WEE,ITA,Italy,2,T
-WEE.EEE,AUT,Austria,4,F
-EEE,YUG,Yugoslovia,3,F
-WEE,GRC,Greece,2,F
-EEE,BGR,Bulgaria,3,F
-WEE,TUR,Turkey,2,F
-EEE,ROU,Romania,3,F
-EEE,HUN,Hungary,3,F
-EEE,CSK,Czechoslovakia,3,F
-EEE,POL,Poland,3,T
-EEE,DDR,East Germany,3,T
-SCR,MEX,Mexico,2,T
-SCR,GTM,Guatemala,1,F
-SCR,SLC,El  Salvador,1,F
-SCR,HND,Honduras,2,F
-SCR,CRI,Costa Rica,3,F
-SCR,PAN,Panama,2,T
-SCR,NIC,Nicaragua,1,F
-SCR,CUB,Cuba,3,T
-SCR,HTI,Haiti,1,F
-SCR,DOM,Dominican Republic,1,F
-SRR,COL,Colombia,1,F
-SRR,ECU,Ecuador,2,F
-SRR,PER,Peru,2,F
-SRR,CHL,Chile,3,T
-SRR,ARG,Argentina,2,T
-SRR,PRY,Paraguay,2,F
-SRR,BOL,Bolivia,2,F
-SRR,URY,Uruguay,2,F
-SRR,BRA,Brazil,2,T
-SRR,VEN,Venezuela,2,T
-MMM,SYR,Syria,2,F
-MMM,LBN,Lebanon,1,F
-MMM,ISR,Israel,4,T
-MMM,EGY,Egypt,2,T
-MMM,LBY,Libya,2,T
-MMM,JOR,Jordan,2,F
-MMM,SAU,Saudi Arabia,3,T
-MMM,GLF,Gulf States,3,F
-MMM,IRQ,Iraq,3,T
-MMM,IRN,Iran,2,T
-FFF,TUN,Tunisia,2,F
-FFF,DZA,Algeria,2,T
-FFF,MAR,Morocco,3,F
-FFF,WAS,West African States,2,F
-FFF,CIV,Ivory Coast,2,F
-FFF,NGA,Nigeria,1,T
-FFF,SHS,Saharan States,1,F
-FFF,CMR,Cameroon,1,F
-FFF,ZAR,Zaire,1,T
-FFF,AGO,Angola,1,T
-FFF,ZAF,South Africa,3,T
-FFF,BWA,Botswana,2,F
-FFF,ZWE,Zimbabwe,1,F
-FFF,SES,SE African States,1,F
-FFF,KEN,Kenya,2,F
-FFF,SOM,Somalia,2,F
-FFF,ETH,Ethiopia,1,F
-FFF,SDN,Sudan,1,F
-ABB,AFG,Afghanistan,2,F
-ABB,PAK,Pakistan,2,T
-ABB,IND,India,3,T
-ABB.UUU,BUR,Burma,2,F
-ABB.UUU,KHM,Cambodia,1,F
-ABB.UUU,VNM,Vietnam,1,F
-ABB.UUU,THA,Thailand,2,T
-ABB.UUU,MYS,Malaysia,2,F
-ABB,AUS,Australia,4,F
-ABB.UUU,IDN,Indonesia,1,F
-ABB.UUU,PHL,Philippines,2,F
-ABB,JPN,Japan,4,T
-ABB,TWN,Taiwan,3,F
-ABB,KOR,S. Korea,3,T
-ABB,PRK,N. Korea,3,T
+WEE,CAN,Canada,4,F,GBR.USA
+WEE,GBR,United Kigndom,5,F,CAN.NOR.FRA.BEL
+WEE,NOR,Norway,4,F,GBR.SWE
+WEE,SWE,Sweden,4,F,NOR.DNK.FIN
+WEE.EEE,FIN,Finland,4,F,SWE.USSR
+WEE,DNK,Denmark,3,F,SWE.DEU
+WEE,DEU,West Germany,4,T,DNK.BEL.FRA.AUT.DDR
+WEE,BEL,Benelux,3,F,GBR.DEU
+WEE,FRA,France,3,T,GBR.DEU.ESP.ITA.DZA
+WEE,ESP,Spain/Portugal,2,F,FRA.ITA.MAR
+WEE,ITA,Italy,2,T,FRA.ESP.GRC.YUG.AUT
+WEE.EEE,AUT,Austria,4,F,DEU.ITA.HUN.DDR
+EEE,YUG,Yugoslovia,3,F,ITA.GRC.ROU.HUN
+WEE,GRC,Greece,2,F,ITA.TUR.BGR.YUG
+EEE,BGR,Bulgaria,3,F,GRC.TUR
+WEE,TUR,Turkey,2,F,GRC.SYR.ROU.BGR
+EEE,ROU,Romania,3,F,TUR.HUN.YUG.USSR
+EEE,HUN,Hungary,3,F,AUT.YUG.ROU.CSK.
+EEE,CSK,Czechoslovakia,3,F,DDR.HUN.POL
+EEE,POL,Poland,3,T,DDR.CSK.USSR
+EEE,DDR,East Germany,3,T,DEU.AUT.CSK.POL
+SCR,MEX,Mexico,2,T,XXX
+SCR,GTM,Guatemala,1,F,XXX
+SCR,SLC,El  Salvador,1,F,XXX
+SCR,HND,Honduras,2,F,XXX
+SCR,CRI,Costa Rica,3,F,XXX
+SCR,PAN,Panama,2,T,XXX
+SCR,NIC,Nicaragua,1,F,XXX
+SCR,CUB,Cuba,3,T,XXX
+SCR,HTI,Haiti,1,F,XXX
+SCR,DOM,Dominican Republic,1,F,XXX
+SRR,COL,Colombia,1,F,XXX
+SRR,ECU,Ecuador,2,F,XXX
+SRR,PER,Peru,2,F,XXX
+SRR,CHL,Chile,3,T,XXX
+SRR,ARG,Argentina,2,T,XXX
+SRR,PRY,Paraguay,2,F,XXX
+SRR,BOL,Bolivia,2,F,XXX
+SRR,URY,Uruguay,2,F,XXX
+SRR,BRA,Brazil,2,T,XXX
+SRR,VEN,Venezuela,2,T,XXX
+MMM,SYR,Syria,2,F,XXX
+MMM,LBN,Lebanon,1,F,XXX
+MMM,ISR,Israel,4,T,XXX
+MMM,EGY,Egypt,2,T,XXX
+MMM,LBY,Libya,2,T,XXX
+MMM,JOR,Jordan,2,F,XXX
+MMM,SAU,Saudi Arabia,3,T,XXX
+MMM,GLF,Gulf States,3,F,XXX
+MMM,IRQ,Iraq,3,T,XXX
+MMM,IRN,Iran,2,T,XXX
+FFF,TUN,Tunisia,2,F,XXX
+FFF,DZA,Algeria,2,T,XXX
+FFF,MAR,Morocco,3,F,XXX
+FFF,WAS,West African States,2,F,XXX
+FFF,CIV,Ivory Coast,2,F,XXX
+FFF,NGA,Nigeria,1,T,XXX
+FFF,SHS,Saharan States,1,F,XXX
+FFF,CMR,Cameroon,1,F,XXX
+FFF,ZAR,Zaire,1,T,XXX
+FFF,AGO,Angola,1,T,XXX
+FFF,ZAF,South Africa,3,T,XXX
+FFF,BWA,Botswana,2,F,XXX
+FFF,ZWE,Zimbabwe,1,F,XXX
+FFF,SES,SE African States,1,F,XXX
+FFF,KEN,Kenya,2,F,XXX
+FFF,SOM,Somalia,2,F,XXX
+FFF,ETH,Ethiopia,1,F,XXX
+FFF,SDN,Sudan,1,F,XXX
+ABB,AFG,Afghanistan,2,F,XXX
+ABB,PAK,Pakistan,2,T,XXX
+ABB,IND,India,3,T,XXX
+ABB.UUU,BUR,Burma,2,F,XXX
+ABB.UUU,KHM,Cambodia,1,F,XXX
+ABB.UUU,VNM,Vietnam,1,F,XXX
+ABB.UUU,THA,Thailand,2,T,XXX
+ABB.UUU,MYS,Malaysia,2,F,XXX
+ABB,AUS,Australia,4,F,XXX
+ABB.UUU,IDN,Indonesia,1,F,XXX
+ABB.UUU,PHL,Philippines,2,F,XXX
+ABB,JPN,Japan,4,T,XXX
+ABB,TWN,Taiwan,3,F,XXX
+ABB,KOR,S. Korea,3,T,XXX
+ABB,PRK,N. Korea,3,T,XXX

@@ -78,7 +78,7 @@ public class Board {
 			e.printStackTrace();
 		}
 		
-		String[] tempCountry = new String[5];
+		String[] tempCountry = new String[6];
 		int stbNum = 0;
 		boolean bg = false;
 		
@@ -102,7 +102,9 @@ public class Board {
 				cont[k] = Continents.valueOf(tCont[k]);
 			}
 			
-			world.add(new Country(tempCountry[2], tempCountry[1], stbNum, 0, 0, bg, cont));
+			String[] conCountry = tempCountry[5].split("[.]");
+			
+			world.add(new Country(tempCountry[2], tempCountry[1], stbNum, 0, 0, bg, cont, conCountry));
 			
 		}
 	}
