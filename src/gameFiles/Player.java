@@ -37,22 +37,28 @@ public class Player {
 	 * It will prompt the user to pick a card from there hand and play it.
 	 */
 	public void playCard() {
-		
+		drawCard(-1);
 	}
 	
 	/**
 	 * Take a card from the deck. If index is less than 0, takes a random card. Currently uses hand instead of deck.
+	 * Card is also added to the hand.
 	 * @param index
 	 * @return the card taken out of the deck
 	 */
 	private Card drawCard(int index) {
 		Random randi = new Random();
+		ArrayList<Card> deck = Deck.getDeck();
 		if (index < 0) {
-			int rando = randi.nextInt(hand.size());
-			return hand.get(rando);
+			int rando = randi.nextInt(deck.size());
+			Card result = deck.get(rando);
+			hand.add(result);
+			return result;
 		}
 		else {
-			return hand.get(index);
+			Card result = deck.get(index);
+			hand.add(result);
+			return result;
 		}
 	}
 	
