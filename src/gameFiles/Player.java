@@ -40,6 +40,22 @@ public class Player {
 		
 	}
 	
+	/**
+	 * Take a card from the deck. If index is less than 0, takes a random card. Currently uses hand instead of deck.
+	 * @param index
+	 * @return the card taken out of the deck
+	 */
+	private Card drawCard(int index) {
+		Random randi = new Random();
+		if (index < 0) {
+			int rando = randi.nextInt(hand.size());
+			return hand.get(rando);
+		}
+		else {
+			return hand.get(index);
+		}
+	}
+	
 	/* 
 	 * Used to print out important information to the UIText Class.
 	 * (non-Javadoc)
