@@ -41,6 +41,15 @@ public class Player {
 	}
 	
 	/**
+	 * Temporary Method
+	 * @param t Card to draw, if -1, then it pulls randomly
+	 * @return Selected card
+	 */
+	public Card playCard(int t) {
+		return drawCard(t);
+	}
+	
+	/**
 	 * Take a card from the deck. If index is less than 0, takes a random card. Currently uses hand instead of deck.
 	 * Card is also added to the hand.
 	 * @param index
