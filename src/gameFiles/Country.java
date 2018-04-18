@@ -32,6 +32,7 @@ public class Country {
 	 * @param USSR current USSR influence
 	 * @param b true for battleground countries
 	 * @param c ArrayList of continents the country is a member of
+	 * @param i List of connected countries in String
 	 */
 	public Country(String n, String I, int s, int US, int USSR, boolean b, Continents[] c, String[] i) {
 		name = n;
