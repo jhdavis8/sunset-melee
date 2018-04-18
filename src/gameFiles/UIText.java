@@ -83,6 +83,7 @@ public class UIText implements UICore {
 							}
 							break;
 						case ("c"):
+							System.out.println("------------------------\n" + "CRD_CLS_TYP_VAL_EID\n");
 							for (Card c : Deck.getDeck()) {
 								System.out.print(c);
 							}
@@ -97,7 +98,8 @@ public class UIText implements UICore {
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("mapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw) | f(ull) | r(ealignment) | q(uit) | help%n");
+					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries)\n"
+							+ "d(raw) | f(ull) -c -m | r(ealignment) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");

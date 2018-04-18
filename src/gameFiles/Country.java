@@ -137,4 +137,13 @@ public class Country {
 		connectedCountries = connectedCountries(c);
 	}
 	
+	public int getUSInfluence() {
+		return USInfluence;
+	}
+
+	public int getUSSRInfluence() {
+		return USSRInfluence;
+	}
+
+	
 }

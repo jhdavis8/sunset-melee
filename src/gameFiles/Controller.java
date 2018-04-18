@@ -23,12 +23,8 @@ public class Controller {
 		UIText UI = new UIText();
 		
 		initialize(game);
+		System.out.println(game.getCountry("CAN").getUSInfluence());
 		
-		Player p1 = new Player(Side.USA);
-		
-		//Hello World
-		
-		System.out.println(p1);
 		
 		UI.updateBoard(game);
 		UI.updateUI();
@@ -45,6 +41,10 @@ public class Controller {
 		b.getPlayer(Side.USSR).placeInfluence(b.getCountry("FIN"), 1);
 		b.getPlayer(Side.USA).placeInfluence(b.getCountry("GBR"), 5);
 		b.getPlayer(Side.USA).placeInfluence(b.getCountry("CAN"), 2);
+	}
+	
+	public static void callInitialize(Board b) {
+		initialize(b);
 	}
 	
 	/**
