@@ -136,56 +136,6 @@ public class Board {
 	}
 	
 	/**
-	 * Add value influence to country on side
-	 * @param side side to add for
-	 * @param country country to add to
-	 * @param value int amount to add
-	 */
-	public void placeInfluence(Side side, Country country, int value) {
-		country.modifyInfluence(value, side);		
-	}
-	
-	/**
-	 * Rolls a coup by the args given
-	 * @param side Side to roll for
-	 * @param country Country to roll on
-	 * @param value int value to apply
-	 */
-	public void rollCoup(Side side, String country, int value) {
-		// To fill tonight
-	}
-	
-	/**
-	 * rolls a realignment by the args given
-	 * @param side Side to roll for
-	 * @param country Country to roll on
-	 * @param value int value to use
-	 */
-	public void rollRealignment(Side side, Country country, int value) {
-		Random randy = new Random();
-		int usRoll = randy.nextInt(7);   // ADD ONE for each adjacent country and if has more influence then opponent
-		System.out.println("USA Rolls " + usRoll);
-		int ussrRoll = randy.nextInt(7); // ADD ONE for each adjacent country and if has more influence then opponent
-		System.out.println("USSR Rolls " + ussrRoll);
-		int diff = 0;
-		
-		if (side.equals(Side.USA) && (usRoll > ussrRoll)) {
-			diff = -1 * (usRoll - ussrRoll);
-			country.modifyInfluence(diff, Side.USSR);
-		}
-		else if (side.equals(Side.USA) && (usRoll <= ussrRoll)) {
-			diff = 0;
-		}
-		else if (side.equals(Side.USSR) && (usRoll > ussrRoll)) {
-			diff = -1 * (ussrRoll - usRoll);
-			country.modifyInfluence(diff, Side.USA);
-		}
-		else {
-			diff = 0;
-		}
-	}
-	
-	/**
 	 * @return a string formatted for the country 
 	 */
 	public String toString() {

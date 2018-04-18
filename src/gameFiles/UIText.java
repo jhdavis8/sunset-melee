@@ -157,7 +157,7 @@ public class UIText implements UICore {
 		System.out.println(country);
 		checking = true;
 		System.out.println("Rolling a coup...");
-		currentBoard.rollRealignment(side, country, card.cardNum);
+		currentBoard.getPlayer(side).rollRealignment(country, card.cardNum);
 		System.out.println(country);
 		
 		
@@ -200,7 +200,7 @@ public class UIText implements UICore {
 		System.out.println(country);
 		checking = true;
 		System.out.println("Rolling for realignment...");
-		currentBoard.rollRealignment(side, country, 0);
+		currentBoard.getPlayer(side).rollRealignment(country, 0);
 		System.out.println(country);
 		/*
 		int value = -1;
@@ -277,7 +277,7 @@ public class UIText implements UICore {
 				continue;
 			}
 		}
-		currentBoard.placeInfluence(side, country, value);
+		currentBoard.getPlayer(side).placeInfluence(country, value);
 		System.out.println(country);
 	}
 	

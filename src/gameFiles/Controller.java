@@ -41,10 +41,10 @@ public class Controller {
 	 */
 	private static void initialize(Board b) {
 		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv");
-		b.placeInfluence(Side.USSR, b.getCountry("DDR"), 3);
-		b.placeInfluence(Side.USSR, b.getCountry("FIN"), 1);
-		b.placeInfluence(Side.USA, b.getCountry("GBR"), 5);
-		b.placeInfluence(Side.USA, b.getCountry("CAN"), 2);
+		b.getPlayer(Side.USSR).placeInfluence(b.getCountry("DDR"), 3);
+		b.getPlayer(Side.USSR).placeInfluence(b.getCountry("FIN"), 1);
+		b.getPlayer(Side.USA).placeInfluence(b.getCountry("GBR"), 5);
+		b.getPlayer(Side.USA).placeInfluence(b.getCountry("CAN"), 2);
 	}
 	
 	/**
