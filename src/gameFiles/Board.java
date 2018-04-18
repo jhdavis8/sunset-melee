@@ -12,15 +12,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- * Class for main game functions, contains ArrayLists for game parts
+ * Class for main game functions, contains ArrayLists for countries
  * @author Mark Wolgin
  * @author Josh Davis
  *
  */
 public class Board {
 	
-	private ArrayList<Card> deck;
-	private ArrayList<Card> discard;
 	private ArrayList<Country> world;
 	private int turn;
 	private int actionRound;
@@ -38,8 +36,6 @@ public class Board {
 	 * Constructor for the board object with default values
 	 */
 	public Board() {
-		deck = new ArrayList<Card>();
-		discard = new ArrayList<Card>();
 		world = new ArrayList<Country>();
 		turn = 0;
 		actionRound = 0;
@@ -64,10 +60,13 @@ public class Board {
 		continentCSV = new File(absPath + f2);
 		this.fillCountries();
 		this.connectCountries();
-		this.fillDeck();
+		Deck.fillDeck(cardCSV);
 		// More code to follow....
 	}
 
+	/**
+	 * Builds links between all countries
+	 */
 	private void connectCountries() {
 		for (Country c : world) {
 			c.connectCountries(world);
@@ -153,46 +152,6 @@ public class Board {
 	}
 
 	/**
-	 * Builds complete deck of card objects as read from the .csv
-	 */
-	private void fillDeck() {
-		Scanner scan = null;
-		
-		try {
-			scan = new Scanner(cardCSV);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		
-		String[] tempCard = new String[8];
-		
-		scan.useDelimiter("[,|\n]");
-		boolean sc = false;
-		
-		
-		while(scan.hasNext()) {
-			for (int k = 0; k < tempCard.length; k ++) {
-				tempCard[k] = scan.next();
-			}
-			
-			if (tempCard[3].equals("Y")) sc = true;
-			
-			if (tempCard[1].endsWith("*")) tempCard[1] = tempCard[1].substring(0, tempCard[1].length() - 1);
-			
-			if (tempCard[4].equals("Turn")) {
-				deck.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
-						Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
-			}
-			else {
-				deck.add(new ScoringCard(tempCard[1], tempCard[6], Integer.parseInt(tempCard[0]),
-						Integer.parseInt(tempCard[0]), tempCard [7]));
-			}
-		}		
-
-	}
-	
-	/**
-	 * 
 	 * @return the int number of victory points currently on the board
 	 */
 	public int getVictoryPoints() {
@@ -200,7 +159,6 @@ public class Board {
 	}
 
 	/**
-	 * 
 	 * @return the ArrayList<Country> of all countries on the board
 	 */
 	public ArrayList<Country> getWorld() {
@@ -208,7 +166,6 @@ public class Board {
 	}
 
 	/**
-	 * 
 	 * @return the current defcon level int
 	 */
 	public int getDefcon() {
@@ -216,22 +173,10 @@ public class Board {
 	}
 
 	/**
-	 * 
-	 * @return the ArrayList deck of cards
+	 * Get a player from a side
+	 * @param side
+	 * @return the Player object associated with the side
 	 */
-	public ArrayList<Card> getDeck() {
-		return deck;
-	}
-
-	public Card getCard(int input) {
-		for (Card c : deck) {
-			if (input == c.cardNum) {
-				return c;
-			}
-		}
-		return null;
-	}
-
 	public Player getPlayer(Side side) {
 		if (side.equals(Side.USA)) return USA;
 		else return USSR;

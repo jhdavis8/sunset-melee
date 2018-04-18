@@ -81,7 +81,7 @@ public class UIText implements UICore {
 							}
 							break;
 						case ("c"):
-							for (Card c : currentBoard.getDeck()) {
+							for (Card c : Deck.getDeck()) {
 								System.out.print(c);
 							}
 							break;
@@ -139,12 +139,12 @@ public class UIText implements UICore {
 		Card card = null;
 		while (checking) {
 			//Need to add int checking...
-			for (Card c : currentBoard.getDeck()) {
+			for (Card c : Deck.getDeck()) {
 				System.out.print(c);
 			}
 			System.out.println("Please select a card:");
 			input = scan.nextLine();
-			card = currentBoard.getCard(Integer.parseInt(input));
+			card = Deck.getCard(Integer.parseInt(input));
 			if (card != null && (card instanceof TurnCard)) {
 				System.out.printf("Card is: %s%n", card);
 				checking = false;
