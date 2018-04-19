@@ -49,6 +49,27 @@ public class Player {
 		return drawCard(t);
 	}
 	
+	public void dealCards(int turn) {
+		int toDraw = 0;
+		if (turn > 3) {
+			toDraw = 9;
+		}
+		else if (turn == -1) {
+			hand.addAll(Deck.dealCards(-1));
+		}
+		else {
+			toDraw = 8;
+		}
+		
+		for (Card c : hand) {
+			toDraw --;
+			if (c.cardNum == 006) {
+				toDraw ++;
+			}
+		}
+		hand.addAll(Deck.dealCards(toDraw));
+	}
+	
 	/**
 	 * Take a card from the deck. If index is less than 0, takes a random card. Currently uses hand instead of deck.
 	 * Card is also added to the hand.
@@ -78,10 +99,10 @@ public class Player {
 	 */
 	public String toString() {
 		String toReturn = "";
-		toReturn += "Player: " + side + ", has the following cards:";
+		toReturn += "Player: " + side + ", has the following cards:\n";
 		
 		for (Card c : hand) {
-			toReturn += c + "\n";
+			toReturn += c;
 		}
 		
 		return toReturn;

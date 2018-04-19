@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -136,6 +137,22 @@ public class Deck {
 			}
 			
 		}
+	}
+	
+	public static ArrayList<Card> dealCards(int numToDeal) {
+		ArrayList<Card> toReturn = new ArrayList<Card>();
+		if (numToDeal == -1) {
+			toReturn.add(Deck.getCard(6));
+			deck.remove(6);
+		}
+		Random randy = new Random();
+		int temp = 0;
+		for (int k = 0; k < numToDeal; k ++) {
+			temp = randy.nextInt(deck.size());
+			toReturn.add(deck.get(temp));
+			deck.remove(temp);
+		}
+		return toReturn;
 	}
 	
 	/**

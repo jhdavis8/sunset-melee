@@ -76,7 +76,7 @@ public class Board {
 	 * Constructor for the board object with default values
 	 */
 	public Board() {
-		world = new ArrayList<Country>();
+		//world = new ArrayList<Country>();
 		turn = 0;
 		actionRound = 0;
 		victoryPoints = 0;
@@ -98,66 +98,12 @@ public class Board {
 		String absPath = new File("").getAbsolutePath();
 		cardCSV = new File(absPath + f1);
 		continentCSV = new File(absPath + f2);
-		this.fillCountries();
-		this.connectCountries();
+		Map.setFile(continentCSV);
+		Map.fillCountries();
+		Map.connectCountries();
 		Deck.fillDeck(cardCSV);
+		USSR.dealCards(-1);
 		// More code to follow....
-	}
-
-	/**
-	 * Builds links between all countries
-	 */
-	private void connectCountries() {
-		for (Country c : world) {
-			c.connectCountries(world);
-		}
-		
-	}
-
-	/**
-	 * Builds all the country objects by the csv data
-	 */
-	private void fillCountries() {
-		
-		Scanner scan = null;
-		
-		try {
-			scan = new Scanner(continentCSV);
-			scan.useDelimiter("[,|\n]");
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-		}
-		
-		String[] tempCountry = new String[6];
-		int stbNum = 0;
-		boolean bg = false;
-		
-		while (scan.hasNext()) {
-			for (int k = 0; k < tempCountry.length; k ++) {
-				tempCountry[k] = scan.next();
-			}
-			stbNum = new Integer(tempCountry[3]);
-			
-			if (tempCountry[4].equals("F")) {
-				bg = false;
-			}
-			else {
-				bg = true;
-			}
-			
-			String[] tCont = tempCountry[0].split("[.]");
-			Continents[] cont = new Continents[tCont.length];
-			
-			for (int k = 0; k < cont.length; k ++) {
-				cont[k] = Continents.valueOf(tCont[k]);
-			}
-			
-			String[] conCountry = tempCountry[5].split("[.|\r|\n]");
-			
-			world.add(new Country(tempCountry[2], tempCountry[1], stbNum, 0, 0, bg, cont, conCountry));
-			
-		}
 	}
 	
 	/**
@@ -166,7 +112,7 @@ public class Board {
 	 * @return Country object that matches
 	 */
 	public Country getCountry(String check) {
-		for (Country c : world) {
+		for (Country c : Map.getWorld()) {
 			if (c.getISO().equals(check)) {
 				return c;
 			}
@@ -196,13 +142,6 @@ public class Board {
 	 */
 	public int getVictoryPoints() {
 		return victoryPoints;
-	}
-
-	/**
-	 * @return the ArrayList<Country> of all countries on the board
-	 */
-	public ArrayList<Country> getWorld() {
-		return world;
 	}
 
 	/**
@@ -289,6 +228,10 @@ public class Board {
 			
 		}
 		
+	}
+
+	public int getTurn() {
+		return turn;
 	}
 	
 }

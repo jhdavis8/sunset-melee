@@ -23,8 +23,6 @@ public class Controller {
 		UIText UI = new UIText();
 		
 		initialize(game);
-		System.out.println(game.getCountry("CAN").getUSInfluence());
-		
 		
 		UI.updateBoard(game);
 		UI.updateUI();

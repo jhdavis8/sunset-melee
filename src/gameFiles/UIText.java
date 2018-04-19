@@ -33,7 +33,7 @@ public class UIText implements UICore {
 		String toReturn = "MAP INFORMATION AND STATUS\n\n";
 		toReturn += currentBoard;
 		toReturn += "------------------------\n" + "ISO_ISO_CNE_STB_US, RA_INFLU\n";
-		for (Country c : currentBoard.getWorld()) {
+		for (Country c : Map.getWorld()) {
 			if (c.getContinent().contains(Continents.EEE) || c.getContinent().contains(Continents.WEE)) {
 				toReturn += c;
 			}
@@ -81,7 +81,7 @@ public class UIText implements UICore {
 					command = scan.nextLine();
 					switch (command) {
 						case ("m"):
-							for (Country c : currentBoard.getWorld()) {
+							for (Country c : Map.getWorld()) {
 								System.out.print(c);
 							}
 							break;
@@ -96,6 +96,18 @@ public class UIText implements UICore {
 							break;
 					}
 					break;
+				case ("p"):
+					System.out.println("player -d(eal) -p(rint)");
+					command = scan.nextLine();
+					switch (command) {
+						case ("d"):
+							promptDealCard(scan);
+							break;
+						case ("p"):
+							promptPrintPlayer(scan);
+							break;
+					}
+					break;
 				case ("t"):
 					Controller.turn(currentBoard);
 					break;
@@ -104,7 +116,7 @@ public class UIText implements UICore {
 					break;
 				case ("help"):
 					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw)\n"
-							+ "f(ull) -c -m | r(ealignment) | t(urn) | q(uit) | help\n%n");
+							+ "f(ull) -c -m | p(layer) -d -p | r(ealignment) | t(urn) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -112,6 +124,51 @@ public class UIText implements UICore {
 		}
 	}
 	
+	private void promptDealCard(Scanner scan) {
+		System.out.println("Entering prompt deal card...");
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println("Please enter a side to deal to:");
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		Player player = currentBoard.getPlayer(side);
+		System.out.println("Dealing Cards...");
+		player.dealCards(currentBoard.getTurn());
+	}
+
+	private void promptPrintPlayer(Scanner scan) {
+		System.out.println("Entering prompt deal card...");
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println("Please enter a player side to print:");
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		Player player = currentBoard.getPlayer(side);
+		System.out.println(player);
+	}
+
 	/**
 	 * Prompt for the ConnectedCountry
 	 * @param scan Scanner
