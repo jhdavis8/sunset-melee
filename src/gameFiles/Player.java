@@ -133,9 +133,9 @@ public class Player {
 	 */
 	public void rollRealignment(Country country, int value) {
 		Random randy = new Random();
-		int usRoll = randy.nextInt(7);   // ADD ONE for each adjacent country and if has more influence then opponent
+		int usRoll = 1 + randy.nextInt(6);   // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USA Rolls " + usRoll);
-		int ussrRoll = randy.nextInt(7); // ADD ONE for each adjacent country and if has more influence then opponent
+		int ussrRoll = 1 + randy.nextInt(6); // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USSR Rolls " + ussrRoll);
 		int diff = 0;
 		

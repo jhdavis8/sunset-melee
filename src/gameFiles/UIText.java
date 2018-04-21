@@ -320,7 +320,7 @@ public class UIText implements UICore {
 				checking = false;
 			}
 			else {
-				System.out.println("Not a country!");
+				System.out.println("Not a country or no opponent influence!");
 				continue;
 			}
 		}
