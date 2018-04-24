@@ -181,7 +181,7 @@ public class UIText implements UICore {
 		while (checking) {
 			System.out.println("Please enter a country to coup:");
 			input = scan.nextLine();
-			country = currentBoard.getCountry(input);
+			country = Map.getCountry(input);
 			if (country != null) {
 				System.out.printf("Country is: %s%n", country);
 				checking = false;
@@ -191,7 +191,7 @@ public class UIText implements UICore {
 				continue;
 			}
 		}
-		System.out.println(currentBoard.getCountry(country.getISO()));
+		System.out.println(Map.getCountry(country.getISO()));
 		
 	}
 
@@ -248,7 +248,7 @@ public class UIText implements UICore {
 		while (checking) {
 			System.out.println("Please enter a country to coup:");
 			input = scan.nextLine();
-			country = currentBoard.getCountry(input);
+			country = Map.getCountry(input);
 			if (country != null && country.opponentHasInfluence(side)) {
 				System.out.printf("Country is: %s%n", side);
 				checking = false;
@@ -314,7 +314,7 @@ public class UIText implements UICore {
 		while (checking) {
 			System.out.println("Please enter a country to realign:");
 			input = scan.nextLine();
-			country = currentBoard.getCountry(input);
+			country = Map.getCountry(input);
 			if (country != null && country.opponentHasInfluence(side)) {
 				System.out.printf("Country is: %s%n", side);
 				checking = false;
@@ -378,7 +378,7 @@ public class UIText implements UICore {
 		while (checking) {
 			System.out.println("Please enter a country to add influence to:");
 			input = scan.nextLine();
-			country = currentBoard.getCountry(input);
+			country = Map.getCountry(input);
 			if (country != null) {
 				System.out.printf("Country is: %s%n", side);
 				checking = false;

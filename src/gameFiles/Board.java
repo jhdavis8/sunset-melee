@@ -107,6 +107,7 @@ public class Board {
 	 * @param check the string with the ISO code
 	 * @return Country object that matches
 	 */
+	@Deprecated
 	public Country getCountry(String check) {
 		for (Country c : Map.getWorld()) {
 			if (c.getISO().equals(check)) {

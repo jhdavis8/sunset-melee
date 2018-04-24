@@ -57,6 +57,20 @@ public class Map {
 		}
 	}
 	
+	/**
+	 * Returns the country object that matches the ISO string given
+	 * @param check the string with the ISO code
+	 * @return Country object that matches
+	 */
+	public static Country getCountry(String check) {
+		for (Country c : Map.getWorld()) {
+			if (c.getISO().equals(check)) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	public static void connectCountries() {
 		for (Country c : world) {
 			c.connectCountries(world);

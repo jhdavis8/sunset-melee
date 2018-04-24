@@ -165,5 +165,13 @@ public class Country {
 		return USSRInfluence;
 	}
 
+	/**
+	 * @return the stabilityNum
+	 */
+	public int getStabilityNum() {
+		return stabilityNum;
+	}
+	
+
 	
 }

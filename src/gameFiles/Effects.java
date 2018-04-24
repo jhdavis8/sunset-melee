@@ -36,6 +36,9 @@ public class Effects {
 			case 4:
 				effectID004();
 				break;
+			case 12:
+				effectID012();
+				break;
 		}
 	}
 
@@ -64,6 +67,21 @@ public class Effects {
 	private static void effectID004() {
 		if (currentBoard.getDefcon() > 1) currentBoard.defcon--;
 		currentBoard.victoryPoints -= 5 - currentBoard.defcon;
+	}
+	
+	private static void effectID012() {
+		Country t = Map.getCountry("ROU");
+		int US = t.getUSInfluence();
+		if (US > 0) {
+			US = US * -1;
+		}
+		int USSR = t.getUSSRInfluence();
+		if (USSR < t.getStabilityNum()) {
+			USSR = t.getStabilityNum() - USSR;
+		}
+		
+		t.modifyInfluence(US, Side.USA);
+		t.modifyInfluence(USSR, Side.USSR);
 	}
 	
 }
