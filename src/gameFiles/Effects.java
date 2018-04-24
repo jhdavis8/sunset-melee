@@ -14,7 +14,7 @@ public class Effects {
 	/**
 	 * currentBoard to modify by effects
 	 */
-	private Board currentBoard;
+	private static Board currentBoard;
 	
 	/**
 	 * Construct the effects class
@@ -24,25 +24,46 @@ public class Effects {
 		currentBoard = b;
 	}
 	
+	public void setCurrentBoard(Board b) {
+		currentBoard = b;
+	}
 	/**
 	 * Enact (as a side effect) an effect by its ID (Note: we will change this to a bunch of private methods
 	 * @param ID int ID of the effect
 	 */
-	public void getEffect(int ID) {
+	public static void getEffect(int ID) {
 		switch (ID) {
 			case 4:
-				if (currentBoard.defcon > 1) currentBoard.defcon--;
-				currentBoard.victoryPoints -= 5 - currentBoard.defcon;
+				effectID004();
 				break;
 		}
 	}
-	
+
 	/**
 	 * Enacts the scoring card effect by its ID
 	 * @param ID int ID of the effect
 	 */
-	public void getScoringEffect(int ID) {
+	public static void getScoringEffect(int ID) {
 		
+	}
+	
+	//All Effect IDs FOllow
+
+	private static void effectID001() {
+
+	}
+	
+	private static void effectID002() {
+
+	}
+	
+	private static void effectID003() {
+
+	}
+	
+	private static void effectID004() {
+		if (currentBoard.defcon > 1) currentBoard.defcon--;
+		currentBoard.victoryPoints -= 5 - currentBoard.defcon;
 	}
 	
 }
