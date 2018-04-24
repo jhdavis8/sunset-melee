@@ -148,7 +148,7 @@ public class UIText implements UICore {
 	}
 
 	private void promptPrintPlayer(Scanner scan) {
-		System.out.println("Entering prompt deal card...");
+		System.out.println("Entering prompt print player...");
 		boolean checking = true;
 		String input = "";
 		Side side = null;

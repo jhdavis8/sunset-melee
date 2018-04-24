@@ -112,14 +112,14 @@ public class Deck {
 						 Integer.parseInt(tempCard[0]), tempCard[6], pDC[0], pDC[1], pDC[2]));
 			}
 		}		
-		fillCompositDecks();
+		fillCompositeDecks();
 		addEarlyCards();
 	}
 
 	/**
 	 * Fills all the smaller sub decks
 	 */
-	private static void fillCompositDecks() {
+	private static void fillCompositeDecks() {
 		earlyCard = new ArrayList<Card>();
 		midCard = new ArrayList<Card>();
 		lateCard = new ArrayList<Card>();
