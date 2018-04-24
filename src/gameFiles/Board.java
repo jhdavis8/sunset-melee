@@ -17,10 +17,6 @@ import java.util.Scanner;
  * @author Josh Davis
  *
  */
-/**
- * @author Mark
- *
- */
 public class Board {
 	
 	/**
@@ -38,11 +34,11 @@ public class Board {
 	/**
 	 * int victoryPoints hold the current victory points as a number line from [-20, 20]
 	 */
-	private int victoryPoints;
+	public int victoryPoints;
 	/**
 	 * int defcon is the current defcon level
 	 */
-	private int defcon;
+	public int defcon;
 	/**
 	 * int USMilitaryOps is how many military ops the US has done in a turn
 	 */

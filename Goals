@@ -4,8 +4,8 @@ Week 1
 	- 	 - Create demo cards to test logic
 	- 	 - Script card logic via the Effects Class
 	-Done- Build all public method stubs
-	- 	 - A countree
-	- 	 - JDocs comments for all methods and variables for our ease of use.
+	-Done- A countree (for Europe)
+	-Done- JDocs comments for all methods and variables for our ease of use.
 	- 	 - UIText
 		-Done- Card toString
 		-Done- Board toString
