@@ -218,6 +218,13 @@ public class Deck {
 	public static ArrayList<Card> getLateCard() {
 		return lateCard;
 	}
+
+	/**
+	 * @return the discard
+	 */
+	public static ArrayList<Card> getDiscard() {
+		return discard;
+	}
 	
 	
 }

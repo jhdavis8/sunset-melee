@@ -90,6 +90,11 @@ public class UIText implements UICore {
 							for (Card c : Deck.getDeck()) {
 								System.out.print(c);
 							}
+							System.out.println();
+							System.out.println("------------------------\n" + "CRD_CLS_TYP_VAL_EID\n");
+							for (Card c : Deck.getDiscard()) {
+								System.out.print(c);
+							}
 							break;
 						default:
 							System.out.println("Not valid input");
@@ -108,6 +113,9 @@ public class UIText implements UICore {
 							break;
 					}
 					break;
+				case ("P"):
+					promptPlayCard(scan);
+					break;
 				case ("t"):
 					Controller.turn(currentBoard);
 					break;
@@ -115,8 +123,8 @@ public class UIText implements UICore {
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw)\n"
-							+ "f(ull) -c -m | p(layer) -d -p | r(ealignment) | t(urn) | q(uit) | help\n%n");
+					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw) | f(ull) -c -m\n"
+							+ "p(layer) -d -p | P(lay card) | r(ealignment) | t(urn) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -124,6 +132,10 @@ public class UIText implements UICore {
 		}
 	}
 	
+	private void promptPlayCard(Scanner scan) {
+		// Come back to HERE!!!!!!!!!!!
+	}
+
 	private void promptDealCard(Scanner scan) {
 		System.out.println("Entering prompt deal card...");
 		boolean checking = true;
