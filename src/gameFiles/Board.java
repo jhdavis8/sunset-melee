@@ -229,5 +229,69 @@ public class Board {
 	public int getTurn() {
 		return turn;
 	}
+
+	/**
+	 * @return the world
+	 */
+	public ArrayList<Country> getWorld() {
+		return world;
+	}
+
+	/**
+	 * @return the actionRound
+	 */
+	public int getActionRound() {
+		return actionRound;
+	}
+
+	/**
+	 * @return the uSMilitaryOps
+	 */
+	public int getUSMilitaryOps() {
+		return USMilitaryOps;
+	}
+
+	/**
+	 * @return the uSSRMilitaryOps
+	 */
+	public int getUSSRMilitaryOps() {
+		return USSRMilitaryOps;
+	}
+
+	/**
+	 * @return the playerTurn
+	 */
+	public boolean isPlayerTurn() {
+		return playerTurn;
+	}
+
+	/**
+	 * @return the cardCSV
+	 */
+	public File getCardCSV() {
+		return cardCSV;
+	}
+
+	/**
+	 * @return the continentCSV
+	 */
+	public File getContinentCSV() {
+		return continentCSV;
+	}
+
+	/**
+	 * @return the uSA
+	 */
+	public Player getUSA() {
+		return USA;
+	}
+
+	/**
+	 * @return the uSSR
+	 */
+	public Player getUSSR() {
+		return USSR;
+	}
+	
 	
 }

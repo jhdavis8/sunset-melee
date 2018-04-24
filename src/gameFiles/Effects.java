@@ -62,7 +62,7 @@ public class Effects {
 	}
 	
 	private static void effectID004() {
-		if (currentBoard.defcon > 1) currentBoard.defcon--;
+		if (currentBoard.getDefcon() > 1) currentBoard.defcon--;
 		currentBoard.victoryPoints -= 5 - currentBoard.defcon;
 	}
 	
