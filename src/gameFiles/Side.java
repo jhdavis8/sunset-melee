@@ -56,5 +56,11 @@ public enum Side {
 		}
 		return side;
 	}
+
+	public Side opponent(Side side) {
+		if (side == Side.USA) return Side.USSR;
+		if (side == Side.USSR) return Side.USA;
+		else return Side.UNK;
+	}
 	
 }

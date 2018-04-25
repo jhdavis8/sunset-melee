@@ -164,6 +164,12 @@ public class Country {
 	public int getUSSRInfluence() {
 		return USSRInfluence;
 	}
+	
+	public int getInfluence(Side side) {
+		if (side == Side.USA) return getUSInfluence();
+		if (side == Side.USSR) return getUSSRInfluence();
+		else return 0;
+ 	}
 
 	/**
 	 * @return the stabilityNum

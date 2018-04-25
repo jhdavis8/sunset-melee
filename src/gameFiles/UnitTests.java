@@ -31,6 +31,8 @@ public class UnitTests {
 	@Test
 	public void basicGameOpperations() {
 		Board game = new Board();
+		UIText ui = new UIText();
+		ui.updateBoard(game);
 		Controller.callInitialize(game);
 		
 		ArrayList<Card> testAgaints = new ArrayList<Card>();
@@ -48,7 +50,7 @@ public class UnitTests {
 				testAgaints.addAll(Deck.getLateCard());
 				assertEquals(Deck.getDeck().size(), testAgaints.size());
 			}
-			Controller.turn(game);
+			Controller.turn(game, ui);
 		}
 		
 	}

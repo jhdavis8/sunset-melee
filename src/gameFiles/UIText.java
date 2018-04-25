@@ -121,7 +121,7 @@ public class UIText implements UICore {
 					promptPlayCardFromHand(scan);
 					break;
 				case ("t"):
-					Controller.turn(currentBoard);
+					Controller.turn(currentBoard, this);
 					break;
 				case ("q"):
 					running = false;
@@ -252,7 +252,7 @@ public class UIText implements UICore {
 		String input = "";
 		
 		Side side = Side.getValidSide(scan, "Please enter a side to roll a Coup for:");
-		Country country = this.getValidCountry(scan, "Please enter a country to coup:");
+		Country country = this.getValidCountry(scan, "Please enter a country to coup:", side);
 		
 		checking = true;
 		Card card = null;
@@ -291,7 +291,7 @@ public class UIText implements UICore {
 		System.out.println("Entering realignemnt prompt...");
 		
 		Side side = Side.getValidSide(scan, "Please enter a side to realign for:");
-		Country country = this.getValidCountry(scan, "Please enter a country to realign:");
+		Country country = this.getValidCountry(scan, "Please enter a country to realign:", side);
 		
 		System.out.println(country);
 		System.out.println("Rolling for realignment...");
@@ -331,7 +331,12 @@ public class UIText implements UICore {
 		System.out.println(country);
 	}
 	
-	
+	/**
+	 * Handles prompting for a valid country
+	 * @param scan Scanner for input purposes
+	 * @param message What to say when checking
+	 * @return the valid Country chosen
+	 */
 	private Country getValidCountry(Scanner scan, String message) {
 		boolean checking = true;
 		String input = "";
@@ -350,5 +355,38 @@ public class UIText implements UICore {
 			}
 		}
 		return country;
+	}
+	
+	/**
+	 * Handles prompting with an additional constraint: enemy player must have influence
+	 * @param scan Scanner to get input with
+	 * @param message Message to say
+	 * @param self The side that is trying a realignment or coup
+	 * @return the valid Country chosen
+	 */
+	private Country getValidCountry(Scanner scan, String message, Side self) {
+		boolean checking = true;
+		String input = "";
+		Country country = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			country = Map.getCountry(input);
+			if (country != null && country.opponentHasInfluence(self)) {
+				System.out.printf("Country is: %s%n", country);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a valid country (Opponent must have influence and must be an actual country)!");
+				continue;
+			}
+		}
+		return country;
+	}
+
+	@Override
+	public int promptSelectCard(Side side) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

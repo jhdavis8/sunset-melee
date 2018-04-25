@@ -132,10 +132,11 @@ public class Controller {
 		
 		Card usCard = game.getPlayer(Side.USA).getHand().get(USCardChoice);
 		Card ussrCard = game.getPlayer(Side.USSR).getHand().get(USSRCardChoice);
-		
+		/*
 		if (usCard.getOps() < ussrCard) {
 			
 		}
+		*/
 		
 	}
 }

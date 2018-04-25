@@ -211,7 +211,7 @@ public class Board {
 			if  (card.getCurrentHolder().equals(Side.USA)) side = Side.USSR;
 			else side = Side.USA;
 			card.setCurrentHolder(side);
-			getPlayer(side)card.giveCard(card); // Josh will impliment
+			getPlayer(side).giveCard(card); // Josh will impliment
 			Deck.getDiscard().remove(card);
 		}
 		

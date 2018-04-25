@@ -118,15 +118,6 @@ public class Player {
 	}
 
 	/**
-	 * Rolls a coup by the args given
-	 * @param country Country to roll on
-	 * @param value int value to apply
-	 */
-	public void rollCoup(Country country, int value) {
-		// To fill tonight
-	}
-	
-	/**
 	 * rolls a realignment by the args given
 	 * @param country Country to roll on
 	 * @param value int value to use
@@ -155,6 +146,30 @@ public class Player {
 		}
 	}
 
+	/**
+	 * Rolls a coup by the args given
+	 * @param country Country to roll on
+	 * @param value int value to apply
+	 */
+	public void rollCoup(Country country, int value) {
+		int target = country.getStabilityNum() * 2;
+		Random randy = new Random();
+		int roll = 1 + randy.nextInt(6);
+		int attempt = roll + value;
+		int diff = attempt - target;
+		Side enemy = side.opponent(side);
+		if (attempt > target) {
+			if (diff <= country.getInfluence(enemy)) {
+				country.modifyInfluence(-1 * diff, enemy);
+			}
+			else {
+				country.modifyInfluence(-1 * (country.getInfluence(enemy)), enemy);
+				country.modifyInfluence(diff, side.opponent(side));
+			}
+		}
+		//add changes to mil ops and defcon decrement (Josh)
+	}
+	
 	public boolean hasCards() {
 		if (hand.size() == 0) return false;
 		else return true;
@@ -163,5 +178,8 @@ public class Player {
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
-
+	
+	public void giveCard(Card c) {
+		hand.add(c);
+	}
 }
