@@ -5,16 +5,34 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Map object holds the list of countries and related methods for setup and use
+ * @author Josh Davis
+ * @author Mark Wolgin
+ */
 public class Map {
 	
+	/** 
+	 * ArrayList of all countries in the world 
+	 */
 	private static ArrayList<Country> world;
+	/**
+	 * csv File of country data
+	 */
 	private static File continentCSV;
-
+	
+	/**
+	 * Assign a csv File to the Map and construct the world ArrayList
+	 * @param cCSV country csv file
+	 */
 	public static void setFile(File cCSV) {
 		continentCSV = cCSV;
 		world = new ArrayList<Country>();
 	}
 	
+	/**
+	 * Build out the country ArrayList using the assigned csv to complete fields
+	 */
 	public static void fillCountries() {
 		Scanner scan = null;
 		
@@ -71,12 +89,18 @@ public class Map {
 		return null;
 	}
 	
+	/**
+	 * Calls the connectCountries function on each Country object in the world
+	 */
 	public static void connectCountries() {
 		for (Country c : world) {
 			c.connectCountries(world);
 		}
 	}
 
+	/**
+	 * @return the ArrayList of all Country objects in the world 
+	 */
 	public static ArrayList<Country> getWorld() {
 		return world;
 	}

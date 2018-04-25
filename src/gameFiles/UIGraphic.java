@@ -2,7 +2,7 @@ package gameFiles;
 
 /**
  * UIGraphic is a implementation of UICore that will have a graphical interface an allow for a more
- * traditonal windows interface.
+ * traditional windows interface.
  * @author Mark Wolgin
  * @author Josh Davis
  *
@@ -10,7 +10,7 @@ package gameFiles;
 public class UIGraphic implements UICore {
 
 	/**
-	 * Board currentBoard is the current state of world.  A refrence point was placed here to allow for easy access.
+	 * Board currentBoard is the current state of world.  A reference point was placed here to allow for easy access.
 	 */
 	private Board currentBoard;
 
@@ -24,7 +24,7 @@ public class UIGraphic implements UICore {
 
 	}
 
-	/* Will output the new informtion.
+	/* Will output the new information.
 	 * (non-Javadoc)
 	 * @see gameFiles.UICore#updateUI()
 	 */

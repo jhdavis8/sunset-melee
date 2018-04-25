@@ -10,12 +10,13 @@ import java.util.Scanner;
 public enum Side {
 	USA, USSR, UNK;
 	
-	/** Takes a Side and returns the string representation of it.
-	 * @param c Side c is a side
+	/** 
+	 * Takes a Side and returns the string representation of it.
+	 * @param s A side
 	 * @return The string representation of side
 	 */
-	public static String toString(Side c) {
-		switch (c) {
+	public static String toString(Side s) {
+		switch (s) {
 			case USA: return "USA";
 			case USSR: return "USSR";
 			case UNK: return "UNK";
@@ -37,6 +38,12 @@ public enum Side {
 		}
 	}
 	
+	/**
+	 * Return a valid side, selected by user via prompting
+	 * @param scan Scanner object to read from
+	 * @param message Message to tell the user when asking for input
+	 * @return the valid Side chosen
+	 */
 	public static Side getValidSide(Scanner scan, String message) {
 		boolean checking = true;
 		String input = "";
@@ -57,6 +64,11 @@ public enum Side {
 		return side;
 	}
 
+	/**
+	 * Get the opponent to the given side
+	 * @param side Side to get opponent of
+	 * @return the opponent Side of the given
+	 */
 	public Side opponent(Side side) {
 		if (side == Side.USA) return Side.USSR;
 		if (side == Side.USSR) return Side.USA;

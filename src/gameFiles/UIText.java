@@ -141,6 +141,10 @@ public class UIText implements UICore {
 		}
 	}
 	
+	/**
+	 * Handles text prompting for playing a card from the hand 
+	 * @param scan Scanner object to read from
+	 */
 	private void promptPlayCardFromHand(Scanner scan) {
 		System.out.println("Entering drawing card from player...");
 		
@@ -175,6 +179,10 @@ public class UIText implements UICore {
 		
 	}
 
+	/**
+	 * Handles general playing of cards by ID for testing
+	 * @param scan Scanner object to read from
+	 */
 	private void promptPlayCard(Scanner scan) {
 		System.out.println("Entering play card testing...");
 		boolean checking = true;
@@ -204,6 +212,10 @@ public class UIText implements UICore {
 		card.runEffect();
 	}
 
+	/**
+	 * Handles prompting for card dealing
+	 * @param scan Scanner object to read from
+	 */
 	private void promptDealCard(Scanner scan) {
 		System.out.println("Entering prompt deal card...");
 		Side side = Side.getValidSide(scan, "Please enter a side to deal to:");
@@ -213,6 +225,10 @@ public class UIText implements UICore {
 		
 	}
 
+	/**
+	 * Handles prompting for printing out the details of a player object
+	 * @param scan Scanner object to read from
+	 */
 	private void promptPrintPlayer(Scanner scan) {
 		System.out.println("Entering prompt print player...");
 		Side side = Side.getValidSide(scan, "Please enter a player side to print:");
@@ -221,7 +237,7 @@ public class UIText implements UICore {
 	}
 
 	/**
-	 * Prompt for the ConnectedCountry
+	 * Prompt for getting info on connected countries
 	 * @param scan Scanner
 	 */
 	private void promptConnectedCountry(Scanner scan) {
@@ -336,6 +352,9 @@ public class UIText implements UICore {
 		System.out.println(country);
 	}
 	
+	/**
+	 * Handles prompting for the headline phase
+	 */
 	private void promptHeadlinePhase() {
 		System.out.println("Entering Headline Phase...");
 		if (currentBoard.getPlayer(Side.USA).getHand().size() == 0 ||
@@ -399,7 +418,7 @@ public class UIText implements UICore {
 		}
 		return country;
 	}
-
+	
 	@Override
 	public int promptSelectCard(Side side) {
 		System.out.println("Player " + side + ", Please select a card");

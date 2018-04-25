@@ -33,17 +33,17 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 	}
 
 	/**
-	 * Value is the value of the card.
+	 * The military ops value of the card.
 	 */
 	private int value;
 	
 	/**
-	 * Side is the affiliation of the card
+	 * The Side affiliation of the card
 	 */
 	private Side side;
 	
 	/**
-	 * Special Card tells the logic processor is the card needs to be treated differently
+	 * True if the card is burned instead of discarded when played
 	 */
 	private boolean specialCard;
 	
@@ -93,14 +93,23 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 		return toReturn;
 	}
 	
+	/**
+	 * @return the number of Ops points on the card
+	 */
 	public int getOps() {
 		return value;
 	}
 	
+	/**
+	 * @return true if the card is special (it is burned instead of discarded)
+	 */
 	public boolean getSpecialCard() {
 		return specialCard;
 	}
 	
+	/**
+	 * @return the Side of the Card
+	 */
 	public Side getSide() {
 		return side;
 	}

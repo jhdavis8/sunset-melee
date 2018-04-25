@@ -4,7 +4,7 @@
 package gameFiles;
 
 /**
- * UICore is the base of all UIElemetns and Interactions with the computer.
+ * UICore is the base of all UIElements and Interactions with the computer.
  * @author Mark Wolgin
  * @author Josh Davis
  */
@@ -22,7 +22,7 @@ public interface UICore {
 	public void updateUI();
 	
 	/**
-	 * @param side Side to have there card selected
+	 * @param side Side to have their card selected
 	 * @return 
 	 */
 	public int promptSelectCard(Side side);

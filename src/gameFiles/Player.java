@@ -4,18 +4,16 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * @author Mark Wolgin
- * @author Josh Davis
- * 
  * The player class hold information on the two players.  It holds information on which side the player is, and the cards in there hand.
  * There will only ever be two players.
- * 
+ * @author Mark Wolgin
+ * @author Josh Davis
  */
 public class Player {
 
 	/**
-	 * Is an ArrayList of Card, that is, it will hold the cards available to the player on there turn.
-	 * It will have both scoring cards and turn cards.
+	 * ArrayList of Card holding the cards available to the player on their turn.
+	 * Has both scoring cards and turn cards.
 	 */
 	private ArrayList<Card> hand;
 	
@@ -25,7 +23,7 @@ public class Player {
 	private Side side;
 	
 	/**
-	 * The player's current number of miltary operations
+	 * The player's current number of military operations
 	 */
 	private int milOps;
 	
@@ -40,15 +38,16 @@ public class Player {
 	}
 	
 	/**
-	 * It will prompt the user to pick a card from there hand and play it.
+	 * Prompt the user to pick a card from there hand and play it.
 	 */
 	public void playCard() {
 		drawCard(-1);
+		// TODO fix this method?
 	}
 	
 	/**
 	 * Temporary Method
-	 * @param t Card to draw, if -1, then it pulls randomly
+	 * @param t Card to draw; if -1, draw randomly
 	 * @return Selected card
 	 */
 	public Card playCard(int t) {

@@ -150,6 +150,11 @@ public class Deck {
 		}
 	}
 	
+	/**
+	 * Deal appropriate number of cards to the player
+	 * @param numToDeal number of cards to deal
+	 * @return the ArrayList of dealt cards
+	 */
 	public static ArrayList<Card> dealCards(int numToDeal) {
 		ArrayList<Card> toReturn = new ArrayList<Card>();
 		if (numToDeal == -1) {

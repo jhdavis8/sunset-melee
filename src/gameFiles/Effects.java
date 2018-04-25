@@ -18,18 +18,36 @@ public class Effects {
 	 */
 	private static Board currentBoard;
 	
+	/**
+	 * Scanner object used
+	 */
 	private static Scanner scan;
 	
+	/**
+	 * UI object used
+	 */
 	private static UICore UI;
 	
+	/**
+	 * Assign a Board object to the effects
+	 * @param b the Board to assign
+	 */
 	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
 	}
 	
+	/**
+	 * Assign a scanner object to effects
+	 * @param other scanner to assign
+	 */
 	public static void setScanner(Scanner other) {
 		scan = other;	
 	}
 	
+	/**
+	 * Assign a UI object to effects
+	 * @param Ui UI object to assign
+	 */
 	public static void setUI(UICore Ui) {
 		UI = Ui;
 	}
