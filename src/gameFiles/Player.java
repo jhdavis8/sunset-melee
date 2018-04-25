@@ -159,6 +159,7 @@ public class Player {
 	 * Rolls a coup by the args given
 	 * @param country Country to roll on
 	 * @param value int value to apply
+	 * @param currentBoard the Board object work with
 	 */
 	public void rollCoup(Country country, int value, Board currentBoard) {
 		int target = country.getStabilityNum() * 2;

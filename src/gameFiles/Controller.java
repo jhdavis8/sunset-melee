@@ -56,6 +56,7 @@ public class Controller {
 	/**
 	 * Holds the structure of the progression of the game
 	 * @param game Board to use
+	 * @param UI the UI object to use
 	 */
 	public static void turn(Board game, UICore UI) {
 		game.modifyDefcon(1);
@@ -124,8 +125,8 @@ public class Controller {
 
 	/**
 	 * Runs the Headline phase
-	 * @param uI 
-	 * @param game 
+	 * @param game Board object to use
+	 * @param UI UI object to use
 	 */
 	public static void headlinePhase(Board game, UICore UI) {
 		System.out.println("Headline Phase");

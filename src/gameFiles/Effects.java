@@ -53,9 +53,9 @@ public class Effects {
 	}
 	
 	/**
-	 * Enact (as a side effect) an effect by its ID (Note: we will change this to a bunch of private methods
+	 * Enact an effect by its ID
 	 * @param ID int ID of the effect
-	 * @throws Exception 
+	 * @throws Exception exception if card ID not found (Might change this to error message) 
 	 */
 	public static void getEffect(int ID) throws Exception {
 		switch (ID) {
@@ -86,6 +86,7 @@ public class Effects {
 	/**
 	 * Enacts the scoring card effect by its ID
 	 * @param ID int ID of the effect
+	 * @throws Exception exception for CardID not found, might be changed to error message
 	 */
 	public static void getScoringEffect(int ID) throws Exception {
 		switch (ID) {
@@ -258,6 +259,9 @@ public class Effects {
 		currentBoard.modifyVictoryPoints(vp);
 	}
 	
+	/**
+	 * Defectors
+	 */
 	private static void effectID103() {
 		if (currentBoard.getCurrentPlayer().equals(Side.USSR)) {
 			currentBoard.modifyVictoryPoints(-1);

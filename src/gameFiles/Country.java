@@ -145,7 +145,7 @@ public class Country {
 	
 	/**
 	 * Returns The list of the connected countries
-	 * @return ArrayList<Country> The list of the connected countries
+	 * @return The ArrayList of the connected countries
 	 */
 	public ArrayList<Country> getConnectedCountries() {
 		return connectedCountries;

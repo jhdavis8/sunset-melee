@@ -143,7 +143,7 @@ public class Board {
 
 	/**
 	 * Get a player from a side
-	 * @param side
+	 * @param side Side to get player for
 	 * @return the Player object associated with the side
 	 */
 	public Player getPlayer(Side side) {

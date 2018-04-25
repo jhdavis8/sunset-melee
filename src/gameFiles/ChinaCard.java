@@ -28,6 +28,7 @@ public class ChinaCard extends TurnCard {
 	 * @param sc Special Card, some cards are special, and should not be put back into the game after there use, and such flagged cards
 	 * will have special logic to manage them.
 	 * @param v Card Value, How much power a card has to affect events and actions.
+	 * @param whoHas the Side that currently holds the China Card
 	 */
 	public ChinaCard(String n, String d, int c, int e, Side s, boolean sc, int v, String cT, Side whoHas) {
 		super(n, d, c, e, s, sc, v, cT);

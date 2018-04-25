@@ -23,7 +23,7 @@ public interface UICore {
 	
 	/**
 	 * @param side Side to have their card selected
-	 * @return 
+	 * @return the card number selected
 	 */
 	public int promptSelectCard(Side side);
 	
