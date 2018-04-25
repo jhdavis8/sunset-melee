@@ -155,4 +155,13 @@ public class Player {
 		}
 	}
 
+	public boolean hasCards() {
+		if (hand.size() == 0) return false;
+		else return true;
+	}
+	
+	public ArrayList<Card> getHand() {
+		return hand;
+	}
+
 }

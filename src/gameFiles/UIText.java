@@ -101,6 +101,9 @@ public class UIText implements UICore {
 							break;
 					}
 					break;
+				case ("g"):
+					promptPlayCard(scan);
+					break;
 				case ("p"):
 					System.out.println("player -d(eal) -p(rint)");
 					command = scan.nextLine();
@@ -114,7 +117,7 @@ public class UIText implements UICore {
 					}
 					break;
 				case ("P"):
-					promptPlayCard(scan);
+					promptPlayCardFromHand(scan);
 					break;
 				case ("t"):
 					Controller.turn(currentBoard);
@@ -124,7 +127,7 @@ public class UIText implements UICore {
 					break;
 				case ("help"):
 					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw) | f(ull) -c -m\n"
-							+ "p(layer) -d -p | P(lay card) | r(ealignment) | t(urn) | q(uit) | help\n%n");
+							+ "g(et card) | p(layer) -d -p | P(lay card) | r(ealignment) | t(urn) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -132,6 +135,40 @@ public class UIText implements UICore {
 		}
 	}
 	
+	private void promptPlayCardFromHand(Scanner scan) {
+		System.out.println("Entering drawing card from player...");
+		
+		Side side = this.getValidSide(scan, "Please enter a side");
+		
+		if (currentBoard.getPlayer(side).hasCards() == false) {
+			System.out.println("This funciton has ended since the selected player has no cards.\n"
+					+ "You can use the ... command to deal cards to a player.");
+		}
+		else {
+			Player player = currentBoard.getPlayer(side);
+			for (int k = 0; k < player.getHand().size(); k ++) {
+				System.out.println("Card " + k + ":" + player.getHand().get(k));
+			}
+			boolean checking = true;
+			String input = "";
+			int cardIDInHand = 0;
+			while (checking) {
+				System.out.println("Please select a card by the number in the hand:");
+				input = scan.nextLine();
+				try {
+					cardIDInHand = Integer.parseInt(input);
+					checking = false;
+				}
+				catch (Exception e) {
+					System.out.println("Not an integer...");
+				}
+			}
+			Card card = player.getHand().get(cardIDInHand);
+			card.runEffect();
+		}
+		
+	}
+
 	private void promptPlayCard(Scanner scan) {
 		System.out.println("Entering play card testing...");
 		boolean checking = true;
