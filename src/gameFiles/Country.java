@@ -172,6 +172,17 @@ public class Country {
 		return stabilityNum;
 	}
 	
-
+	public Side getControllingSide() {
+		if ((USInfluence - USSRInfluence) >= stabilityNum) return Side.USA;
+		else if ((USSRInfluence - USInfluence) >= stabilityNum) return Side.USSR;
+		else return Side.UNK;
+	}
 	
+	public boolean isBattleground() {
+		return battleGround;
+	}
+	
+	public String getFullName() {
+		return name;
+	}
 }

@@ -53,29 +53,95 @@ public class Effects {
 	 * Enacts the scoring card effect by its ID
 	 * @param ID int ID of the effect
 	 */
-	public static void getScoringEffect(int ID) {
+	public static void getScoringEffect(int ID) throws Exception {
+		switch (ID) {
+			case 1:
+				effectID001();
+				break;
+			case 2:
+				effectID002();
+				break;
+			case 3:
+				effectID003();
+				break;
+			default:
+				System.out.println("ScoringCardID Not Found");
+				throw new Exception();
+		}
+	}
+		
+	//All Effect IDs Follow
+	
+	/**
+	 * Asia Scoring card effect
+	 */
+	private static void effectID001() {
 		
 	}
 	
-	//All Effect IDs FOllow
-
-	private static void effectID001() {
-
-	}
-	
+	/**
+	 * Europe Scoring card effect	
+	 */
 	private static void effectID002() {
-
+		boolean presenceUSA = false;
+		boolean presenceUSSR = false;
+		Side domination = Side.UNK;
+		Side control = Side.UNK;
+		Side moreCountries = Side.UNK;
+		Side moreBattlegrounds = Side.UNK;
+		Side allBattlegrounds = Side.UNK;
+		int countryCountUSA = 0;
+		int countryCountUSSR = 0;
+		int bgCountUSA = 0;
+		int bgCountUSSR = 0;
+		int bgTotal = 0;
+		for (Country c : Map.getWorld()) {
+			if (c.getContinent().contains(Continents.EEE) || c.getContinent().contains(Continents.WEE)) {
+				if (c.getControllingSide() == Side.USA) {
+					presenceUSA = true;
+					countryCountUSA++;
+					if (c.isBattleground()) {
+						bgCountUSA++;
+						bgTotal++;
+					}
+				}
+				else if (c.getControllingSide() == Side.USSR) {
+					presenceUSSR = true;
+					countryCountUSSR++;
+					if (c.isBattleground()) {
+						bgCountUSSR++;
+						bgTotal++;
+					}
+				}
+			}
+		}
+		if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR && countryCountUSA > 1 && bgCountUSA > 1) {
+			domination = Side.USA;
+		}
+		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR > 1 && bgCountUSSR > 1) {
+			domination = Side.USSR;
+		}
+		//if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR)
 	}
 	
+	/**
+	 * Middle East Scoring card effect
+	 */
 	private static void effectID003() {
 
 	}
 	
+	/**
+	 * Duck and Cover card effect
+	 */
 	private static void effectID004() {
 		if (currentBoard.getDefcon() > 1) currentBoard.defcon--;
 		currentBoard.victoryPoints -= 5 - currentBoard.defcon;
 	}
 	
+	/**
+	 * Romanian Abdication card effect
+	 */
 	private static void effectID012() {
 		Country t = Map.getCountry("ROU");
 		int US = t.getUSInfluence();
@@ -91,6 +157,9 @@ public class Effects {
 		t.modifyInfluence(USSR, Side.USSR);
 	}
 	
+	/**
+	 * De Gaulle Leads France card effect
+	 */
 	private static void effectID017() {
 		Map.getCountry("FRA").modifyInfluence(-2, Side.USA);
 		Map.getCountry("FRA").modifyInfluence(1, Side.USSR);

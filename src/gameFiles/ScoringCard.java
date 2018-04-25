@@ -43,7 +43,6 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 		control = con;
 		domination = dom;
 		
-		// TODO Auto-generated constructor stub
 	}
 
 	
@@ -54,7 +53,13 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 	 */
 	@Override
 	public void runEffect() {
-		Effects.getScoringEffect(effectID);
+		try {
+			Effects.getScoringEffect(effectID);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
 	}
 	
 	/* 
