@@ -103,21 +103,6 @@ public class Board {
 	}
 	
 	/**
-	 * Returns the country object that matches the ISO string given
-	 * @param check the string with the ISO code
-	 * @return Country object that matches
-	 */
-	@Deprecated
-	public Country getCountry(String check) {
-		for (Country c : Map.getWorld()) {
-			if (c.getISO().equals(check)) {
-				return c;
-			}
-		}
-		return null;
-	}
-	
-	/**
 	 * @return a string formatted for the country 
 	 */
 	public String toString() {
@@ -185,16 +170,8 @@ public class Board {
 	 * Deals the cards to the players hand
 	 */
 	public void dealCards() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/**
-	 * Runs the Headline phase
-	 */
-	public void headlinePhase() {
-		// TODO Auto-generated method stub
-		
+		USA.dealCards(turn);
+		USSR.dealCards(turn);
 	}
 
 	/**
@@ -218,7 +195,25 @@ public class Board {
 	 * Passes the china card if it needs to be passed
 	 */
 	public void flipChinaCard() {
-		// TODO Auto-generated method stub
+		boolean usedChinaCard = false;
+		ChinaCard card = null;
+		for (Card c : Deck.getDiscard()) {
+			if (c.cardNum == 006) {
+				usedChinaCard = true;
+				card = (ChinaCard) c;
+			}
+		}
+		if (!usedChinaCard) {
+			
+		}
+		else {
+			Side side = null;
+			if  (card.getCurrentHolder().equals(Side.USA)) side = Side.USSR;
+			else side = Side.USA;
+			card.setCurrentHolder(side);
+			getPlayer(side)card.giveCard(card); // Josh will impliment
+			Deck.getDiscard().remove(card);
+		}
 		
 	}
 

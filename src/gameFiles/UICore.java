@@ -20,4 +20,10 @@ public interface UICore {
 	 */
 	public void updateUI();
 	
+	/**
+	 * @param side Side to have there card selected
+	 * @return 
+	 */
+	public int promptSelectCard(Side side);
+	
 }

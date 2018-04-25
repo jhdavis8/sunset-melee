@@ -104,8 +104,14 @@ public class Deck {
 			}
 			
 			if (tempCard[4].equals("Turn")) {
-				ALL_CARDS.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
-						 Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
+				if (Integer.parseInt(tempCard[0]) == 006) {
+					ALL_CARDS.add(new ChinaCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
+						 Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6], Side.USSR));
+				}
+				else {
+					ALL_CARDS.add(new TurnCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]), 
+							 Integer.parseInt(tempCard[0]), Side.valueOf(tempCard[5]), sc, Integer.parseInt(tempCard[2]), tempCard[6]));
+				}
 			}
 			else {
 				ALL_CARDS.add(new ScoringCard(tempCard[1], tempCard[7], Integer.parseInt(tempCard[0]),

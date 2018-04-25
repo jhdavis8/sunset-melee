@@ -33,4 +33,10 @@ public class UIGraphic implements UICore {
 
 	}
 
+	@Override
+	public int promptSelectCard(Side side) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

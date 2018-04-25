@@ -56,10 +56,10 @@ public class Controller {
 	 * Holds the structure of the progression of the game
 	 * @param game Board to use
 	 */
-	public static void turn(Board game) {
+	public static void turn(Board game, UICore UI) {
 		game.improveDefconStatus();
 		game.dealCards();
-		game.headlinePhase();
+		headlinePhase(game, UI);
 		game.actionRound();
 		game.checkMilitaryOperationsStatus();
 		game.flipChinaCard();
@@ -119,5 +119,23 @@ public class Controller {
 	 */
 	private boolean playerTurn(Board b) {
 		return false;
+	}
+
+	/**
+	 * Runs the Headline phase
+	 * @param uI 
+	 * @param game 
+	 */
+	private static void headlinePhase(Board game, UICore UI) {
+		int USCardChoice = UI.promptSelectCard(Side.USA);
+		int USSRCardChoice = UI.promptSelectCard(Side.USSR);
+		
+		Card usCard = game.getPlayer(Side.USA).getHand().get(USCardChoice);
+		Card ussrCard = game.getPlayer(Side.USSR).getHand().get(USSRCardChoice);
+		
+		if (usCard.getOps() < ussrCard) {
+			
+		}
+		
 	}
 }
