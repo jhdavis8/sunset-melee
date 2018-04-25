@@ -52,6 +52,7 @@ public class UIText implements UICore {
 	 */
 	public void runUI() {
 		Scanner scan = new Scanner(System.in);
+		Effects.setScanner(scan);
 		boolean running = true;
 		String command = "";
 		while (running) {
@@ -138,7 +139,7 @@ public class UIText implements UICore {
 	private void promptPlayCardFromHand(Scanner scan) {
 		System.out.println("Entering drawing card from player...");
 		
-		Side side = this.getValidSide(scan, "Please enter a side");
+		Side side = Side.getValidSide(scan, "Please enter a side");
 		
 		if (currentBoard.getPlayer(side).hasCards() == false) {
 			System.out.println("This funciton has ended since the selected player has no cards.\n"
@@ -200,7 +201,7 @@ public class UIText implements UICore {
 
 	private void promptDealCard(Scanner scan) {
 		System.out.println("Entering prompt deal card...");
-		Side side = getValidSide(scan, "Please enter a side to deal to:");
+		Side side = Side.getValidSide(scan, "Please enter a side to deal to:");
 		Player player = currentBoard.getPlayer(side);
 		System.out.println("Dealing Cards...");
 		player.dealCards(currentBoard.getTurn());
@@ -209,7 +210,7 @@ public class UIText implements UICore {
 
 	private void promptPrintPlayer(Scanner scan) {
 		System.out.println("Entering prompt print player...");
-		Side side = getValidSide(scan, "Please enter a player side to print:");
+		Side side = Side.getValidSide(scan, "Please enter a player side to print:");
 		Player player = currentBoard.getPlayer(side);
 		System.out.println(player);
 	}
@@ -236,7 +237,7 @@ public class UIText implements UICore {
 	 */
 	private void promptDrawCard(Scanner scan) {
 		System.out.println("Entering draw random card...");
-		Side side = this.getValidSide(scan, "Please enter a side to draw a Card for:");
+		Side side = Side.getValidSide(scan, "Please enter a side to draw a Card for:");
 		System.out.println(currentBoard.getPlayer(side).playCard(-1));
 		
 	}
@@ -250,7 +251,7 @@ public class UIText implements UICore {
 		boolean checking = true;
 		String input = "";
 		
-		Side side = this.getValidSide(scan, "Please enter a side to roll a Coup for:");
+		Side side = Side.getValidSide(scan, "Please enter a side to roll a Coup for:");
 		Country country = this.getValidCountry(scan, "Please enter a country to coup:");
 		
 		checking = true;
@@ -275,7 +276,7 @@ public class UIText implements UICore {
 		System.out.println(country);
 		checking = true;
 		System.out.println("Rolling a coup...");
-		currentBoard.getPlayer(side).rollRealignment(country, card.cardNum);
+		currentBoard.getPlayer(side).rollCoup(country, card.cardNum);
 		System.out.println(country);
 		
 		
@@ -289,7 +290,7 @@ public class UIText implements UICore {
 		//Does not account for negative influence...
 		System.out.println("Entering realignemnt prompt...");
 		
-		Side side = this.getValidSide(scan, "Please enter a side to realign for:");
+		Side side = Side.getValidSide(scan, "Please enter a side to realign for:");
 		Country country = this.getValidCountry(scan, "Please enter a country to realign:");
 		
 		System.out.println(country);
@@ -307,7 +308,7 @@ public class UIText implements UICore {
 		boolean checking = true;
 		String input = "";
 		
-		Side side = this.getValidSide(scan, "Please enter a side to add influence for:");
+		Side side = Side.getValidSide(scan, "Please enter a side to add influence for:");
 		Country country = this.getValidCountry(scan, "Please enter a country to add influence to:");
 
 		System.out.println(country);
@@ -330,25 +331,6 @@ public class UIText implements UICore {
 		System.out.println(country);
 	}
 	
-	private Side getValidSide(Scanner scan, String message) {
-		boolean checking = true;
-		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println(message);
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
-		return side;
-	}
 	
 	private Country getValidCountry(Scanner scan, String message) {
 		boolean checking = true;

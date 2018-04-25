@@ -1,5 +1,7 @@
 package gameFiles;
 
+import java.util.Scanner;
+
 /**
  * The ENUM for Sides in the game, it is used in most classes as an identifier.
  * @author Mark Wolgin
@@ -33,6 +35,26 @@ public enum Side {
 			case ("USSR"): return USSR;
 			default: return UNK;
 		}
+	}
+	
+	public static Side getValidSide(Scanner scan, String message) {
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		return side;
 	}
 	
 }

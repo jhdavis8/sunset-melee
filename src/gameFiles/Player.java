@@ -122,7 +122,7 @@ public class Player {
 	 * @param country Country to roll on
 	 * @param value int value to apply
 	 */
-	public void rollCoup(String country, int value) {
+	public void rollCoup(Country country, int value) {
 		// To fill tonight
 	}
 	

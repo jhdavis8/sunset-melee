@@ -3,6 +3,8 @@
  */
 package gameFiles;
 
+import java.util.Scanner;
+
 /**
  * Container for all effects for all cards
  * @author Mark Wolgin
@@ -16,8 +18,14 @@ public class Effects {
 	 */
 	private static Board currentBoard;
 	
+	private static Scanner scan;
+	
 	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
+	}
+	public static void setScanner(Scanner other) {
+		scan = other;
+		
 	}
 	/**
 	 * Enact (as a side effect) an effect by its ID (Note: we will change this to a bunch of private methods
@@ -34,6 +42,15 @@ public class Effects {
 				break;
 			case 17:
 				effectID017();
+				break;
+			case 22:
+				effectID022();
+				break;
+			case 26:
+				effectID026();
+				break;
+			case 34:
+				effectID034();
 				break;
 			default:
 				System.out.println("CardID Not Found");
@@ -164,6 +181,53 @@ public class Effects {
 		Map.getCountry("FRA").modifyInfluence(-2, Side.USA);
 		Map.getCountry("FRA").modifyInfluence(1, Side.USSR);
 		//Cancel NATO
+	}
+	
+	/**
+	 * Independent Reds
+	 */
+	private static void effectID022() {
+		// Show a country to pick
+		String cISO = "";
+		System.out.println("Select one of the countries to have its USA influence set to equal USSR:");
+		for (Country  c : Map.getWorld()) {
+			cISO = c.getISO();
+			if (cISO.equals("YUG") || cISO.equals("ROU") || cISO.equals("BGR") || cISO.equals("HUN") || cISO.equals("CSK")) {
+				System.out.print(c);
+			}
+		}
+		// Pick a country
+		String input = "";
+		boolean checking = true;
+		while (checking) {
+			input = scan.nextLine();
+			if (input.equals("YUG") || input.equals("ROU") || input.equals("BGR") || input.equals("HUN") || input.equals("CSK")) {
+				checking = false;
+			}
+		}
+		
+		// Adds USA influence
+		int USInf = Map.getCountry(input).getUSSRInfluence();
+		Map.getCountry(input).modifyInfluence(USInf, Side.USA);
+		System.out.print(Map.getCountry(input));
+	}
+	
+	
+	/**
+	 * CIA Created
+	 */
+	private static void effectID026() {
+		System.out.println();
+		for (Card c : currentBoard.getPlayer(Side.USSR).getHand()) {
+			System.out.print(c);
+		}
+	}
+	
+	private static void effectID034() {
+		Side side = Side.getValidSide(scan, "Which side played the card?");
+		int vp = currentBoard.getDefcon() - 2;
+		if (side.equals(Side.USA)) vp = vp * -1;
+		currentBoard.modifyVictoryPoints(vp);
 	}
 	
 }
