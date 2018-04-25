@@ -34,11 +34,11 @@ public class Board {
 	/**
 	 * int victoryPoints hold the current victory points as a number line from [-20, 20]
 	 */
-	public int victoryPoints;
+	private int victoryPoints;
 	/**
 	 * int defcon is the current defcon level
 	 */
-	public int defcon;
+	private int defcon;
 	/**
 	 * int USMilitaryOps is how many military ops the US has done in a turn
 	 */
@@ -140,12 +140,28 @@ public class Board {
 	public int getVictoryPoints() {
 		return victoryPoints;
 	}
+	
+	/**
+	 * Adjust the current victory points (- is USA, + is USSR)
+	 * @param i amount to add to victoryPoints
+	 */
+	public void modifyVictoryPoints(int i) {
+		victoryPoints += i;
+	}
 
 	/**
 	 * @return the current defcon level int
 	 */
 	public int getDefcon() {
 		return defcon;
+	}
+	
+	/**
+	 * Adjust the current Defcon status
+	 * @param i amount to add to the Defcon status
+	 */
+	public void modifyDefcon(int i) {
+		defcon += i;
 	}
 
 	/**
@@ -219,12 +235,11 @@ public class Board {
 	 */
 	public void finalScoring() {
 		if (turn < 11) {
-			//Nothing happens, game progresses as normal
+			return;
 		}
 		else {
 			
 		}
-		
 	}
 
 	public int getTurn() {
@@ -293,6 +308,5 @@ public class Board {
 	public Player getUSSR() {
 		return USSR;
 	}
-	
 	
 }

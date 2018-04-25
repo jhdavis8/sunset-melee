@@ -87,14 +87,13 @@ public class Effects {
 		boolean presenceUSSR = false;
 		Side domination = Side.UNK;
 		Side control = Side.UNK;
-		Side moreCountries = Side.UNK;
-		Side moreBattlegrounds = Side.UNK;
-		Side allBattlegrounds = Side.UNK;
 		int countryCountUSA = 0;
 		int countryCountUSSR = 0;
 		int bgCountUSA = 0;
 		int bgCountUSSR = 0;
 		int bgTotal = 0;
+		int totalUSA = 0;
+		int totalUSSR = 0;
 		for (Country c : Map.getWorld()) {
 			if (c.getContinent().contains(Continents.EEE) || c.getContinent().contains(Continents.WEE)) {
 				if (c.getControllingSide() == Side.USA) {
@@ -115,13 +114,21 @@ public class Effects {
 				}
 			}
 		}
-		if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR && countryCountUSA > 1 && bgCountUSA > 1) {
+		if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR && countryCountUSA >= 1 && bgCountUSA >= 1) {
 			domination = Side.USA;
 		}
-		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR > 1 && bgCountUSSR > 1) {
+		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR >= 1 && bgCountUSSR >= 1) {
 			domination = Side.USSR;
 		}
-		//if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR)
+		if (countryCountUSA > countryCountUSSR && bgCountUSA == bgTotal) control = Side.USA;
+		if (countryCountUSSR > countryCountUSA && bgCountUSSR == bgTotal) control = Side.USSR;
+		if (presenceUSA) totalUSA += 3;
+		if (presenceUSSR) totalUSSR += 3;
+		if (domination == Side.USA) totalUSA += 7;
+		else if (domination == Side.USSR) totalUSSR += 7;
+		if (control == Side.USA) totalUSA += 400;
+		if (control == Side.USSR) totalUSSR += 400;
+		currentBoard.modifyVictoryPoints(totalUSSR - totalUSA);
 	}
 	
 	/**
@@ -135,10 +142,10 @@ public class Effects {
 	 * Duck and Cover card effect
 	 */
 	private static void effectID004() {
-		if (currentBoard.getDefcon() > 1) currentBoard.defcon--;
-		currentBoard.victoryPoints -= 5 - currentBoard.defcon;
+		if (currentBoard.getDefcon() > 1) currentBoard.modifyDefcon(-1);
+		currentBoard.modifyVictoryPoints(-1 * (5 - currentBoard.getDefcon()));
 	}
-	
+
 	/**
 	 * Romanian Abdication card effect
 	 */
@@ -157,6 +164,7 @@ public class Effects {
 		t.modifyInfluence(USSR, Side.USSR);
 	}
 	
+
 	/**
 	 * De Gaulle Leads France card effect
 	 */
