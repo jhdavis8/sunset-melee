@@ -163,45 +163,16 @@ public class UIText implements UICore {
 
 	private void promptDealCard(Scanner scan) {
 		System.out.println("Entering prompt deal card...");
-		boolean checking = true;
-		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a side to deal to:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
+		Side side = getValidSide(scan, "Please enter a side to deal to:");
 		Player player = currentBoard.getPlayer(side);
 		System.out.println("Dealing Cards...");
 		player.dealCards(currentBoard.getTurn());
+		
 	}
 
 	private void promptPrintPlayer(Scanner scan) {
 		System.out.println("Entering prompt print player...");
-		boolean checking = true;
-		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a player side to print:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
+		Side side = getValidSide(scan, "Please enter a player side to print:");
 		Player player = currentBoard.getPlayer(side);
 		System.out.println(player);
 	}
@@ -212,23 +183,13 @@ public class UIText implements UICore {
 	 */
 	private void promptConnectedCountry(Scanner scan) {
 		System.out.println("Input ISO Code...");
-		boolean checking = true;
-		String input = "";
-		Country country = null;
-		while (checking) {
-			System.out.println("Please enter a country to coup:");
-			input = scan.nextLine();
-			country = Map.getCountry(input);
-			if (country != null) {
-				System.out.printf("Country is: %s%n", country);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a country!");
-				continue;
-			}
+
+		Country country = getValidCountry(scan, "Please enter a country get its connections:");
+		
+		System.out.printf("%s is connected to the following Countries", country.getFullName());
+		for (Country c : Map.getCountry(country.getISO()).getConnectedCountries()) {
+			System.out.print(c);
 		}
-		System.out.println(Map.getCountry(country.getISO()));
 		
 	}
 
@@ -238,22 +199,7 @@ public class UIText implements UICore {
 	 */
 	private void promptDrawCard(Scanner scan) {
 		System.out.println("Entering draw random card...");
-		boolean checking = true;
-		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a side to draw a Card for:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
+		Side side = this.getValidSide(scan, "Please enter a side to draw a Card for:");
 		System.out.println(currentBoard.getPlayer(side).playCard(-1));
 		
 	}
@@ -266,35 +212,10 @@ public class UIText implements UICore {
 		System.out.println("Entering coup prompt...");
 		boolean checking = true;
 		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a side to roll a Coup for:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
-		checking = true;
-		Country country = null;
-		while (checking) {
-			System.out.println("Please enter a country to coup:");
-			input = scan.nextLine();
-			country = Map.getCountry(input);
-			if (country != null && country.opponentHasInfluence(side)) {
-				System.out.printf("Country is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a country!");
-				continue;
-			}
-		}
+		
+		Side side = this.getValidSide(scan, "Please enter a side to roll a Coup for:");
+		Country country = this.getValidCountry(scan, "Please enter a country to coup:");
+		
 		checking = true;
 		Card card = null;
 		while (checking) {
@@ -330,62 +251,14 @@ public class UIText implements UICore {
 	private void promptRollRealignemnt(Scanner scan) {
 		//Does not account for negative influence...
 		System.out.println("Entering realignemnt prompt...");
-		boolean checking = true;
-		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a side to realign for:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
-		checking = true;
-		Country country = null;
-		while (checking) {
-			System.out.println("Please enter a country to realign:");
-			input = scan.nextLine();
-			country = Map.getCountry(input);
-			if (country != null && country.opponentHasInfluence(side)) {
-				System.out.printf("Country is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a country or no opponent influence!");
-				continue;
-			}
-		}
+		
+		Side side = this.getValidSide(scan, "Please enter a side to realign for:");
+		Country country = this.getValidCountry(scan, "Please enter a country to realign:");
+		
 		System.out.println(country);
-		checking = true;
 		System.out.println("Rolling for realignment...");
 		currentBoard.getPlayer(side).rollRealignment(country, 0);
 		System.out.println(country);
-		/*
-		int value = -1;
-		while (checking) {
-			System.out.println("Please enter a number of influence to add:");
-			input = scan.nextLine();
-			value = Integer.parseInt(input);
-			if (value > 0) {
-				System.out.printf("Value is: %d%n", value);
-				checking = false;
-			}
-			else {
-				System.out.println("Invalid value!");
-				continue;
-			}
-		}
-		currentBoard.placeInfluence(side, country, value);
-		System.out.println(country);
-		
-		}
-		*/
 	}
 
 	/**
@@ -396,35 +269,10 @@ public class UIText implements UICore {
 		System.out.println("Entering add influence prompt...");
 		boolean checking = true;
 		String input = "";
-		Side side = null;
-		while (checking) {
-			System.out.println("Please enter a side to add influence for:");
-			input = scan.nextLine();
-			side = Side.toSide(input);
-			if (side != Side.UNK) {
-				System.out.printf("Side is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a side!");
-				continue;
-			}
-		}
-		checking = true;
-		Country country = null;
-		while (checking) {
-			System.out.println("Please enter a country to add influence to:");
-			input = scan.nextLine();
-			country = Map.getCountry(input);
-			if (country != null) {
-				System.out.printf("Country is: %s%n", side);
-				checking = false;
-			}
-			else {
-				System.out.println("Not a country!");
-				continue;
-			}
-		}
+		
+		Side side = this.getValidSide(scan, "Please enter a side to add influence for:");
+		Country country = this.getValidCountry(scan, "Please enter a country to add influence to:");
+
 		System.out.println(country);
 		checking = true;
 		int value = -1;
@@ -445,4 +293,43 @@ public class UIText implements UICore {
 		System.out.println(country);
 	}
 	
+	private Side getValidSide(Scanner scan, String message) {
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			side = Side.toSide(input);
+			if (side != Side.UNK) {
+				System.out.printf("Side is: %s%n", side);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a side!");
+				continue;
+			}
+		}
+		return side;
+	}
+	
+	private Country getValidCountry(Scanner scan, String message) {
+		boolean checking = true;
+		String input = "";
+		Country country = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			country = Map.getCountry(input);
+			if (country != null) {
+				System.out.printf("Country is: %s%n", country);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a country!");
+				continue;
+			}
+		}
+		return country;
+	}
 }
