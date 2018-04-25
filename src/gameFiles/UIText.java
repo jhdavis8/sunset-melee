@@ -276,7 +276,7 @@ public class UIText implements UICore {
 		System.out.println(country);
 		checking = true;
 		System.out.println("Rolling a coup...");
-		currentBoard.getPlayer(side).rollCoup(country, card.cardNum);
+		currentBoard.getPlayer(side).rollCoup(country, card.cardNum, currentBoard);
 		System.out.println(country);
 		
 		

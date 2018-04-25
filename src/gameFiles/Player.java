@@ -25,12 +25,18 @@ public class Player {
 	private Side side;
 	
 	/**
+	 * The player's current number of miltary operations
+	 */
+	private int milOps;
+	
+	/**
 	 * Takes a Side and creates a player.
 	 * @param s The Side Enum
 	 */
 	public Player(Side s) {
 		hand = new ArrayList<Card>();
 		side = s;
+		milOps = 0;
 	}
 	
 	/**
@@ -49,6 +55,10 @@ public class Player {
 		return drawCard(t);
 	}
 	
+	/**
+	 * Deals cards to the player as determined by the turn
+	 * @param turn the current turn
+	 */
 	public void dealCards(int turn) {
 		int toDraw = 0;
 		if (turn > 3) {
@@ -151,7 +161,7 @@ public class Player {
 	 * @param country Country to roll on
 	 * @param value int value to apply
 	 */
-	public void rollCoup(Country country, int value) {
+	public void rollCoup(Country country, int value, Board currentBoard) {
 		int target = country.getStabilityNum() * 2;
 		Random randy = new Random();
 		int roll = 1 + randy.nextInt(6);
@@ -167,19 +177,44 @@ public class Player {
 				country.modifyInfluence(diff, side.opponent(side));
 			}
 		}
-		//add changes to mil ops and defcon decrement (Josh)
+		currentBoard.modifyDefcon(-1);
+		setMilOps(getMilOps() + value);
 	}
 	
+	/**
+	 * @return true if the player has at least one card
+	 */
 	public boolean hasCards() {
-		if (hand.size() == 0) return false;
+		if (hand.size() <= 0) return false;
 		else return true;
 	}
 	
+	/**
+	 * @return the ArrayList of cards that represents the player's hand
+	 */
 	public ArrayList<Card> getHand() {
 		return hand;
 	}
 	
+	/**
+	 * Adds the specified card to the player's hand
+	 * @param c the card to add to the hand
+	 */
 	public void giveCard(Card c) {
 		hand.add(c);
+	}
+
+	/**
+	 * @return the milOps
+	 */
+	public int getMilOps() {
+		return milOps;
+	}
+
+	/**
+	 * @param milOps the milOps to set
+	 */
+	public void setMilOps(int milOps) {
+		this.milOps = milOps;
 	}
 }

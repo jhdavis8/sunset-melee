@@ -40,14 +40,6 @@ public class Board {
 	 */
 	private int defcon;
 	/**
-	 * int USMilitaryOps is how many military ops the US has done in a turn
-	 */
-	private int USMilitaryOps;
-	/**
-	 * int USSRMilitaryOps is how many military ops the US has done in a turn
-	 */
-	private int USSRMilitaryOps;
-	/**
 	 * boolean playerTurn holds the current turn
 	 */
 	private boolean playerTurn;
@@ -77,8 +69,6 @@ public class Board {
 		actionRound = 0;
 		victoryPoints = 0;
 		defcon = 0;
-		USMilitaryOps = 0;
-		USSRMilitaryOps = 0;
 		playerTurn = false;
 		USA = new Player(Side.USA);
 		USSR = new Player(Side.USSR);
@@ -109,7 +99,7 @@ public class Board {
 		
 		String toReturn = "";
 		toReturn += "TURN:" + turn + ", ACTION ROUND:" + actionRound + "\n";
-		toReturn += "REQUIRED MILITARY\n\tOPS[" + USMilitaryOps + ", " + USSRMilitaryOps + "]\n";
+		toReturn += "REQUIRED MILITARY\n\tOPS[" + USA.getMilOps() + ", " + USSR.getMilOps() + "]\n";
 		toReturn += "VICTORY POINTS:" + victoryPoints + "\n";
 		toReturn += "DEFCON:" + defcon + "\n";
 		toReturn += "CURRENT PLAYER:";
@@ -160,13 +150,6 @@ public class Board {
 	}
 
 	/**
-	 * Improves the Defcon staus by one
-	 */
-	public void improveDefconStatus() {
-		if (defcon < 5) defcon ++;
-	}
-
-	/**
 	 * Deals the cards to the players hand
 	 */
 	public void dealCards() {
@@ -186,8 +169,8 @@ public class Board {
 	 * Handles the military operations effect
 	 */
 	public void checkMilitaryOperationsStatus() {
-		victoryPoints += USMilitaryOps - 5;
-		victoryPoints += 5 - USSRMilitaryOps;
+		victoryPoints += USA.getMilOps() - 5;
+		victoryPoints += 5 - USSR.getMilOps();
 		
 	}
 
@@ -265,14 +248,14 @@ public class Board {
 	 * @return the uSMilitaryOps
 	 */
 	public int getUSMilitaryOps() {
-		return USMilitaryOps;
+		return USA.getMilOps();
 	}
 
 	/**
 	 * @return the uSSRMilitaryOps
 	 */
 	public int getUSSRMilitaryOps() {
-		return USSRMilitaryOps;
+		return USSR.getMilOps();
 	}
 
 	/**
