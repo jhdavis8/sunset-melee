@@ -133,8 +133,32 @@ public class UIText implements UICore {
 	}
 	
 	private void promptPlayCard(Scanner scan) {
-		
-		
+		System.out.println("Entering play card testing...");
+		boolean checking = true;
+		String input = "";
+		Side side = null;
+		int cardID = 0;
+		while (checking) {
+			System.out.println("Please enter a Card ID:");
+			input = scan.nextLine();
+			try {
+				cardID = Integer.parseInt(input);
+				if (side != Side.UNK) {
+					System.out.printf("Side is: %s%n", side);
+					checking = false;
+				}
+				else {
+					System.out.println("Not a side!");
+					continue;
+				}
+			}
+			catch (Exception e) {
+				System.out.println("Not an integer...");
+			}
+		}
+		Card card = Deck.getCard(cardID);
+		System.out.println(card);
+		card.runEffect();
 	}
 
 	private void promptDealCard(Scanner scan) {

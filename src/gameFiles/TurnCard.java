@@ -55,8 +55,12 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 	 */
 	@Override
 	public void runEffect() {
-		// TODO Auto-generated method stub
-
+		try {
+			Effects.getEffect(effectID);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
 	}
 
 	/* (non-Javadoc)

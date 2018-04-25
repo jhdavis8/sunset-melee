@@ -30,8 +30,9 @@ public class Effects {
 	/**
 	 * Enact (as a side effect) an effect by its ID (Note: we will change this to a bunch of private methods
 	 * @param ID int ID of the effect
+	 * @throws Exception 
 	 */
-	public static void getEffect(int ID) {
+	public static void getEffect(int ID) throws Exception {
 		switch (ID) {
 			case 4:
 				effectID004();
@@ -42,6 +43,9 @@ public class Effects {
 			case 17:
 				effectID017();
 				break;
+			default:
+				System.out.println("CardID Not Found");
+				throw new Exception();
 		}
 	}
 
