@@ -238,7 +238,13 @@ public class Board {
 			return;
 		}
 		else {
-			
+			try {
+				Effects.getScoringEffect(2);
+			}
+			catch (Exception e) {
+				e.getMessage();
+				e.printStackTrace();
+			}
 		}
 	}
 

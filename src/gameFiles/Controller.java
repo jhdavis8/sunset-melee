@@ -92,7 +92,15 @@ public class Controller {
 	 * @return Side that has won
 	 */
 	private Side getVictor(Board b) {
-		return Side.UNK;
+		if (b.getVictoryPoints() > 0) {
+			return Side.USSR;
+		}
+		else if (b.getVictoryPoints() < 0) {
+			return Side.USA;
+		}
+		else {
+			return Side.UNK;
+		}
 	}
 	
 	/**
