@@ -57,7 +57,7 @@ public class Controller {
 	 * @param game Board to use
 	 */
 	public static void turn(Board game, UICore UI) {
-		game.improveDefconStatus();
+		game.modifyDefcon(1);
 		game.dealCards();
 		headlinePhase(game, UI);
 		game.actionRound();
@@ -130,13 +130,55 @@ public class Controller {
 		int USCardChoice = UI.promptSelectCard(Side.USA);
 		int USSRCardChoice = UI.promptSelectCard(Side.USSR);
 		
-		Card usCard = game.getPlayer(Side.USA).getHand().get(USCardChoice);
-		Card ussrCard = game.getPlayer(Side.USSR).getHand().get(USSRCardChoice);
-		/*
-		if (usCard.getOps() < ussrCard) {
+		Card usaC = game.getPlayer(Side.USA).getHand().get(USCardChoice);
+		Card ussrC = game.getPlayer(Side.USSR).getHand().get(USSRCardChoice);
+		
+		ScoringCard usaSC = null;
+		ScoringCard ussrSC = null;
+		
+		TurnCard usaTC = null;
+		TurnCard ussrTC = null;
+		
+		//Fills the correct card
+		if (usaC instanceof ScoringCard) {
+			usaSC = (ScoringCard) usaC;
+		}
+		else if (usaC instanceof TurnCard) {
+			usaTC = (TurnCard) usaC;
+		}
+		
+		if (ussrC instanceof ScoringCard) {
+			ussrSC = (ScoringCard) ussrC;
+		}
+		else if (ussrC instanceof TurnCard) {
+			ussrTC = (TurnCard) ussrC;
+		}
+		
+		
+		//Plays the correct card
+		if (usaSC != null && ussrSC != null) { // 		USA TurnCard and USSR TurnCard
+			if (ussrTC.getOps() > usaTC.getOps()) {
+				ussrTC.runEffect();
+				usaTC.runEffect();
+			}
+			else {
+				usaTC.runEffect();
+				ussrTC.runEffect();
+			}
 			
 		}
-		*/
+		else if (usaTC != null && ussrSC != null) { // 	USA ScoringCard and USSR TurnCard
+			ussrTC.runEffect();
+			usaSC.runEffect();
+		}
+		else if (usaSC != null && ussrTC != null) { //	USA TurnCard and USSR ScoringCArd
+			usaTC.runEffect();
+			ussrSC.runEffect();
+		}
+		else { //										USA ScoringCard and USSR ScoringCard
+			usaSC.runEffect();
+			ussrSC.runEffect();
+		}
 		
 	}
 }
