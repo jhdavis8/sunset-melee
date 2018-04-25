@@ -32,6 +32,11 @@ public class Deck {
 	private static ArrayList<Card> discard;
 	
 	/**
+	 * ArrayList of all cards that are not to be readded to the game.
+	 */
+	private static ArrayList<Card> dead;
+	
+	/**
 	 * The earlyCard ArrayList
 	 */
 	private static ArrayList<Card> earlyCard;
@@ -149,7 +154,7 @@ public class Deck {
 		ArrayList<Card> toReturn = new ArrayList<Card>();
 		if (numToDeal == -1) {
 			toReturn.add(Deck.getCard(6));
-			deck.remove(6);
+			deck.remove(Deck.getCard(6));
 		}
 		Random randy = new Random();
 		int temp = 0;
@@ -232,5 +237,11 @@ public class Deck {
 		return discard;
 	}
 	
+	/**
+	 * @return the dead card list
+	 */
+	public static ArrayList<Card> getDead() {
+		return dead;
+	}
 	
 }

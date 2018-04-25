@@ -20,13 +20,20 @@ public class Effects {
 	
 	private static Scanner scan;
 	
+	private static UICore UI;
+	
 	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
 	}
+	
 	public static void setScanner(Scanner other) {
-		scan = other;
-		
+		scan = other;	
 	}
+	
+	public static void setUI(UICore Ui) {
+		UI = Ui;
+	}
+	
 	/**
 	 * Enact (as a side effect) an effect by its ID (Note: we will change this to a bunch of private methods
 	 * @param ID int ID of the effect
@@ -200,7 +207,7 @@ public class Effects {
 		String input = "";
 		boolean checking = true;
 		while (checking) {
-			input = scan.nextLine();
+			input = UI.promptUSA();
 			if (input.equals("YUG") || input.equals("ROU") || input.equals("BGR") || input.equals("HUN") || input.equals("CSK")) {
 				checking = false;
 			}
@@ -223,11 +230,20 @@ public class Effects {
 		}
 	}
 	
+	/**
+	 * Nuclear Test Ban
+	 */
 	private static void effectID034() {
 		Side side = Side.getValidSide(scan, "Which side played the card?");
 		int vp = currentBoard.getDefcon() - 2;
 		if (side.equals(Side.USA)) vp = vp * -1;
 		currentBoard.modifyVictoryPoints(vp);
+	}
+	
+	private static void effectID103() {
+		if (currentBoard.getCurrentPlayer().equals(Side.USSR)) {
+			currentBoard.modifyVictoryPoints(-1);
+		}
 	}
 	
 }

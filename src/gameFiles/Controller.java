@@ -19,16 +19,17 @@ public class Controller {
 	 * @param args command line args
 	 */
 	public static void main(String[] args) {
+		
 		Board game = new Board();
 		initialize(game);
 		Effects.setCurrentBoard(game);
-		
 		UIText UI = new UIText();
-		
-
-		
 		UI.updateBoard(game);
+		Effects.setUI(UI);
+		
+		
 		UI.updateUI();
+		turn(game, UI);
 		UI.runUI();
 	}
 	
@@ -126,12 +127,36 @@ public class Controller {
 	 * @param uI 
 	 * @param game 
 	 */
-	private static void headlinePhase(Board game, UICore UI) {
-		int USCardChoice = UI.promptSelectCard(Side.USA);
-		int USSRCardChoice = UI.promptSelectCard(Side.USSR);
+	public static void headlinePhase(Board game, UICore UI) {
+		System.out.println("Headline Phase");
+		boolean checking = true;
+		int USCardChoice = 0;
+		while (checking) {
+			USCardChoice = UI.promptSelectCard(Side.USA);
+			if (USCardChoice >= game.getPlayer(Side.USA).getHand().size()) {
+				System.out.println("Integer out of bound, please input a value within the range.");
+			}
+			else {
+				checking = false;
+			}
+		}
+		
+		int USSRCardChoice = 0;
+		while (checking) {
+			USSRCardChoice = UI.promptSelectCard(Side.USSR);
+			if (USSRCardChoice >= game.getPlayer(Side.USSR).getHand().size()) {
+				System.out.println("Integer out of bound, please input a value within the range.");
+			}
+			else {
+				checking = false;
+			}
+		}
+		
 		
 		Card usaC = game.getPlayer(Side.USA).getHand().get(USCardChoice);
+		game.handleDiscard(usaC, Side.USA);
 		Card ussrC = game.getPlayer(Side.USSR).getHand().get(USSRCardChoice);
+		game.handleDiscard(ussrC, Side.USSR);
 		
 		ScoringCard usaSC = null;
 		ScoringCard ussrSC = null;
@@ -156,22 +181,25 @@ public class Controller {
 		
 		
 		//Plays the correct card
-		if (usaSC != null && ussrSC != null) { // 		USA TurnCard and USSR TurnCard
-			if (ussrTC.getOps() > usaTC.getOps()) {
+		if (usaSC == null && ussrSC == null) { // 		USA TurnCard and USSR TurnCard
+			if ((ussrTC.getOps() > usaTC.getOps()) && (usaTC.cardNum != 103)) {
 				ussrTC.runEffect();
 				usaTC.runEffect();
 			}
-			else {
+			else if (usaTC.cardNum != 103) {
 				usaTC.runEffect();
 				ussrTC.runEffect();
+			}
+			else {	// If the card is num 103 Defectors, the USSR cards is invalidated
+				usaTC.runEffect();
 			}
 			
 		}
-		else if (usaTC != null && ussrSC != null) { // 	USA ScoringCard and USSR TurnCard
+		else if (usaTC == null && ussrSC == null) { // 	USA ScoringCard and USSR TurnCard
 			ussrTC.runEffect();
 			usaSC.runEffect();
 		}
-		else if (usaSC != null && ussrTC != null) { //	USA TurnCard and USSR ScoringCArd
+		else if (usaSC == null && ussrTC == null) { //	USA TurnCard and USSR ScoringCArd
 			usaTC.runEffect();
 			ussrSC.runEffect();
 		}

@@ -96,5 +96,13 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 	public int getOps() {
 		return value;
 	}
+	
+	public boolean getSpecialCard() {
+		return specialCard;
+	}
+	
+	public Side getSide() {
+		return side;
+	}
 
 }

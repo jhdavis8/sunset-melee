@@ -15,6 +15,7 @@ public interface UICore {
 	 * @param b Board
 	 */
 	public void updateBoard(Board b);
+	
 	/**
 	 * Prints out the UI
 	 */
@@ -25,5 +26,17 @@ public interface UICore {
 	 * @return 
 	 */
 	public int promptSelectCard(Side side);
+	
+	/**
+	 * Prompts the USA Player for input
+	 * @return Returns a string
+	 */
+	public String promptUSA();
+	
+	/**
+	 * Prompts the USSR Player for input
+	 * @return Returns a string
+	 */
+	public String promptUSSR();
 	
 }

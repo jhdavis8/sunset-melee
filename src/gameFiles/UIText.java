@@ -22,9 +22,13 @@ public class UIText implements UICore {
 	@Override
 	public void updateBoard(Board b) {
 		currentBoard = b;
+		scan = new Scanner(System.in);
+		Effects.setScanner(scan);
 		
 	}
 
+	Scanner scan;
+	
 	/* (non-Javadoc)
 	 * @see gameFiles.UICore#updateUI()
 	 */
@@ -51,8 +55,6 @@ public class UIText implements UICore {
 	 * TEMPORARY UI loop for testing only
 	 */
 	public void runUI() {
-		Scanner scan = new Scanner(System.in);
-		Effects.setScanner(scan);
 		boolean running = true;
 		String command = "";
 		while (running) {
@@ -64,9 +66,6 @@ public class UIText implements UICore {
 					break;
 				case ("a"):
 					promptPlaceInfluence(scan);
-					break;
-				case ("r"):
-					promptRollRealignemnt(scan);
 					break;
 				case ("c"):
 					promptRollCoup(scan);
@@ -105,6 +104,9 @@ public class UIText implements UICore {
 				case ("g"):
 					promptPlayCard(scan);
 					break;
+				case ("h"):
+					promptHeadlinePhase();
+					break;
 				case ("p"):
 					System.out.println("player -d(eal) -p(rint)");
 					command = scan.nextLine();
@@ -120,6 +122,9 @@ public class UIText implements UICore {
 				case ("P"):
 					promptPlayCardFromHand(scan);
 					break;
+				case ("r"):
+					promptRollRealignemnt(scan);
+					break;
 				case ("t"):
 					Controller.turn(currentBoard, this);
 					break;
@@ -127,8 +132,8 @@ public class UIText implements UICore {
 					running = false;
 					break;
 				case ("help"):
-					System.out.printf("\nmapstatus | a(dd) | c(oup) | C(onnected Countries) | d(raw) | f(ull) -c -m\n"
-							+ "g(et card) | p(layer) -d -p | P(lay card) | r(ealignment) | t(urn) | q(uit) | help\n%n");
+					System.out.printf("\nmapstatus | a(dd inifluence) | c(oup) | C(onnected Countries) | d(raw card for player) | f(ull status) -c -m | g(et card)\n"
+							+ "h(eadline Phase) | p(layer commands) -d -p | P(lay card) | r(ealignment) | t(urn, advance) | q(uit) | help\n%n");
 					break;
 				default:
 					System.out.println("Command unrecognized! Please try again.");
@@ -331,6 +336,17 @@ public class UIText implements UICore {
 		System.out.println(country);
 	}
 	
+	private void promptHeadlinePhase() {
+		System.out.println("Entering Headline Phase...");
+		if (currentBoard.getPlayer(Side.USA).getHand().size() == 0 ||
+				currentBoard.getPlayer(Side.USSR).getHand().size() == 0) {
+			System.out.println("You need to have cards in both decks before drawling.");
+		}
+		else {
+			Controller.headlinePhase(currentBoard, this);
+		}
+	}
+
 	/**
 	 * Handles prompting for a valid country
 	 * @param scan Scanner for input purposes
@@ -386,7 +402,39 @@ public class UIText implements UICore {
 
 	@Override
 	public int promptSelectCard(Side side) {
-		// TODO Auto-generated method stub
-		return 0;
+		System.out.println("Player " + side + ", Please select a card");
+		Player player = currentBoard.getPlayer(side);
+		for (int k = 0; k < player.getHand().size(); k ++) {
+			System.out.print("Card " + k + ":" + player.getHand().get(k));
+		}
+		boolean checking = true;
+		String input = "";
+		int cardIDInHand = 0;
+		while (checking) {
+			System.out.println("Please select a card by the number in the hand:");
+			if (Side.USA.equals(side)) input = promptUSA();
+			else input = promptUSSR();
+			
+			try {
+				cardIDInHand = Integer.parseInt(input);
+				checking = false;
+			}
+			catch (Exception e) {
+				System.out.println("Not an integer...");
+			}
+		}
+		return cardIDInHand;
+	}
+
+	@Override
+	public String promptUSA() {
+		System.out.print("USA, please input you answer: ");
+		return scan.nextLine();
+	}
+
+	@Override
+	public String promptUSSR() {
+		System.out.print("USSR, please input you answer: ");
+		return scan.nextLine();
 	}
 }

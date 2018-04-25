@@ -39,4 +39,16 @@ public class UIGraphic implements UICore {
 		return 0;
 	}
 
+	@Override
+	public String promptUSA() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String promptUSSR() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -64,7 +64,6 @@ public class Board {
 	 * Constructor for the board object with default values
 	 */
 	public Board() {
-		//world = new ArrayList<Country>();
 		turn = 0;
 		actionRound = 0;
 		victoryPoints = 0;
@@ -137,6 +136,9 @@ public class Board {
 	 */
 	public void modifyDefcon(int i) {
 		defcon += i;
+		if  (defcon >= 6) {
+			defcon = 5;
+		}
 	}
 
 	/**
@@ -162,7 +164,7 @@ public class Board {
 	 */
 	public void actionRound() {
 		// TODO Auto-generated method stub
-		
+		// TODO Cool...
 	}
 
 	/**
@@ -225,6 +227,30 @@ public class Board {
 			}
 		}
 	}
+	
+	public void handleDiscard(Card card, Side side) {
+		getPlayer(side).getHand().remove(card);
+		
+		TurnCard tC = null;
+		ScoringCard sC = null;
+		
+		if (card instanceof TurnCard) {
+			tC = (TurnCard) card;
+			// Turn Card
+			if (tC.getSpecialCard() && tC.getSide().equals(side)) { 
+				Deck.getDead().add(tC);
+			}
+			else {
+				Deck.getDiscard().add(tC);
+			}
+		}
+		else {
+			sC = (ScoringCard) card;
+			Deck.getDiscard().add(sC);
+		}
+		
+	}
+	
 
 	public int getTurn() {
 		return turn;
@@ -292,5 +318,11 @@ public class Board {
 	public Player getUSSR() {
 		return USSR;
 	}
-	
+
+	public Side getCurrentPlayer() {
+		if (playerTurn) return Side.USSR;
+		else return Side.USA;
+	}
+
+
 }
