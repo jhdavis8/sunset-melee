@@ -39,6 +39,9 @@ public class Effects {
 			case 12:
 				effectID012();
 				break;
+			case 17:
+				effectID017();
+				break;
 		}
 	}
 
@@ -82,6 +85,12 @@ public class Effects {
 		
 		t.modifyInfluence(US, Side.USA);
 		t.modifyInfluence(USSR, Side.USSR);
+	}
+	
+	private static void effectID017() {
+		Map.getCountry("FRA").modifyInfluence(-2, Side.USA);
+		Map.getCountry("FRA").modifyInfluence(1, Side.USSR);
+		//Cancel NATO
 	}
 	
 }

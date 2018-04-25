@@ -133,7 +133,8 @@ public class UIText implements UICore {
 	}
 	
 	private void promptPlayCard(Scanner scan) {
-		// Come back to HERE!!!!!!!!!!!
+		
+		
 	}
 
 	private void promptDealCard(Scanner scan) {
