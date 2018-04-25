@@ -13,14 +13,41 @@ import java.util.ArrayList;
  */
 public class Country {
 	
+	/**
+	 * Name of the country
+	 */
 	private String name;
+	/**
+	 * ISO of the country
+	 */
 	private String ISOCode;
+	/**
+	 * Stability num of the country
+	 */
 	private int stabilityNum;
+	/**
+	 * US Influence amount in the country
+	 */
 	private int USInfluence;
+	/**
+	 * USSR Influence amount in the country
+	 */
 	private int USSRInfluence;
-	private boolean battleGround;
+	/**
+	 * True if the country is a battleground
+	 */
+	private boolean battleground;
+	/**
+	 * ArrayList of all continents the country is a member of
+	 */
 	private ArrayList<Continents> continents;
+	/**
+	 * String-form Array of connected countries
+	 */
 	private String[] cCStrings; 
+	/**
+	 * ArrayList of connected Country objects
+	 */
 	private ArrayList<Country> connectedCountries;
 	
 	/**
@@ -40,14 +67,12 @@ public class Country {
 		stabilityNum = s;
 		USInfluence = US;
 		USSRInfluence = USSR;
-		battleGround = b;
+		battleground = b;
 		continents = new ArrayList<Continents>();
 		for (Continents cC : c) {
 			continents.add(cC);
 		}
-		
 		cCStrings = i;
-		
 	}
 
 	/**
@@ -63,7 +88,6 @@ public class Country {
 	}
 	
 	/**
-	 * 
 	 * @return the string ISO code
 	 */
 	public String getISO() {
@@ -71,7 +95,6 @@ public class Country {
 	}
 	
 	/**
-	 * 
 	 * @return ArrayList of continent memberships
 	 */
 	public ArrayList<Continents> getContinent() {
@@ -128,8 +151,6 @@ public class Country {
 		return connectedCountries;
 	}
 	
-	
-	
 	/**
 	 * @return String formatted for the country
 	 */
@@ -153,18 +174,33 @@ public class Country {
 		return toReturn;
 	}
 
+	/**
+	 * Add a country to the connected country array (for initialization only)
+	 * @param c Country object to add
+	 */
 	public void connectCountries(ArrayList<Country> c) {
 		connectedCountries = connectedCountries(c);
 	}
 	
+	/**
+	 * @return the USA Influence in the Country
+	 */
 	public int getUSInfluence() {
 		return USInfluence;
 	}
 
+	/**
+	 * @return the USSR influence in the Country
+	 */
 	public int getUSSRInfluence() {
 		return USSRInfluence;
 	}
 	
+	/**
+	 * Get influence for a particular side
+	 * @param side Side to get influence for
+	 * @return influence for specified side
+	 */
 	public int getInfluence(Side side) {
 		if (side == Side.USA) return getUSInfluence();
 		if (side == Side.USSR) return getUSSRInfluence();
@@ -178,16 +214,25 @@ public class Country {
 		return stabilityNum;
 	}
 	
+	/**
+	 * @return the Side currently controlling the country by influence
+	 */
 	public Side getControllingSide() {
 		if ((USInfluence - USSRInfluence) >= stabilityNum) return Side.USA;
 		else if ((USSRInfluence - USInfluence) >= stabilityNum) return Side.USSR;
 		else return Side.UNK;
 	}
 	
+	/**
+	 * @return true is the country is a battleground
+	 */
 	public boolean isBattleground() {
-		return battleGround;
+		return battleground;
 	}
 	
+	/**
+	 * @return the full name of the country
+	 */
 	public String getFullName() {
 		return name;
 	}

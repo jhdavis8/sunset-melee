@@ -110,7 +110,7 @@ public class Controller {
 	 * @param ui the UI object
 	 */
 	private void updateUI(Board b, UICore ui) {
-		
+		// TODO make this work for graphic UI
 	}
 	
 	/**

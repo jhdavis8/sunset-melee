@@ -228,6 +228,11 @@ public class Board {
 		}
 	}
 	
+	/**
+	 * Discards the specified card from the side's hand
+	 * @param card card to move to discard
+	 * @param side side whose hand has the card
+	 */
 	public void handleDiscard(Card card, Side side) {
 		getPlayer(side).getHand().remove(card);
 		
@@ -248,10 +253,11 @@ public class Board {
 			sC = (ScoringCard) card;
 			Deck.getDiscard().add(sC);
 		}
-		
 	}
 	
-
+	/**
+	 * @return the current turn
+	 */
 	public int getTurn() {
 		return turn;
 	}
@@ -319,6 +325,9 @@ public class Board {
 		return USSR;
 	}
 
+	/**
+	 * @return the player currently playing
+	 */
 	public Side getCurrentPlayer() {
 		if (playerTurn) return Side.USSR;
 		else return Side.USA;
