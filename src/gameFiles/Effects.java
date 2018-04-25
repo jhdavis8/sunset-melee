@@ -16,15 +16,7 @@ public class Effects {
 	 */
 	private static Board currentBoard;
 	
-	/**
-	 * Construct the effects class
-	 * @param Board object to link to
-	 */
-	public Effects(Board b) {
-		currentBoard = b;
-	}
-	
-	public void setCurrentBoard(Board b) {
+	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
 	}
 	/**

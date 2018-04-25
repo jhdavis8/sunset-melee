@@ -20,9 +20,12 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
 		Board game = new Board();
+		initialize(game);
+		Effects.setCurrentBoard(game);
+		
 		UIText UI = new UIText();
 		
-		initialize(game);
+
 		
 		UI.updateBoard(game);
 		UI.updateUI();
