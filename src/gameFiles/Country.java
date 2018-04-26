@@ -4,6 +4,7 @@
 package gameFiles;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class for Country objects on the map
@@ -74,7 +75,7 @@ public class Country {
 		}
 		cCStrings = i;
 	}
-
+ 
 	/**
 	 * Adjusts the influence in the country
 	 * @param value amount to adjust by
@@ -235,5 +236,82 @@ public class Country {
 	 */
 	public String getFullName() {
 		return name;
+	}
+
+	public void makeBattleground() {
+		battleground = true;
+	}
+	
+	/**
+	 * Handles prompting for a valid country
+	 * @param scan Scanner for input purposes
+	 * @param message What to say when checking
+	 * @return the valid Country chosen
+	 */
+	public static Country getValidCountry(Scanner scan, String message) {
+		boolean checking = true;
+		String input = "";
+		Country country = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			country = Map.getCountry(input);
+			if (country != null) {
+				System.out.printf("Country is: %s%n", country);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a country!");
+				continue;
+			}
+		}
+		return country;
+	}
+	
+	/**
+	 * Handles prompting with an additional constraint: enemy player must have influence
+	 * @param scan Scanner to get input with
+	 * @param message Message to say
+	 * @param self The side that is trying a realignment or coup
+	 * @return the valid Country chosen
+	 */
+	public static Country getValidCountry(Scanner scan, String message, Side self) {
+		boolean checking = true;
+		String input = "";
+		Country country = null;
+		while (checking) {
+			System.out.println(message);
+			input = scan.nextLine();
+			country = Map.getCountry(input);
+			if (country != null && country.opponentHasInfluence(self)) {
+				System.out.printf("Country is: %s%n", country);
+				checking = false;
+			}
+			else {
+				System.out.println("Not a valid country (Opponent must have influence and must be an actual country)!");
+				continue;
+			}
+		}
+		return country;
+	}
+	
+	/**
+	 * @param input	String of a potential Country Code
+	 * @return	True if it is a country, false otherwise
+	 */
+	public static boolean isValidCountry(String input) {
+		boolean checking = true;
+		Country country = null;
+		while (checking) {
+			country = Map.getCountry(input);
+			if (country == null) {
+				checking = false;
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+		return false;
 	}
 }

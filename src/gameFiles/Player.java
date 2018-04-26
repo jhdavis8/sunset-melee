@@ -217,4 +217,14 @@ public class Player {
 	public void setMilOps(int milOps) {
 		this.milOps = milOps;
 	}
+	
+	/**
+	 * Picks a random card out of the users hand.
+	 * @return A random card
+	 */
+	public Card getRandomCard() {
+		Random randy = new Random();
+		return hand.get(randy.nextInt(hand.size()));
+	}
+
 }

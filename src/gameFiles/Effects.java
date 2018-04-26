@@ -62,11 +62,35 @@ public class Effects {
 			case 4:
 				effectID004();
 				break;
+			case 5:
+				effectID005();
+				break;
+			case 6:
+				effectID006();
+				break;
+			case 8:
+				effectID008();
+				break;
+			case 9:
+				effectID009();
+				break;
+			case 10:
+				effectID010();
+				break;
 			case 12:
 				effectID012();
 				break;
+			case 15:
+				effectID015();
+				break;
 			case 17:
 				effectID017();
+				break;
+			case 18:
+				effectID018();
+				break;
+			case 19:
+				effectID019();
 				break;
 			case 22:
 				effectID022();
@@ -76,6 +100,12 @@ public class Effects {
 				break;
 			case 34:
 				effectID034();
+				break;
+			case 35:
+				effectID035();
+				break;
+			case 103:
+				effectID103();
 				break;
 			default:
 				System.out.println("CardID Not Found");
@@ -180,7 +210,92 @@ public class Effects {
 		if (currentBoard.getDefcon() > 1) currentBoard.modifyDefcon(-1);
 		currentBoard.modifyVictoryPoints(-1 * (5 - currentBoard.getDefcon()));
 	}
+	
+	/**
+	 * Five Year Plan
+	 */
+	private static void effectID005() {
+		Card c = currentBoard.getPlayer(Side.USSR).getRandomCard();
+		TurnCard tC = null;
+		@SuppressWarnings("unused")
+		ScoringCard sC = null;
+		
+		if (c instanceof TurnCard) {
+			tC = (TurnCard) c;
+			if (tC.getSide().equals(Side.USA)) {
+				tC.runEffect();
+			}
+		}
+		else {
+			sC = (ScoringCard) c;
+		}
+	}
 
+	/**
+	 * The China Card
+	 */
+	private static void effectID006() {
+		// TODO NONE without Asia
+	}
+	
+	/**
+	 * Fidel
+	 */
+	private static void effectID008() {
+		Country t = Map.getCountry("CUB");
+		int US = t.getUSInfluence();
+		if (US > 0) {
+			US = US * -1;
+		}
+		int USSR = t.getUSSRInfluence();
+		if (USSR < t.getStabilityNum()) {
+			USSR = t.getStabilityNum() - USSR;
+		}
+		
+		t.modifyInfluence(US, Side.USA);
+		t.modifyInfluence(USSR, Side.USSR);
+	}
+	
+	/**
+	 * Vietnam Revolts
+	 */
+	private static void effectID009() {
+		// TODO needs to add +1 ops is all spent in S/E asia
+		Map.getCountry("VNM").modifyInfluence(2, Side.USSR);
+	}
+	
+	/**
+	 * Blockade
+	 */
+	private static void effectID010() {
+		TurnCard tC = null;
+		int count = 0;
+		int cardOverThree = 0;
+		for (Card c : currentBoard.getPlayer(Side.USA).getHand()) {
+			if (c instanceof TurnCard) {
+				tC = (TurnCard) c;
+				if (tC.getOps() >= 3) {
+					cardOverThree ++;
+					System.out.print("Card " + count + ":" + tC);
+				}
+			}
+			count ++;
+		}
+		if (cardOverThree > 0) {
+			System.out.println("Please pick a card to discard imediently, or type -1,"
+					+ " to signify that you'll take the influence loss in West Germany");
+			String input = UI.promptUSA();
+			int selection = Integer.parseInt(input);
+			if (selection >= 0) {
+				currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
+			}
+			else {
+				int USInf = Map.getCountry("DEU").getUSInfluence();
+				Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
+			}
+		}
+	}
+	
 	/**
 	 * Romanian Abdication card effect
 	 */
@@ -199,6 +314,15 @@ public class Effects {
 		t.modifyInfluence(USSR, Side.USSR);
 	}
 	
+	/**
+	 * Nasser
+	 */
+	private static void effectID015() {
+		Map.getCountry("EGY").modifyInfluence(2, Side.USSR);
+		int USInf = Map.getCountry("EGY").getInfluence(Side.USA);
+		USInf = (USInf / 2) * -1;
+		Map.getCountry("EGY").modifyInfluence(USInf, Side.USA);
+	}
 
 	/**
 	 * De Gaulle Leads France card effect
@@ -206,7 +330,43 @@ public class Effects {
 	private static void effectID017() {
 		Map.getCountry("FRA").modifyInfluence(-2, Side.USA);
 		Map.getCountry("FRA").modifyInfluence(1, Side.USSR);
-		//Cancel NATO
+		// TODO Cancel NATO
+	}
+	
+	/**
+	 * Captured Nazi Scientist
+	 */
+	private static void effectID018() {
+		// TODO No actual effect, since there is no space race.
+	}
+
+
+	/**
+	 * Truman Doctrine
+	 */
+	private static void effectID019() {
+		boolean isContinent = false;
+		for (Country c : Map.getWorld()) {
+			isContinent = false;
+			for (Continents con : c.getContinent()) {
+				if (con.equals(Continents.EEE) || con.equals(Continents.WEE)) {
+					isContinent = true;
+				}
+			}
+			if (isContinent && (c.getInfluence(Side.USSR) > 0)) {
+				System.out.print(c);
+			}
+		}
+		System.out.println("Please select a country to remove all influence from.  Use 3-digit ISO.");
+		String input = UI.promptUSA();
+		while (Country.isValidCountry(input) == false) {
+			System.out.println("Not a country.");
+			input = UI.promptUSA();
+		}
+		Country country = Map.getCountry(input);
+		int USSRInf = country.getInfluence(Side.USSR);
+		USSRInf = -1 * USSRInf;
+		country.modifyInfluence(USSRInf, Side.USSR);
 	}
 	
 	/**
@@ -259,6 +419,14 @@ public class Effects {
 		currentBoard.modifyVictoryPoints(vp);
 	}
 	
+	/**
+	 * Forman Resolution
+	 */
+	private static void effectID035() {
+		// TODO Effect has no use in game ... yet, also should remove status once US plays China Card
+		Map.getCountry("TWN").makeBattleground();	
+	}
+
 	/**
 	 * Defectors
 	 */

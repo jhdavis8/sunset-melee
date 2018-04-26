@@ -29,7 +29,7 @@ public class Controller {
 		
 		
 		UI.updateUI();
-		turn(game, UI);
+		//turn(game, UI);
 		UI.runUI();
 	}
 	
@@ -143,7 +143,7 @@ public class Controller {
 		}
 		
 		int USSRCardChoice = 0;
-		while (checking) {
+		while (checking) {   
 			USSRCardChoice = UI.promptSelectCard(Side.USSR);
 			if (USSRCardChoice >= game.getPlayer(Side.USSR).getHand().size()) {
 				System.out.println("Integer out of bound, please input a value within the range.");
