@@ -7,7 +7,51 @@ package gameFiles;
  *
  */
 public enum Continents {
-	EEE, WEE, FFF, NNN, SRR, SCR, UUU, ABB, MMM;
+	
+	/**
+	 * Eastern Europe
+	 */
+	EEE, 
+	
+	/**
+	 * Western Europe
+	 */
+	WEE,
+	
+	/**
+	 * Africa
+	 */
+	FFF, 
+	
+	/**
+	 * North America
+	 */
+	NNN, 
+	
+	/**
+	 * South America
+	 */
+	SRR, 
+	
+	/**
+	 * Central America
+	 */
+	SCR, 
+	
+	/**
+	 * South East Asia
+	 */
+	UUU, 
+	
+	/**
+	 * Asia
+	 */
+	ABB, 
+	
+	/**
+	 * Middle East
+	 */
+	MMM;
 	
 	/*
 	 * EEE - East Europe

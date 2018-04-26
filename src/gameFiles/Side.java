@@ -8,7 +8,21 @@ import java.util.Scanner;
  * @author Josh Davis
  */
 public enum Side {
-	USA, USSR, UNK;
+	
+	/**
+	 * United States of America
+	 */
+	USA, 
+	
+	/**
+	 * Union of Soviet Socialist Republics
+	 */
+	USSR, 
+	
+	/**
+	 * Unknown, or rather the ENUM of N/A or NUll in code.
+	 */
+	UNK;
 	
 	/** 
 	 * Takes a Side and returns the string representation of it.
