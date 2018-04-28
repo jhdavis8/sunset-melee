@@ -51,4 +51,22 @@ public class UIGraphic implements UICore {
 		return null;
 	}
 
+	@Override
+	public void indicateNoCards() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void promptCardChoiceResult(int pickResult, Card choice) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void announce(String s) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

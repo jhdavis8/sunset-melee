@@ -2,6 +2,8 @@ package gameFiles;
 
 import java.util.Scanner;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 /**
  * UI implementation solely based on command prompt
  * @author Josh Davis
@@ -402,5 +404,104 @@ public class UIText implements UICore {
 	public String promptUSSR() {
 		System.out.print("USSR, please input you answer: ");
 		return scan.nextLine();
+	}
+
+	@Override
+	public void indicateNoCards() {
+		System.out.println("Player, you have no cards remaining in your hand to draw, as such your phase will be passed untill the\n"
+				+ "next turn when new cards will be dealt to you.");
+	}
+
+	@Override
+	public void promptCardChoiceResult(int pickResult, Card card) {
+		String toReturn = ("You have selected: " + card);
+		if (pickResult == -1) {
+			toReturn += "\nThis is a ScoringCard, and the effect has been tallied.";
+		}
+		else if (pickResult == 1) {
+			toReturn += "\nPlease select one off the following options for how to use this card,\n";
+			toReturn += "\t1: Place Influence\n\t2: Roll for Realignment in a Country"
+					+ "\n\t3: Attempt a Coup in an Enemy Country\n\t4: Play the Cards Event";
+			toReturn += "\nSelection: ";
+			System.out.print(toReturn);
+			String stringSel = "";
+			int sel = 0;
+			boolean checking = true;
+			while (checking) {
+				stringSel =scan.nextLine();
+				try {
+					sel = Integer.parseInt(stringSel);
+					if ((sel <= 4) && (sel >= 1)) {
+						checking = false;
+					}
+				}
+				catch (Exception e) {
+					System.out.println("Not a String");
+				}
+			}
+			TurnCard tCard = (TurnCard) card;
+			switch (sel) {
+				case 1:
+					currentBoard.placeInfluence(tCard);
+					break;
+				case 2:
+					currentBoard.rollRealignment(tCard);
+					break;
+				case 3:
+					currentBoard.rollCoup(tCard);
+					break;
+				case 4:
+					tCard.runEffect();
+					break;
+				default:
+					System.out.println("Error");
+					Exception e = new Exception();
+					e.getStackTrace();
+			}
+		}
+		else if (pickResult == 0) {
+			toReturn += "\nThis is an Enemy Card, and its effects have already been played";
+			toReturn += "\nPlease select one off the following options for how to use this card,\n";
+			toReturn += "\t1: Place Influence\n\t2: Roll for Realignment in a Country"
+					+ "\n\t3: Attempt a Coup in an Enemy Country";
+			toReturn += "\nSelection: ";
+			System.out.print(toReturn);
+			String stringSel = "";
+			int sel = 0;
+			boolean checking = true;
+			while (checking) {
+				stringSel =scan.nextLine();
+				try {
+					sel = Integer.parseInt(stringSel);
+					if ((sel <= 3) && (sel >= 1)) {
+						checking = false;
+					}
+				}
+				catch (Exception e) {
+					System.out.println("Not a String");
+				}
+			}
+			TurnCard tCard = (TurnCard) card;
+			switch (sel) {
+				case 1:
+					currentBoard.placeInfluence(tCard);
+					break;
+				case 2:
+					currentBoard.rollRealignment(tCard);
+					break;
+				case 3:
+					currentBoard.rollCoup(tCard);
+					break;
+				default:
+					System.out.println("Error");
+					Exception e = new Exception();
+					e.getStackTrace();
+			}
+		}
+	}
+
+	@Override
+	public void announce(String s) {
+		System.out.println("[System Message] : " + s);
 	}
 }

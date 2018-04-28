@@ -56,4 +56,6 @@ public interface UICore {
 	 */
 	public void promptCardChoiceResult(int pickResult, Card choice);
 	
+	public void announce(String s);
+	
 }
