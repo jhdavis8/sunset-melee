@@ -370,5 +370,15 @@ public class Board {
 		else return Side.USA;
 	}
 
+	/**
+	 * A very silly method to pass control of influence placement to the player
+	 * @param tCard
+	 * @param ui
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui) {
+		if (playerTurn) USSR.placeInfluence(tCard, ui);
+		else USA.placeInfluence(tCard, ui);
+	}
+
 
 }

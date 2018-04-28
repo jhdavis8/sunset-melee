@@ -81,6 +81,7 @@ public class Deck {
 		deck = new ArrayList<Card>();
 		ALL_CARDS = new ArrayList<Card>();
 		discard = new ArrayList<Card>();
+		dead = new ArrayList<Card>();
 		Scanner scan = null;
 		
 		try {

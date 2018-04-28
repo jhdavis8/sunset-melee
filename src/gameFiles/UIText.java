@@ -448,13 +448,13 @@ public class UIText implements UICore {
 			TurnCard tCard = (TurnCard) card;
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(tCard);
+					currentBoard.placeInfluence(tCard, this);
 					break;
 				case 2:
-					currentBoard.rollRealignment(tCard);
+					//currentBoard.rollRealignment(tCard);
 					break;
 				case 3:
-					currentBoard.rollCoup(tCard);
+					//currentBoard.rollCoup(tCard);
 					break;
 				case 4:
 					tCard.runEffect();
@@ -490,13 +490,13 @@ public class UIText implements UICore {
 			TurnCard tCard = (TurnCard) card;
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(tCard);
+					currentBoard.placeInfluence(tCard, this);
 					break;
 				case 2:
-					currentBoard.rollRealignment(tCard);
+					//currentBoard.rollRealignment(tCard);
 					break;
 				case 3:
-					currentBoard.rollCoup(tCard);
+					//currentBoard.rollCoup(tCard);
 					break;
 				default:
 					System.out.println("Error");
@@ -510,7 +510,7 @@ public class UIText implements UICore {
 	 * @see gameFiles.UICore#promptValisdInfluenceTarget(gameFiles.Side)
 	 */
 	@Override
-	public Country promptValidInfluenceTarget(Side side) {
+	public Country promptValidInfluenceTarget(Side side) { // TODO add some prompt messages
 		boolean checking = true;
 		boolean superChecking = false;
 		String input = "";

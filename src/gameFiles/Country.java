@@ -115,14 +115,22 @@ public class Country {
 	}
 
 	/**
-	 * Returns true of the Side has influence in this country
+	 * @param side to get opponent of
+	 * @return true if the opponent of the Side has control of this country
+	 */
+	public boolean opponentHasControl(Side side) {
+		if (side.equals(Side.USA) && (USSRInfluence - USInfluence) >= stabilityNum) return true;
+		else if (side.equals(Side.USSR) && (USInfluence - USSRInfluence) >= stabilityNum) return true;
+		else return false;
+	}
+
+	/**
 	 * @param side USA or USSR
-	 * @return Returns true of the Side has influence in this country
+	 * @return true if the opponent of the Side has influence in this country
 	 */
 	public boolean userHasInfluence(Side side) {
 		if (side.equals(Side.USA) && USInfluence > 0) return true;
 		else if (side.equals(Side.USSR) && USSRInfluence > 0) return true;
-		
 		else return false;
 	}
 	

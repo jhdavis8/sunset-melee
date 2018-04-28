@@ -29,8 +29,8 @@ public class Controller {
 		
 		
 		UI.updateUI();
-		//turn(game, UI);
-		UI.runUI();
+		turn(game, UI);
+		//UI.runUI();
 	}
 	
 	/**
@@ -143,6 +143,7 @@ public class Controller {
 		}
 		
 		int USSRCardChoice = 0;
+		checking = true;
 		while (checking) {   
 			USSRCardChoice = UI.promptSelectCard(Side.USSR);
 			if (USSRCardChoice >= game.getPlayer(Side.USSR).getHand().size()) {

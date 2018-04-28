@@ -127,9 +127,38 @@ public class Player {
 	 * Add value influence to country on side
 	 * @param country country to add to
 	 * @param value int amount to add
+	 * @param ui 
 	 */
 	public void placeInfluence(Country country, int value) {
-		country.modifyInfluence(value, side);		
+		country.modifyInfluence(value, side);
+	}
+	
+	/**
+	 * Add value influence to country on side
+	 * @param country country to add to
+	 * @param ui 
+	 * @param value int amount to add
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui) {
+		int influenceLeft = tCard.getOps();
+		Country country = null;
+		while (influenceLeft > 0) {
+			ui.announce("You have " + influenceLeft + " influence left.");
+			country = ui.promptValidInfluenceTarget(side);
+			if (country.opponentHasControl(side)) {
+				if (influenceLeft > 1) {
+					country.modifyInfluence(1, side);
+					influenceLeft -= 2;
+					ui.announce("1 influence placed in " + country);
+				}
+			}
+			else {
+				country.modifyInfluence(1, side);
+				influenceLeft--;
+				ui.announce("1 influence placed in " + country);
+			}
+		}
+		
 	}
 
 	/**
