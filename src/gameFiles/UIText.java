@@ -524,13 +524,16 @@ public class UIText implements UICore {
 				}
 			}
 			superChecking = this.checkCountryChoice(c, side);
+			if (!superChecking) {
+				checking = true;
+			}
 		}
 		return c;
 	}
 
 	private boolean checkCountryChoice(Country c, Side side) {
 		ArrayList<Country> all = new ArrayList<Country>();
-		all.add(c); // Check With FIN
+		all.add(c); // TODO ISSUE, if you try to pick a non connected country it stop the process of picking new country
 		all.addAll(c.getConnectedCountries());
 		boolean atLeastOne = false;
 		for (Country cont : all) {
