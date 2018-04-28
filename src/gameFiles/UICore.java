@@ -56,6 +56,17 @@ public interface UICore {
 	 */
 	public void promptCardChoiceResult(int pickResult, Card choice);
 	
-	public void announce(String s);
+	/**
+	 * Asks the player to pick a country to place influence in, and makes sure its valid.
+	 * @param side The current player
+	 * @return Country The valid country choice.
+	 */
+	public Country promptValidInfluenceTarget(Side side);
 	
+	/**
+	 * Telegraphs some message to the user.
+	 * @param s String message
+	 */
+	public void announce(String s);
+
 }

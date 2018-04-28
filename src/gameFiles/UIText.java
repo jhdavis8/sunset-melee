@@ -1,5 +1,6 @@
 package gameFiles;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
@@ -369,6 +370,11 @@ public class UIText implements UICore {
 	}
 	
 	@Override
+	public void announce(String s) {
+		System.out.println("[System Message] : " + s);
+	}
+
+	@Override
 	public int promptSelectCard(Side side) {
 		System.out.println("Player " + side + ", Please select a card");
 		Player player = currentBoard.getPlayer(side);
@@ -440,9 +446,10 @@ public class UIText implements UICore {
 				}
 			}
 			TurnCard tCard = (TurnCard) card;
+			Country country = this.promptValidInfluenceTarget(currentBoard.getCurrentPlayer());
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(tCard);
+					currentBoard.placeInfluence(country, tCard);
 					break;
 				case 2:
 					currentBoard.rollRealignment(tCard);
@@ -482,9 +489,10 @@ public class UIText implements UICore {
 				}
 			}
 			TurnCard tCard = (TurnCard) card;
+			Country country = this.promptValidInfluenceTarget(currentBoard.getCurrentPlayer());
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(tCard);
+					currentBoard.placeInfluence(country, tCard);
 					break;
 				case 2:
 					currentBoard.rollRealignment(tCard);
@@ -500,8 +508,37 @@ public class UIText implements UICore {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see gameFiles.UICore#promptValisdInfluenceTarget(gameFiles.Side)
+	 */
 	@Override
-	public void announce(String s) {
-		System.out.println("[System Message] : " + s);
+	public Country promptValidInfluenceTarget(Side side) {
+		boolean checking = true;
+		boolean superChecking = false;
+		String input = "";
+		Country c = null;
+		while(!superChecking) {
+			while(checking) {
+				input = scan.nextLine();
+				if (Map.getCountry(input) != null) {
+					checking = false;
+				}
+			}
+			superChecking = this.checkCountryChoice(c, side);
+		}
+		return c;
+	}
+
+	private boolean checkCountryChoice(Country c, Side side) {
+		ArrayList<Country> all = new ArrayList<Country>();
+		all.add(c);
+		all.addAll(c.getConnectedCountries());
+		boolean atLeastOne = false;
+		for (Country cont : all) {
+			if (cont.getInfluence(side) > 0) {
+				atLeastOne = true;
+			}
+		}
+		return atLeastOne;
 	}
 }

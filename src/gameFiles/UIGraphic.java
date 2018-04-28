@@ -69,4 +69,10 @@ public class UIGraphic implements UICore {
 		
 	}
 
+	@Override
+	public Country promptValidInfluenceTarget(Side side) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
