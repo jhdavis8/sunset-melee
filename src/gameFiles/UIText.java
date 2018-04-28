@@ -517,8 +517,9 @@ public class UIText implements UICore {
 		Country c = null;
 		while(!superChecking) {
 			while(checking) {
-				input = scan.nextLine();
+				input = scan.nextLine(); // TODO add text if not country
 				if (Map.getCountry(input) != null) {
+					c = Map.getCountry(input);
 					checking = false;
 				}
 			}
@@ -529,7 +530,7 @@ public class UIText implements UICore {
 
 	private boolean checkCountryChoice(Country c, Side side) {
 		ArrayList<Country> all = new ArrayList<Country>();
-		all.add(c);
+		all.add(c); // Check With FIN
 		all.addAll(c.getConnectedCountries());
 		boolean atLeastOne = false;
 		for (Country cont : all) {

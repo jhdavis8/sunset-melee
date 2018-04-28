@@ -157,7 +157,7 @@ public class Player {
 				influenceLeft--;
 				ui.announce("1 influence placed in " + country);
 			}
-		}
+		} // TODO Out of Influence....
 		
 	}
 
