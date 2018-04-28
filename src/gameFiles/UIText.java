@@ -533,7 +533,7 @@ public class UIText implements UICore {
 
 	private boolean checkCountryChoice(Country c, Side side) {
 		ArrayList<Country> all = new ArrayList<Country>();
-		all.add(c); // TODO ISSUE, if you try to pick a non connected country it stop the process of picking new country
+		all.add(c); 
 		all.addAll(c.getConnectedCountries());
 		boolean atLeastOne = false;
 		for (Country cont : all) {

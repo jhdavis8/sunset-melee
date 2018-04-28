@@ -148,6 +148,7 @@ public class Effects {
 	 * Europe Scoring card effect	
 	 */
 	private static void effectID002() {
+		System.out.println("Pre-Scoring Victory Points: " + currentBoard.getVictoryPoints());
 		boolean presenceUSA = false;
 		boolean presenceUSSR = false;
 		Side domination = Side.UNK;
@@ -194,6 +195,7 @@ public class Effects {
 		if (control == Side.USA) totalUSA += 400;
 		if (control == Side.USSR) totalUSSR += 400;
 		currentBoard.modifyVictoryPoints(totalUSSR - totalUSA);
+		System.out.println("Post-Scoring Victory Points: " + currentBoard.getVictoryPoints());
 	}
 	
 	/**
