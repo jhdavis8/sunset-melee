@@ -157,7 +157,6 @@ public class Board {
 	 * Deals the cards to the players hand
 	 */
 	public void dealCards() {
-		ui.announce("Dealing cards");
 		USA.dealCards(turn);
 		USSR.dealCards(turn);
 	}
@@ -166,7 +165,7 @@ public class Board {
 	 * Runs the Action Round
 	 */
 	public void actionRounds(UICore ui) {
-		ui.annnounce("Actions rounds phase");
+		ui.announce("Actions rounds phase");
 		int loopCount;
 		if (this.getTurn() > 3) {
 			loopCount = 7;
@@ -252,7 +251,6 @@ public class Board {
 	 * Handles the final scoring if it gets to that point.
 	 */
 	public void finalScoring() {
-		ui.announce("Entering the final scoring phase");
 		if (turn < 11) {
 			return;
 		}
