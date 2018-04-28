@@ -446,10 +446,9 @@ public class UIText implements UICore {
 				}
 			}
 			TurnCard tCard = (TurnCard) card;
-			Country country = this.promptValidInfluenceTarget(currentBoard.getCurrentPlayer());
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(country, tCard);
+					currentBoard.placeInfluence(tCard);
 					break;
 				case 2:
 					currentBoard.rollRealignment(tCard);
@@ -489,10 +488,9 @@ public class UIText implements UICore {
 				}
 			}
 			TurnCard tCard = (TurnCard) card;
-			Country country = this.promptValidInfluenceTarget(currentBoard.getCurrentPlayer());
 			switch (sel) {
 				case 1:
-					currentBoard.placeInfluence(country, tCard);
+					currentBoard.placeInfluence(tCard);
 					break;
 				case 2:
 					currentBoard.rollRealignment(tCard);
