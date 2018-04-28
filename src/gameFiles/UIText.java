@@ -259,7 +259,7 @@ public class UIText implements UICore {
 	private void promptDrawCard(Scanner scan) {
 		System.out.println("Entering draw random card...");
 		Side side = Side.getValidSide(scan, "Please enter a side to draw a Card for:");
-		System.out.println(currentBoard.getPlayer(side).playCard(-1));
+		System.out.println(currentBoard.getPlayer(side).drawCard(-1));
 		
 	}
 

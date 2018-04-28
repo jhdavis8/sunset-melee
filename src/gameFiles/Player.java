@@ -38,22 +38,28 @@ public class Player {
 	}
 	
 	/**
-	 * Prompt the user to pick a card from there hand and play it.
+	 * Play a card from the hand
+	 * @param card the Card to play
+	 * @return 0 for enemy's card, 1 for own or UNK card, -1 for Scoring card
 	 */
-	public void playCard() {
-		drawCard(-1);
-		// TODO fix this method?
+	public int playCard(Card card) { // TODO remove the card from the hand
+		TurnCard tCard = null;
+		if (card instanceof TurnCard) {
+			tCard = (TurnCard) card;
+			if (tCard.getSide().equals(side) || tCard.getSide().equals(Side.UNK)) {
+				return 1;
+			} 
+			else {
+				tCard.runEffect();
+				return 0;
+			}
+		}
+		else if (card instanceof ScoringCard) {
+			card.runEffect();
+		}
+		return -1;
 	}
-	
-	/**
-	 * Temporary Method
-	 * @param t Card to draw; if -1, draw randomly
-	 * @return Selected card
-	 */
-	public Card playCard(int t) {
-		return drawCard(t);
-	}
-	
+
 	/**
 	 * Deals cards to the player as determined by the turn
 	 * @param turn the current turn
@@ -85,7 +91,7 @@ public class Player {
 	 * @param index Card Index
 	 * @return the card taken out of the deck
 	 */
-	private Card drawCard(int index) {
+	public Card drawCard(int index) {
 		Random randi = new Random();
 		ArrayList<Card> deck = Deck.getDeck();
 		if (index < 0) {

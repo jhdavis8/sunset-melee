@@ -41,6 +41,8 @@ public class Board {
 	private int defcon;
 	/**
 	 * boolean playerTurn holds the current turn
+	 * True = USA, False = USSR
+	 * TODO Change to a Side type rather than boolean
 	 */
 	private boolean playerTurn;
 	/**
@@ -162,9 +164,43 @@ public class Board {
 	/**
 	 * Runs the Action Round
 	 */
-	public void actionRound() {
-		// TODO Auto-generated method stub
-		// TODO Cool...
+	public void actionRound(UICore ui) {
+		int loopCount;
+		if (this.getTurn() > 3) {
+			loopCount = 7;
+		} else {
+			loopCount = 6;
+		}
+		int cardNum;
+		playerTurn = true;
+		int pickResult;
+		Card card = null;
+		for (int i = 1; i <= loopCount; i++) {
+			actionRound = i;
+			if (playerTurn) {
+				if (USSR.hasCards()) {
+					cardNum = ui.promptSelectCard(Side.USSR);
+					card = USSR.getHand().get(cardNum);
+					pickResult = USSR.playCard(card);
+					ui.promptCardChoiceResult(pickResult, card);
+				}
+				else {
+					ui.indicateNoCards();
+				}
+			}
+			else {
+				if (USA.hasCards()) {
+					cardNum = ui.promptSelectCard(Side.USA);
+					card = USA.getHand().get(cardNum);
+					pickResult = USA.playCard(card);
+					ui.promptCardChoiceResult(pickResult, card);
+				}
+				else {
+					ui.indicateNoCards();
+				}
+			}
+			playerTurn = !playerTurn;
+		}
 	}
 
 	/**
