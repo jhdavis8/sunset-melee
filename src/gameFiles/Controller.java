@@ -62,7 +62,7 @@ public class Controller {
 		game.modifyDefcon(1);
 		game.dealCards();
 		headlinePhase(game, UI);
-		game.actionRound(UI);
+		game.actionRounds(UI);
 		game.checkMilitaryOperationsStatus();
 		game.flipChinaCard();
 		game.advanceTurn();

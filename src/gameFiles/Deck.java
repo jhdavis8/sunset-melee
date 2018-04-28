@@ -186,6 +186,8 @@ public class Deck {
 		}
 	}
 	
+	// TODO Add reshuffling in the discard pile when the deck is empty
+	
 	/**
 	 * Adds the Early Cards
 	 */
@@ -234,7 +236,7 @@ public class Deck {
 	public static ArrayList<Card> getLateCard() {
 		return lateCard;
 	}
-
+	
 	/**
 	 * @return the discard
 	 */

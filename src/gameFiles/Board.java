@@ -90,7 +90,7 @@ public class Board {
 		Map.connectCountries();
 		Deck.fillDeck(cardCSV);
 		USSR.dealCards(-1);
-		// More code to follow....
+		// TODO More code to follow....
 	}
 	
 	/**
@@ -157,6 +157,7 @@ public class Board {
 	 * Deals the cards to the players hand
 	 */
 	public void dealCards() {
+		ui.announce("Dealing cards");
 		USA.dealCards(turn);
 		USSR.dealCards(turn);
 	}
@@ -164,7 +165,8 @@ public class Board {
 	/**
 	 * Runs the Action Round
 	 */
-	public void actionRound(UICore ui) {
+	public void actionRounds(UICore ui) {
+		ui.annnounce("Actions rounds phase");
 		int loopCount;
 		if (this.getTurn() > 3) {
 			loopCount = 7;
@@ -177,27 +179,27 @@ public class Board {
 		Card card = null;
 		for (int i = 1; i <= loopCount; i++) {
 			actionRound = i;
-			if (playerTurn) {
-				if (USSR.hasCards()) {
-					cardNum = ui.promptSelectCard(Side.USSR);
-					card = USSR.getHand().get(cardNum);
-					pickResult = USSR.playCard(card);
-					ui.promptCardChoiceResult(pickResult, card);
-				}
-				else {
-					ui.indicateNoCards();
-				}
+			ui.announce("Entering action round " + i + "!");
+			if (USSR.hasCards()) {
+				cardNum = ui.promptSelectCard(Side.USSR);
+				card = USSR.getHand().get(cardNum);
+				pickResult = USSR.playCard(card);
+				ui.promptCardChoiceResult(pickResult, card);
+				this.handleDiscard(card, Side.USSR);
 			}
 			else {
-				if (USA.hasCards()) {
-					cardNum = ui.promptSelectCard(Side.USA);
-					card = USA.getHand().get(cardNum);
-					pickResult = USA.playCard(card);
-					ui.promptCardChoiceResult(pickResult, card);
-				}
-				else {
-					ui.indicateNoCards();
-				}
+				ui.indicateNoCards();
+			}
+			playerTurn = !playerTurn;
+			if (USA.hasCards()) {
+				cardNum = ui.promptSelectCard(Side.USA);
+				card = USA.getHand().get(cardNum);
+				pickResult = USA.playCard(card);
+				ui.promptCardChoiceResult(pickResult, card);
+				this.handleDiscard(card, Side.USA);
+			}
+			else {
+				ui.indicateNoCards();
 			}
 			playerTurn = !playerTurn;
 		}
@@ -250,6 +252,7 @@ public class Board {
 	 * Handles the final scoring if it gets to that point.
 	 */
 	public void finalScoring() {
+		ui.announce("Entering the final scoring phase");
 		if (turn < 11) {
 			return;
 		}
