@@ -391,5 +391,10 @@ public class Board {
 		}
 	}
 
+	public void rollRealignment(TurnCard tCard, UIText uiText) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

@@ -451,7 +451,7 @@ public class UIText implements UICore {
 					currentBoard.placeInfluence(tCard, this);
 					break;
 				case 2:
-					//currentBoard.rollRealignment(tCard);
+					currentBoard.rollRealignment(tCard, this);
 					break;
 				case 3:
 					currentBoard.rollCoup(tCard, this);
@@ -493,7 +493,7 @@ public class UIText implements UICore {
 					currentBoard.placeInfluence(tCard, this);
 					break;
 				case 2:
-					//currentBoard.rollRealignment(tCard);
+					currentBoard.rollRealignment(tCard, this);
 					break;
 				case 3:
 					currentBoard.rollCoup(tCard, this);
