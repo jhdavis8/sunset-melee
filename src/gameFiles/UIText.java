@@ -510,14 +510,15 @@ public class UIText implements UICore {
 	 * @see gameFiles.UICore#promptValisdInfluenceTarget(gameFiles.Side)
 	 */
 	@Override
-	public Country promptValidInfluenceTarget(Side side) { // TODO add some prompt messages
+	public Country promptValidInfluenceTarget(Side side) {
 		boolean checking = true;
 		boolean superChecking = false;
 		String input = "";
 		Country c = null;
 		while(!superChecking) {
 			while(checking) {
-				input = scan.nextLine(); // TODO add text if not country
+				this.announce("Please enter a valid Country ISO to influence:");
+				input = scan.nextLine();
 				if (Map.getCountry(input) != null) {
 					c = Map.getCountry(input);
 					checking = false;
@@ -526,6 +527,7 @@ public class UIText implements UICore {
 			superChecking = this.checkCountryChoice(c, side);
 			if (!superChecking) {
 				checking = true;
+				this.announce("Not a valid country to place influence in!");
 			}
 		}
 		return c;

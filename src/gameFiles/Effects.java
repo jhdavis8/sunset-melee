@@ -118,7 +118,8 @@ public class Effects {
 	 * @param ID int ID of the effect
 	 * @throws Exception exception for CardID not found, might be changed to error message
 	 */
-	public static void getScoringEffect(int ID) throws Exception { // TODO Display the old and new Vitory points
+	public static void getScoringEffect(int ID) throws Exception {
+		UI.announce("Current Victory Points: " + currentBoard.getVictoryPoints());
 		switch (ID) {
 			case 1:
 				effectID001();
@@ -133,6 +134,7 @@ public class Effects {
 				System.out.println("ScoringCardID Not Found");
 				throw new Exception();
 		}
+		UI.announce("Updated Victory Points: " + currentBoard.getVictoryPoints());
 	}
 		
 	//All Effect IDs Follow

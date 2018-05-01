@@ -42,7 +42,7 @@ public class Player {
 	 * @param card the Card to play
 	 * @return 0 for enemy's card, 1 for own or UNK card, -1 for Scoring card
 	 */
-	public int playCard(Card card) { // TODO remove the card from the hand
+	public int playCard(Card card) {
 		TurnCard tCard = null;
 		if (card instanceof TurnCard) {
 			tCard = (TurnCard) card;
@@ -157,8 +157,8 @@ public class Player {
 				influenceLeft--;
 				ui.announce("1 influence placed in " + country);
 			}
-		} // TODO Out of Influence....
-		
+		}
+		ui.announce("All influence expended.");
 	}
 
 	/**
