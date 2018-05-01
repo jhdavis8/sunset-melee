@@ -192,6 +192,7 @@ public class Player {
 		else {
 			diff = 0;
 		}
+		ui.announce("Country is " + country);
 	}
 
 	/**
