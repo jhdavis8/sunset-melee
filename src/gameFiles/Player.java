@@ -194,8 +194,13 @@ public class Player {
 	 * @param value int value to apply
 	 * @param currentBoard the Board object work with
 	 */
-	public boolean rollCoup(TurnCard tCard, UICore ui) {
-		Country coupTarget = Country.getValidCountry(ui.getScanner(), "Select a country to coup:", side);
+	public boolean rollCoup(TurnCard tCard, UICore ui, int defcon) {
+		boolean checking = false;
+		Country coupTarget = null;
+		while (!checking) {
+			coupTarget = Country.getValidCountry(ui.getScanner(), "Select a country to coup:", side);
+			checking = coupTarget.isValidCoupCountry(defcon);
+		}
 		int stabilityLimit = coupTarget.getStabilityNum() * 2;
 		Random randy = new Random();
 		int roll = 1 + randy.nextInt(6);
@@ -265,5 +270,4 @@ public class Player {
 		Random randy = new Random();
 		return hand.get(randy.nextInt(hand.size()));
 	}
-
 }

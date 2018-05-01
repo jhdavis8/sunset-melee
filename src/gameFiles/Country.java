@@ -322,4 +322,37 @@ public class Country {
 		}
 		return false;
 	}
+	
+	public boolean isValidCoupCountry(int defcon) {
+		switch (defcon) {
+			case 5:
+				return true;
+			case 4:
+				for (Continents c : continents) {
+					if ((c.equals(Continents.WEE)) || (c.equals(Continents.EEE))) {
+						return false;
+					}
+					else return true;
+				}
+			case 3:
+				for (Continents c : continents) {
+					if ((c.equals(Continents.WEE)) || (c.equals(Continents.EEE))
+							|| (c.equals(Continents.ABB)) || (c.equals(Continents.UUU))) {
+						return false;
+					}
+					else return true;
+				}
+			case 2:
+				for (Continents c : continents) {
+					if ((c.equals(Continents.WEE)) || (c.equals(Continents.EEE))
+							|| (c.equals(Continents.ABB)) || (c.equals(Continents.UUU))
+							|| (c.equals(Continents.MMM))) {
+						return false;
+					}
+					else return true;
+				}
+			default:
+				return false;
+		}
+	}
 }
