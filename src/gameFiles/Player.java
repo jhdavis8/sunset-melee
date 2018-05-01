@@ -194,24 +194,25 @@ public class Player {
 	 * @param value int value to apply
 	 * @param currentBoard the Board object work with
 	 */
-	public void rollCoup(Country country, int value, Board currentBoard) {
-		int target = country.getStabilityNum() * 2;
+	public boolean rollCoup(TurnCard tCard, UICore ui) {
+		Country coupTarget = Country.getValidCountry(ui.getScanner(), "Select a country to coup:", side);
+		int stabilityLimit = coupTarget.getStabilityNum() * 2;
 		Random randy = new Random();
 		int roll = 1 + randy.nextInt(6);
-		int attempt = roll + value;
-		int diff = attempt - target;
+		int attempt = roll + tCard.getOps();
+		int diff = attempt - stabilityLimit;
 		Side enemy = side.opponent(side);
-		if (attempt > target) {
-			if (diff <= country.getInfluence(enemy)) {
-				country.modifyInfluence(-1 * diff, enemy);
+		if (attempt > stabilityLimit) {
+			if (diff <= coupTarget.getInfluence(enemy)) {
+				coupTarget.modifyInfluence(-1 * diff, enemy);
 			}
 			else {
-				country.modifyInfluence(-1 * (country.getInfluence(enemy)), enemy);
-				country.modifyInfluence(diff, side.opponent(side));
+				coupTarget.modifyInfluence(-1 * (coupTarget.getInfluence(enemy)), enemy);
+				coupTarget.modifyInfluence(diff, side.opponent(side));
 			}
-		}
-		currentBoard.modifyDefcon(-1);
-		setMilOps(getMilOps() + value);
+		} // Defcon decrementing handled in Board method
+		setMilOps(getMilOps() + tCard.getOps());
+		return coupTarget.isBattleground(); 
 	}
 	
 	/**

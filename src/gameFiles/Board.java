@@ -381,5 +381,12 @@ public class Board {
 		else USA.placeInfluence(tCard, ui);
 	}
 
+	public void rollCoup(TurnCard tCard, UICore ui) {
+		boolean battleground;
+		if (playerTurn) battleground = USSR.rollCoup(tCard, ui);
+		else battleground = USA.rollCoup(tCard, ui);
+		if (battleground) this.modifyDefcon(-1);
+	}
+
 
 }
