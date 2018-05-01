@@ -506,7 +506,6 @@ public class UIText implements UICore {
 		}
 	}
 
-	//TEMP
 	/* (non-Javadoc)
 	 * @see gameFiles.UICore#promptValisdInfluenceTarget(gameFiles.Side)
 	 */
