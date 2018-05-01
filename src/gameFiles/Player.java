@@ -205,13 +205,18 @@ public class Player {
 		if (attempt > stabilityLimit) {
 			if (diff <= coupTarget.getInfluence(enemy)) {
 				coupTarget.modifyInfluence(-1 * diff, enemy);
+				ui.announce("Influence in " + coupTarget.getFullName() + " changed by " + (-1 * diff) + " for " + enemy);
 			}
 			else {
-				coupTarget.modifyInfluence(-1 * (coupTarget.getInfluence(enemy)), enemy);
-				coupTarget.modifyInfluence(diff, side.opponent(side));
+				int changeBy = -1 * (coupTarget.getInfluence(enemy));
+				coupTarget.modifyInfluence(changeBy, enemy);
+				ui.announce("Influence in " + coupTarget.getFullName() + " changed by " + changeBy + " for " + enemy);
+				coupTarget.modifyInfluence(diff, side);
+				ui.announce("Influence in " + coupTarget.getFullName() + " changed by " + diff + " for " + side);
 			}
 		} // Defcon decrementing handled in Board method
 		setMilOps(getMilOps() + tCard.getOps());
+		ui.announce("Country is " + coupTarget);
 		return coupTarget.isBattleground(); 
 	}
 	

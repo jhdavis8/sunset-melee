@@ -385,7 +385,10 @@ public class Board {
 		boolean battleground;
 		if (playerTurn) battleground = USSR.rollCoup(tCard, ui);
 		else battleground = USA.rollCoup(tCard, ui);
-		if (battleground) this.modifyDefcon(-1);
+		if (battleground) {
+			ui.announce("ALERT: Defcon decremented!");
+			this.modifyDefcon(-1);
+		}
 	}
 
 
