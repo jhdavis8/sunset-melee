@@ -178,6 +178,7 @@ public class Board {
 		int pickResult;
 		Card card = null;
 		for (int i = 1; i <= loopCount; i++) {
+			ui.updateUI();
 			actionRound = i;
 			ui.announce("Entering action round " + i + "!");
 			if (USSR.hasCards()) {

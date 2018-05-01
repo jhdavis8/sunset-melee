@@ -1,5 +1,6 @@
 package gameFiles;
 
+import java.io.File;
 import java.util.Scanner;
 
 /**
@@ -15,6 +16,12 @@ public class UIGraphic implements UICore {
 	 * Board currentBoard is the current state of world.  A reference point was placed here to allow for easy access.
 	 */
 	private Board currentBoard;
+	private String absPath;
+	
+	public UIGraphic(Board b, String absFilePath) { 
+		currentBoard = b;
+		absPath = absFilePath;
+	}
 
 	/* Used to retrieve the most recent version of the Board
 	 * (non-Javadoc)
