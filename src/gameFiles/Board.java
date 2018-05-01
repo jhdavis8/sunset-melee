@@ -163,6 +163,7 @@ public class Board {
 
 	/**
 	 * Runs the Action Round
+	 * @param ui UICore object to use
 	 */
 	public void actionRounds(UICore ui) {
 		ui.announce("Actions rounds phase");
@@ -371,9 +372,9 @@ public class Board {
 	}
 
 	/**
-	 * A very silly method to pass control of influence placement to the player
-	 * @param tCard
-	 * @param ui
+	 * Passes control of influence placement to the player
+	 * @param tCard turnCard used to place influence
+	 * @param ui UICore object to use for input
 	 */
 	public void placeInfluence(TurnCard tCard, UICore ui) {
 		if (playerTurn) USSR.placeInfluence(tCard, ui);

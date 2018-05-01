@@ -127,7 +127,6 @@ public class Player {
 	 * Add value influence to country on side
 	 * @param country country to add to
 	 * @param value int amount to add
-	 * @param ui 
 	 */
 	public void placeInfluence(Country country, int value) {
 		country.modifyInfluence(value, side);
@@ -135,9 +134,8 @@ public class Player {
 	
 	/**
 	 * Add value influence to country on side
-	 * @param country country to add to
-	 * @param ui 
-	 * @param value int amount to add
+	 * @param tCard turn card object being used to place influence
+	 * @param ui UICore object to use for input
 	 */
 	public void placeInfluence(TurnCard tCard, UICore ui) {
 		int influenceLeft = tCard.getOps();
