@@ -545,4 +545,8 @@ public class UIText implements UICore {
 		}
 		return atLeastOne;
 	}
+	
+	public Scanner getScanner() {
+		return scan;
+	}
 }
