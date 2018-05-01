@@ -155,7 +155,7 @@ public class Player {
 				influenceLeft--;
 				ui.announce("1 influence placed in " + country);
 			}
-		}
+		}//TEMP
 		ui.announce("All influence expended.");
 	}
 

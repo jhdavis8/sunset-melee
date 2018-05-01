@@ -320,7 +320,7 @@ public class Country {
 				return true;
 			}
 		}
-		return false;
+		return false;//TEMP
 	}
 	
 	public boolean isValidCoupCountry(int defcon) {
