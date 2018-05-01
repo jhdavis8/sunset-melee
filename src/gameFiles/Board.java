@@ -391,8 +391,9 @@ public class Board {
 		}
 	}
 
-	public void rollRealignment(TurnCard tCard, UIText uiText) {
-		// TODO Auto-generated method stub
+	public void rollRealignment(TurnCard tCard, UIText ui) {
+		if (playerTurn) USSR.rollRealignment(tCard, ui, defcon);
+		else USA.rollRealignment(tCard, ui, defcon);
 		
 	}
 

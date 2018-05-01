@@ -323,7 +323,7 @@ public class Country {
 		return false;
 	}
 	
-	public boolean isValidCoupCountry(int defcon) {
+	public boolean isValidDefconCountry(int defcon) {
 		switch (defcon) {
 			case 5:
 				return true;

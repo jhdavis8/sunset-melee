@@ -164,7 +164,13 @@ public class Player {
 	 * @param country Country to roll on
 	 * @param value int value to use
 	 */
-	public void rollRealignment(Country country, int value) {
+	public void rollRealignment(TurnCard tCard, UICore ui, int defcon) {
+		Country country = null;
+		boolean checking = false;
+		while (!checking) {
+			country = Country.getValidCountry(ui.getScanner(), "Select a country to reallign:", side);
+			checking = country.isValidDefconCountry(defcon);
+		}
 		Random randy = new Random();
 		int usRoll = 1 + randy.nextInt(6);   // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USA Rolls " + usRoll);
@@ -199,7 +205,7 @@ public class Player {
 		Country coupTarget = null;
 		while (!checking) {
 			coupTarget = Country.getValidCountry(ui.getScanner(), "Select a country to coup:", side);
-			checking = coupTarget.isValidCoupCountry(defcon);
+			checking = coupTarget.isValidDefconCountry(defcon);
 		}
 		int stabilityLimit = coupTarget.getStabilityNum() * 2;
 		Random randy = new Random();

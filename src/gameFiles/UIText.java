@@ -319,7 +319,7 @@ public class UIText implements UICore {
 		
 		System.out.println(country);
 		System.out.println("Rolling for realignment...");
-		currentBoard.getPlayer(side).rollRealignment(country, 0);
+		//currentBoard.getPlayer(side).rollRealignment(country, 0);
 		System.out.println(country);
 	}
 
