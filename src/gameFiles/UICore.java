@@ -3,6 +3,8 @@
  */
 package gameFiles;
 
+import java.util.Scanner;
+
 /**
  * UICore is the base of all UIElements and Interactions with the computer.
  * @author Mark Wolgin
@@ -68,5 +70,7 @@ public interface UICore {
 	 * @param s String message
 	 */
 	public void announce(String s);
+
+	public Scanner getScanner();
 
 }

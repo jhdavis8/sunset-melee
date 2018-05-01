@@ -300,7 +300,7 @@ public class UIText implements UICore {
 		System.out.println(country);
 		checking = true;
 		System.out.println("Rolling a coup...");
-		currentBoard.getPlayer(side).rollCoup(country, card.cardNum, currentBoard);
+		//currentBoard.getPlayer(side).rollCoup(country, card.cardNum, currentBoard);
 		System.out.println(country);
 		
 		
@@ -454,7 +454,7 @@ public class UIText implements UICore {
 					//currentBoard.rollRealignment(tCard);
 					break;
 				case 3:
-					//currentBoard.rollCoup(tCard);
+					currentBoard.rollCoup(tCard, this);
 					break;
 				case 4:
 					tCard.runEffect();
@@ -496,7 +496,7 @@ public class UIText implements UICore {
 					//currentBoard.rollRealignment(tCard);
 					break;
 				case 3:
-					//currentBoard.rollCoup(tCard);
+					currentBoard.rollCoup(tCard, this);
 					break;
 				default:
 					System.out.println("Error");

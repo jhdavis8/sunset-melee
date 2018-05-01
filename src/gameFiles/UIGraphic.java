@@ -1,5 +1,7 @@
 package gameFiles;
 
+import java.util.Scanner;
+
 /**
  * UIGraphic is a implementation of UICore that will have a graphical interface an allow for a more
  * traditional windows interface.
@@ -71,6 +73,12 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptValidInfluenceTarget(Side side) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Scanner getScanner() {
 		// TODO Auto-generated method stub
 		return null;
 	}
