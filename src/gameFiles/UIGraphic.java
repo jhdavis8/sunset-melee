@@ -1,6 +1,7 @@
 package gameFiles;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -18,18 +19,19 @@ public class UIGraphic implements UICore {
 	private Board currentBoard;
 	private String absPath;
 	
-	public UIGraphic(Board b, String absFilePath) { 
+	private ArrayList<String> paths = new ArrayList<String>();
+	
+	public UIGraphic(Board b) { 
 		currentBoard = b;
-		absPath = absFilePath;
+		absPath = new File("").getAbsolutePath();
 	}
-
+	
 	/* Used to retrieve the most recent version of the Board
 	 * (non-Javadoc)
 	 * @see gameFiles.UICore#updateBoard(gameFiles.Board)
 	 */
 	@Override
 	public void updateBoard(Board b) {
-		// TODO Auto-generated method stub
 
 	}
 

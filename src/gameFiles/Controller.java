@@ -20,7 +20,7 @@ public class Controller {
 	 */
 	public static void main(String[] args) {
 		
-		Board game = new Board();
+		Board game = new Board(); 
 		initialize(game);
 		Effects.setCurrentBoard(game);
 		UIText UI = new UIText();
@@ -29,7 +29,9 @@ public class Controller {
 		
 		
 		UI.updateUI();
-		turn(game, UI);
+		for (int k = 0; k < 10; k ++) {
+			turn(game, UI);
+		}
 		//UI.runUI();
 	}
 	
