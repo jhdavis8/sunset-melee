@@ -65,7 +65,7 @@ public class Window {
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		ScrollImage scrollImage = new ScrollImage();
-		frmWindowTest.getContentPane().add(scrollImage, BorderLayout.NORTH);
+		frmWindowTest.getContentPane().add(scrollImage, BorderLayout.CENTER);
 		
 		String absPath = new File("").getAbsolutePath();
 		

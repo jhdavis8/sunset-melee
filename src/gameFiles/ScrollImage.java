@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -22,7 +23,7 @@ public class ScrollImage extends JPanel {
 
     public ScrollImage() {
         try {
-            this.image = ImageIO.read(new URL("http://interviewpenguin.com/wp-content/uploads/2011/06/java-programmers-brain.jpg"));
+            this.image = ImageIO.read(new File("img\\gameMap.jpg"));
         }catch(IOException ex) {
             Logger.getLogger(ScrollImage.class.getName()).log(Level.SEVERE, null, ex);
         }
