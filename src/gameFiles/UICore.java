@@ -71,8 +71,17 @@ public interface UICore {
 	 */
 	public void announce(String s);
 
+	/**
+	 * Returns the scanner.
+	 * @return Scanner to be used in other specific instances in code.
+	 */
 	public Scanner getScanner();
 
+	/**
+	 * Allows for placement of influence based on coninent not other game locig
+	 * @param side Side
+	 * @return a County
+	 */
 	public Country promptExceptionInfluenceTarget(Side side);
 
 }

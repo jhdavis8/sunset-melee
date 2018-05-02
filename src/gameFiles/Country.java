@@ -246,6 +246,9 @@ public class Country {
 		return name;
 	}
 
+	/**
+	 * makes a county a battleground if a card requires it
+	 */
 	public void makeBattleground() {
 		battleground = true;
 	}
@@ -323,6 +326,10 @@ public class Country {
 		return false;
 	}
 	
+	/**
+	 * @param defcon The defcon level
+	 * @return If the country is available to realignment or coup it returns true, else false.
+	 */
 	public boolean isValidDefconCountry(int defcon) {
 		switch (defcon) {
 			case 5:
@@ -356,6 +363,10 @@ public class Country {
 		}
 	}
 	
+	/**
+	 * @param cont Continents
+	 * @return If the continent provided is one that country is a part of it returns true.
+	 */
 	public boolean isCountryInContinent(Continents cont) {
 		for (Continents c : continents) {
 			if (c.equals(cont)) return true;

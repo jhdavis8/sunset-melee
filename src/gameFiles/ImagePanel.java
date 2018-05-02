@@ -10,14 +10,21 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
+ * Extends JPanel by creating a class for the holding and drawing of image files.
  * @author Brendan Cashman
  * {@link https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel}
  *
  */
 public class ImagePanel extends JPanel{
 
+    /**
+     * A buffer for holding the image to present
+     */
     private BufferedImage image;
 
+    /**
+     * @param path The path to the image files.
+     */
     public ImagePanel(String path) {
        try {                
           image = ImageIO.read(new File(path));
@@ -28,6 +35,9 @@ public class ImagePanel extends JPanel{
        }
     }
 
+    /* (non-Javadoc)
+     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

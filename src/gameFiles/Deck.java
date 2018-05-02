@@ -260,6 +260,9 @@ public class Deck {
 		return lateCard;
 	}
 	
+	/**
+	 * @return The ArrayLit outsideOfDeck
+	 */
 	public static ArrayList<TurnCard> getOutsideOfDeckCard() {
 		return outsideOfDeck;
 	}

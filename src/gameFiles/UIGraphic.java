@@ -17,10 +17,20 @@ public class UIGraphic implements UICore {
 	 * Board currentBoard is the current state of world.  A reference point was placed here to allow for easy access.
 	 */
 	private Board currentBoard;
+	/**
+	 * The path the game currently resides in to allow for the image processing to work
+	 */
 	private String absPath;
 	
+	/**
+	 * Will hold all paths to the images
+	 */
 	private ArrayList<String> paths = new ArrayList<String>();
 	
+	/**
+	 * Creates a new board
+	 * @param b {@link Board} currentBoard
+	 */
 	public UIGraphic(Board b) { 
 		currentBoard = b;
 		absPath = new File("").getAbsolutePath();

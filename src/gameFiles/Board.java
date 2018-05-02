@@ -294,6 +294,53 @@ public class Board {
 	}
 	
 	/**
+	 * Passes control of influence placement to the player
+	 * @param tCard turnCard used to place influence
+	 * @param ui UICore object to use for input
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui) {
+		if (playerTurn) USSR.placeInfluence(tCard, ui);
+		else USA.placeInfluence(tCard, ui);
+	}
+	
+	/**
+	 * Passes control of influence placement to the player
+	 * @param tCard turnCard used to place influence
+	 * @param ui UICore object to use for input
+	 * @param c Continents ArrayList
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui, Continents c) {
+		if (playerTurn) USSR.placeInfluence(tCard, ui, c);
+		else USA.placeInfluence(tCard, ui, c);
+	}
+
+	/**
+	 * Called the appropriate {@link Player} method
+	 * @param tCard Turn Card selected by user
+	 * @param ui UI passed from UI Class
+	 */
+	public void rollCoup(TurnCard tCard, UICore ui) {
+		boolean battleground;
+		if (playerTurn) battleground = USSR.rollCoup(tCard, ui, defcon);
+		else battleground = USA.rollCoup(tCard, ui, defcon);
+		if (battleground) {
+			ui.announce("ALERT: Defcon decremented!");
+			this.modifyDefcon(-1);
+		}
+	}
+
+	/**
+	 * Called the appropriate {@link Player} method
+	 * @param tCard Turn Card selected by user
+	 * @param ui UI passed from UI Class
+	 */
+	public void rollRealignment(TurnCard tCard, UIText ui) {
+		if (playerTurn) USSR.rollRealignment(tCard, ui, defcon);
+		else USA.rollRealignment(tCard, ui, defcon);
+		
+	}
+
+	/**
 	 * @return the current turn
 	 */
 	public int getTurn() {
@@ -369,42 +416,6 @@ public class Board {
 	public Side getCurrentPlayer() {
 		if (playerTurn) return Side.USSR;
 		else return Side.USA;
-	}
-
-	/**
-	 * Passes control of influence placement to the player
-	 * @param tCard turnCard used to place influence
-	 * @param ui UICore object to use for input
-	 */
-	public void placeInfluence(TurnCard tCard, UICore ui) {
-		if (playerTurn) USSR.placeInfluence(tCard, ui);
-		else USA.placeInfluence(tCard, ui);
-	}
-	
-	/**
-	 * Passes control of influence placement to the player
-	 * @param tCard turnCard used to place influence
-	 * @param ui UICore object to use for input
-	 */
-	public void placeInfluence(TurnCard tCard, UICore ui, Continents c) {
-		if (playerTurn) USSR.placeInfluence(tCard, ui, c);
-		else USA.placeInfluence(tCard, ui, c);
-	}
-
-	public void rollCoup(TurnCard tCard, UICore ui) {
-		boolean battleground;
-		if (playerTurn) battleground = USSR.rollCoup(tCard, ui, defcon);
-		else battleground = USA.rollCoup(tCard, ui, defcon);
-		if (battleground) {
-			ui.announce("ALERT: Defcon decremented!");
-			this.modifyDefcon(-1);
-		}
-	}
-
-	public void rollRealignment(TurnCard tCard, UIText ui) {
-		if (playerTurn) USSR.rollRealignment(tCard, ui, defcon);
-		else USA.rollRealignment(tCard, ui, defcon);
-		
 	}
 
 

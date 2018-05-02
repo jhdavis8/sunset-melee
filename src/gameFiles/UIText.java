@@ -11,6 +11,14 @@ import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
  * @author Mark Wolgin
  *
  */
+/**
+ * @author Mark
+ *
+ */
+/**
+ * @author Mark
+ *
+ */
 public class UIText implements UICore {
 	
 
@@ -30,7 +38,10 @@ public class UIText implements UICore {
 		
 	}
 
-	Scanner scan;
+	/**
+	 * UITexts scanner
+	 */
+	private Scanner scan;
 	
 	/* (non-Javadoc)
 	 * @see gameFiles.UICore#updateUI()
@@ -533,6 +544,11 @@ public class UIText implements UICore {
 		return c;
 	}
 
+
+	/* (non-Javadoc)
+	 * @see gameFiles.UICore#promptExceptionInfluenceTarget(gameFiles.Side)
+	 */
+	@Override
 	public Country promptExceptionInfluenceTarget(Side side) {
 		boolean checking = true;
 		String input = "";
@@ -551,6 +567,12 @@ public class UIText implements UICore {
 		return c;
 	}
 	
+	/**
+	 * Sees if a country can have influence placed on it
+	 * @param c Country to check
+	 * @param side Side to check for
+	 * @return True if the country can have influence spread to it
+	 */
 	private boolean checkCountryChoice(Country c, Side side) {
 		ArrayList<Country> all = new ArrayList<Country>();
 		all.add(c); 
@@ -564,6 +586,9 @@ public class UIText implements UICore {
 		return atLeastOne;
 	}
 	
+	/* (non-Javadoc)
+	 * @see gameFiles.UICore#getScanner()
+	 */
 	public Scanner getScanner() {
 		return scan;
 	}

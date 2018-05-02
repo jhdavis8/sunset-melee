@@ -160,9 +160,10 @@ public class Player {
 	}
 	
 	/**
-	 * Add value influence to country on side
+	 * Add value influence to country on side - Used for specific cards like 998/999
 	 * @param tCard turn card object being used to place influence
 	 * @param ui UICore object to use for input
+	 * @param c Continent to place influence in
 	 */
 	public void placeInfluence(TurnCard tCard, UICore ui, Continents c) {
 		int influenceLeft = tCard.getOps();
@@ -186,10 +187,12 @@ public class Player {
 		ui.announce("All influence expended.");
 	}
 
+
 	/**
-	 * rolls a realignment by the args given
-	 * @param country Country to roll on
-	 * @param value int value to use
+	 * Rolls a realignment for the player, called in board.
+	 * @param tCard The players card
+	 * @param ui The UI in use
+	 * @param defcon Current defcon level
 	 */
 	public void rollRealignment(TurnCard tCard, UICore ui, int defcon) {
 		Country country = null;
@@ -224,9 +227,10 @@ public class Player {
 
 	/**
 	 * Rolls a coup by the args given
-	 * @param country Country to roll on
-	 * @param value int value to apply
-	 * @param currentBoard the Board object work with
+	 * @param tCard The players card
+	 * @param ui The UI in use
+	 * @param defcon The current defcon
+	 * @return retruns true if it was a battlegound country so Board.rollCoup can handle defcon
 	 */
 	public boolean rollCoup(TurnCard tCard, UICore ui, int defcon) {
 		boolean checking = false;
