@@ -355,4 +355,11 @@ public class Country {
 				return false;
 		}
 	}
+	
+	public boolean isCountryInContinent(Continents cont) {
+		for (Continents c : continents) {
+			if (c.equals(cont)) return true;
+		}
+		return false;
+	}
 }

@@ -108,3 +108,5 @@
 108,Our Man in Tehran*,2,Y,Turn,USA,M,If the US controls at least one Middle East country; the US player uses this Event to draw the top 5 cards from the draw pile. The US may discard any or all of the drawn cards; after revealing the discarded card(s) to the USSR player; without triggering the Event(s). Any remaining drawn cards are returned to the draw pile and the draw pile is reshuffled.,0.0.2
 109,Yuri and Samantha*,2,Y,Turn,USSR,L,The USSR receives 1 VP for each US Coup Attempt performed during the remainder of the Turn.,0.0.1
 110,AWACS Sale to Saudis*,3,Y,Turn,USA,L,Add 2 US Influence to Saudi Arabia. This Event prevents the “#56 – Muslim Revolution” card from being played as an Event.,0.0.0
+998,USA Europe Setup,7,Y,Turn,UNK,O,NOT TO EVER BE PUT INTO A HAND,0.0.0
+999,USSR Europe Setup,6,Y,Turn,UNK,O,NOT TO EVER BE PUT INTO A HAND,0.0.0

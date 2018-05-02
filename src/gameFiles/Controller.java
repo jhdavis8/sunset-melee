@@ -29,6 +29,17 @@ public class Controller {
 		
 		
 		UI.updateUI();
+		
+		try {
+			Effects.getEffect(998);
+			Effects.getEffect(999);
+		}
+		catch (Exception e) {
+			e.getMessage();
+			e.printStackTrace();
+			System.out.println("Couldn't find cards to run the effect.");
+		}
+		
 		for (int k = 0; k < 10; k ++) {
 			turn(game, UI);
 		}

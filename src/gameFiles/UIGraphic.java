@@ -92,4 +92,10 @@ public class UIGraphic implements UICore {
 		return null;
 	}
 
+	@Override
+	public Country promptExceptionInfluenceTarget(Side side) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

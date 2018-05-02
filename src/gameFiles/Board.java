@@ -90,7 +90,6 @@ public class Board {
 		Map.connectCountries();
 		Deck.fillDeck(cardCSV);
 		USSR.dealCards(-1);
-		// TODO More code to follow....
 	}
 	
 	/**
@@ -380,6 +379,16 @@ public class Board {
 	public void placeInfluence(TurnCard tCard, UICore ui) {
 		if (playerTurn) USSR.placeInfluence(tCard, ui);
 		else USA.placeInfluence(tCard, ui);
+	}
+	
+	/**
+	 * Passes control of influence placement to the player
+	 * @param tCard turnCard used to place influence
+	 * @param ui UICore object to use for input
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui, Continents c) {
+		if (playerTurn) USSR.placeInfluence(tCard, ui, c);
+		else USA.placeInfluence(tCard, ui, c);
 	}
 
 	public void rollCoup(TurnCard tCard, UICore ui) {

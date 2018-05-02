@@ -73,4 +73,6 @@ public interface UICore {
 
 	public Scanner getScanner();
 
+	public Country promptExceptionInfluenceTarget(Side side);
+
 }

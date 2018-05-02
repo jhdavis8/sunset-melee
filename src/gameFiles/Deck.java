@@ -48,6 +48,10 @@ public class Deck {
 	 * The lateCard ArrayList
 	 */
 	private static ArrayList<Card> lateCard;
+	/**
+	 * Array List of cards that are outside of the norm.
+	 */
+	private static ArrayList<TurnCard> outsideOfDeck;
 	
 	/**
 	 * The boolean if the mid Cards have been added
@@ -66,6 +70,20 @@ public class Deck {
 	 */
 	public static Card getCard(int i) {
 		for (Card c : deck) {
+			if (i == c.cardNum) {
+				return c;
+			}
+		}
+		return null;
+	}
+	
+	/**
+	 * Return the card specified by the Card number
+	 * @param i the Card number (cardNum)
+	 * @return the Card specified
+	 */
+	public static Card getAllCard(int i) {
+		for (Card c : ALL_CARDS) {
 			if (i == c.cardNum) {
 				return c;
 			}
@@ -135,6 +153,7 @@ public class Deck {
 		earlyCard = new ArrayList<Card>();
 		midCard = new ArrayList<Card>();
 		lateCard = new ArrayList<Card>();
+		outsideOfDeck = new ArrayList<TurnCard>();
 		String cardTiming = "";
 		for (Card c : ALL_CARDS) {
 			cardTiming = c.getGameTime();
@@ -146,6 +165,9 @@ public class Deck {
 			}
 			else if (cardTiming.equals("L")) {
 				lateCard.add(c);
+			}
+			else if (cardTiming.equals("O")) {
+				outsideOfDeck.add((TurnCard)c);
 			}
 			
 		}
@@ -185,7 +207,7 @@ public class Deck {
 			addMidCards();
 			addedMidCards = true;
 		}
-	}
+	} 
 	
 	// TODO Add reshuffling in the discard pile when the deck is empty
 	
@@ -238,6 +260,10 @@ public class Deck {
 		return lateCard;
 	}
 	
+	public static ArrayList<TurnCard> getOutsideOfDeckCard() {
+		return outsideOfDeck;
+	}
+	
 	/**
 	 * @return the discard
 	 */
@@ -251,5 +277,4 @@ public class Deck {
 	public static ArrayList<Card> getDead() {
 		return dead;
 	}
-	
 }

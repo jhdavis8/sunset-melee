@@ -158,6 +158,33 @@ public class Player {
 		}
 		ui.announce("All influence expended.");
 	}
+	
+	/**
+	 * Add value influence to country on side
+	 * @param tCard turn card object being used to place influence
+	 * @param ui UICore object to use for input
+	 */
+	public void placeInfluence(TurnCard tCard, UICore ui, Continents c) {
+		int influenceLeft = tCard.getOps();
+		Country country = null;
+		while (influenceLeft > 0) {
+			ui.announce("You have " + influenceLeft + " influence left.");
+			country = ui.promptExceptionInfluenceTarget(side);
+			if (country.opponentHasControl(side) && country.isCountryInContinent(c)) {
+				if (influenceLeft > 1) {
+					country.modifyInfluence(1, side);
+					influenceLeft -= 2;
+					ui.announce("1 influence placed in " + country);
+				}
+			}
+			else {
+				country.modifyInfluence(1, side);
+				influenceLeft--;
+				ui.announce("1 influence placed in " + country);
+			}
+		}
+		ui.announce("All influence expended.");
+	}
 
 	/**
 	 * rolls a realignment by the args given
@@ -177,7 +204,7 @@ public class Player {
 		int ussrRoll = 1 + randy.nextInt(6); // ADD ONE for each adjacent country and if has more influence then opponent
 		System.out.println("USSR Rolls " + ussrRoll);
 		int diff = 0;
-		
+		 
 		if (side.equals(Side.USA) && (usRoll > ussrRoll)) {
 			diff = -1 * (usRoll - ussrRoll);
 			country.modifyInfluence(diff, Side.USSR);

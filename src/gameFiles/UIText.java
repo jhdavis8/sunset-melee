@@ -533,6 +533,24 @@ public class UIText implements UICore {
 		return c;
 	}
 
+	public Country promptExceptionInfluenceTarget(Side side) {
+		boolean checking = true;
+		String input = "";
+		Country c = null;
+		while(checking) {
+			this.announce("Please enter a valid Country ISO to influence:");
+			input = scan.nextLine();
+			if (Map.getCountry(input) != null) {
+				c = Map.getCountry(input);
+				checking = false;
+			}
+			else {
+				this.announce("Not a valid country to place influence in!");
+			}
+		}
+		return c;
+	}
+	
 	private boolean checkCountryChoice(Country c, Side side) {
 		ArrayList<Country> all = new ArrayList<Country>();
 		all.add(c); 

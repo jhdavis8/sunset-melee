@@ -107,6 +107,12 @@ public class Effects {
 			case 103:
 				effectID103();
 				break;
+			case 998:
+				effectID998();
+				break;
+			case 999:
+				effectID999();
+				break;
 			default:
 				System.out.println("CardID Not Found");
 				throw new Exception();
@@ -440,4 +446,17 @@ public class Effects {
 		}
 	}
 	
+	/**
+	 * USA Europe Scoring
+	 */
+	private static void effectID998() {
+		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(0), UI, Continents.WEE);
+	}
+	
+	/**
+	 * USSR Europe Scoring
+	 */
+	private static void effectID999() {
+		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(1), UI, Continents.EEE);
+	}
 }
