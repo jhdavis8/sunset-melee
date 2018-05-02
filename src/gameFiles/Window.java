@@ -19,6 +19,8 @@ public class Window {
 			public void run() {
 				try {
 					Window window = new Window();
+					Controller c = new Controller();
+					c.main(args);
 					window.frmWindowTest.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +42,7 @@ public class Window {
 	private void initialize() {
 		frmWindowTest = new JFrame();
 		frmWindowTest.setTitle("Window Test");
-		frmWindowTest.setBounds(100, 100, 1000, 1000);
+		frmWindowTest.setBounds(100, 100, 2500, 1950);
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmWindowTest.getContentPane().setLayout(null);
 		
@@ -115,6 +117,10 @@ public class Window {
 		ImagePanel imagePanel_17 = new ImagePanel("C:\\Users\\Mark\\git\\sunset-melee\\img\\board_tokens\\vp.png");
 		imagePanel_17.setBounds(221, 151, 44, 44);
 		frmWindowTest.getContentPane().add(imagePanel_17);
+		
+		ImagePanel imagePanel = new ImagePanel("C:\\Users\\Mark\\git\\sunset-melee\\img\\gameMap.jpg");
+		imagePanel.setBounds(0, 214, 2447, 1585);
+		frmWindowTest.getContentPane().add(imagePanel);
 		frmWindowTest.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{frmWindowTest.getContentPane(), usa1, usa2, usa3, usa4, usa5, usa6, usa7, usa8, usaInf1, usaInf2, usaInf3, usaInf4, usaInf5, usaInf6, usaInf7, usaInf8, imagePanel_16, imagePanel_17}));
 	}
 }
