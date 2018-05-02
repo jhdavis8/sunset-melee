@@ -114,4 +114,7 @@ public class TurnCard extends Card implements Comparable<TurnCard> {
 		return side;
 	}
 
+	public String getDescription() {
+		return description;
+	}
 }

@@ -57,7 +57,7 @@ public class Effects {
 	 * @param ID int ID of the effect
 	 * @throws Exception exception if card ID not found (Might change this to error message) 
 	 */
-	public static void getEffect(int ID) throws Exception { // TODO Have cards do a displayEffect
+	public static void getEffect(int ID) throws Exception {
 		switch (ID) {
 			case 4:
 				effectID004();

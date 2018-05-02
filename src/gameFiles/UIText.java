@@ -468,6 +468,7 @@ public class UIText implements UICore {
 					currentBoard.rollCoup(tCard, this);
 					break;
 				case 4:
+					this.announce("Effect Played: "+ tCard.getDescription());
 					tCard.runEffect();
 					break;
 				default:
@@ -477,6 +478,8 @@ public class UIText implements UICore {
 			}
 		}
 		else if (pickResult == 0) {
+			TurnCard tCard = (TurnCard) card;
+			this.announce("Effect Played: "+ tCard.getDescription());
 			toReturn += "\nThis is an Enemy Card, and its effects have already been played";
 			toReturn += "\nPlease select one off the following options for how to use this card,\n";
 			toReturn += "\t1: Place Influence\n\t2: Roll for Realignment in a Country"
@@ -498,7 +501,6 @@ public class UIText implements UICore {
 					System.out.println("Not a String");
 				}
 			}
-			TurnCard tCard = (TurnCard) card;
 			switch (sel) {
 				case 1:
 					currentBoard.placeInfluence(tCard, this);

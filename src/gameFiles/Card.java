@@ -15,7 +15,7 @@ public abstract class Card {
 	/**
 	 * The description of the Card
 	 */
-	public String descrition;
+	public String description;
 	/**
 	 * The number of the Card
 	 */
@@ -44,7 +44,7 @@ public abstract class Card {
 	 */
 	public Card(String n, String d, int c, int e, String cT) {
 		name = n;
-		descrition = d;
+		description = d;
 		cardNum = c;
 		effectID = e;
 		cardTiming = cT;

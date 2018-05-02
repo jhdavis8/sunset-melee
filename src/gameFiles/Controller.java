@@ -141,12 +141,12 @@ public class Controller {
 	 * @param game Board object to use
 	 * @param UI UI object to use
 	 */
-	public static void headlinePhase(Board game, UICore UI) {
+	public static void headlinePhase(Board game, UICore ui) {
 		System.out.println("Headline Phase");
 		boolean checking = true;
 		int USCardChoice = 0;
 		while (checking) {
-			USCardChoice = UI.promptSelectCard(Side.USA);
+			USCardChoice = ui.promptSelectCard(Side.USA);
 			if (USCardChoice >= game.getPlayer(Side.USA).getHand().size()) {
 				System.out.println("Integer out of bound, please input a value within the range.");
 			}
@@ -158,7 +158,7 @@ public class Controller {
 		int USSRCardChoice = 0;
 		checking = true;
 		while (checking) {   
-			USSRCardChoice = UI.promptSelectCard(Side.USSR);
+			USSRCardChoice = ui.promptSelectCard(Side.USSR);
 			if (USSRCardChoice >= game.getPlayer(Side.USSR).getHand().size()) {
 				System.out.println("Integer out of bound, please input a value within the range.");
 			}
@@ -199,11 +199,15 @@ public class Controller {
 		if (usaSC == null && ussrSC == null) { // 		USA TurnCard and USSR TurnCard
 			if ((ussrTC.getOps() > usaTC.getOps()) && (usaTC.cardNum != 103)) {
 				ussrTC.runEffect();
+				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription());
 				usaTC.runEffect();
+				ui.announce("USA Headline Effect: "+ usaTC.getDescription());
 			}
 			else if (usaTC.cardNum != 103) {
 				usaTC.runEffect();
+				ui.announce("USA Headline Effect: "+ usaTC.getDescription());
 				ussrTC.runEffect();
+				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription());
 			}
 			else {	// If the card is num 103 Defectors, the USSR cards is invalidated
 				usaTC.runEffect();
