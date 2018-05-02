@@ -291,6 +291,7 @@ public class Board {
 			sC = (ScoringCard) card;
 			Deck.getDiscard().add(sC);
 		}
+		Deck.checkDeckEmpty();
 	}
 	
 	/**

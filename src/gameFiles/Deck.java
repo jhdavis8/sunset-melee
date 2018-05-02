@@ -207,9 +207,7 @@ public class Deck {
 			addMidCards();
 			addedMidCards = true;
 		}
-	} 
-	
-	// TODO Add reshuffling in the discard pile when the deck is empty
+	}
 	
 	/**
 	 * Adds the Early Cards
@@ -279,5 +277,12 @@ public class Deck {
 	 */
 	public static ArrayList<Card> getDead() {
 		return dead;
+	}
+
+	public static void checkDeckEmpty() {
+		if (deck.size() == 0) {
+			// TODO reshuffling code
+		}
+		
 	}
 }
