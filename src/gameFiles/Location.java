@@ -34,6 +34,11 @@ public class Location {
 			e.printStackTrace();
 		}
 		scan.useDelimiter("[,|\n]");
+		
+		String[] tempLoc = new String[3];
+		while (scan.hasNext()) {
+			
+		}
 	}
 
 }

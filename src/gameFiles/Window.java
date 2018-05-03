@@ -23,7 +23,6 @@ import javax.swing.JScrollPane;
 import java.awt.Canvas;
 import java.awt.Panel;
 import javax.swing.JPanel;
-import javax.swing.JCheckBox;
 
 public class Window {
 
@@ -48,7 +47,7 @@ public class Window {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -62,7 +61,7 @@ public class Window {
 	private void initialize() {
 		frmWindowTest = new JFrame();
 		frmWindowTest.setTitle("Window Test");
-		frmWindowTest.setBounds(100, 100, 841, 584);
+		frmWindowTest.setBounds(100, 100, 791, 580);
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		ScrollImage scrollImage = new ScrollImage();
