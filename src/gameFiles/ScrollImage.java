@@ -31,6 +31,7 @@ public class ScrollImage extends JPanel {
     private JPanel canvas;
     private final JLabel lblActionRound = new JLabel("");
     private Side actionRoundSide = Side.USSR;
+    private int actionRoundNum = 1;
 
     public ScrollImage() {
         try {
@@ -54,9 +55,18 @@ public class ScrollImage extends JPanel {
         lblActionRound.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mousePressed(MouseEvent arg0) {
-        		if (actionRoundSide == Side.USA) {
+        		if (actionRoundNum == 8 && actionRoundSide == Side.USA) {
+        			lblActionRound.setBounds(448, 103, 41, 42);
         			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
         			actionRoundSide = Side.USSR;
+        			actionRoundNum = 1;
+        		}
+        		else if (actionRoundSide == Side.USA) {
+        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+        			actionRoundSide = Side.USSR;
+        			int newX = lblActionRound.getX() + 56;
+        			lblActionRound.setBounds(newX, 103, 41, 42);
+        			actionRoundNum++;
         		} else {
         			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
         			actionRoundSide = Side.USA;
@@ -65,7 +75,7 @@ public class ScrollImage extends JPanel {
         });
         
         
-        lblActionRound.setBounds(446, 102, 54, 42);
+        lblActionRound.setBounds(448, 103, 41, 42);
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
         canvas.add(lblActionRound);
         lblActionRound.setToolTipText("Current action round");
