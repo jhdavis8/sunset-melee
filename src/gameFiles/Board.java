@@ -54,6 +54,10 @@ public class Board {
 	 */
 	private File continentCSV;
 	/**
+	 * The file information for the location.cvs
+	 */
+	private File locationCSV;
+	/**
 	 * The Player USA
 	 */
 	private Player USA;
@@ -80,16 +84,19 @@ public class Board {
 	 * @param f1 relative path to cards.csv
 	 * @param f2 relative path to countries.csv
 	 */
-	public void setUp(String f1, String f2) {
+	public void setUp(String f1, String f2, String f3) {
 		defcon = 5;
 		String absPath = new File("").getAbsolutePath();
 		cardCSV = new File(absPath + f1);
 		continentCSV = new File(absPath + f2);
+		locationCSV = new File(absPath + f3);
 		Map.setFile(continentCSV);
 		Map.fillCountries();
 		Map.connectCountries();
 		Deck.fillDeck(cardCSV);
+		Location.fillGameLoc(locationCSV);
 		USSR.dealCards(-1);
+		System.out.println(Location.getLocation("actionRound1"));
 	}
 	
 	/**
