@@ -40,7 +40,7 @@ public class Location {
 			for (int k = 0; k < 3; k ++) {
 				tempLoc[k] = scan.next();
 			}
-			loc.add(new Location(Integer.parseInt(tempLoc[0]), Integer.parseInt(tempLoc[1]), tempLoc[2]));
+			loc.add(new Location(Integer.parseInt(tempLoc[0]), Integer.parseInt(tempLoc[1]), tempLoc[2].substring(0, tempLoc[2].length() - 1)));
 		}
 	}
 	
@@ -54,7 +54,7 @@ public class Location {
 	@Override
 	public String toString() {
 		String toReturn = "";
-		toReturn += "Location " + this.name + " at (" + ", " + ")";
+		toReturn += "Location " + this.name + " at (" + this.x + ", " + this.y + ")";
 		return toReturn;
 	}
 	
