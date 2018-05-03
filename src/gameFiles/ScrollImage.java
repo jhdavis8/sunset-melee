@@ -15,11 +15,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ScrollImage extends JPanel {
     private static final long serialVersionUID = 1L;
     private BufferedImage image;
     private JPanel canvas;
+    private final JLabel lblActionRound = new JLabel("");
+    private Side actionRoundSide = Side.USSR;
 
     public ScrollImage() {
         try {
@@ -36,9 +47,30 @@ public class ScrollImage extends JPanel {
                 g.drawImage(image, 0, 0, null);
             }
         };
-        canvas.add(new JButton("Currently I do nothing"));
+        //canvas.add(new JButton("Currently I do nothing"));
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         JScrollPane sp = new JScrollPane(canvas);
+        canvas.setLayout(null);
+        lblActionRound.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mousePressed(MouseEvent arg0) {
+        		if (actionRoundSide == Side.USA) {
+        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+        			actionRoundSide = Side.USSR;
+        		} else {
+        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
+        			actionRoundSide = Side.USA;
+        		}
+        	}
+        });
+        
+        
+        lblActionRound.setBounds(446, 102, 54, 42);
+        lblActionRound.setVerticalAlignment(SwingConstants.TOP);
+        canvas.add(lblActionRound);
+        lblActionRound.setToolTipText("Current action round");
+        lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+        Side actionRoundSide = Side.USSR;
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
     }
