@@ -4,7 +4,10 @@
  */
 package gameFiles;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
+
+
 
 /**
  * Class for running the game, includes main function
@@ -28,6 +31,15 @@ public class Controller {
 		UI.updateBoard(game);
 		UItext.updateBoard(game);
 		Effects.setUI(UI);
+		CardSelectorWindow friend = new CardSelectorWindow(Deck.getEarlyCards());
+		friend.frame.setVisible(true);
+		
+		// TODO what is even happening
+		while (friend.getResult() == null) {
+			System.out.println("a");
+		}
+		System.out.println("h");
+		System.out.println(friend.getResult());
 		
 		
 		UI.updateUI();

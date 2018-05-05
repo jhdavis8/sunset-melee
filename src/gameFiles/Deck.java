@@ -285,4 +285,13 @@ public class Deck {
 		}
 		
 	}
+
+	public static Card getCard(String selectedItem) {
+		for (Card c : ALL_CARDS) {
+			if (c.name.equals(selectedItem)) {
+				return c;
+			}
+		}
+		return null;
+	}
 }
