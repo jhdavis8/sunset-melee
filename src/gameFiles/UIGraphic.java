@@ -1,5 +1,6 @@
 package gameFiles;
 
+import java.awt.EventQueue;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -28,13 +29,9 @@ public class UIGraphic implements UICore {
 	private ArrayList<String> paths = new ArrayList<String>();
 	
 	/**
-	 * Creates a new board
-	 * @param b {@link Board} currentBoard
+	 * The window object for the game
 	 */
-	public UIGraphic(Board b) { 
-		currentBoard = b;
-		absPath = new File("").getAbsolutePath();
-	}
+	private Window window;
 	
 	/* Used to retrieve the most recent version of the Board
 	 * (non-Javadoc)
@@ -42,9 +39,25 @@ public class UIGraphic implements UICore {
 	 */
 	@Override
 	public void updateBoard(Board b) {
-
+		currentBoard = b;
+		absPath = new File("").getAbsolutePath();
 	}
-
+	
+	/**
+	 * Construct a UIGraphic
+	 */
+	public UIGraphic() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					window = new Window();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	/* Will output the new information.
 	 * (non-Javadoc)
 	 * @see gameFiles.UICore#updateUI()
@@ -86,7 +99,7 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public void announce(String s) {
-		// TODO Auto-generated method stub
+		System.out.println(s);
 		
 	}
 

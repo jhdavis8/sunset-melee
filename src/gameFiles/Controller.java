@@ -23,13 +23,15 @@ public class Controller {
 		Board game = new Board(); 
 		initialize(game);
 		Effects.setCurrentBoard(game);
-		UIText UI = new UIText();
+		UIGraphic UI = new UIGraphic();
+		UIText UItext = new UIText();
 		UI.updateBoard(game);
+		UItext.updateBoard(game);
 		Effects.setUI(UI);
 		
 		
 		UI.updateUI();
-		
+		/*  Actual game running code below, commented out until UI is ready!
 		try {
 			Effects.getEffect(998);
 			Effects.getEffect(999);
@@ -43,6 +45,7 @@ public class Controller {
 		for (int k = 0; k < 10; k ++) {
 			turn(game, UI);
 		}
+		*/
 		//UI.runUI();
 	}
 	

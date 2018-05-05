@@ -53,6 +53,7 @@ public class Window {
 	 */
 	public Window() {
 		initialize();
+		this.frmWindowTest.setVisible(true);
 	}
 
 	/**
