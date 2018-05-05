@@ -26,6 +26,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
+import javax.swing.JMenu;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import java.awt.Choice;
 
 public class ScrollImage extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -94,19 +98,21 @@ public class ScrollImage extends JPanel {
         			defconNum = 5;
 
         	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
-        			lblDefcon.repaint();
+        			//lblDefcon.repaint();
         		}
         		else {
         			defconNum --;
 
         	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
-        			lblDefcon.repaint();
+        			//lblDefcon.repaint();
         		}
         		
         	}
         });
         btnDecrementDefcon.setBounds(26, 28, 171, 41);
         canvas.add(btnDecrementDefcon);
+        
+
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
     }
