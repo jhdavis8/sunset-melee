@@ -32,11 +32,12 @@ public class ScrollImage extends JPanel {
     private final JLabel lblActionRound = new JLabel("");
     private Side actionRoundSide = Side.USSR;
     private int actionRoundNum = 1;
+    private int defconNum = 5;
 
     public ScrollImage() {
         try {
             this.image = ImageIO.read(new File("img\\gameMap.jpg"));
-        }catch(IOException ex) {
+        } catch(IOException ex) {
             Logger.getLogger(ScrollImage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -80,7 +81,26 @@ public class ScrollImage extends JPanel {
         canvas.add(lblActionRound);
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-        Side actionRoundSide = Side.USSR;
+        
+        JLabel lblDefcon = new JLabel("");
+        lblDefcon.addMouseListener(new MouseAdapter() {
+        	@Override
+        	public void mousePressed(MouseEvent e) {
+        		if (defconNum == 1) {
+        			lblDefcon.setBounds(745, 1257, 42, 41);
+        			defconNum = 5;
+        		} else {
+        			int newX = lblDefcon.getX() + 76;
+        			lblDefcon.setBounds(newX, 1257, 42, 41);
+        			defconNum--;
+        		}
+        	}
+        });
+        lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
+        lblDefcon.setVerticalAlignment(SwingConstants.TOP);
+        lblDefcon.setToolTipText("Current action round");
+        lblDefcon.setBounds(745, 1257, 42, 41);
+        canvas.add(lblDefcon);
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
     }
@@ -92,7 +112,7 @@ public class ScrollImage extends JPanel {
                 JPanel p = new ScrollImage();
                 JFrame f = new JFrame();
                 f.setContentPane(p);
-                f.setSize(400, 300);
+                f.setSize(1188, 892);
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setVisible(true);
             }
