@@ -87,11 +87,11 @@ public class ScrollImage extends JPanel {
         	@Override
         	public void mousePressed(MouseEvent e) {
         		if (defconNum == 1) {
-        			lblDefcon.setBounds(745, 1257, 42, 41);
+        			lblDefcon.setBounds(740, 1255, 42, 41);
         			defconNum = 5;
         		} else {
         			int newX = lblDefcon.getX() + 76;
-        			lblDefcon.setBounds(newX, 1257, 42, 41);
+        			lblDefcon.setBounds(newX, 1255, 42, 41);
         			defconNum--;
         		}
         	}
@@ -99,7 +99,7 @@ public class ScrollImage extends JPanel {
         lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current action round");
-        lblDefcon.setBounds(745, 1257, 42, 41);
+        lblDefcon.setBounds(740, 1255, 42, 41);
         canvas.add(lblDefcon);
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
