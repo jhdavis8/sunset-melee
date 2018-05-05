@@ -24,12 +24,15 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
 
 public class ScrollImage extends JPanel {
     private static final long serialVersionUID = 1L;
     private BufferedImage image;
     private JPanel canvas;
     private final JLabel lblActionRound = new JLabel("");
+    private JLabel lblDefcon = new JLabel("");
     private Side actionRoundSide = Side.USSR;
     private int actionRoundNum = 1;
     private int defconNum = 5;
@@ -53,27 +56,6 @@ public class ScrollImage extends JPanel {
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         JScrollPane sp = new JScrollPane(canvas);
         canvas.setLayout(null);
-        lblActionRound.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mousePressed(MouseEvent arg0) {
-        		if (actionRoundNum == 8 && actionRoundSide == Side.USA) {
-        			lblActionRound.setBounds(448, 103, 41, 42);
-        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-        			actionRoundSide = Side.USSR;
-        			actionRoundNum = 1;
-        		}
-        		else if (actionRoundSide == Side.USA) {
-        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-        			actionRoundSide = Side.USSR;
-        			int newX = lblActionRound.getX() + 56;
-        			lblActionRound.setBounds(newX, 103, 41, 42);
-        			actionRoundNum++;
-        		} else {
-        			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
-        			actionRoundSide = Side.USA;
-        		}
-        	}
-        });
         
         
         lblActionRound.setBounds(448, 103, 41, 42);
@@ -81,8 +63,9 @@ public class ScrollImage extends JPanel {
         canvas.add(lblActionRound);
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-        
-        JLabel lblDefcon = new JLabel("");
+
+        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+        /*
         lblDefcon.addMouseListener(new MouseAdapter() {
         	@Override
         	public void mousePressed(MouseEvent e) {
@@ -96,26 +79,62 @@ public class ScrollImage extends JPanel {
         		}
         	}
         });
+        
+        */
         lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current action round");
         lblDefcon.setBounds(740, 1255, 42, 41);
         canvas.add(lblDefcon);
+        
+        JButton btnDecrementDefcon = new JButton("Decrement Defcon");
+        btnDecrementDefcon.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent arg0) {
+        		if (defconNum == 0) {
+        			defconNum = 5;
+        		}
+        		else {
+        			defconNum --;
+        		}
+        		
+        	}
+        });
+        btnDecrementDefcon.setBounds(26, 28, 171, 41);
+        canvas.add(btnDecrementDefcon);
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
     }
+    
+    private void actionRoundAdvance() {
+		if (actionRoundNum == 8 && actionRoundSide == Side.USA) {
+			lblActionRound.setBounds(448, 103, 41, 42);
+			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+			actionRoundSide = Side.USSR;
+			actionRoundNum = 1;
+		}
+		else if (actionRoundSide == Side.USA) {
+			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+			actionRoundSide = Side.USSR;
+			int newX = lblActionRound.getX() + 56;
+			lblActionRound.setBounds(newX, 103, 41, 42);
+			actionRoundNum++;
+		} else {
+			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
+			actionRoundSide = Side.USA;
+		}
+	}
+    
+    
+    private int getXValueDefcon() {
+    	return 740 + (5 - (defconNum - 1)) *76;
+	}
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JPanel p = new ScrollImage();
-                JFrame f = new JFrame();
-                f.setContentPane(p);
-                f.setSize(1188, 892);
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
+	public void setDefcon(int d) {
+    	defconNum = d;
     }
+	
+	public void rePaintAll() {
+		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+		actionRoundAdvance();
+	}
 }
