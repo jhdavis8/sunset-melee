@@ -6,6 +6,7 @@ package gameFiles;
 
 import java.awt.EventQueue;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 
@@ -41,8 +42,15 @@ public class Controller {
 		System.out.println("h");
 		System.out.println(friend.getResult());
 		
-		
+		System.out.println(game.getActionRound());
 		UI.updateUI();
+		System.out.println(game.getActionRound());
+		game.modifyDefcon(-1);
+		UI.updateUI();
+		System.out.println(game.getActionRound());
+		UI.updateUI();
+		UI.updateUI();
+		
 		/*  Actual game running code below, commented out until UI is ready!
 		try {
 			Effects.getEffect(998);
@@ -66,7 +74,7 @@ public class Controller {
 	 * @param b Board obj to initialize 
 	 */
 	private static void initialize(Board b) {
-		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv");
+		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv","\\csv\\location.csv");
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("DDR"), 3);
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("FIN"), 1);
 		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("GBR"), 5);

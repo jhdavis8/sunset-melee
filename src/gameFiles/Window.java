@@ -23,13 +23,13 @@ import javax.swing.JScrollPane;
 import java.awt.Canvas;
 import java.awt.Panel;
 import javax.swing.JPanel;
-import javax.swing.JCheckBox;
 
 public class Window {
 
 	private JFrame frmWindowTest;
 	private JLabel lblGameMap;
 	private BufferedImage image = null;
+	private ScrollImage scrollImage;
 
 	/**
 	 * Launch the application.
@@ -48,7 +48,7 @@ public class Window {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the application.
 	 */
@@ -63,13 +63,19 @@ public class Window {
 	private void initialize() {
 		frmWindowTest = new JFrame();
 		frmWindowTest.setTitle("Window Test");
-		frmWindowTest.setBounds(100, 100, 841, 584);
+		frmWindowTest.setBounds(100, 100, 791, 580);
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		ScrollImage scrollImage = new ScrollImage();
+		scrollImage = new ScrollImage();
 		frmWindowTest.getContentPane().add(scrollImage, BorderLayout.CENTER);
 		
 		String absPath = new File("").getAbsolutePath();
+		
+	}
+	
+	public void rePaintAll(Board b) {
+		frmWindowTest.repaint();
+		scrollImage.rePaintAll(b);
 		
 	}
 }
