@@ -5,6 +5,7 @@
 package gameFiles;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Class for running the game, includes main function
@@ -29,8 +30,15 @@ public class Controller {
 		UItext.updateBoard(game);
 		Effects.setUI(UI);
 		
-		
+		System.out.println(game.getActionRound());
 		UI.updateUI();
+		System.out.println(game.getActionRound());
+		game.modifyDefcon(-1);
+		UI.updateUI();
+		System.out.println(game.getActionRound());
+		UI.updateUI();
+		UI.updateUI();
+		
 		/*  Actual game running code below, commented out until UI is ready!
 		try {
 			Effects.getEffect(998);

@@ -29,6 +29,7 @@ public class Window {
 	private JFrame frmWindowTest;
 	private JLabel lblGameMap;
 	private BufferedImage image = null;
+	private ScrollImage scrollImage;
 
 	/**
 	 * Launch the application.
@@ -65,10 +66,16 @@ public class Window {
 		frmWindowTest.setBounds(100, 100, 791, 580);
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		ScrollImage scrollImage = new ScrollImage();
+		scrollImage = new ScrollImage();
 		frmWindowTest.getContentPane().add(scrollImage, BorderLayout.CENTER);
 		
 		String absPath = new File("").getAbsolutePath();
+		
+	}
+	
+	public void rePaintAll(Board b) {
+		frmWindowTest.repaint();
+		scrollImage.rePaintAll(b);
 		
 	}
 }

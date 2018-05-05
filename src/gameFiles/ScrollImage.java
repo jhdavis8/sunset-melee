@@ -90,11 +90,17 @@ public class ScrollImage extends JPanel {
         JButton btnDecrementDefcon = new JButton("Decrement Defcon");
         btnDecrementDefcon.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent arg0) {
-        		if (defconNum == 0) {
+        		if (defconNum == 1) {
         			defconNum = 5;
+
+        	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+        			lblDefcon.repaint();
         		}
         		else {
         			defconNum --;
+
+        	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+        			lblDefcon.repaint();
         		}
         		
         	}
@@ -110,14 +116,12 @@ public class ScrollImage extends JPanel {
 			lblActionRound.setBounds(448, 103, 41, 42);
 			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
 			actionRoundSide = Side.USSR;
-			actionRoundNum = 1;
 		}
 		else if (actionRoundSide == Side.USA) {
 			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
 			actionRoundSide = Side.USSR;
 			int newX = lblActionRound.getX() + 56;
 			lblActionRound.setBounds(newX, 103, 41, 42);
-			actionRoundNum++;
 		} else {
 			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
 			actionRoundSide = Side.USA;
@@ -126,15 +130,18 @@ public class ScrollImage extends JPanel {
     
     
     private int getXValueDefcon() {
-    	return 740 + (5 - (defconNum - 1)) *76;
+    	return 740 + (5 - defconNum) *76;
 	}
 
 	public void setDefcon(int d) {
     	defconNum = d;
     }
 	
-	public void rePaintAll() {
+	public void rePaintAll(Board b) {
+		defconNum = b.getDefcon();
 		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+		lblDefcon.repaint();
+		actionRoundNum = b.getActionRound();
 		actionRoundAdvance();
 	}
 }

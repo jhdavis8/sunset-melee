@@ -47,15 +47,11 @@ public class UIGraphic implements UICore {
 	 * Construct a UIGraphic
 	 */
 	public UIGraphic() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					window = new Window();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		try {
+			window = new Window();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/* Will output the new information.
@@ -64,7 +60,7 @@ public class UIGraphic implements UICore {
 	 */
 	@Override
 	public void updateUI() {
-
+		window.rePaintAll(currentBoard);
 	}
 
 	@Override
