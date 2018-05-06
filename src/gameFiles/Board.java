@@ -96,7 +96,6 @@ public class Board {
 		Deck.fillDeck(cardCSV);
 		Location.fillGameLoc(locationCSV);
 		USSR.dealCards(-1);
-		System.out.println(Location.getLocation("actionRound1"));
 	}
 	
 	/**

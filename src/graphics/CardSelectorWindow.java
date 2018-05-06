@@ -61,6 +61,7 @@ public class CardSelectorWindow {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				result = choice.getSelectedIndex();
+				frame.setVisible(false);
 			}
 		});
 		frame.getContentPane().add(button);

@@ -130,6 +130,7 @@ public class UIGraphic implements UICore {
 			c = giw.getResult();
 			if (c.equals(null));
 			else {
+				System.out.println(c);
 				checking = !checking;
 			}
 		}

@@ -134,6 +134,12 @@ public class Country {
 		else return false;
 	}
 	
+	public boolean userHasControl(Side side) {
+		if (side.equals(Side.USA) && (USInfluence - USSRInfluence) >= stabilityNum) return true;
+		else if (side.equals(Side.USSR) && (USSRInfluence - USInfluence) >= stabilityNum) return true;
+		else return false;
+	}
+
 	/**
 	 * Returns The list of the connected countries
 	 * @param b ArrayList<Country>

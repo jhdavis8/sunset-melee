@@ -46,7 +46,7 @@ public class GenericInputWindow {
 		JTextArea countryOutput = new JTextArea();
 		JButton select = new JButton("Select");
 		countryName = new JTextField();
-		
+
 		
 		
 
@@ -67,12 +67,12 @@ public class GenericInputWindow {
 
 		confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			
+				country = Map.getCountry(countryInput.getText());
+				frame.setVisible(false);
 			}
 		});
-		springLayout.putConstraint(SpringLayout.WEST, confirm, -193, SpringLayout.EAST, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, confirm, 0, SpringLayout.SOUTH, frame.getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, confirm, 0, SpringLayout.EAST, frame.getContentPane());
-		frame.getContentPane().add(confirm);
+
 		
 
 		springLayout.putConstraint(SpringLayout.NORTH, countryOutput, 6, SpringLayout.SOUTH, countryName);
@@ -89,6 +89,10 @@ public class GenericInputWindow {
 					country = Map.getCountry(input);
 					countryName.setText(country.getFullName());
 					countryOutput.setText(country.toString());
+					springLayout.putConstraint(SpringLayout.WEST, confirm, -193, SpringLayout.EAST, frame.getContentPane());
+					springLayout.putConstraint(SpringLayout.SOUTH, confirm, 0, SpringLayout.SOUTH, frame.getContentPane());
+					springLayout.putConstraint(SpringLayout.EAST, confirm, 0, SpringLayout.EAST, frame.getContentPane());
+					frame.getContentPane().add(confirm);
 				}
 				else {
 					countryOutput.setText("Not a valid country to place influence in!");
