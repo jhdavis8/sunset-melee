@@ -179,7 +179,7 @@ public class ScrollImage extends JPanel {
 			}
 			else if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\usa_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
+				String f = "img\\ussr_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
 				jL.setIcon(new ImageIcon(f));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
@@ -189,7 +189,7 @@ public class ScrollImage extends JPanel {
 			}
 			else if (c.userHasInfluence(Side.USSR) && !(c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\usa_tokens\\ussrInfluence" + c.getUSSRInfluence() + ".png";
+				String f = "img\\ussr_tokens\\ussrInfluence" + c.getUSSRInfluence() + ".png";
 				jL.setIcon(new ImageIcon(f));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);

@@ -39,8 +39,11 @@ public class Controller {
 		
 		//Actual game running code below, commented out until UI is ready!
 		try {
+			//TODO NOT WORKIUNG
 			Effects.getEffect(998);
+			UI.updateUI();
 			Effects.getEffect(999);
+			UI.updateUI();
 		}
 		catch (Exception e) {
 			e.getMessage();

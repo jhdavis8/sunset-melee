@@ -36,6 +36,7 @@ public class UIGraphic implements UICore {
 	 */
 	private Window window;
 	
+	
 	/* Used to retrieve the most recent version of the Board
 	 * (non-Javadoc)
 	 * @see gameFiles.UICore#updateBoard(gameFiles.Board)
@@ -128,7 +129,7 @@ public class UIGraphic implements UICore {
 		while(checking) {
 			GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
 			c = giw.getResult();
-			if (c.equals(null));
+			if (c.equals(null)) continue;
 			else {
 				System.out.println(c);
 				checking = !checking;

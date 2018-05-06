@@ -141,6 +141,7 @@ public class Player {
 		int influenceLeft = tCard.getOps();
 		Country country = null;
 		while (influenceLeft > 0) {
+			System.out.print("");
 			ui.announce("You have " + influenceLeft + " influence left.");
 			country = ui.promptValidInfluenceTarget(side);
 			if (country.opponentHasControl(side)) {
