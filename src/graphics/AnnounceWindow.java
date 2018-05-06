@@ -10,6 +10,11 @@ import java.awt.BorderLayout;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import java.awt.Font;
+import java.awt.Frame;
+
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AnnounceWindow {
 
@@ -41,5 +46,13 @@ public class AnnounceWindow {
 		textPane.setEditable(false);
 		frmAnnocement.setVisible(true);
 		frmAnnocement.getContentPane().add(textPane, BorderLayout.CENTER);
+		
+		JButton btnUnderstood = new JButton("Understood");
+		btnUnderstood.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				frmAnnocement.setVisible(false);
+			}
+		});
+		frmAnnocement.getContentPane().add(btnUnderstood, BorderLayout.SOUTH);
 	}
 }

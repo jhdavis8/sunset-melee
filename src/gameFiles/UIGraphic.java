@@ -92,7 +92,8 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public void indicateNoCards() {
-		// TODO Auto-generated method stub
+		this.announce("Player, you have no cards remaining in your hand to draw, as such your phase will be passed untill the\n"
+				+ "next turn when new cards will be dealt to you.");
 		
 	}
 
@@ -121,8 +122,18 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptExceptionInfluenceTarget(Side side) {
-		// TODO Auto-generated method stub
-		return null;
+		boolean checking = true;
+		String input = "";
+		Country c = null;
+		while(checking) {
+			GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
+			c = giw.getResult();
+			if (c.equals(null));
+			else {
+				checking = !checking;
+			}
+		}
+		return c;
 	}
 
 }
