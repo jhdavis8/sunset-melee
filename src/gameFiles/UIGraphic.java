@@ -5,6 +5,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import graphics.*;
+
+
 /**
  * UIGraphic is a implementation of UICore that will have a graphical interface an allow for a more
  * traditional windows interface.
@@ -65,8 +68,14 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public int promptSelectCard(Side side) {
-		// TODO Auto-generated method stub
-		return 0;
+		CardSelectorWindow csw = new CardSelectorWindow(currentBoard.getPlayer(side).getHand());
+		csw.setVisable();
+		while (csw.getResult() == -1) {
+			System.out.println("");
+		}
+		
+		
+		return csw.getResult();
 	}
 
 	@Override
@@ -95,8 +104,7 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public void announce(String s) {
-		System.out.println(s);
-		
+		AnnounceWindow aw = new AnnounceWindow(s);
 	}
 
 	@Override

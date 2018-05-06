@@ -1,4 +1,4 @@
-package gameFiles;
+package graphics;
 
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -8,6 +8,9 @@ import java.io.IOException;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
+
+import gameFiles.Board;
+
 import java.awt.Component;
 import java.awt.Dimension;
 

@@ -8,6 +8,8 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import graphics.CardSelectorWindow;
+
 
 
 /**
@@ -32,26 +34,10 @@ public class Controller {
 		UI.updateBoard(game);
 		UItext.updateBoard(game);
 		Effects.setUI(UI);
-		CardSelectorWindow friend = new CardSelectorWindow(Deck.getEarlyCards());
-		friend.frame.setVisible(true);
 		
-		// TODO what is even happening
-		while (friend.getResult() == null) {
-			System.out.println("a");
-		}
-		System.out.println("h");
-		System.out.println(friend.getResult());
+
 		
-		System.out.println(game.getActionRound());
-		UI.updateUI();
-		System.out.println(game.getActionRound());
-		game.modifyDefcon(-1);
-		UI.updateUI();
-		System.out.println(game.getActionRound());
-		UI.updateUI();
-		UI.updateUI();
-		
-		/*  Actual game running code below, commented out until UI is ready!
+		//Actual game running code below, commented out until UI is ready!
 		try {
 			Effects.getEffect(998);
 			Effects.getEffect(999);
@@ -65,7 +51,7 @@ public class Controller {
 		for (int k = 0; k < 10; k ++) {
 			turn(game, UI);
 		}
-		*/
+		
 		//UI.runUI();
 	}
 	

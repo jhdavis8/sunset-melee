@@ -1,4 +1,4 @@
-package gameFiles;
+package graphics;
 
 public class ThreadRunner implements Runnable {
 

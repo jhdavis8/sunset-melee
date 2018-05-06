@@ -1,4 +1,4 @@
-package gameFiles;
+package graphics;
 
 import java.awt.EventQueue;
 
@@ -17,30 +17,18 @@ import java.awt.event.ActionEvent;
 import java.awt.TextArea;
 import java.awt.FlowLayout;
 import javax.swing.JTextArea;
+
+import gameFiles.Card;
+import gameFiles.Deck;
+
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
 public class CardSelectorWindow {
 
 	JFrame frame;
-	private Card result = null;
+	private int result = -1;
 	private ArrayList<Card> options;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {/*
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CardSelectorWindow window = new CardSelectorWindow(new ArrayList<Card>());
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});*/
-	}
 
 	/**
 	 * Create the application.
@@ -72,8 +60,7 @@ public class CardSelectorWindow {
 		button.setActionCommand("Pick Card");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println(choice.getSelectedItem());
-				result = Deck.getCard(choice.getSelectedIndex());
+				result = choice.getSelectedIndex();
 			}
 		});
 		frame.getContentPane().add(button);
@@ -96,7 +83,11 @@ public class CardSelectorWindow {
 		frame.getContentPane().add(button_1);
 	}
 	
-	public Card getResult() {
+	public int getResult() {
 		return result;
+	}
+
+	public void setVisable() {
+		frame.setVisible(true);
 	}
 }

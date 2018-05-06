@@ -1,4 +1,4 @@
-package gameFiles;
+package graphics;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -15,6 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+
+import gameFiles.Board;
+import gameFiles.Side;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
