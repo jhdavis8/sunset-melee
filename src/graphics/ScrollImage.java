@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -17,6 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import gameFiles.Board;
+import gameFiles.Country;
+import gameFiles.Location;
+import gameFiles.Map;
 import gameFiles.Side;
 
 import javax.swing.JLabel;
@@ -44,6 +48,8 @@ public class ScrollImage extends JPanel {
     private Side actionRoundSide = Side.USSR;
     private int actionRoundNum = 1;
     private int defconNum = 5;
+    
+    private ArrayList<JLabel> influenceTokens;
 
     public ScrollImage() {
         try {
@@ -51,6 +57,9 @@ public class ScrollImage extends JPanel {
         } catch(IOException ex) {
             Logger.getLogger(ScrollImage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        influenceTokens = new ArrayList<JLabel>();
+        
 
         this.canvas = new JPanel() {
             private static final long serialVersionUID = 1L;
@@ -143,6 +152,59 @@ public class ScrollImage extends JPanel {
     	return 740 + (5 - defconNum) *76;
 	}
 
+	private void repaintAllInfluence() {
+		influenceTokens = new ArrayList<JLabel>();
+		
+		for (int k = 0; k < Map.getWorld().size(); k ++) {
+			Country c = Map.getWorld().get(k);
+			if (c.userHasInfluence(Side.USA) && (c.userHasControl(Side.USA))) {
+				JLabel jL = new JLabel("");
+				String f = "img\\usa_tokens\\usaControl" + c.getUSInfluence() + ".png";
+				jL.setIcon(new ImageIcon(f));
+				
+				Location l = Location.getImageLocation(c.getISO(), Side.USA);
+				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				
+				influenceTokens.add(jL);
+			}
+			else if (c.userHasInfluence(Side.USA) && !(c.userHasControl(Side.USA))) {
+				JLabel jL = new JLabel("");
+				String f = "img\\usa_tokens\\usaInfluence" + c.getUSInfluence() + ".png";
+				jL.setIcon(new ImageIcon(f));
+
+				Location l = Location.getImageLocation(c.getISO(), Side.USA);
+				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				
+				influenceTokens.add(jL);
+			}
+			else if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
+				JLabel jL = new JLabel("");
+				String f = "img\\usa_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
+				jL.setIcon(new ImageIcon(f));
+				
+				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
+				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				
+				influenceTokens.add(jL);
+			}
+			else if (c.userHasInfluence(Side.USSR) && !(c.userHasControl(Side.USSR))) {
+				JLabel jL = new JLabel("");
+				String f = "img\\usa_tokens\\ussrInfluence" + c.getUSSRInfluence() + ".png";
+				jL.setIcon(new ImageIcon(f));
+				
+				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
+				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				
+				influenceTokens.add(jL);
+			}
+		}
+		
+		for (JLabel jL : influenceTokens) {
+			canvas.add(jL);
+		}
+		
+	}
+
 	public void setDefcon(int d) {
     	defconNum = d;
     }
@@ -153,5 +215,6 @@ public class ScrollImage extends JPanel {
 		lblDefcon.repaint();
 		actionRoundNum = b.getActionRound();
 		actionRoundAdvance();
+		repaintAllInfluence();
 	}
 }
