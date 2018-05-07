@@ -44,7 +44,7 @@ public class Location {
 			for (int k = 0; k < 5; k ++) {
 				tempLoc[k] = scan.next();
 			}
-			//					(X							 ,Y							   , Name	   , Country   , Side				
+			//					(X							 , Y						   , Name	   , Country   , Side				
 			loc.add(new Location(Integer.parseInt(tempLoc[0]), Integer.parseInt(tempLoc[1]), tempLoc[2], tempLoc[3],
 					Side.toSide(tempLoc[4].substring(0, tempLoc[4].length() - 1))));
 		}

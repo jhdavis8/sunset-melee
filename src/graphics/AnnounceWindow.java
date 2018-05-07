@@ -36,25 +36,27 @@ public class AnnounceWindow {
 		frmAnnocement = new JDialog();
 		frmAnnocement.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		frmAnnocement.setTitle("Annocement");
-		frmAnnocement.setBounds(100, 100, 450, 300);
+		frmAnnocement.setBounds(100, 100, 450, 331);
 
 		frmAnnocement.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-		frmAnnocement.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JTextArea textPane = new JTextArea();
+		textPane.setBounds(0, 0, 432, 228);
 		textPane.setToolTipText("System Announcement");
 		textPane.setText(s);
 		textPane.setLineWrap(true);
 		textPane.setEditable(false);
 		frmAnnocement.setVisible(true);
-		frmAnnocement.getContentPane().add(textPane, BorderLayout.CENTER);
+		frmAnnocement.getContentPane().setLayout(null);
+		frmAnnocement.getContentPane().add(textPane);
 		
 		JButton btnUnderstood = new JButton("Understood");
+		btnUnderstood.setBounds(43, 241, 338, 32);
 		btnUnderstood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmAnnocement.dispose();
 			}
 		});
-		frmAnnocement.getContentPane().add(btnUnderstood, BorderLayout.SOUTH);
+		frmAnnocement.getContentPane().add(btnUnderstood);
 	}
 }

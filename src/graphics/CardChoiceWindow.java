@@ -72,7 +72,6 @@ public class CardChoiceWindow extends JDialog {
 			JRadioButton runEvent = new JRadioButton("Run Event");
 			runEvent.setBounds(22, 246, 165, 41);
 			contentPanel.add(runEvent);
-			runEvent.setHorizontalAlignment(SwingConstants.TRAILING);
 			buttonGroup.add(runEvent);
 		}
 		
