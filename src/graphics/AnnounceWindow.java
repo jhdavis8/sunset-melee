@@ -13,12 +13,14 @@ import java.awt.Font;
 import java.awt.Frame;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class AnnounceWindow {
 
-	private JFrame frmAnnocement;
+	private JDialog frmAnnocement;
 
 	/**
 	 * Create the application.
@@ -31,12 +33,12 @@ public class AnnounceWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(String s) {
-		frmAnnocement = new JFrame();
+		frmAnnocement = new JDialog();
 		frmAnnocement.setFont(new Font("Tahoma", Font.PLAIN, 34));
 		frmAnnocement.setTitle("Annocement");
 		frmAnnocement.setBounds(100, 100, 450, 300);
 
-		frmAnnocement.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frmAnnocement.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		frmAnnocement.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JTextArea textPane = new JTextArea();
@@ -50,7 +52,7 @@ public class AnnounceWindow {
 		JButton btnUnderstood = new JButton("Understood");
 		btnUnderstood.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				frmAnnocement.setVisible(false);
+				frmAnnocement.dispose();
 			}
 		});
 		frmAnnocement.getContentPane().add(btnUnderstood, BorderLayout.SOUTH);

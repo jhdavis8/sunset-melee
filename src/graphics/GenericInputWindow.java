@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.BorderLayout;
 import javax.swing.JTextArea;
 import javax.swing.SpringLayout;
@@ -16,7 +18,7 @@ import java.awt.event.ActionEvent;
 
 public class GenericInputWindow {
 
-	private JFrame frame;
+	private JDialog frame;
 	private JTextField countryName;
 	private Country country;
 
@@ -35,11 +37,12 @@ public class GenericInputWindow {
 	 * @param string 
 	 */
 	private void initialize(String string) {
-		frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame = new JDialog();
+		frame.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		frame.setBounds(100, 100, 450, 300);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
+		frame.setVisible(true);
 		
 		JButton confirm = new JButton("Confirm");
 		JTextArea countryInput = new JTextArea();
@@ -69,7 +72,7 @@ public class GenericInputWindow {
 			public void actionPerformed(ActionEvent e) {
 			
 				country = Map.getCountry(countryInput.getText());
-				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 
@@ -103,7 +106,7 @@ public class GenericInputWindow {
 		springLayout.putConstraint(SpringLayout.SOUTH, select, 0, SpringLayout.SOUTH, frame.getContentPane());
 		frame.getContentPane().add(select);
 		
-		frame.setVisible(true);
+
 	}
 
 	public Country getResult() {

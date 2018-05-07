@@ -8,6 +8,9 @@ import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JDialog;
+
+import graphics.CardChoiceWindow;
 import graphics.CardSelectorWindow;
 
 
@@ -30,11 +33,10 @@ public class Controller {
 		initialize(game);
 		Effects.setCurrentBoard(game);
 		UIGraphic UI = new UIGraphic();
-		UIText UItext = new UIText();
+//		UIText UItext = new UIText();
 		UI.updateBoard(game);
-		UItext.updateBoard(game);
+		UI.updateUI();
 		Effects.setUI(UI);
-		
 
 		
 		//Actual game running code below, commented out until UI is ready!
@@ -56,6 +58,7 @@ public class Controller {
 		}
 		
 		//UI.runUI();
+		 
 	}
 	
 	/**
@@ -66,8 +69,10 @@ public class Controller {
 		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv","\\csv\\location.csv");
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("DDR"), 3);
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("FIN"), 1);
+		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("POL"), 4);
 		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("GBR"), 5);
 		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("CAN"), 2);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("FRA"), 3);
 	}
 	
 	/**

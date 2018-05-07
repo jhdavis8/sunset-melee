@@ -10,6 +10,8 @@ import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import java.awt.Choice;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ import javax.swing.JLabel;
 
 public class CardSelectorWindow {
 
-	JFrame frame;
+	JDialog frame;
 	private int result = -1;
 	private ArrayList<Card> options;
 
@@ -42,9 +44,9 @@ public class CardSelectorWindow {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JDialog();
 		frame.setBounds(100, 100, 539, 447);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		
 		Choice choice = new Choice();
 		choice.setBounds(14, 29, 497, 27);
@@ -61,7 +63,7 @@ public class CardSelectorWindow {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				result = choice.getSelectedIndex();
-				frame.setVisible(false);
+				frame.dispose();
 			}
 		});
 		frame.getContentPane().add(button);

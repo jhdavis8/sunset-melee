@@ -69,7 +69,7 @@ public class Deck {
 	 * @return the Card specified
 	 */
 	public static Card getCard(int i) {
-		for (Card c : deck) {
+		for (Card c : ALL_CARDS) {
 			if (i == c.cardNum) {
 				return c;
 			}
