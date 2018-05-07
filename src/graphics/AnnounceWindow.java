@@ -41,6 +41,7 @@ public class AnnounceWindow {
 		frmAnnocement.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
 		
 		JTextArea textPane = new JTextArea();
+		textPane.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		textPane.setBounds(0, 0, 432, 228);
 		textPane.setToolTipText("System Announcement");
 		textPane.setText(s);

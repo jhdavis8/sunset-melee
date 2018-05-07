@@ -5,6 +5,8 @@ import java.util.Scanner;
 
 import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
+import graphics.Window;
+
 /**
  * UI implementation solely based on command prompt
  * @author Josh Davis
@@ -27,15 +29,24 @@ public class UIText implements UICore {
 	 */
 	private Board currentBoard;
 
-	/* (non-Javadoc)
-	 * @see gameFiles.UICore#updateBoard(gameFiles.Board)
+	/**
+	 * The map window
 	 */
-	@Override
-	public void updateBoard(Board b) {
+	private Window window;
+	/**
+	 * 
+	 * @param b
+	 */
+	public UIText(Board b) {
 		currentBoard = b;
 		scan = new Scanner(System.in);
 		Effects.setScanner(scan);
-		
+		window = new Window();
+	}
+	
+	@Override
+	public void updateBoard(Board b) {
+		currentBoard = b;
 	}
 
 	/**
@@ -48,6 +59,7 @@ public class UIText implements UICore {
 	 */
 	@Override
 	public void updateUI() {
+		/*
 		String toReturn = "MAP INFORMATION AND STATUS\n\n";
 		toReturn += currentBoard;
 		toReturn += "------------------------\n" + "ISO_ISO_CNE_STB_US, RA_INFLU\n";
@@ -56,13 +68,14 @@ public class UIText implements UICore {
 				toReturn += c;
 			}
 		}
-		/*
+		
 		toReturn += "------------------------\n" + "CRD_CLS_TYP_VAL_EID\n";
 		for (Card c : currentBoard.getDeck()) {
 			toReturn += c;
 		}
 		*/
-		System.out.println(toReturn);
+		//System.out.println(toReturn);
+		window.rePaintAll(currentBoard);
 	}
 	
 	/**

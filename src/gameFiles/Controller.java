@@ -32,8 +32,8 @@ public class Controller {
 		Board game = new Board(); 
 		initialize(game);
 		Effects.setCurrentBoard(game);
-		UIGraphic UI = new UIGraphic();
-//		UIText UItext = new UIText();
+//		UIGraphic UI = new UIGraphic(); // TODO unify constructor signatures
+		UIText UI = new UIText(game);
 		UI.updateBoard(game);
 		UI.updateUI();
 		Effects.setUI(UI);
@@ -45,6 +45,7 @@ public class Controller {
 			Effects.getEffect(998);
 			UI.updateUI();
 			Effects.getEffect(999);
+			game.setPlayerTurn(Side.USSR);
 			UI.updateUI();
 		}
 		catch (Exception e) {

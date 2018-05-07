@@ -447,14 +447,14 @@ public class Effects {
 	}
 	
 	/**
-	 * USA Europe Scoring
+	 * USA Europe
 	 */
 	private static void effectID998() {
 		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(0), UI, Continents.WEE);
 	}
 	
 	/**
-	 * USSR Europe Scoring
+	 * USSR Europe 
 	 */
 	private static void effectID999() {
 		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(1), UI, Continents.EEE);

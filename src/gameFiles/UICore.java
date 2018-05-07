@@ -78,7 +78,7 @@ public interface UICore {
 	public Scanner getScanner();
 
 	/**
-	 * Allows for placement of influence based on coninent not other game locig
+	 * Allows for placement of influence based on continent not other game logic
 	 * @param side Side
 	 * @return a County
 	 */

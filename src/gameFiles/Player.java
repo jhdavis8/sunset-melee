@@ -170,6 +170,7 @@ public class Player {
 		int influenceLeft = tCard.getOps();
 		Country country = null;
 		while (influenceLeft > 0) {
+			ui.updateUI();
 			ui.announce("You have " + influenceLeft + " influence left.");
 			country = ui.promptExceptionInfluenceTarget(side);
 			if (country.opponentHasControl(side) && country.isCountryInContinent(c)) {

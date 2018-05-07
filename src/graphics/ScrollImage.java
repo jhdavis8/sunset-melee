@@ -104,27 +104,6 @@ public class ScrollImage extends JPanel {
         lblDefcon.setBounds(740, 1255, 42, 41);
         canvas.add(lblDefcon);
         
-        JButton btnDecrementDefcon = new JButton("Decrement Defcon");
-        btnDecrementDefcon.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		if (defconNum == 1) {
-        			defconNum = 5;
-
-        	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
-        			//lblDefcon.repaint();
-        		}
-        		else {
-        			defconNum --;
-
-        	        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
-        			//lblDefcon.repaint();
-        		}
-        		
-        	}
-        });
-        btnDecrementDefcon.setBounds(26, 28, 171, 41);
-        canvas.add(btnDecrementDefcon);
-        
 
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
@@ -216,5 +195,7 @@ public class ScrollImage extends JPanel {
 		actionRoundNum = b.getActionRound();
 		actionRoundAdvance();
 		repaintAllInfluence();
+		canvas.revalidate();
+		canvas.repaint();
 	}
 }

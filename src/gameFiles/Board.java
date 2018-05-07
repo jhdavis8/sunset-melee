@@ -157,7 +157,12 @@ public class Board {
 		if (side.equals(Side.USA)) return USA;
 		else return USSR;
 	}
-
+	
+	public void setPlayerTurn(Side side) {
+		if (side == Side.USSR) playerTurn = true;
+		else playerTurn = false;
+	}
+	
 	/**
 	 * Deals the cards to the players hand
 	 */

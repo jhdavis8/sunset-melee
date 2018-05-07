@@ -129,8 +129,8 @@ public class UIGraphic implements UICore {
 		while(checking) {
 			GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
 			c = giw.getResult();
-			if (c.equals(null));
-			else {
+			if (c != null); //Null pointer exception?
+			{
 				System.out.println(c);
 				checking = !checking;
 			}
