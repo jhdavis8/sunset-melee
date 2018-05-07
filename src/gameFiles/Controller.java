@@ -69,10 +69,19 @@ public class Controller {
 		b.setUp("\\csv\\cards.csv", "\\csv\\countries.csv","\\csv\\location.csv");
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("DDR"), 3);
 		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("FIN"), 1);
-		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("POL"), 4);
+		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("SYR"), 1);
+		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("IRQ"), 1);
+		b.getPlayer(Side.USSR).placeInfluence(Map.getCountry("PRK"), 3);
 		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("GBR"), 5);
 		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("CAN"), 2);
-		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("FRA"), 3);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("IRN"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("ISR"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("JPN"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("AUS"), 4);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("PHL"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("KOR"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("PAN"), 1);
+		b.getPlayer(Side.USA).placeInfluence(Map.getCountry("ZAF"), 1);
 	}
 	
 	/**

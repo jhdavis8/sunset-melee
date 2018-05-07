@@ -33,7 +33,7 @@ public class CardChoiceWindow extends JDialog {
 	public static void main(String[] args) {
 		try {
 			Deck.fillDeck(new File(new File("").getAbsolutePath() + "\\csv\\cards.csv"));
-			CardChoiceWindow dialog = new CardChoiceWindow(Deck.getCard(6));
+			CardChoiceWindow dialog = new CardChoiceWindow(Deck.getAllCard(6));
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {

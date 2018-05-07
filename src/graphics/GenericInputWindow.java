@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 
 public class GenericInputWindow {
 
-	private JDialog frame;
+	private JFrame frame;
 	private JTextField countryName;
 	private Country country;
 
@@ -37,8 +37,8 @@ public class GenericInputWindow {
 	 * @param string 
 	 */
 	private void initialize(String string) {
-		frame = new JDialog();
-		frame.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+		frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.setBounds(100, 100, 450, 300);
 		SpringLayout springLayout = new SpringLayout();
 		frame.getContentPane().setLayout(springLayout);
