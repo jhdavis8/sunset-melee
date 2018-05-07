@@ -44,6 +44,7 @@ public class Controller {
 			//TODO NOT WORKIUNG
 			Effects.getEffect(998);
 			UI.updateUI();
+			game.setPlayerTurn(Side.USSR);
 			Effects.getEffect(999);
 			game.setPlayerTurn(Side.USSR);
 			UI.updateUI();

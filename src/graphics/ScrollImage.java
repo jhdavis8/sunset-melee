@@ -48,6 +48,7 @@ public class ScrollImage extends JPanel {
     private Side actionRoundSide = Side.USSR;
     private int actionRoundNum = 1;
     private int defconNum = 5;
+    boolean isTrue = false;
     
     private ArrayList<JLabel> influenceTokens;
 
@@ -132,6 +133,10 @@ public class ScrollImage extends JPanel {
 	}
 
 	private void repaintAllInfluence() {
+		for (JLabel comp : influenceTokens) {
+			canvas.remove(comp);
+		}
+		influenceTokens.removeAll(influenceTokens);
 		influenceTokens = new ArrayList<JLabel>();
 		
 		for (int k = 0; k < Map.getWorld().size(); k ++) {
@@ -150,7 +155,7 @@ public class ScrollImage extends JPanel {
 				JLabel jL = new JLabel("");
 				String f = "img\\usa_tokens\\usaInfluence" + c.getUSInfluence() + ".png";
 				jL.setIcon(new ImageIcon(f));
-
+	
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
 				jL.setBounds(l.getX(), l.getY(), 45, 45);
 				
@@ -182,6 +187,8 @@ public class ScrollImage extends JPanel {
 			canvas.add(jL);
 		}
 		
+		canvas.revalidate();
+		canvas.repaint();
 	}
 
 	public void setDefcon(int d) {
