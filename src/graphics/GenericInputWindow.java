@@ -111,6 +111,11 @@ public class GenericInputWindow {
 	}
 
 	public Country getResult() {
-		return country;
+		while (country == null) {
+			country = null;
+		}
+		Country c = country;
+		country = null;
+		return c;
 	}
 }
