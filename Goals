@@ -18,3 +18,8 @@ Week 2
 	-Done- Scanner to read and fills cards form a .csv
 	-Done- Scanner to read and fills countries from a .csv
 		- 	 - Link countries together for other logic.
+		
+Week Whatever
+	NEW IDEA
+	Lets make a frame gui that holds a player object, and it calls dialogs of the different things.
+	Then we can just copy the the structute of that example that seamed to work. 
