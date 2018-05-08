@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gameFiles;
+package debug;
 import java.util.Scanner;
 
 /**

@@ -48,7 +48,7 @@ public class GenericInputWindow {
 		
 		JButton confirm = new JButton("Confirm");
 		JTextArea countryInput = new JTextArea();
-				springLayout.putConstraint(SpringLayout.WEST, countryInput, 9, SpringLayout.WEST, frame.getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, countryInput, 9, SpringLayout.WEST, frame.getContentPane());
 		JTextArea countryOutput = new JTextArea();
 		springLayout.putConstraint(SpringLayout.WEST, countryOutput, 7, SpringLayout.EAST, countryInput);
 		springLayout.putConstraint(SpringLayout.EAST, countryOutput, -24, SpringLayout.EAST, frame.getContentPane());
@@ -84,6 +84,7 @@ public class GenericInputWindow {
 				String input = countryInput.getText().toUpperCase();
 				if (Map.getCountry(input) != null) {
 					country = Map.getCountry(input);
+					System.out.println(country);
 					countryName.setText(country.getFullName());
 					countryOutput.setText(country.toString());
 					springLayout.putConstraint(SpringLayout.WEST, confirm, -193, SpringLayout.EAST, frame.getContentPane());
@@ -111,6 +112,11 @@ public class GenericInputWindow {
 	}
 
 	public Country getResult() {
-		return country;
+		while (country == null) {
+			country = null;
+		}
+		Country c = country;
+		//country = null;
+		return c;
 	}
 }

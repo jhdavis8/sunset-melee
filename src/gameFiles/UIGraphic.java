@@ -123,19 +123,8 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptExceptionInfluenceTarget(Side side) {
-		boolean checking = true;
-		String input = "";
-		Country c = null;
-		while(checking) {
-			GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
-			c = giw.getResult();
-			if (c != null); //Null pointer exception?
-			{
-				System.out.println(c);
-				checking = !checking;
-			}
-		}
-		return c;
+		GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
+		return giw.getResult();
 	}
 
 }
