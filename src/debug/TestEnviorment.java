@@ -6,7 +6,6 @@ import javax.swing.JDialog;
 
 import gameFiles.Country;
 import gameFiles.Map;
-import graphics.CountrySelectorDailog;
 
 public class TestEnviorment {
 
@@ -14,11 +13,9 @@ public class TestEnviorment {
 		try {
 			Map.setFile(new File(new File("").getAbsolutePath() + "\\csv\\countries.csv"));
 			Map.fillCountries();
-			CountrySelectorDailog dialog = new CountrySelectorDailog();
+			FrameTest dialog = new FrameTest();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-			Country c = dialog.getCountry();
-			System.out.println(c);
 			dialog.dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
