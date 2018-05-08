@@ -23,3 +23,4 @@ Week Whatever
 	NEW IDEA
 	Lets make a frame gui that holds a player object, and it calls dialogs of the different things.
 	Then we can just copy the the structute of that example that seamed to work. 
+	Set frame visability based on current turn, so only two windows.
