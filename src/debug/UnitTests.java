@@ -1,4 +1,4 @@
-package gameFiles;
+package debug;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
+import gameFiles.Board;
+import gameFiles.Controller;
+import gameFiles.Effects;
+import gameFiles.Map;
 import junit.framework.TestCase;
 
 public class UnitTests {

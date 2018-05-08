@@ -13,6 +13,7 @@ import javax.swing.JDialog;
 
 import graphics.CardChoiceWindow;
 import graphics.CardSelectorWindow;
+import graphics.CountrySelectorDailog;
 import graphics.TestWindow;
 
 
@@ -29,8 +30,8 @@ public class Controller {
 	 * Main function carries out the game
 	 * @param args command line args
 	 */
-	public static void main(String[] args) {
-
+	public static void main(String[] args) {	
+		
 		
 		Board game = new Board(); 
 		initialize(game);
