@@ -190,6 +190,20 @@ public class Player {
 	}
 
 
+	public void removeInfluence(TurnCard tCard, UICore ui, Continents c, Side opponent) {
+		int influenceLeft = tCard.getOps();
+		Country country = null;
+		while (influenceLeft > 0) {
+			ui.updateUI();
+			ui.announce("You have " + influenceLeft + " influence left.");
+			country = ui.promptExceptionInfluenceTarget(side);
+			country.modifyInfluence(-1, opponent);
+			influenceLeft--;
+			ui.announce("1 influence removed in " + country);
+		}
+		ui.announce("All influence expended.");
+	}
+
 	/**
 	 * Rolls a realignment for the player, called in board.
 	 * @param tCard The players card

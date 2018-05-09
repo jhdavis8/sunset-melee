@@ -91,4 +91,28 @@ public class ScoringCard extends Card implements Comparable<ScoringCard> {
 		else return -1;
 	}
 
+
+	/**
+	 * @return the presence
+	 */
+	public int getPresence() {
+		return presence;
+	}
+
+
+	/**
+	 * @return the control
+	 */
+	public int getControl() {
+		return control;
+	}
+
+
+	/**
+	 * @return the domination
+	 */
+	public int getDomination() {
+		return domination;
+	}
+
 }

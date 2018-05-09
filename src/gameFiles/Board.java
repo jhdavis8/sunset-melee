@@ -326,6 +326,10 @@ public class Board {
 		else USA.placeInfluence(tCard, ui, c);
 	}
 
+	public void removeInfluence(TurnCard tCard, UICore ui, Continents c, Side s) {
+		getPlayer(s).removeInfluence(tCard, ui, c, s.opponent(s));
+	}
+
 	/**
 	 * Called the appropriate {@link Player} method
 	 * @param tCard Turn Card selected by user

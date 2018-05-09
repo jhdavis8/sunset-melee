@@ -3,8 +3,11 @@ package debug;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import debug.MainWelcomeGui2;
 
 public class FrameTest extends JFrame {
+	public FrameTest() {
+	}
    /**
 	 * 
 	 */
@@ -26,7 +29,7 @@ public static void main(String[] args) {
       panel.add(addDeptButtonLaunchJDialog);
       panel.add(addDeptButtonLaunchJFrame);
 
-      frame.add(panel);
+      frame.getContentPane().add(panel);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.pack();
       frame.setLocationRelativeTo(null);

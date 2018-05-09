@@ -16,7 +16,6 @@ public class TestEnviorment {
 			FrameTest dialog = new FrameTest();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-			dialog.dispose();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

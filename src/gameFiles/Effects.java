@@ -27,6 +27,7 @@ public class Effects {
 	 * UI object used
 	 */
 	private static UICore UI;
+	private static boolean effectID083;
 	
 	/**
 	 * Assign a Board object to the effects
@@ -34,6 +35,7 @@ public class Effects {
 	 */
 	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
+		effectID083 = false;
 	}
 	
 	/**
@@ -67,6 +69,9 @@ public class Effects {
 				break;
 			case 6:
 				effectID006();
+				break;
+			case 7:
+				effectID007();
 				break;
 			case 8:
 				effectID008();
@@ -149,7 +154,55 @@ public class Effects {
 	 * Asia Scoring card effect
 	 */
 	private static void effectID001() {
-		
+		System.out.println("Pre-Scoring Victory Points: " + currentBoard.getVictoryPoints());
+		boolean presenceUSA = false;
+		boolean presenceUSSR = false;
+		Side domination = Side.UNK;
+		Side control = Side.UNK;
+		int countryCountUSA = 0;
+		int countryCountUSSR = 0;
+		int bgCountUSA = 0;
+		int bgCountUSSR = 0;
+		int bgTotal = 0;
+		int totalUSA = 0;
+		int totalUSSR = 0;
+		for (Country c : Map.getWorld()) {
+			if (c.getContinent().contains(Continents.ABB) || c.getContinent().contains(Continents.UUU)) {
+				if (c.getControllingSide() == Side.USA) {
+					presenceUSA = true;
+					countryCountUSA++;
+					if (c.isBattleground()) {
+						bgCountUSA++;
+						bgTotal++;
+					}
+				}
+				else if (c.getControllingSide() == Side.USSR) {
+					presenceUSSR = true;
+					countryCountUSSR++;
+					if (c.isBattleground()) {
+						bgCountUSSR++;
+						bgTotal++;
+					}
+				}
+			}
+		}
+		if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR && countryCountUSA >= 1 && bgCountUSA >= 1) {
+			domination = Side.USA;
+		}
+		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR >= 1 && bgCountUSSR >= 1) {
+			domination = Side.USSR;
+		}
+		ScoringCard c = (ScoringCard) Deck.getAllCard(1);
+		if (countryCountUSA > countryCountUSSR && bgCountUSA == bgTotal) control = Side.USA;
+		if (countryCountUSSR > countryCountUSA && bgCountUSSR == bgTotal) control = Side.USSR;
+		if (presenceUSA) totalUSA += c.getPresence();
+		if (presenceUSSR) totalUSSR += c.getPresence();
+		if (domination == Side.USA) totalUSA += c.getDomination();
+		else if (domination == Side.USSR) totalUSSR += c.getDomination();
+		if (control == Side.USA) totalUSA += c.getDomination();
+		if (control == Side.USSR) totalUSSR += c.getDomination();
+		currentBoard.modifyVictoryPoints(totalUSSR - totalUSA);
+		System.out.println("Post-Scoring Victory Points: " + currentBoard.getVictoryPoints());
 	}
 	
 	/**
@@ -194,12 +247,13 @@ public class Effects {
 		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR >= 1 && bgCountUSSR >= 1) {
 			domination = Side.USSR;
 		}
+		ScoringCard c = (ScoringCard) Deck.getAllCard(2);
 		if (countryCountUSA > countryCountUSSR && bgCountUSA == bgTotal) control = Side.USA;
 		if (countryCountUSSR > countryCountUSA && bgCountUSSR == bgTotal) control = Side.USSR;
-		if (presenceUSA) totalUSA += 3;
-		if (presenceUSSR) totalUSSR += 3;
-		if (domination == Side.USA) totalUSA += 7;
-		else if (domination == Side.USSR) totalUSSR += 7;
+		if (presenceUSA) totalUSA += c.getPresence();
+		if (presenceUSSR) totalUSSR += c.getPresence();
+		if (domination == Side.USA) totalUSA += c.getDomination();
+		else if (domination == Side.USSR) totalUSSR += c.getDomination();
 		if (control == Side.USA) totalUSA += 400;
 		if (control == Side.USSR) totalUSSR += 400;
 		currentBoard.modifyVictoryPoints(totalUSSR - totalUSA);
@@ -210,7 +264,55 @@ public class Effects {
 	 * Middle East Scoring card effect
 	 */
 	private static void effectID003() {
-
+		System.out.println("Pre-Scoring Victory Points: " + currentBoard.getVictoryPoints());
+		boolean presenceUSA = false;
+		boolean presenceUSSR = false;
+		Side domination = Side.UNK;
+		Side control = Side.UNK;
+		int countryCountUSA = 0;
+		int countryCountUSSR = 0;
+		int bgCountUSA = 0;
+		int bgCountUSSR = 0;
+		int bgTotal = 0;
+		int totalUSA = 0;
+		int totalUSSR = 0;
+		for (Country c : Map.getWorld()) {
+			if (c.getContinent().contains(Continents.MMM)) {
+				if (c.getControllingSide() == Side.USA) {
+					presenceUSA = true;
+					countryCountUSA++;
+					if (c.isBattleground()) {
+						bgCountUSA++;
+						bgTotal++;
+					}
+				}
+				else if (c.getControllingSide() == Side.USSR) {
+					presenceUSSR = true;
+					countryCountUSSR++;
+					if (c.isBattleground()) {
+						bgCountUSSR++;
+						bgTotal++;
+					}
+				}
+			}
+		}
+		if (countryCountUSA > countryCountUSSR && bgCountUSA > bgCountUSSR && countryCountUSA >= 1 && bgCountUSA >= 1) {
+			domination = Side.USA;
+		}
+		else if (countryCountUSSR > countryCountUSA && bgCountUSSR > bgCountUSA && countryCountUSSR >= 1 && bgCountUSSR >= 1) {
+			domination = Side.USSR;
+		}
+		ScoringCard c = (ScoringCard) Deck.getAllCard(3);
+		if (countryCountUSA > countryCountUSSR && bgCountUSA == bgTotal) control = Side.USA;
+		if (countryCountUSSR > countryCountUSA && bgCountUSSR == bgTotal) control = Side.USSR;
+		if (presenceUSA) totalUSA += c.getPresence();
+		if (presenceUSSR) totalUSSR += c.getPresence();
+		if (domination == Side.USA) totalUSA += c.getDomination();
+		else if (domination == Side.USSR) totalUSSR += c.getDomination();
+		if (control == Side.USA) totalUSA += c.getDomination();
+		if (control == Side.USSR) totalUSSR += c.getDomination();
+		currentBoard.modifyVictoryPoints(totalUSSR - totalUSA);
+		System.out.println("Post-Scoring Victory Points: " + currentBoard.getVictoryPoints());
 	}
 	
 	/**
@@ -246,6 +348,24 @@ public class Effects {
 	 */
 	private static void effectID006() {
 		// TODO NONE without Asia
+	}
+	
+	/**
+	 * Socialist Governments
+	 */
+	private static void effectID007() {
+		if (!effectID083) {
+			for (Country c : Map.getWorld()) {
+				if (c.opponentHasInfluence(Side.USSR)) {
+					System.out.println(c);
+				}
+			}
+			UI.announce("Remove three total influence from atleast two counties");
+			currentBoard.removeInfluence((TurnCard)Deck.getAllCard(7), UI, Continents.EEE, Side.USSR);
+		}
+		else {
+			UI.announce("Iron Lady - 083 - Is in effect, and as such this card has no effect.");
+		}
 	}
 	
 	/**
