@@ -1,4 +1,6 @@
-package graphics;
+package debug;
+
+import graphics.CardSelectorWindow;
 
 public class ThreadRunner implements Runnable {
 

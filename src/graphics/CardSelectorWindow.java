@@ -28,7 +28,7 @@ import javax.swing.JLabel;
 
 public class CardSelectorWindow {
 
-	JDialog frame;
+	public JDialog frame;
 	private int result = -1;
 	private ArrayList<Card> options;
 

@@ -1,4 +1,4 @@
-package graphics;
+package debug;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -11,8 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import debug.FrameTest;
 
 public class DialogTest extends JDialog implements ActionListener{
 

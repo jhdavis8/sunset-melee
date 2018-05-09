@@ -11,10 +11,9 @@ import java.util.Scanner;
 
 import javax.swing.JDialog;
 
+import debug.TestWindow;
 import graphics.CardChoiceWindow;
 import graphics.CardSelectorWindow;
-
-import graphics.TestWindow;
 
 
 
