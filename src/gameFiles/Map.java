@@ -89,6 +89,11 @@ public class Map {
 		return null;
 	}
 	
+	/**
+	 *  Get a country object by its full name
+	 * @param check name of a country
+	 * @return the country matching the given name
+	 */
 	public static Country getCountryByName(String check) {
 		for (Country c : Map.getWorld()) {
 			if (c.getFullName().equals(check)) {

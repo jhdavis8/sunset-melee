@@ -13,6 +13,11 @@ import gameFiles.Effects;
 import gameFiles.Map;
 import junit.framework.TestCase;
 
+/**
+ * Trying some assertions
+ * @author Josh Davis
+ * @author Mark Wolgin
+ */
 public class UnitTests {
 	
 	/**

@@ -190,6 +190,13 @@ public class Player {
 	}
 
 
+	/**
+	 * Remove influence from a region
+	 * @param tCard Card used to remove
+	 * @param ui UI object to read from
+	 * @param c continent to remove from
+	 * @param opponent opponent side
+	 */
 	public void removeInfluence(TurnCard tCard, UICore ui, Continents c, Side opponent) {
 		int influenceLeft = tCard.getOps();
 		Country country = null;

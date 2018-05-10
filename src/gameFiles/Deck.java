@@ -197,11 +197,18 @@ public class Deck {
 		return toReturn;
 	}
 	
+	/**
+	 * Adds back in all discards to the deck
+	 */
 	private static void shuffle() {
 		deck.addAll(discard);
 		discard.removeAll(discard);
 	}
 
+	/**
+	 * 
+	 * @return true if the deck is empty
+	 */
 	private static boolean outOfCards() {
 		if (deck.size() == 0) return true;
 		return false;
@@ -292,13 +299,11 @@ public class Deck {
 		return dead;
 	}
 
-	public static void checkDeckEmpty() {
-		if (deck.size() == 0) {
-			// TODO reshuffling code
-		}
-		
-	}
-
+	/**
+	 * get a Card from the deck by name
+	 * @param selectedItem the name of the card to get
+	 * @return the Card matching the name given
+	 */
 	public static Card getCard(String selectedItem) {
 		for (Card c : ALL_CARDS) {
 			if (c.name.equals(selectedItem)) {

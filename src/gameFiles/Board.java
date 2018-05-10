@@ -303,7 +303,6 @@ public class Board {
 			sC = (ScoringCard) card;
 			Deck.getDiscard().add(sC);
 		}
-		Deck.checkDeckEmpty();
 	}
 	
 	/**
@@ -327,6 +326,13 @@ public class Board {
 		else USA.placeInfluence(tCard, ui, c);
 	}
 
+	/**
+	 * Remove influence from countries
+	 * @param tCard card to use for removing influence
+	 * @param ui Ui object to read from
+	 * @param c continent removing influence from
+	 * @param s side of the calling player
+	 */
 	public void removeInfluence(TurnCard tCard, UICore ui, Continents c, Side s) {
 		getPlayer(s).removeInfluence(tCard, ui, c, s.opponent(s));
 	}

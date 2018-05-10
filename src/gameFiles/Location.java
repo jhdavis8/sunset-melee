@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * @author Mark
- *
+ * Location.java: holds x and coords for a Country object
+ * @author Mark Wolgin
+ * @author Josh Davis
  */
 public class Location {
 	

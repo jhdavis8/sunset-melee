@@ -18,6 +18,11 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.Font;
 
+/**
+ * Window for testing simple things
+ * @author Josh Davis
+ * @author Mark Wolgin
+ */
 public class TestWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -85,6 +90,10 @@ public class TestWindow extends JFrame {
 		contentPane.add(cardSelectorTextArea);
 	}
 	
+	/**
+	 * Super basic get card method
+	 * @return card
+	 */
 	public Card getCard() {
 		while (currentSelectedCard == null) {
 			currentSelectedCard = null;

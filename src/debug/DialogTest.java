@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
+/**
+ * DialogTest.java: class for sandboxing some dialog functions
+ * @author Josh Davis
+ * @author Mark Wolgin
+ */
 public class DialogTest extends JDialog implements ActionListener{
 
 	/**

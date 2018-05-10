@@ -134,6 +134,11 @@ public class Country {
 		else return false;
 	}
 	
+	/**
+	 * Check if the side has control in the Country
+	 * @param side side to check for
+	 * @return true if the Country called is controlled by the side passed in
+	 */
 	public boolean userHasControl(Side side) {
 		if (side.equals(Side.USA) && (USInfluence - USSRInfluence) >= stabilityNum) return true;
 		else if (side.equals(Side.USSR) && (USSRInfluence - USInfluence) >= stabilityNum) return true;

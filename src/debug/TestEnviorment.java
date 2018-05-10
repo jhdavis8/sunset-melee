@@ -11,6 +11,12 @@ import gameFiles.*;
 
 import graphics.*;
 
+/**
+ * Literally just a sandbox
+ * @author Josh Davis
+ * @author Mark Wolgin
+ *
+ */
 public class TestEnviorment {
 
 	public static void main(String[] args) {
