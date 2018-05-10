@@ -114,4 +114,23 @@ public class Map {
 		return world;
 	}
 	
+	/**
+	 * Sees if a country can have influence placed on it
+	 * @param c Country to check
+	 * @param side Side to check for
+	 * @return True if the country can have influence spread to it
+	 */
+	public static boolean checkCountryChoice(Country c, Side side) {
+		ArrayList<Country> all = new ArrayList<Country>();
+		all.add(c); 
+		all.addAll(c.getConnectedCountries());
+		boolean atLeastOne = false;
+		for (Country cont : all) {
+			if (cont.getInfluence(side) > 0) {
+				atLeastOne = true;
+			}
+		}
+		return atLeastOne;
+	}
+	
 }

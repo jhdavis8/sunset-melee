@@ -187,6 +187,9 @@ public class Deck {
 		Random randy = new Random();
 		int temp = 0;
 		for (int k = 0; k < numToDeal; k ++) {
+			if (Deck.outOfCards()) {
+				Deck.shuffle();
+			}
 			temp = randy.nextInt(deck.size());
 			toReturn.add(deck.get(temp));
 			deck.remove(temp);
@@ -194,6 +197,16 @@ public class Deck {
 		return toReturn;
 	}
 	
+	private static void shuffle() {
+		deck.addAll(discard);
+		discard.removeAll(discard);
+	}
+
+	private static boolean outOfCards() {
+		if (deck.size() == 0) return true;
+		return false;
+	}
+
 	/**
 	 * Adds cards at the appropriate time
 	 * @param t Turn

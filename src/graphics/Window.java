@@ -86,6 +86,8 @@ public class Window {
 	}
 	
 	public static String popupDropDownWindow(String message, ArrayList al) {
+		// TODO make sort
+		// TODO make cool side icons
 		String[] listOfStrings = new String[al.size()];
 		JFrame popupWindow = new JFrame();
 		if (al.get(0) instanceof Card) {

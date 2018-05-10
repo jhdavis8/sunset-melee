@@ -49,6 +49,7 @@ public class ScrollImage extends JPanel {
     boolean isTrue = false;
     
     private ArrayList<JLabel> influenceTokens;
+    private final JLabel lblTurn = new JLabel("");
 
     public ScrollImage() {
         try {
@@ -76,32 +77,22 @@ public class ScrollImage extends JPanel {
         
         lblActionRound.setBounds(448, 103, 41, 42);
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
-        canvas.add(lblActionRound);
+
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-
+        canvas.add(lblActionRound);
         lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
-        /*
-        lblDefcon.addMouseListener(new MouseAdapter() {
-        	@Override
-        	public void mousePressed(MouseEvent e) {
-        		if (defconNum == 1) {
-        			lblDefcon.setBounds(740, 1255, 42, 41);
-        			defconNum = 5;
-        		} else {
-        			int newX = lblDefcon.getX() + 76;
-        			lblDefcon.setBounds(newX, 1255, 42, 41);
-        			defconNum--;
-        		}
-        	}
-        });
-        
-        */
+
         lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
-        lblDefcon.setToolTipText("Current action round");
+        lblDefcon.setToolTipText("Current defcon");
         lblDefcon.setBounds(740, 1255, 42, 41);
         canvas.add(lblDefcon);
+        lblTurn.setVerticalAlignment(SwingConstants.TOP);
+        lblTurn.setToolTipText("Current turn");
+        lblTurn.setBounds(1690, 96, 41, 42);
+        lblTurn.setIcon(new ImageIcon("img\\board_tokens\\turn.png"));
+        canvas.add(lblTurn);
         
 
         setLayout(new BorderLayout());
@@ -120,6 +111,11 @@ public class ScrollImage extends JPanel {
     	lblActionRound.setBounds(448 + (56 * actionRoundNum), 103, 41, 42);
 	}
     
+    private void turnAdvance(Board b) {
+    	int turnNum = b.getTurn();
+    	System.out.println(turnNum);
+    	lblTurn.setBounds(1690 + (72 * turnNum), 96, 41, 42);
+	}
     
     private int getXValueDefcon() {
     	return 740 + (5 - defconNum) *76;
@@ -193,6 +189,7 @@ public class ScrollImage extends JPanel {
 		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
 		lblDefcon.repaint();
 		actionRoundAdvance(b);
+		turnAdvance(b);
 		repaintAllInfluence();
 		canvas.revalidate();
 		canvas.repaint();

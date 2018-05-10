@@ -180,8 +180,13 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptValidInfluenceTarget(Side side) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Object> options = new ArrayList<Object>();
+		for (Country c : Map.getWorld()) {
+			if (Map.checkCountryChoice(c, side)) {
+				options.add(c);
+			}
+		}
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a valid Country to influence", options));
 	}
 
 	@Override

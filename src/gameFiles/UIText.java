@@ -550,7 +550,7 @@ public class UIText implements UICore {
 					checking = false;
 				}
 			}
-			superChecking = this.checkCountryChoice(c, side);
+			superChecking = Map.checkCountryChoice(c, side);
 			if (!superChecking) {
 				checking = true;
 				this.announce("Not a valid country to place influence in!");
@@ -580,25 +580,6 @@ public class UIText implements UICore {
 			}
 		}
 		return c;
-	}
-	
-	/**
-	 * Sees if a country can have influence placed on it
-	 * @param c Country to check
-	 * @param side Side to check for
-	 * @return True if the country can have influence spread to it
-	 */
-	private boolean checkCountryChoice(Country c, Side side) {
-		ArrayList<Country> all = new ArrayList<Country>();
-		all.add(c); 
-		all.addAll(c.getConnectedCountries());
-		boolean atLeastOne = false;
-		for (Country cont : all) {
-			if (cont.getInfluence(side) > 0) {
-				atLeastOne = true;
-			}
-		}
-		return atLeastOne;
 	}
 	
 	/* (non-Javadoc)
