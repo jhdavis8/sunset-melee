@@ -201,7 +201,7 @@ public class ScrollImage extends JPanel {
 				
 				influenceTokens.add(jL);
 			}
-			else if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
+			if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
 				String f = "img\\ussr_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
 				jL.setIcon(new ImageIcon(f));
