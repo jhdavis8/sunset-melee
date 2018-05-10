@@ -140,6 +140,7 @@ public class UIGraphic implements UICore {
 		
 		return Map.getCountry("DDR"); // TODO Don't leave it like this
 		
+		
 		/*
 		String[] hand = new String[currentBoard.getPlayer(side).getHand().size()];
 		ArrayList<Card> cards = currentBoard.getPlayer(side).getHand();
