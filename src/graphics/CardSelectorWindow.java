@@ -26,6 +26,12 @@ import gameFiles.Deck;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
+/**
+ * For selecting cards
+ * @author Mark Wolgin
+ *
+ */
+@Deprecated
 public class CardSelectorWindow {
 
 	public JDialog frame;
@@ -86,10 +92,17 @@ public class CardSelectorWindow {
 		frame.getContentPane().add(button_1);
 	}
 	
+	/**
+	 * Returns the result selected by the user.
+	 * @return int
+	 */
 	public int getResult() {
 		return result;
 	}
 
+	/**
+	 * Makes the window visable
+	 */
 	public void setVisable() {
 		frame.setVisible(true);
 	}

@@ -18,6 +18,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import java.awt.Font;
 
+/**
+ * A generic window for geting county inforation from the user.
+ * @author Mark Wolgin
+ *
+ */
+@Deprecated
 public class GenericInputWindow {
 
 	private JFrame frame;
@@ -111,6 +117,10 @@ public class GenericInputWindow {
 
 	}
 
+	/**
+	 * Returns the selected Country
+	 * @return Country
+	 */
 	public Country getResult() {
 		while (country == null) {
 			country = null;

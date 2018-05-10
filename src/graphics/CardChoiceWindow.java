@@ -21,6 +21,12 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTextField;
 
+/**
+ * Another attempt to get user card choises
+ * @author Mark Wolgin
+ *
+ */
+@Deprecated
 public class CardChoiceWindow extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
@@ -102,6 +108,10 @@ public class CardChoiceWindow extends JDialog {
 		}
 	}
 
+	/**
+	 * Gets the players result
+	 * @return String
+	 */
 	public String getResult() {
 		while (buttonGroup.getSelection().equals(null)) {
 			continue;

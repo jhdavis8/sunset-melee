@@ -16,6 +16,12 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * A version of CardSelectorWindow in Dialog form
+ * @author Mark Wolgin
+ *
+ */
+@Deprecated
 public class CardSelectorDialog extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
@@ -82,7 +88,11 @@ public class CardSelectorDialog extends JDialog implements ActionListener {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
+	@Deprecated
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Before");
 		this.setVisible(true);

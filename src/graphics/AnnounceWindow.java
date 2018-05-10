@@ -18,8 +18,17 @@ import javax.swing.JDialog;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Announces via dialog box information to the player about the game.
+ * @author Mark Wolgin
+ *
+ */
+@Deprecated
 public class AnnounceWindow {
 
+	/**
+	 * The Dialog window
+	 */
 	private JDialog frmAnnocement;
 
 	/**

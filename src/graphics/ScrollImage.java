@@ -39,18 +39,52 @@ import javax.swing.AbstractAction;
 import javax.swing.Action;
 import java.awt.Choice;
 
+/**
+ * Holds all the informaion and annimantions for the visual board
+ * 
+ * @author Mark Wolgin
+ * @author Josh Davis
+ *
+ */
 public class ScrollImage extends JPanel {
     private static final long serialVersionUID = 1L;
+    /**
+     * The Beffered Image of Board
+     */
     private BufferedImage image;
+    /**
+     * The canvas all components are added to
+     */
     private JPanel canvas;
+    /**
+     * Action Round token
+     */
     private final JLabel lblActionRound = new JLabel("");
+    /**
+     * Defcon token
+     */
     private JLabel lblDefcon = new JLabel("");
+    /**
+     * Defcon status
+     */
     private int defconNum = 5;
+    /**
+     * isTrue???
+     */
     boolean isTrue = false;
     
+    /**
+     * The list of all country tokens
+     */
     private ArrayList<JLabel> influenceTokens;
+    /**
+     * The Turn Tolken
+     */
     private final JLabel lblTurn = new JLabel("");
 
+    /**
+     * Creates a new ScrollImage, Uses the gameMap.jpg
+     */
     public ScrollImage() {
         try {
             this.image = ImageIO.read(new File("img\\gameMap.jpg"));
@@ -99,6 +133,10 @@ public class ScrollImage extends JPanel {
         add(sp, BorderLayout.CENTER);
     }
     
+    /**
+     * Advances the Action Round Token
+     * @param b The Current Board
+     */
     private void actionRoundAdvance(Board b) {
     	int actionRoundNum = b.getActionRound();
     	Side actionRoundSide = b.getCurrentPlayer();
@@ -111,16 +149,29 @@ public class ScrollImage extends JPanel {
     	lblActionRound.setBounds(448 + (56 * actionRoundNum), 103, 41, 42);
 	}
     
+    /**
+     * Advances the current turn token
+     * @param b Current Board
+     */
     private void turnAdvance(Board b) {
     	int turnNum = b.getTurn();
     	System.out.println(turnNum);
     	lblTurn.setBounds(1690 + (72 * turnNum), 96, 41, 42);
 	}
     
+    /**
+     * Calculates the new defcon token location
+     * @return int
+     */
     private int getXValueDefcon() {
     	return 740 + (5 - defconNum) *76;
 	}
 
+	/**
+	 * Repaints all elements on the board
+	 * 
+	 * NOTE: Regens all tokens each run.
+	 */
 	private void repaintAllInfluence() {
 		for (JLabel comp : influenceTokens) {
 			canvas.remove(comp);
@@ -180,10 +231,19 @@ public class ScrollImage extends JPanel {
 		canvas.repaint();
 	}
 
+	/**
+	 * Sets the current defcon
+	 * @param d int Current defcon
+	 */
 	public void setDefcon(int d) {
     	defconNum = d;
     }
 	
+	/**
+	 * Calls repaintAllInfluence()
+	 * Handles more of the math
+	 * @param b Current Board
+	 */
 	public void rePaintAll(Board b) {
 		defconNum = b.getDefcon();
 		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);

@@ -33,11 +33,30 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+/**
+ * Holds the information for the public window.
+ * @author Mark Wolgin
+ * @author Josh Davis
+ */
 public class Window {
 
+	/**
+	 * Frame of the Window
+	 */
 	private JFrame frmWindowTest;
+	/**
+	 * Label of the Game Map
+	 */
+	@Deprecated
 	private JLabel lblGameMap;
+	/**
+	 * Buffered Image of the Board
+	 */
+	@Deprecated
 	private BufferedImage image = null;
+	/**
+	 * The ScrollImage that holds and manages the board image
+	 */
 	private ScrollImage scrollImage;
 	
 	
@@ -85,6 +104,12 @@ public class Window {
 		
 	}
 	
+	/**
+	 * Produces a drop down list for selection objects
+	 * @param message Message to print
+	 * @param al The ArrayList of things to be put into the popUp, All Objects
+	 * @return Returns a string that is the desired input
+	 */
 	public static String popupDropDownWindow(String message, ArrayList al) {
 		// TODO make sort
 		// TODO make cool side icons
@@ -118,6 +143,12 @@ public class Window {
 		
 	}
 	
+	/**
+	 * Produces a list of buttons for selection objects
+	 * @param message Message to print
+	 * @param al The ArrayList of things to be put into the popUp, All Objects
+	 * @return Returns a init that is the desired input location
+	 */
 	public static int popupButtonWindow(String message, ArrayList al) {
 		String[] listOfStrings = new String[al.size()];
 		JFrame popupWindow = new JFrame();
@@ -150,10 +181,18 @@ public class Window {
 		
 	}
 	
+	/**
+	 * Pops up a message, called by announceUI
+	 * @param message Message to be displayed
+	 */
 	public static void popupMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
 	
+	/**
+	 * Calls the repaint of all components
+	 * @param b The Board
+	 */
 	public void rePaintAll(Board b) {
 		frmWindowTest.repaint();
 		scrollImage.rePaintAll(b);

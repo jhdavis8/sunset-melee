@@ -15,6 +15,7 @@ import javax.swing.JPanel;
  * {@link https://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel}
  *
  */
+@Deprecated
 public class ImagePanel extends JPanel{
 
     /**
