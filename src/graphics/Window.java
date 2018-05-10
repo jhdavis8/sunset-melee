@@ -95,6 +95,8 @@ public class Window {
 		frmWindowTest.setBounds(100, 100, 791, 580);
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	    frmWindowTest.setSize(screenSize.width, screenSize.height);
+	    frmWindowTest.setExtendedState(JFrame.MAXIMIZED_BOTH);
+	    
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		scrollImage = new ScrollImage();
