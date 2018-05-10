@@ -513,6 +513,7 @@ public class Effects {
 			}
 			country = Map.getCountryByName(Window.popupDropDownWindow("Please select a country to remove all influence from.", specificWorld));
 		}
+		//To push
 		int USSRInf = country.getInfluence(Side.USSR);
 		USSRInf = -1 * USSRInf;
 		country.modifyInfluence(USSRInf, Side.USSR);
