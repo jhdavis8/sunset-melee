@@ -1,18 +1,15 @@
 package debug;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-import gameFiles.Board;
-import gameFiles.Controller;
-import gameFiles.Country;
-import gameFiles.Deck;
-import gameFiles.Effects;
-import gameFiles.Map;
-import gameFiles.Side;
-import gameFiles.UIText;
+import gameFiles.*;
+
+import graphics.*;
 
 public class TestEnviorment {
 
@@ -37,15 +34,16 @@ public class TestEnviorment {
       
 			Object input = JOptionPane.showInputDialog(null, "Pick", "Pick1", JOptionPane.QUESTION_MESSAGE, null, hand, hand[0]);
 			System.out.println(Deck.getCard((String)input));
+			
+			ArrayList<Object> t = new ArrayList<Object>();
+			t.addAll(game.getPlayer(Side.USSR).getHand());
+			
+			System.out.println(Window.popupDropDownWindow("Test", t));
+			System.out.println(Window.popupButtonWindow("Testers", t));
       
       //I have all the power
       
-			JFrame frame = new JFrame();
-			Object[] options = { "OK", "CANCEL" };
-			JOptionPane.showOptionDialog(frame, "Click OK to continue", "Warning",
-			             JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-			             null, options, options[0]);
-			frame.setVisible(true);			
+	
 
 			FrameTest dialog = new FrameTest();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
