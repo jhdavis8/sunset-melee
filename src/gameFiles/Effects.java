@@ -3,7 +3,10 @@
  */
 package gameFiles;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import graphics.Window;
 
 /**
  * Container for all effects for all cards
@@ -487,13 +490,29 @@ public class Effects {
 				System.out.print(c);
 			}
 		}
-		System.out.println("Please select a country to remove all influence from.  Use 3-digit ISO.");
-		String input = UI.promptUSA();
-		while (Country.isValidCountry(input) == false) {
-			System.out.println("Not a country.");
-			input = UI.promptUSA();
+		UI.announce("Please select a country to remove all influence from.  Use 3-digit ISO.");
+		Country country = null;
+		if (UI instanceof UIText ) {
+			String input = UI.promptUSA();
+			while (Country.isValidCountry(input) == false) {
+				System.out.println("Not a country.");
+				input = UI.promptUSA();
+			}
+			country = Map.getCountry(input);
 		}
-		Country country = Map.getCountry(input);
+		else if (UI instanceof UIGraphic) {
+			ArrayList<Object> specificWorld = new ArrayList<Object>();
+			for (Country c : Map.getWorld()) {
+				for (Continents con : c.getContinent()) {
+					if (con.equals(Continents.WEE) || con.equals(Continents.EEE)) {
+						if (c.userHasInfluence(Side.USSR) && !(c.userHasControl(Side.USSR))) {
+							specificWorld.add(c);
+						}
+					}
+				}
+			}
+			country = Map.getCountryByName(Window.popupDropDownWindow("Please select a country to remove all influence from.", specificWorld));
+		}
 		int USSRInf = country.getInfluence(Side.USSR);
 		USSRInf = -1 * USSRInf;
 		country.modifyInfluence(USSRInf, Side.USSR);
