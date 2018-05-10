@@ -5,6 +5,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 import graphics.*;
 
 
@@ -35,6 +38,7 @@ public class UIGraphic implements UICore {
 	 * The window object for the game
 	 */
 	private Window window;
+	private JFrame frame;
 	
 	
 	/* Used to retrieve the most recent version of the Board
@@ -53,6 +57,7 @@ public class UIGraphic implements UICore {
 	public UIGraphic() {
 		try {
 			window = new Window();
+			frame = new JFrame();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -69,14 +74,23 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public int promptSelectCard(Side side) {
+		/*
 		CardSelectorWindow csw = new CardSelectorWindow(currentBoard.getPlayer(side).getHand());
 		csw.setVisable();
 		while (csw.getResult() == -1) {
 			System.out.println("");
 		}
+		*/
 		
-		
-		return csw.getResult();
+		//return csw.getResult();
+		String[] hand = new String[currentBoard.getPlayer(side).getHand().size()];
+		ArrayList<Card> cards = currentBoard.getPlayer(side).getHand();
+		for (int i = 0; i < hand.length; i++) {
+			hand[i] = cards.get(i).name;
+		}
+		return (int) JOptionPane.showOptionDialog(frame, "Choose a card", "Choose a card",
+												 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+												 hand, hand[0]);
 	}
 
 	@Override
@@ -123,8 +137,19 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptExceptionInfluenceTarget(Side side) {
-		GenericInputWindow giw = new GenericInputWindow("Please enter a valid Country ISO to influence");
-		return giw.getResult();
+		
+		return Map.getCountry("DDR"); // TODO Don't leave it like this
+		
+		/*
+		String[] hand = new String[currentBoard.getPlayer(side).getHand().size()];
+		ArrayList<Card> cards = currentBoard.getPlayer(side).getHand();
+		for (int i = 0; i < hand.length; i++) {
+			hand[i] = cards.get(i).name;
+		}
+		return (Country) JOptionPane.showOptionDialog(frame, "Choose valid Country ISO to influence", "Choose valid Country ISO to influence",
+												 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+												 hand, hand[0]);
+		*/
 	}
 
 }
