@@ -74,23 +74,9 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public int promptSelectCard(Side side) {
-		/*
-		CardSelectorWindow csw = new CardSelectorWindow(currentBoard.getPlayer(side).getHand());
-		csw.setVisable();
-		while (csw.getResult() == -1) {
-			System.out.println("");
-		}
-		*/
-		
-		//return csw.getResult();
-		String[] hand = new String[currentBoard.getPlayer(side).getHand().size()];
-		ArrayList<Card> cards = currentBoard.getPlayer(side).getHand();
-		for (int i = 0; i < hand.length; i++) {
-			hand[i] = cards.get(i).name;
-		}
-		return (int) JOptionPane.showOptionDialog(frame, "Choose a card", "Choose a card",
-												 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-												 hand, hand[0]);
+		ArrayList<Object> hand = new ArrayList<Object>();
+		hand.addAll(currentBoard.getPlayer(side).getHand());
+		return Window.popupButtonWindow("Please choose a country to influence", hand);
 	}
 
 	@Override
@@ -113,14 +99,83 @@ public class UIGraphic implements UICore {
 	}
 
 	@Override
-	public void promptCardChoiceResult(int pickResult, Card choice) {
-		// TODO Auto-generated method stub
-		
+	public void promptCardChoiceResult(int pickResult, Card card) {
+		String toReturn = ("You have selected: " + card);
+		if (pickResult == -1) {
+			toReturn += "\nThis is a ScoringCard, and the effect has been tallied.";
+		}
+		else if (pickResult == 1) {
+			toReturn += "\nPlease select one off the following options for how to use this card,\n";
+			toReturn += "\t1: Place Influence\n\t2: Roll for Realignment in a Country"
+					+ "\n\t3: Attempt a Coup in an Enemy Country\n\t4: Play the Cards Event";
+			toReturn += "\nSelection: ";
+			System.out.print(toReturn);
+			String stringSel = "";
+			int sel = 0;
+			ArrayList<Object> options = new ArrayList<Object>();
+			options.add("Place Influence");
+			options.add("Roll for Realignment");
+			options.add("Attempt a coup");
+			options.add("Play card event");
+			sel = 1 + Window.popupButtonWindow(toReturn, options);
+			TurnCard tCard = (TurnCard) card;
+			switch (sel) {
+				case 1:
+					currentBoard.placeInfluence(tCard, this);
+					break;
+				case 2:
+					currentBoard.rollRealignment(tCard, this);
+					break;
+				case 3:
+					currentBoard.rollCoup(tCard, this);
+					break;
+				case 4:
+					this.announce("Effect Played: "+ tCard.getDescription());
+					tCard.runEffect();
+					break;
+				default:
+					System.out.println("Error");
+					Exception e = new Exception();
+					e.getStackTrace();
+			}
+		}
+		else if (pickResult == 0) {
+			TurnCard tCard = (TurnCard) card;
+			this.announce("Effect Played: "+ tCard.getDescription());
+			toReturn += "\nThis is an Enemy Card, and its effects have already been played";
+			toReturn += "\nPlease select one off the following options for how to use this card,\n";
+			toReturn += "\t1: Place Influence\n\t2: Roll for Realignment in a Country"
+					+ "\n\t3: Attempt a Coup in an Enemy Country";
+			toReturn += "\nSelection: ";
+			System.out.print(toReturn);
+			String stringSel = "";
+			int sel = 0;
+			ArrayList<Object> options = new ArrayList<Object>();
+			options.add("Place Influence");
+			options.add("Roll for Realignment");
+			options.add("Attempt a coup");
+			sel = 1 + Window.popupButtonWindow(toReturn, options);
+			switch (sel) {
+				case 1:
+					currentBoard.placeInfluence(tCard, this);
+					break;
+				case 2:
+					currentBoard.rollRealignment(tCard, this);
+					break;
+				case 3:
+					currentBoard.rollCoup(tCard, this);
+					break;
+				default:
+					System.out.println("Error");
+					Exception e = new Exception();
+					e.getStackTrace();
+			}
+		}
 	}
 
 	@Override
 	public void announce(String s) {
-		AnnounceWindow aw = new AnnounceWindow(s);
+		Window.popupMessage(s);
 	}
 
 	@Override
@@ -137,20 +192,9 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Country promptExceptionInfluenceTarget(Side side) {
-		
-		return Map.getCountry("DDR"); // TODO Don't leave it like this
-		
-		
-		/*
-		String[] hand = new String[currentBoard.getPlayer(side).getHand().size()];
-		ArrayList<Card> cards = currentBoard.getPlayer(side).getHand();
-		for (int i = 0; i < hand.length; i++) {
-			hand[i] = cards.get(i).name;
-		}
-		return (Country) JOptionPane.showOptionDialog(frame, "Choose valid Country ISO to influence", "Choose valid Country ISO to influence",
-												 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-												 hand, hand[0]);
-		*/
+		ArrayList<Object> countries = new ArrayList<Object>();
+		countries.addAll(Map.getWorld());
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries));
 	}
 
 }

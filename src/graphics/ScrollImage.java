@@ -45,8 +45,6 @@ public class ScrollImage extends JPanel {
     private JPanel canvas;
     private final JLabel lblActionRound = new JLabel("");
     private JLabel lblDefcon = new JLabel("");
-    private Side actionRoundSide = Side.USSR;
-    private int actionRoundNum = 1;
     private int defconNum = 5;
     boolean isTrue = false;
     
@@ -110,21 +108,16 @@ public class ScrollImage extends JPanel {
         add(sp, BorderLayout.CENTER);
     }
     
-    private void actionRoundAdvance() {
-		if (actionRoundNum == 8 && actionRoundSide == Side.USA) {
-			lblActionRound.setBounds(448, 103, 41, 42);
-			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-			actionRoundSide = Side.USSR;
-		}
-		else if (actionRoundSide == Side.USA) {
-			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
-			actionRoundSide = Side.USSR;
-			int newX = lblActionRound.getX() + 56;
-			lblActionRound.setBounds(newX, 103, 41, 42);
-		} else {
-			lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
-			actionRoundSide = Side.USA;
-		}
+    private void actionRoundAdvance(Board b) {
+    	int actionRoundNum = b.getActionRound();
+    	Side actionRoundSide = b.getCurrentPlayer();
+    	System.out.println(actionRoundNum + " " + actionRoundSide);
+    	if (actionRoundSide == Side.USA) {
+    		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
+    	} else {
+    		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+    	}
+    	lblActionRound.setBounds(448 + (56 * actionRoundNum), 103, 41, 42);
 	}
     
     
@@ -199,8 +192,7 @@ public class ScrollImage extends JPanel {
 		defconNum = b.getDefcon();
 		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
 		lblDefcon.repaint();
-		actionRoundNum = b.getActionRound();
-		actionRoundAdvance();
+		actionRoundAdvance(b);
 		repaintAllInfluence();
 		canvas.revalidate();
 		canvas.repaint();

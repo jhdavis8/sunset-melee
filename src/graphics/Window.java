@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 
+
+
 import gameFiles.*;
 
 import java.awt.Component;
@@ -27,6 +29,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import java.awt.Canvas;
 import java.awt.Panel;
+import java.awt.Toolkit;
+
 import javax.swing.JPanel;
 
 public class Window {
@@ -70,6 +74,8 @@ public class Window {
 		frmWindowTest = new JFrame();
 		frmWindowTest.setTitle("Window Test");
 		frmWindowTest.setBounds(100, 100, 791, 580);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	    frmWindowTest.setSize(screenSize.width, screenSize.height);
 		frmWindowTest.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		scrollImage = new ScrollImage();
@@ -104,7 +110,7 @@ public class Window {
 			}
 		}
 		
-		String toReturn = (String) JOptionPane.showInputDialog(null, "Press OK to Continue", message, JOptionPane.QUESTION_MESSAGE,
+		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
 									null, listOfStrings, listOfStrings[0]);
 		return toReturn;			
 		
@@ -134,13 +140,16 @@ public class Window {
 				listOfStrings[k] = c;
 			}
 		}
-		//TODO PUSH again
-		
-		int toReturn = JOptionPane.showOptionDialog(null, "Click OK to continue", message,
+
+		int toReturn = JOptionPane.showOptionDialog(null, message, "Please Choose",
 	             												JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 	             												null, listOfStrings, listOfStrings[0]);
 		return toReturn;			
 		
+	}
+	
+	public static void popupMessage(String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 	
 	public void rePaintAll(Board b) {

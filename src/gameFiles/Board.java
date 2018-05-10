@@ -202,6 +202,7 @@ public class Board {
 				ui.indicateNoCards();
 			}
 			playerTurn = !playerTurn;
+			ui.updateUI();
 			if (USA.hasCards()) {
 				cardNum = ui.promptSelectCard(Side.USA);
 				card = USA.getHand().get(cardNum);
@@ -350,7 +351,7 @@ public class Board {
 	 * @param tCard Turn Card selected by user
 	 * @param ui UI passed from UI Class
 	 */
-	public void rollRealignment(TurnCard tCard, UIText ui) {
+	public void rollRealignment(TurnCard tCard, UICore ui) {
 		if (playerTurn) USSR.rollRealignment(tCard, ui, defcon);
 		else USA.rollRealignment(tCard, ui, defcon);
 		

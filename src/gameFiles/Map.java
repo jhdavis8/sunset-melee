@@ -89,6 +89,15 @@ public class Map {
 		return null;
 	}
 	
+	public static Country getCountryByName(String check) {
+		for (Country c : Map.getWorld()) {
+			if (c.getFullName().equals(check)) {
+				return c;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * Calls the connectCountries function on each Country object in the world
 	 */
