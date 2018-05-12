@@ -94,7 +94,17 @@ public class ScrollImage extends JPanel {
      * Creates a new ScrollImage, Uses the gameMap.jpg
      */
     public ScrollImage() {
-        this.image = resize(new File("img\\gameMap.jpg"));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		BufferedImage tImage = null;
+		String path = new File("").getAbsolutePath();
+		try {
+			tImage = ImageIO.read(new File(path + "\\img\\gameMap.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		SCALE = screenSize.width / tImage.getWidth();
+        this.image = resize(new File(path + "\\img\\gameMap.jpg"));
         
         influenceTokens = new ArrayList<JLabel>();
         
@@ -111,8 +121,8 @@ public class ScrollImage extends JPanel {
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         JScrollPane sp = new JScrollPane(canvas);
         canvas.setLayout(null);
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		SCALE = screenSize.width / image.getWidth();
+
+
 		
         // TODO get rid of magic numbers
         lblActionRound.setBounds((int)SCALE*448, (int)SCALE*103, (int)SCALE*41, (int)SCALE*42);
