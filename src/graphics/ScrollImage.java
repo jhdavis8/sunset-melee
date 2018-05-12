@@ -87,7 +87,7 @@ public class ScrollImage extends JPanel {
     /**
      * Constant for dimension scaling 
      */
-    private final float SCALE;
+    private float SCALE;
     
 
     /**
@@ -103,7 +103,10 @@ public class ScrollImage extends JPanel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		SCALE = screenSize.width / tImage.getWidth();
+		System.out.println(screenSize.width); 
+		System.out.println(tImage.getWidth());
+		SCALE =  (float) (screenSize.width - 300 ) / (float) tImage.getWidth();
+		System.out.println(SCALE); 
         this.image = resize(new File(path + "\\img\\gameMap.jpg"));
         
         influenceTokens = new ArrayList<JLabel>();
@@ -118,6 +121,7 @@ public class ScrollImage extends JPanel {
             }
         };
         //canvas.add(new JButton("Currently I do nothing"));
+        System.out.println(path + "\\img\\gameMap.jpg");
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         JScrollPane sp = new JScrollPane(canvas);
         canvas.setLayout(null);
@@ -125,22 +129,22 @@ public class ScrollImage extends JPanel {
 
 		
         // TODO get rid of magic numbers
-        lblActionRound.setBounds((int)SCALE*448, (int)SCALE*103, (int)SCALE*41, (int)SCALE*42);
+        lblActionRound.setBounds(this.scaleCord(448), (int)(SCALE*103), (int)(SCALE*41), (int)(SCALE*42));
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
 
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
         canvas.add(lblActionRound);
-        lblDefcon.setBounds((int)SCALE*getXValueDefcon(), (int)SCALE*1255, (int)SCALE*42, (int)SCALE*41);
+        lblDefcon.setBounds(this.scaleCord(getXValueDefcon()), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
 
         lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current defcon");
-        lblDefcon.setBounds((int)SCALE*740, (int)SCALE*1255, (int)SCALE*42, (int)SCALE*41);
+        lblDefcon.setBounds(this.scaleCord(740), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
         canvas.add(lblDefcon);
         lblTurn.setVerticalAlignment(SwingConstants.TOP);
         lblTurn.setToolTipText("Current turn");
-        lblTurn.setBounds((int)SCALE*1690, (int)SCALE*96, (int)SCALE*41, (int)SCALE*42);
+        lblTurn.setBounds(this.scaleCord(1690), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
         lblTurn.setIcon(new ImageIcon("img\\board_tokens\\turn.png"));
         canvas.add(lblTurn);
         
@@ -149,7 +153,11 @@ public class ScrollImage extends JPanel {
         add(sp, BorderLayout.CENTER);
     }
     
-    /**
+    private int scaleCord(int i) {
+		return (int)(SCALE*i);
+	}
+
+	/**
      * Advances the Action Round Token
      * @param b The Current Board
      */
@@ -162,7 +170,7 @@ public class ScrollImage extends JPanel {
     	} else {
     		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
     	}
-    	lblActionRound.setBounds((int)SCALE*(448 + (56 * actionRoundNum)), (int)SCALE*103, (int)SCALE*41, (int)SCALE*42);
+    	lblActionRound.setBounds(this.scaleCord((448 + (56 * actionRoundNum))), this.scaleCord(103), this.scaleCord(41), this.scaleCord(42));
 	}
     
     /**
@@ -172,7 +180,7 @@ public class ScrollImage extends JPanel {
     private void turnAdvance(Board b) {
     	int turnNum = b.getTurn();
     	System.out.println(turnNum);
-    	lblTurn.setBounds((int)SCALE*(1690 + (72 * turnNum)), (int)SCALE*96, (int)SCALE*41, (int)SCALE*42);
+    	lblTurn.setBounds(this.scaleCord((1690 + (72 * turnNum))), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
 	}
     
     /**
@@ -203,7 +211,7 @@ public class ScrollImage extends JPanel {
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
-				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
+				jL.setBounds(this.scaleCord(l.getX()), this.scaleCord(l.getY()), this.scaleCord(45), this.scaleCord(45));
 				
 				influenceTokens.add(jL);
 			}
@@ -213,7 +221,7 @@ public class ScrollImage extends JPanel {
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 	
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
-				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
+				jL.setBounds(this.scaleCord(l.getX()), this.scaleCord(l.getY()), this.scaleCord(45), this.scaleCord(45));
 				
 				influenceTokens.add(jL);
 			}
@@ -223,7 +231,7 @@ public class ScrollImage extends JPanel {
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
-				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
+				jL.setBounds(this.scaleCord(l.getX()), this.scaleCord(l.getY()), this.scaleCord(45), this.scaleCord(45));
 				
 				influenceTokens.add(jL);
 			}
@@ -233,7 +241,7 @@ public class ScrollImage extends JPanel {
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
-				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
+				jL.setBounds(this.scaleCord(l.getX()), this.scaleCord(l.getY()), this.scaleCord(45), this.scaleCord(45));
 				
 				influenceTokens.add(jL);
 			}
@@ -261,9 +269,9 @@ public class ScrollImage extends JPanel {
 	private BufferedImage resize(File f) {
 		try {
 			BufferedImage oldImage = ImageIO.read(f);
-			BufferedImage newImage = new BufferedImage((int)SCALE * oldImage.getWidth(), (int)SCALE * oldImage.getHeight(), oldImage.getType());
+			BufferedImage newImage = new BufferedImage((int)(SCALE * oldImage.getWidth()), (int)(SCALE * oldImage.getHeight()), oldImage.getType());
 			Graphics2D g2d = newImage.createGraphics();
-			g2d.drawImage(oldImage, 0, 0, (int)SCALE * oldImage.getWidth(), (int)SCALE * oldImage.getHeight(), null);
+			g2d.drawImage(oldImage, 0, 0, (int)(SCALE * oldImage.getWidth()), (int)(SCALE * oldImage.getHeight()), null);
 			g2d.dispose();
 			return newImage;
 		} catch (Exception e) {
