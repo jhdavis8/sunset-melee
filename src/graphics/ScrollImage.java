@@ -3,6 +3,8 @@ package graphics;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -81,16 +83,18 @@ public class ScrollImage extends JPanel {
      * The Turn Tolken
      */
     private final JLabel lblTurn = new JLabel("");
+    
+    /**
+     * Constant for dimension scaling 
+     */
+    private final float SCALE;
+    
 
     /**
      * Creates a new ScrollImage, Uses the gameMap.jpg
      */
     public ScrollImage() {
-        try {
-            this.image = ImageIO.read(new File("img\\gameMap.jpg"));
-        } catch(IOException ex) {
-            Logger.getLogger(ScrollImage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.image = resize(new File("img\\gameMap.jpg"));
         
         influenceTokens = new ArrayList<JLabel>();
         
@@ -107,24 +111,26 @@ public class ScrollImage extends JPanel {
         canvas.setPreferredSize(new Dimension(image.getWidth(), image.getHeight()));
         JScrollPane sp = new JScrollPane(canvas);
         canvas.setLayout(null);
-        
-        
-        lblActionRound.setBounds(448, 103, 41, 42);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		SCALE = screenSize.width / image.getWidth();
+		
+        // TODO get rid of magic numbers
+        lblActionRound.setBounds((int)SCALE*448, (int)SCALE*103, (int)SCALE*41, (int)SCALE*42);
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
 
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
         canvas.add(lblActionRound);
-        lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+        lblDefcon.setBounds((int)SCALE*getXValueDefcon(), (int)SCALE*1255, (int)SCALE*42, (int)SCALE*41);
 
         lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current defcon");
-        lblDefcon.setBounds(740, 1255, 42, 41);
+        lblDefcon.setBounds((int)SCALE*740, (int)SCALE*1255, (int)SCALE*42, (int)SCALE*41);
         canvas.add(lblDefcon);
         lblTurn.setVerticalAlignment(SwingConstants.TOP);
         lblTurn.setToolTipText("Current turn");
-        lblTurn.setBounds(1690, 96, 41, 42);
+        lblTurn.setBounds((int)SCALE*1690, (int)SCALE*96, (int)SCALE*41, (int)SCALE*42);
         lblTurn.setIcon(new ImageIcon("img\\board_tokens\\turn.png"));
         canvas.add(lblTurn);
         
@@ -146,7 +152,7 @@ public class ScrollImage extends JPanel {
     	} else {
     		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
     	}
-    	lblActionRound.setBounds(448 + (56 * actionRoundNum), 103, 41, 42);
+    	lblActionRound.setBounds((int)SCALE*(448 + (56 * actionRoundNum)), (int)SCALE*103, (int)SCALE*41, (int)SCALE*42);
 	}
     
     /**
@@ -156,7 +162,7 @@ public class ScrollImage extends JPanel {
     private void turnAdvance(Board b) {
     	int turnNum = b.getTurn();
     	System.out.println(turnNum);
-    	lblTurn.setBounds(1690 + (72 * turnNum), 96, 41, 42);
+    	lblTurn.setBounds((int)SCALE*(1690 + (72 * turnNum)), (int)SCALE*96, (int)SCALE*41, (int)SCALE*42);
 	}
     
     /**
@@ -184,40 +190,40 @@ public class ScrollImage extends JPanel {
 			if (c.userHasInfluence(Side.USA) && (c.userHasControl(Side.USA))) {
 				JLabel jL = new JLabel("");
 				String f = "img\\usa_tokens\\usaControl" + c.getUSInfluence() + ".png";
-				jL.setIcon(new ImageIcon(f));
+				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
-				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
 				
 				influenceTokens.add(jL);
 			}
 			else if (c.userHasInfluence(Side.USA) && !(c.userHasControl(Side.USA))) {
 				JLabel jL = new JLabel("");
 				String f = "img\\usa_tokens\\usaInfluence" + c.getUSInfluence() + ".png";
-				jL.setIcon(new ImageIcon(f));
+				jL.setIcon(new ImageIcon(resize(new File(f))));
 	
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
-				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
 				
 				influenceTokens.add(jL);
 			}
 			if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
 				String f = "img\\ussr_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
-				jL.setIcon(new ImageIcon(f));
+				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
-				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
 				
 				influenceTokens.add(jL);
 			}
 			else if (c.userHasInfluence(Side.USSR) && !(c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
 				String f = "img\\ussr_tokens\\ussrInfluence" + c.getUSSRInfluence() + ".png";
-				jL.setIcon(new ImageIcon(f));
+				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
-				jL.setBounds(l.getX(), l.getY(), 45, 45);
+				jL.setBounds((int)SCALE*l.getX(), (int)SCALE*l.getY(), (int)SCALE*45, (int)SCALE*45);
 				
 				influenceTokens.add(jL);
 			}
@@ -238,6 +244,22 @@ public class ScrollImage extends JPanel {
 	public void setDefcon(int d) {
     	defconNum = d;
     }
+	
+	/**
+	 * Resizes images
+	 */
+	private BufferedImage resize(File f) {
+		try {
+			BufferedImage oldImage = ImageIO.read(f);
+			BufferedImage newImage = new BufferedImage((int)SCALE * oldImage.getWidth(), (int)SCALE * oldImage.getHeight(), oldImage.getType());
+			Graphics2D g2d = newImage.createGraphics();
+			g2d.drawImage(oldImage, 0, 0, (int)SCALE * oldImage.getWidth(), (int)SCALE * oldImage.getHeight(), null);
+			g2d.dispose();
+			return newImage;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 	
 	/**
 	 * Calls repaintAllInfluence()
