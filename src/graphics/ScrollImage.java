@@ -129,22 +129,21 @@ public class ScrollImage extends JPanel {
 
 		
         // TODO get rid of magic numbers
-        lblActionRound.setBounds(this.scaleCord(448), (int)(SCALE*103), (int)(SCALE*41), (int)(SCALE*42));
+        lblActionRound.setBounds(this.scaleCord(448), this.scaleCord(103), this.scaleCord(41), this.scaleCord(42));
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
-
         lblActionRound.setToolTipText("Current action round");
         lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
         canvas.add(lblActionRound);
-        lblDefcon.setBounds(this.scaleCord(getXValueDefcon()), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
-
-        lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
+        
+        lblDefcon.setBounds(this.scaleCord(740), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current defcon");
-        lblDefcon.setBounds(this.scaleCord(740), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
+        lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
         canvas.add(lblDefcon);
+        
+        lblTurn.setBounds(this.scaleCord(1690), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
         lblTurn.setVerticalAlignment(SwingConstants.TOP);
         lblTurn.setToolTipText("Current turn");
-        lblTurn.setBounds(this.scaleCord(1690), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
         lblTurn.setIcon(new ImageIcon("img\\board_tokens\\turn.png"));
         canvas.add(lblTurn);
         
@@ -184,11 +183,13 @@ public class ScrollImage extends JPanel {
 	}
     
     /**
-     * Calculates the new defcon token location
-     * @return int
+     * Advances the new defcon token location
+     * @param b the current board
      */
-    private int getXValueDefcon() {
-    	return 740 + (5 - defconNum) *76;
+    private void defconAdvance(Board b) {
+    	int defconNum = b.getDefcon();
+    	System.out.println(defconNum);
+    	lblDefcon.setBounds(this.scaleCord(740 + ((5 - defconNum) * 76)), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
 	}
 
 	/**
@@ -256,14 +257,6 @@ public class ScrollImage extends JPanel {
 	}
 
 	/**
-	 * Sets the current defcon
-	 * @param d int Current defcon
-	 */
-	public void setDefcon(int d) {
-    	defconNum = d;
-    }
-	
-	/**
 	 * Resizes images
 	 */
 	private BufferedImage resize(File f) {
@@ -285,11 +278,11 @@ public class ScrollImage extends JPanel {
 	 * @param b Current Board
 	 */
 	public void rePaintAll(Board b) {
-		defconNum = b.getDefcon();
-		lblDefcon.setBounds(getXValueDefcon(), 1255, 42, 41);
+		defconAdvance(b);
 		lblDefcon.repaint();
 		actionRoundAdvance(b);
 		turnAdvance(b);
+		defconAdvance(b);
 		repaintAllInfluence();
 		canvas.revalidate();
 		canvas.repaint();
