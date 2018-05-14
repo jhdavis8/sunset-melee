@@ -76,7 +76,7 @@ public class UIGraphic implements UICore {
 	public int promptSelectCard(Side side) {
 		ArrayList<Object> hand = new ArrayList<Object>();
 		hand.addAll(currentBoard.getPlayer(side).getHand());
-		return Window.popupButtonWindow("Please choose a country to influence", hand);
+		return Window.popupButtonWindow("Please choose a card to play", hand);
 	}
 
 	@Override

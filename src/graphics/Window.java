@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
@@ -138,7 +140,7 @@ public class Window {
 				listOfStrings[k] = c;
 			}
 		}
-		
+		Arrays.sort(listOfStrings);
 		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
 									null, listOfStrings, listOfStrings[0]);
 		return toReturn;			

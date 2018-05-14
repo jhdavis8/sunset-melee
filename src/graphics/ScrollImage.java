@@ -42,7 +42,7 @@ import javax.swing.Action;
 import java.awt.Choice;
 
 /**
- * Holds all the informaion and annimantions for the visual board
+ * Holds all the information and animations for the visual board
  * 
  * @author Mark Wolgin
  * @author Josh Davis
@@ -51,7 +51,7 @@ import java.awt.Choice;
 public class ScrollImage extends JPanel {
     private static final long serialVersionUID = 1L;
     /**
-     * The Beffered Image of Board
+     * The Buffered Image of Board
      */
     private BufferedImage image;
     /**
@@ -67,10 +67,6 @@ public class ScrollImage extends JPanel {
      */
     private JLabel lblDefcon = new JLabel("");
     /**
-     * Defcon status
-     */
-    private int defconNum = 5;
-    /**
      * isTrue???
      */
     boolean isTrue = false;
@@ -83,11 +79,14 @@ public class ScrollImage extends JPanel {
      * The Turn Tolken
      */
     private final JLabel lblTurn = new JLabel("");
-    
     /**
      * Constant for dimension scaling 
      */
     private float SCALE;
+    /**
+     * Marker for current victory points
+     */
+    private final JLabel lblVictoryPoints = new JLabel("");
     
 
     /**
@@ -129,23 +128,30 @@ public class ScrollImage extends JPanel {
 
 		
         // TODO get rid of magic numbers
-        lblActionRound.setBounds(this.scaleCord(448), this.scaleCord(103), this.scaleCord(41), this.scaleCord(42));
+        
         lblActionRound.setVerticalAlignment(SwingConstants.TOP);
         lblActionRound.setToolTipText("Current action round");
-        lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+        lblActionRound.setBounds(this.scaleCord(448), this.scaleCord(103), this.scaleCord(41), this.scaleCord(42));
+        lblActionRound.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\ussr_action_round.png"))));
         canvas.add(lblActionRound);
         
-        lblDefcon.setBounds(this.scaleCord(740), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
         lblDefcon.setVerticalAlignment(SwingConstants.TOP);
         lblDefcon.setToolTipText("Current defcon");
-        lblDefcon.setIcon(new ImageIcon("img\\board_tokens\\defcon_status.png"));
+        lblDefcon.setBounds(this.scaleCord(740), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
+        lblDefcon.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\defcon_status.png"))));
         canvas.add(lblDefcon);
         
-        lblTurn.setBounds(this.scaleCord(1690), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
         lblTurn.setVerticalAlignment(SwingConstants.TOP);
         lblTurn.setToolTipText("Current turn");
-        lblTurn.setIcon(new ImageIcon("img\\board_tokens\\turn.png"));
+        lblTurn.setBounds(this.scaleCord(1690), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
+        lblTurn.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\turn.png"))));
         canvas.add(lblTurn);
+        
+        lblVictoryPoints.setVerticalAlignment(SwingConstants.TOP);
+        lblVictoryPoints.setToolTipText("Current victory points");
+        lblVictoryPoints.setBounds(this.scaleCord(1722), this.scaleCord(1325), this.scaleCord(42), this.scaleCord(42));
+        lblVictoryPoints.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\vp.png"))));
+        canvas.add(lblVictoryPoints);
         
 
         setLayout(new BorderLayout());
@@ -165,9 +171,9 @@ public class ScrollImage extends JPanel {
     	Side actionRoundSide = b.getCurrentPlayer();
     	System.out.println(actionRoundNum + " " + actionRoundSide);
     	if (actionRoundSide == Side.USA) {
-    		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\usa_action_round.png"));
+    		lblActionRound.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\usa_action_round.png"))));
     	} else {
-    		lblActionRound.setIcon(new ImageIcon("img\\board_tokens\\ussr_action_round.png"));
+    		lblActionRound.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\ussr_action_round.png"))));
     	}
     	lblActionRound.setBounds(this.scaleCord((448 + (56 * actionRoundNum))), this.scaleCord(103), this.scaleCord(41), this.scaleCord(42));
 	}
@@ -178,19 +184,77 @@ public class ScrollImage extends JPanel {
      */
     private void turnAdvance(Board b) {
     	int turnNum = b.getTurn();
-    	System.out.println(turnNum);
+    	//System.out.println(turnNum);
     	lblTurn.setBounds(this.scaleCord((1690 + (72 * turnNum))), this.scaleCord(96), this.scaleCord(41), this.scaleCord(42));
 	}
     
     /**
-     * Advances the new defcon token location
-     * @param b the current board
+     * Advances the defcon token location
+     * @param b the current Board
      */
     private void defconAdvance(Board b) {
     	int defconNum = b.getDefcon();
-    	System.out.println(defconNum);
+    	//System.out.println(defconNum);
     	lblDefcon.setBounds(this.scaleCord(740 + ((5 - defconNum) * 76)), this.scaleCord(1255), this.scaleCord(42), this.scaleCord(41));
 	}
+    
+    /**
+     * Advances the victory point marker location
+     * @param b the current Board
+     */
+    private void vpAdvance(Board b) {
+    	int vpNum = b.getVictoryPoints();
+    	System.out.println(vpNum);
+    	lblVictoryPoints.setBounds(this.scaleCord(getVPX(vpNum)), this.scaleCord(getVPY(vpNum)), this.scaleCord(42), this.scaleCord(42));
+    }
+    
+    /**
+     * Uses current vp amount to find the y coordinate of vp marker location
+     * @param vp current vp amount
+     * @return the y coordinate for that vp amount
+     */
+    private int getVPY(int vp) {
+    	if (vp >= -3 && vp <= 3) {
+    		return 1325;
+    	} else if (vp >= 4 && vp <= 12) {
+    		return 1257;
+    	} else if (vp >= 13) {
+    		return 1191;
+    	} else if (vp >= -12 && vp <= -4) {
+    		return 1393;
+    	} else if (vp <= -13) {
+    		return 1460;
+    	}
+    	return -1;
+    }
+    
+    /**
+     * Uses current vp amount to find the x coordinate of vp marker location
+     * @param vp current vp amount
+     * @return the x coordinate for that vp amount
+     */
+    private int getVPX(int vp) {
+    	if (vp >= 20 || vp == 12 || vp == 3 || vp == -4 || vp == -13) {
+    		return 1463;
+    	} else if (vp == 11 || vp == 2 || vp == -5 || vp == -14) {
+    		return 1528;
+    	} else if (vp == 19 || vp == 10 || vp == 1 || vp == -6 || vp == -15) {
+    		return 1594;
+    	} else if (vp == 18 || vp == 9 || vp == -7 || vp == -16) {
+    		return 1657;
+    	} else if (vp == 17 || vp == 8 || vp == 0 || vp == -8 || vp == -17) {
+    		return 1722;
+    	} else if (vp == 16 || vp == 7 || vp == -9 || vp == -18) {
+    		return 1787;
+    	} else if (vp == 15 || vp == 6 || vp == 1 || vp == -10 || vp == -19) {
+    		return 1852;
+    	} else if (vp == 14 || vp == 5 || vp == -2 || vp == -11) {
+    		return 1915;
+    	} else if (vp == 13 || vp == 4 || vp == -3 || vp == -12 || vp <= -20) {
+    		return 1979;
+    	}
+    	return -1;
+    }
 
 	/**
 	 * Repaints all elements on the board
@@ -283,6 +347,7 @@ public class ScrollImage extends JPanel {
 		actionRoundAdvance(b);
 		turnAdvance(b);
 		defconAdvance(b);
+		vpAdvance(b);
 		repaintAllInfluence();
 		canvas.revalidate();
 		canvas.repaint();
