@@ -24,3 +24,12 @@ Week Whatever
 	Lets make a frame gui that holds a player object, and it calls dialogs of the different things.
 	Then we can just copy the the structute of that example that seamed to work. 
 	Set frame visability based on current turn, so only two windows.
+	
+Last week before submission:
+	Fix roll realignment and roll coup
+	Fix influence choices for normal gameplay
+	Military Ops track
+	Victory checking
+	Icon by side in dialogs
+	Card descriptions in buttons
+	Finish early game cards

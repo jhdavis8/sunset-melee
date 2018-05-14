@@ -46,21 +46,11 @@ public class Window {
 	 * Frame of the Window
 	 */
 	private JFrame frmWindowTest;
-	/**
-	 * Label of the Game Map
-	 */
-	@Deprecated
-	private JLabel lblGameMap;
-	/**
-	 * Buffered Image of the Board
-	 */
-	@Deprecated
-	private BufferedImage image = null;
+
 	/**
 	 * The ScrollImage that holds and manages the board image
 	 */
-	private ScrollImage scrollImage;
-	
+	private ScrollImage scrollImage;	
 	
 	/**
 	 * Launch the application.
@@ -103,9 +93,6 @@ public class Window {
 		
 		scrollImage = new ScrollImage();
 		frmWindowTest.getContentPane().add(scrollImage, BorderLayout.CENTER);
-		
-		String absPath = new File("").getAbsolutePath();
-		
 	}
 	
 	/**
@@ -114,11 +101,9 @@ public class Window {
 	 * @param al The ArrayList of things to be put into the popUp, All Objects
 	 * @return Returns a string that is the desired input
 	 */
-	public static String popupDropDownWindow(String message, ArrayList al) {
-		// TODO make sort
+	public static String popupDropDownWindow(String message, ArrayList<?> al) {
 		// TODO make cool side icons
 		String[] listOfStrings = new String[al.size()];
-		JFrame popupWindow = new JFrame();
 		if (al.get(0) instanceof Card) {
 			Card c = null;
 			for (int k = 0; k < listOfStrings.length; k ++) {
@@ -148,14 +133,45 @@ public class Window {
 	}
 	
 	/**
+	 * Produces a drop down list for countries limited by a continent
+	 * @param message Message to print
+	 * @param al The ArrayList of things to be put into the popUp, All Objects
+	 * @param continent the continent to limit options to
+	 * @return Returns a string that is the desired input
+	 */
+	public static String popupDropDownWindow(String message, ArrayList<?> al, Continents continent) {
+		// TODO make cool side icons in the dialog
+		ArrayList<String> stringsInContinent = new ArrayList<String>();
+		String[] listOfStrings;
+		if (al.get(0) instanceof Country) {
+			Country c = null;
+			for (int k = 0; k < al.size(); k ++) {
+				c = (Country) al.get(k);
+				if (c.getContinent().contains(continent)) {
+					stringsInContinent.add(c.getFullName());
+				}
+			}
+			listOfStrings = new String[stringsInContinent.size()];
+			for (int k = 0; k < stringsInContinent.size(); k++) {
+				listOfStrings[k] = stringsInContinent.get(k);
+			}
+		} else {
+			return "";
+		}
+		Arrays.sort(listOfStrings);
+		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
+									null, listOfStrings, listOfStrings[0]);
+		return toReturn;
+	}
+	
+	/**
 	 * Produces a list of buttons for selection objects
 	 * @param message Message to print
 	 * @param al The ArrayList of things to be put into the popUp, All Objects
 	 * @return Returns a init that is the desired input location
 	 */
-	public static int popupButtonWindow(String message, ArrayList al) {
+	public static int popupButtonWindow(String message, ArrayList<?> al) {
 		String[] listOfStrings = new String[al.size()];
-		JFrame popupWindow = new JFrame();
 		if (al.get(0) instanceof Card) {
 			Card c = null;
 			for (int k = 0; k < listOfStrings.length; k ++) {

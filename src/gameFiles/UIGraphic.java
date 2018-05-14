@@ -110,7 +110,6 @@ public class UIGraphic implements UICore {
 					+ "\n\t3: Attempt a Coup in an Enemy Country\n\t4: Play the Cards Event";
 			toReturn += "\nSelection: ";
 			System.out.print(toReturn);
-			String stringSel = "";
 			int sel = 0;
 			ArrayList<Object> options = new ArrayList<Object>();
 			options.add("Place Influence");
@@ -148,7 +147,6 @@ public class UIGraphic implements UICore {
 					+ "\n\t3: Attempt a Coup in an Enemy Country";
 			toReturn += "\nSelection: ";
 			System.out.print(toReturn);
-			String stringSel = "";
 			int sel = 0;
 			ArrayList<Object> options = new ArrayList<Object>();
 			options.add("Place Influence");
@@ -191,7 +189,6 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public Scanner getScanner() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -199,7 +196,13 @@ public class UIGraphic implements UICore {
 	public Country promptExceptionInfluenceTarget(Side side) {
 		ArrayList<Object> countries = new ArrayList<Object>();
 		countries.addAll(Map.getWorld());
-		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries));
+		Continents target;
+		if (currentBoard.getCurrentPlayer() == Side.USA) {
+			target = Continents.WEE;
+		} else {
+			target = Continents.EEE;
+		}
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries, target));
 	}
 
 }
