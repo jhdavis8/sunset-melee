@@ -247,7 +247,7 @@ public class Window {
 	 * @param message String to show above entry box
 	 * @return the user's input
 	 */
-	public String popupStringInputWindow(String message) {
+	public static String popupStringInputWindow(String message) {
 		return JOptionPane.showInputDialog(message);
 	}
 }
