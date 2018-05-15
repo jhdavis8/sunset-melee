@@ -238,7 +238,7 @@ public class Player {
 		else if (side.equals(Side.USA) && (usRoll <= ussrRoll)) {
 			diff = 0;
 		}
-		else if (side.equals(Side.USSR) && (usRoll > ussrRoll)) {
+		else if (side.equals(Side.USSR) && (usRoll < ussrRoll)) {
 			diff = -1 * (ussrRoll - usRoll);
 			country.modifyInfluence(diff, Side.USA);
 		}

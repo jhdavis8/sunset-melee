@@ -103,6 +103,9 @@ public class Effects {
 			case 22:
 				effectID022();
 				break;
+			case 23:
+				effectID023();
+				break;
 			case 26:
 				effectID026();
 				break;
@@ -419,15 +422,49 @@ public class Effects {
 		if (cardOverThree > 0) {
 			UI.announce("Please pick a card to discard imediently, or type -1,"
 					+ " to signify that you'll take the influence loss in West Germany");
-			String input = UI.promptUSA("");
-			int selection = Integer.parseInt(input);
-			if (selection >= 0) {
-				currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
+			String input = "";
+			if (UI instanceof UIText) {
+				input = UI.promptUSA("");
+				
+				int selection = Integer.parseInt(input);
+				if (selection >= 0) {
+					currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
+				}
+			else {
+				int USInf = -1 * Map.getCountry("DEU").getUSInfluence();
+				Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
+				}
 			}
-		else {
-			int USInf = Map.getCountry("DEU").getUSInfluence();
-			Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
+			else if (UI instanceof UIGraphic) {
+				ArrayList<Object> al = new ArrayList<Object>();
+				for (Card c : currentBoard.getPlayer(Side.USA).getHand()) {
+					if (c instanceof TurnCard) {
+						TurnCard tC1 = (TurnCard)c;
+						if (tC1.getOps() >= 3) {
+							al.add(c);
+						}
+					}
+;				}
+				TurnCard temp = new TurnCard("Remove 3 Influence", "Will remove 3 influence", -1, -1, Side.USSR, true, 3, "E");
+				al.add(temp);
+				input = Window.popupDropDownWindow("Please pick a card to discard imediently, or type -1,\"\n" + 
+							"to signify that you'll take the influence loss in West Germany", al, Side.USA);
+				if (input.equals(temp.name)) {
+					int USInf = -1 * Map.getCountry("DEU").getUSInfluence();
+					Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
+				}
+				else {
+					int selection = -1;
+					TurnCard tC2 = (TurnCard) Deck.getCard(input);
+					for (int k = 0; k < currentBoard.getPlayer(Side.USA).getHand().size(); k ++) {
+						if (tC2.name.equals((currentBoard.getPlayer(Side.USA).getHand().get(k)))) {
+							selection = k;
+						}
+					}
+					currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
+				}
 			}
+			
 		}
 	}
 	
@@ -563,6 +600,13 @@ public class Effects {
 		int USInf = Map.getCountry(input).getUSSRInfluence();
 		Map.getCountry(input).modifyInfluence(USInf, Side.USA);
 		UI.announce(Map.getCountry(input).toString());
+	}
+	
+	/**
+	 * The Marshal Plan
+	 */
+	public static void effectID023() {
+		effectID998();
 	}
 	
 	

@@ -303,9 +303,19 @@ public class ScrollImage extends JPanel {
 		
 		for (int k = 0; k < Map.getWorld().size(); k ++) {
 			Country c = Map.getWorld().get(k);
+			int usInf = c.getUSInfluence();
+			int ussrInf = c.getUSSRInfluence();
+			
+			if (usInf > 7) {
+				usInf = 7;
+			}
+			if (ussrInf > 7) {
+				ussrInf = 7;
+			}
+			
 			if (c.userHasInfluence(Side.USA) && (c.userHasControl(Side.USA))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\usa_tokens\\usaControl" + c.getUSInfluence() + ".png";
+				String f = "img\\usa_tokens\\usaControl" + usInf + ".png";
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
@@ -315,7 +325,7 @@ public class ScrollImage extends JPanel {
 			}
 			else if (c.userHasInfluence(Side.USA) && !(c.userHasControl(Side.USA))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\usa_tokens\\usaInfluence" + c.getUSInfluence() + ".png";
+				String f = "img\\usa_tokens\\usaInfluence" + usInf + ".png";
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 	
 				Location l = Location.getImageLocation(c.getISO(), Side.USA);
@@ -325,7 +335,7 @@ public class ScrollImage extends JPanel {
 			}
 			if (c.userHasInfluence(Side.USSR) && (c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\ussr_tokens\\ussrControl" + c.getUSSRInfluence() + ".png";
+				String f = "img\\ussr_tokens\\ussrControl" + ussrInf + ".png";
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
@@ -335,7 +345,7 @@ public class ScrollImage extends JPanel {
 			}
 			else if (c.userHasInfluence(Side.USSR) && !(c.userHasControl(Side.USSR))) {
 				JLabel jL = new JLabel("");
-				String f = "img\\ussr_tokens\\ussrInfluence" + c.getUSSRInfluence() + ".png";
+				String f = "img\\ussr_tokens\\ussrInfluence" + ussrInf + ".png";
 				jL.setIcon(new ImageIcon(resize(new File(f))));
 				
 				Location l = Location.getImageLocation(c.getISO(), Side.USSR);
