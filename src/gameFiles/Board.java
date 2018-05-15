@@ -338,7 +338,7 @@ public class Board {
 	 * @param c Continents ArrayList
 	 */
 	public void placeInfluenceException(TurnCard tCard, UICore ui, Continents c, Side s) {
-		if (s.equals(Side.USA)) USSR.placeInfluence(tCard, ui, c);
+		if (s.equals(Side.USSR)) USSR.placeInfluence(tCard, ui, c);
 		else USA.placeInfluence(tCard, ui, c);
 	}
 
