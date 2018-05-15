@@ -513,7 +513,7 @@ public class Effects {
 					}
 				}
 			}
-			country = Map.getCountryByName(Window.popupDropDownWindow("Please select a country to remove all influence from.", specificWorld));
+			country = Map.getCountryByName(Window.popupDropDownWindow("Please select a country to remove all influence from.", specificWorld, currentBoard.getCurrentPlayer()));
 		}
 		//To push
 		int USSRInf = country.getInfluence(Side.USSR);
@@ -554,7 +554,7 @@ public class Effects {
 					}
 				}
 				checking = false;
-				input = Map.getCountryByName(Window.popupDropDownWindow("Select one of the countries to have its USA influence set to equal USSR:", object)).getISO();
+				input = Map.getCountryByName(Window.popupDropDownWindow("Select one of the countries to have its USA influence set to equal USSR:", object,  currentBoard.getCurrentPlayer())).getISO();
 			}
 		}
 		

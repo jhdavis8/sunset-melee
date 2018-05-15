@@ -44,7 +44,7 @@ public class TestEnviorment {
 			ArrayList<Object> t = new ArrayList<Object>();
 			t.addAll(game.getPlayer(Side.USSR).getHand());
 			
-			System.out.println(Window.popupDropDownWindow("Test", t));
+			System.out.println(Window.popupDropDownWindow("Test", t, Side.UNK));
 			System.out.println(Window.popupButtonWindow("Testers", t));
       
       //I have all the power

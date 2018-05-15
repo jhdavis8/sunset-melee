@@ -198,9 +198,7 @@ public class UIGraphic implements UICore {
 			}
 			lastListOfOptions = options;
 		}
-		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a valid Country to influence", options
-				
-				));
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a valid Country to influence", options,  currentBoard.getCurrentPlayer()));
 	}
 
 	@Override
@@ -218,7 +216,7 @@ public class UIGraphic implements UICore {
 		} else {
 			target = Continents.EEE;
 		}
-		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries, target));
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries,  currentBoard.getCurrentPlayer(), target));
 	}
 
 }
