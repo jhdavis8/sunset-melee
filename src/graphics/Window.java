@@ -127,13 +127,19 @@ public class Window {
 		}
 		Arrays.sort(listOfStrings);
 		String path = "";
+		Icon icon;
 		if (playingSide == Side.USA) {
 			path = "img\\board_tokens\\usa_action_round";
-		} else {
+		} else if (playingSide == Side.USSR) {
 			path = "img\\board_tokens\\ussr_action_round";
 		}
+		if (!path.equals("")) {
+			icon = new ImageIcon(path);
+		} else {
+			icon = null;
+		}
 		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
-									(new ImageIcon(path)), listOfStrings, listOfStrings[0]);
+									icon, listOfStrings, listOfStrings[0]);
 		return toReturn;			
 		
 	}
@@ -166,13 +172,19 @@ public class Window {
 		}
 		Arrays.sort(listOfStrings);
 		String path = "";
+		Icon icon;
 		if (playingSide == Side.USA) {
 			path = "img\\board_tokens\\usa_action_round";
-		} else {
+		} else if (playingSide == Side.USSR) {
 			path = "img\\board_tokens\\ussr_action_round";
 		}
+		if (!path.equals("")) {
+			icon = new ImageIcon(path);
+		} else {
+			icon = null;
+		}
 		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
-									(new ImageIcon(path)), listOfStrings, listOfStrings[0]);
+									icon, listOfStrings, listOfStrings[0]);
 		return toReturn;
 	}
 	
