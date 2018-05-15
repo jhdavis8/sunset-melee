@@ -605,7 +605,7 @@ public class Effects {
 	/**
 	 * The Marshal Plan
 	 */
-	public static void effectID023() {
+	private static void effectID023() {
 		effectID998();
 	}
 	
@@ -653,13 +653,13 @@ public class Effects {
 	 * USA Europe
 	 */
 	private static void effectID998() {
-		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(0), UI, Continents.WEE);
+		currentBoard.placeInfluenceException(Deck.getOutsideOfDeckCard().get(0), UI, Continents.WEE, Side.USA);
 	}
 	
 	/**
 	 * USSR Europe 
 	 */
 	private static void effectID999() {
-		currentBoard.placeInfluence(Deck.getOutsideOfDeckCard().get(1), UI, Continents.EEE);
+		currentBoard.placeInfluenceException(Deck.getOutsideOfDeckCard().get(1), UI, Continents.EEE, Side.USSR);
 	}
 }

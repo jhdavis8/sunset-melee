@@ -60,7 +60,13 @@ public class Controller {
 		
 		for (int k = 0; k < 10; k ++) {
 			turn(game, UI);
+			if (game.gameEnd()) {
+				k = 11;
+			}
 		}
+		UI.announce("Congratulations " + getVictor(game).toString() + " You have vanquished the forces of evil in the world\\n"
+				+ "to become the one true superpower in the world.\\n"
+				+ "Thank you so much for playing our game!");
 		
 		//UI.runUI();
 		 
@@ -115,29 +121,11 @@ public class Controller {
 	}
 	
 	/**
-	 * Checks if the game has ended
-	 * @param b the Board object
-	 * @return true if the game has ended by Defcon or by Vic points
-	 */
-	private boolean gameEnd(Board b) {
-		Boolean endGame = false;
-		
-		if (Math.abs(b.getVictoryPoints()) >= 20) {
-			endGame = true;
-		}
-		else if (b.getDefcon() == 0) {
-			endGame = true;
-		}
-		
-		return endGame;
-	}
-	
-	/**
 	 * Returns the Side that has won the game
 	 * @param b the Board object
 	 * @return Side that has won
 	 */
-	private Side getVictor(Board b) {
+	private static Side getVictor(Board b) {
 		if (b.getVictoryPoints() > 0) {
 			return Side.USSR;
 		}

@@ -188,32 +188,37 @@ public class Board {
 		int pickResult;
 		Card card = null;
 		for (int i = 1; i <= loopCount; i++) {
-			ui.updateUI();
-			actionRound = i;
-			ui.announce("Entering action round " + i + "!");
-			if (USSR.hasCards()) {
-				cardNum = ui.promptSelectCard(Side.USSR);
-				card = USSR.getHand().get(cardNum);
-				pickResult = USSR.playCard(card);
-				ui.promptCardChoiceResult(pickResult, card);
-				this.handleDiscard(card, Side.USSR);
-			}
+			if (this.gameEnd()) {
+				i = loopCount;
+			} 
 			else {
-				ui.indicateNoCards();
+				ui.updateUI();
+				actionRound = i;
+				ui.announce("Entering action round " + i + "!");
+				if (USSR.hasCards()) {
+					cardNum = ui.promptSelectCard(Side.USSR);
+					card = USSR.getHand().get(cardNum);
+					pickResult = USSR.playCard(card);
+					ui.promptCardChoiceResult(pickResult, card);
+					this.handleDiscard(card, Side.USSR);
+				}
+				else {
+					ui.indicateNoCards();
+				}
+				playerTurn = !playerTurn;
+				ui.updateUI();
+				if (USA.hasCards()) {
+					cardNum = ui.promptSelectCard(Side.USA);
+					card = USA.getHand().get(cardNum);
+					pickResult = USA.playCard(card);
+					ui.promptCardChoiceResult(pickResult, card);
+					this.handleDiscard(card, Side.USA);
+				}
+				else {
+					ui.indicateNoCards();
+				}
+				playerTurn = !playerTurn;
 			}
-			playerTurn = !playerTurn;
-			ui.updateUI();
-			if (USA.hasCards()) {
-				cardNum = ui.promptSelectCard(Side.USA);
-				card = USA.getHand().get(cardNum);
-				pickResult = USA.playCard(card);
-				ui.promptCardChoiceResult(pickResult, card);
-				this.handleDiscard(card, Side.USA);
-			}
-			else {
-				ui.indicateNoCards();
-			}
-			playerTurn = !playerTurn;
 		}
 	}
 
@@ -325,6 +330,17 @@ public class Board {
 		if (playerTurn) USSR.placeInfluence(tCard, ui, c);
 		else USA.placeInfluence(tCard, ui, c);
 	}
+	
+	/**
+	 * Passes control of influence placement to the player
+	 * @param tCard turnCard used to place influence
+	 * @param ui UICore object to use for input
+	 * @param c Continents ArrayList
+	 */
+	public void placeInfluenceException(TurnCard tCard, UICore ui, Continents c, Side s) {
+		if (s.equals(Side.USA)) USSR.placeInfluence(tCard, ui, c);
+		else USA.placeInfluence(tCard, ui, c);
+	}
 
 	/**
 	 * Remove influence from countries
@@ -361,6 +377,24 @@ public class Board {
 		if (playerTurn) USSR.rollRealignment(tCard, ui, defcon);
 		else USA.rollRealignment(tCard, ui, defcon);
 		
+	}
+	
+	/**
+	 * Checks if the game has ended
+	 * @param b the Board object
+	 * @return true if the game has ended by Defcon or by Vic points
+	 */
+	public boolean gameEnd() {
+		Boolean endGame = false;
+		
+		if (Math.abs(this.getVictoryPoints()) >= 20) {
+			endGame = true;
+		}
+		else if (this.getDefcon() == 0) {
+			endGame = true;
+		}
+		
+		return endGame;
 	}
 
 	/**
