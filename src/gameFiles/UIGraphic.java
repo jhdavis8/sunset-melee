@@ -57,8 +57,9 @@ public class UIGraphic implements UICore {
 	
 	/**
 	 * Construct a UIGraphic
+	 * @param game 
 	 */
-	public UIGraphic() {
+	public UIGraphic(Board game) {
 		try {
 			window = new Window();
 			frame = new JFrame();

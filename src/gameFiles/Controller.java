@@ -35,8 +35,8 @@ public class Controller {
 		Board game = new Board(); 
 		initialize(game);
 		Effects.setCurrentBoard(game);
-//		UIGraphic UI = new UIGraphic(); // TODO unify constructor signatures
-		UIText UI = new UIText(game);
+		UIGraphic UI = new UIGraphic(game); // TODO unify constructor signatures
+//		UIText UI = new UIText(game);
 		UI.updateBoard(game);
 		UI.updateUI();
 		Effects.setUI(UI);
