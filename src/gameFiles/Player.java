@@ -221,7 +221,7 @@ public class Player {
 		Country country = null;
 		boolean checking = false;
 		while (!checking) {
-			country = Country.getValidCountry(ui.getScanner(), "Select a country to reallign:", side);
+			country = Country.getValidCountry(ui, "Select a country to reallign:", side);
 			checking = country.isValidDefconCountry(defcon);
 		}
 		Random randy = new Random();
@@ -259,7 +259,7 @@ public class Player {
 		boolean checking = false;
 		Country coupTarget = null;
 		while (!checking) {
-			coupTarget = Country.getValidCountry(ui.getScanner(), "Select a country to coup:", side);
+			coupTarget = Country.getValidCountry(ui, "Select a country to coup:", side);
 			checking = coupTarget.isValidDefconCountry(defcon);
 		}
 		int stabilityLimit = coupTarget.getStabilityNum() * 2;

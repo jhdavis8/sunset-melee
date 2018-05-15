@@ -419,7 +419,7 @@ public class Effects {
 		if (cardOverThree > 0) {
 			UI.announce("Please pick a card to discard imediently, or type -1,"
 					+ " to signify that you'll take the influence loss in West Germany");
-			String input = UI.promptUSA();
+			String input = UI.promptUSA("");
 			int selection = Integer.parseInt(input);
 			if (selection >= 0) {
 				currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
@@ -495,10 +495,10 @@ public class Effects {
 		UI.announce("Please select a country to remove all influence from.  Use 3-digit ISO.");
 		Country country = null;
 		if (UI instanceof UIText ) {
-			String input = UI.promptUSA();
+			String input = UI.promptUSA("");
 			while (Country.isValidCountry(input) == false) {
 				UI.announce("Not a country.");
-				input = UI.promptUSA();
+				input = UI.promptUSA("");
 			}
 			country = Map.getCountry(input);
 		}
@@ -542,7 +542,7 @@ public class Effects {
 		boolean checking = true;
 		while (checking) {
 			if (UI instanceof UIText) {
-				input = UI.promptUSA();
+				input = UI.promptUSA("");
 				if (input.equals("YUG") || input.equals("ROU") || input.equals("BGR") || input.equals("HUN") || input.equals("CSK")) {
 					checking = false;
 				}

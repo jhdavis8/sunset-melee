@@ -6,6 +6,8 @@ package gameFiles;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import graphics.Window;
+
 /**
  * Class for Country objects on the map
  * @author Mark Wolgin
@@ -292,27 +294,45 @@ public class Country {
 	
 	/**
 	 * Handles prompting with an additional constraint: enemy player must have influence
-	 * @param scan Scanner to get input with
+	 * @param ui Scanner to get input with
 	 * @param message Message to say
 	 * @param self The side that is trying a realignment or coup
 	 * @return the valid Country chosen
 	 */
-	public static Country getValidCountry(Scanner scan, String message, Side self) {
+	public static Country getValidCountry(UICore ui, String message, Side self) {
+		//TODO Could move to UI, one for each option
 		boolean checking = true;
 		String input = "";
 		Country country = null;
-		while (checking) {
-			System.out.println(message);
-			input = scan.nextLine();
-			country = Map.getCountry(input);
-			if (country != null && country.opponentHasInfluence(self)) {
-				System.out.printf("Country is: %s%n", country);
-				checking = false;
+		if (ui instanceof UIText) {
+			while (checking) {
+				
+				if (self.equals(Side.USA)) {
+					input = ui.promptUSA(message);
+				}
+				else { 
+					input = ui.promptUSSR(message);
+				}
+				
+				country = Map.getCountry(input);
+				if (country != null && country.opponentHasInfluence(self)) {
+					System.out.printf("Country is: %s%n", country);
+					checking = false;
+				}
+				else {
+					System.out.println("Not a valid country (Opponent must have influence and must be an actual country)!");
+					continue;
+				}
 			}
-			else {
-				System.out.println("Not a valid country (Opponent must have influence and must be an actual country)!");
-				continue;
+		}
+		else if (ui instanceof UIGraphic) {
+			ArrayList<Object> al = new ArrayList<Object>();
+			for (Country c : Map.getWorld()) {
+				if (c.opponentHasInfluence(self)) {
+					al.add(c);
+				}
 			}
+			country = Map.getCountryByName(Window.popupDropDownWindow(message, al, self));
 		}
 		return country;
 	}

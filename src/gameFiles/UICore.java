@@ -31,15 +31,16 @@ public interface UICore {
 	
 	/**
 	 * Prompts the USA Player for input
+	 * @param string 
 	 * @return Returns a string
 	 */
-	public String promptUSA();
+	public String promptUSA(String message);
 	
 	/**
 	 * Prompts the USSR Player for input
 	 * @return Returns a string
 	 */
-	public String promptUSSR();
+	public String promptUSSR(String message);
 
 	/**
 	 * Tells the player they can't pick a card because their hand is empty

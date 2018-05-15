@@ -300,7 +300,7 @@ public class UIText implements UICore {
 		String input = "";
 		
 		Side side = Side.getValidSide(scan, "Please enter a side to roll a Coup for:");
-		Country country = Country.getValidCountry(scan, "Please enter a country to coup:", side);
+		Country country = Country.getValidCountry(this, "Please enter a country to coup:", side);
 		
 		checking = true;
 		Card card = null;
@@ -339,7 +339,7 @@ public class UIText implements UICore {
 		System.out.println("Entering realignemnt prompt...");
 		
 		Side side = Side.getValidSide(scan, "Please enter a side to realign for:");
-		Country country = Country.getValidCountry(scan, "Please enter a country to realign:", side);
+		Country country = Country.getValidCountry(this, "Please enter a country to realign:", side);
 		
 		System.out.println(country);
 		System.out.println("Rolling for realignment...");
@@ -410,8 +410,8 @@ public class UIText implements UICore {
 		int cardIDInHand = 0;
 		while (checking) {
 			System.out.println("Please select a card by the number in the hand:");
-			if (Side.USA.equals(side)) input = promptUSA();
-			else input = promptUSSR();
+			if (Side.USA.equals(side)) input = promptUSA("");
+			else input = promptUSSR("");
 			
 			try {
 				cardIDInHand = Integer.parseInt(input);
@@ -425,13 +425,15 @@ public class UIText implements UICore {
 	}
 
 	@Override
-	public String promptUSA() {
+	public String promptUSA(String message) {
+		announce(message);
 		System.out.print("USA, please input you answer: ");
 		return scan.nextLine();
 	}
 
 	@Override
-	public String promptUSSR() {
+	public String promptUSSR(String message) {
+		announce(message);
 		System.out.print("USSR, please input you answer: ");
 		return scan.nextLine();
 	}

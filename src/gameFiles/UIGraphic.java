@@ -86,14 +86,13 @@ public class UIGraphic implements UICore {
 	}
 
 	@Override
-	public String promptUSA() {
-		return Window.popupStringInputWindow("");
+	public String promptUSA(String message) {
+		return Window.popupStringInputWindow(message);
 	}
 
 	@Override
-	public String promptUSSR() {
-		// TODO Auto-generated method stub
-		return null;
+	public String promptUSSR(String message) {
+		return Window.popupStringInputWindow(message);
 	}
 
 	@Override
