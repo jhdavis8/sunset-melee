@@ -39,6 +39,10 @@ public class UIGraphic implements UICore {
 	 */
 	private Window window;
 	private JFrame frame;
+	private int lastAr;
+	private int lastTn;
+	private Side lastPr;
+	private ArrayList<Object> lastListOfOptions;
 	
 	
 	/* Used to retrieve the most recent version of the Board
@@ -58,6 +62,8 @@ public class UIGraphic implements UICore {
 		try {
 			window = new Window();
 			frame = new JFrame();
+			lastAr = 0;
+			lastTn = 0;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,8 +87,7 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public String promptUSA() {
-		// TODO Auto-generated method stub
-		return null;
+		return Window.popupStringInputWindow("");
 	}
 
 	@Override
@@ -179,12 +184,23 @@ public class UIGraphic implements UICore {
 	@Override
 	public Country promptValidInfluenceTarget(Side side) {
 		ArrayList<Object> options = new ArrayList<Object>();
-		for (Country c : Map.getWorld()) {
-			if (Map.checkCountryChoice(c, side)) {
-				options.add(c);
-			}
+		if ((currentBoard.getActionRound() == this.lastAr) && (currentBoard.getTurn() == this.lastTn) && lastPr.equals(currentBoard.getCurrentPlayer())) {
+			options = lastListOfOptions;
 		}
-		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a valid Country to influence", options));
+		else {
+			lastAr = currentBoard.getActionRound();
+			lastTn = currentBoard.getTurn();
+			lastPr = currentBoard.getCurrentPlayer();
+			for (Country c : Map.getWorld()) {
+				if (Map.checkCountryChoice(c, side)) {
+					options.add(c);
+				}
+			}
+			lastListOfOptions = options;
+		}
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a valid Country to influence", options
+				
+				));
 	}
 
 	@Override

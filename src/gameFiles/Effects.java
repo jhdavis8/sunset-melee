@@ -404,27 +404,29 @@ public class Effects {
 		TurnCard tC = null;
 		int count = 0;
 		int cardOverThree = 0;
+		String sTemp = "";
 		for (Card c : currentBoard.getPlayer(Side.USA).getHand()) {
 			if (c instanceof TurnCard) {
 				tC = (TurnCard) c;
 				if (tC.getOps() >= 3) {
 					cardOverThree ++;
-					System.out.print("Card " + count + ":" + tC);
+					sTemp += ("Card " + count + ":" + tC + "\n");
 				}
 			}
 			count ++;
 		}
+		UI.announce(sTemp);
 		if (cardOverThree > 0) {
-			System.out.println("Please pick a card to discard imediently, or type -1,"
+			UI.announce("Please pick a card to discard imediently, or type -1,"
 					+ " to signify that you'll take the influence loss in West Germany");
 			String input = UI.promptUSA();
 			int selection = Integer.parseInt(input);
 			if (selection >= 0) {
 				currentBoard.handleDiscard(currentBoard.getPlayer(Side.USA).getHand().get(selection), Side.USA);
 			}
-			else {
-				int USInf = Map.getCountry("DEU").getUSInfluence();
-				Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
+		else {
+			int USInf = Map.getCountry("DEU").getUSInfluence();
+			Map.getCountry("DEU").modifyInfluence(USInf, Side.USA);
 			}
 		}
 	}
@@ -487,7 +489,7 @@ public class Effects {
 				}
 			}
 			if (isContinent && (c.getInfluence(Side.USSR) > 0)) {
-				System.out.print(c);
+				UI.announce(c.toString());
 			}
 		}
 		UI.announce("Please select a country to remove all influence from.  Use 3-digit ISO.");
@@ -495,7 +497,7 @@ public class Effects {
 		if (UI instanceof UIText ) {
 			String input = UI.promptUSA();
 			while (Country.isValidCountry(input) == false) {
-				System.out.println("Not a country.");
+				UI.announce("Not a country.");
 				input = UI.promptUSA();
 			}
 			country = Map.getCountry(input);
@@ -525,27 +527,41 @@ public class Effects {
 	private static void effectID022() {
 		// Show a country to pick
 		String cISO = "";
-		System.out.println("Select one of the countries to have its USA influence set to equal USSR:");
-		for (Country  c : Map.getWorld()) {
-			cISO = c.getISO();
-			if (cISO.equals("YUG") || cISO.equals("ROU") || cISO.equals("BGR") || cISO.equals("HUN") || cISO.equals("CSK")) {
-				System.out.print(c);
+		if (UI instanceof UIText) {
+			System.out.println("Select one of the countries to have its USA influence set to equal USSR:");
+			for (Country  c : Map.getWorld()) {
+				cISO = c.getISO();
+				if (cISO.equals("YUG") || cISO.equals("ROU") || cISO.equals("BGR") || cISO.equals("HUN") || cISO.equals("CSK")) {
+					UI.announce(c.toString());
+				}
 			}
 		}
 		// Pick a country
 		String input = "";
 		boolean checking = true;
 		while (checking) {
-			input = UI.promptUSA();
-			if (input.equals("YUG") || input.equals("ROU") || input.equals("BGR") || input.equals("HUN") || input.equals("CSK")) {
+			if (UI instanceof UIText) {
+				input = UI.promptUSA();
+				if (input.equals("YUG") || input.equals("ROU") || input.equals("BGR") || input.equals("HUN") || input.equals("CSK")) {
+					checking = false;
+				}
+			}
+			else if (UI instanceof UIGraphic) {
+				ArrayList<Object> object = new ArrayList<Object>();
+				for (Country c : Map.getWorld()) {
+					if (c.getISO().equals("YUG") || c.getISO().equals("ROU") || c.getISO().equals("BGR") || c.getISO().equals("HUN") || c.getISO().equals("CSK")) {
+						object.add(c);
+					}
+				}
 				checking = false;
+				input = Map.getCountryByName(Window.popupDropDownWindow("Select one of the countries to have its USA influence set to equal USSR:", object)).getISO();
 			}
 		}
 		
 		// Adds USA influence
 		int USInf = Map.getCountry(input).getUSSRInfluence();
 		Map.getCountry(input).modifyInfluence(USInf, Side.USA);
-		System.out.print(Map.getCountry(input));
+		UI.announce(Map.getCountry(input).toString());
 	}
 	
 	
@@ -554,9 +570,11 @@ public class Effects {
 	 */
 	private static void effectID026() {
 		System.out.println();
+		String sTemp = "";
 		for (Card c : currentBoard.getPlayer(Side.USSR).getHand()) {
-			System.out.print(c);
+			sTemp += c + "\n";
 		}
+		UI.announce(sTemp);
 	}
 	
 	/**
