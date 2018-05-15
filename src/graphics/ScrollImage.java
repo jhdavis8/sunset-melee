@@ -87,6 +87,14 @@ public class ScrollImage extends JPanel {
      * Marker for current victory points
      */
     private final JLabel lblVictoryPoints = new JLabel("");
+    /**
+     * Marker for current USA mil ops completed
+     */
+    private final JLabel lblUSAOps = new JLabel("");
+    /**
+     * Marker for current USSR mil ops completed
+     */
+    private final JLabel lblUSSROps = new JLabel("");
     
 
     /**
@@ -153,6 +161,20 @@ public class ScrollImage extends JPanel {
         lblVictoryPoints.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\vp.png"))));
         canvas.add(lblVictoryPoints);
         
+        lblUSAOps.setVerticalAlignment(SwingConstants.TOP);
+        lblUSAOps.setToolTipText("Current victory points");
+        lblUSAOps.setBounds(this.scaleCord(738), this.scaleCord(1420), this.scaleCord(42), this.scaleCord(42));
+        lblUSAOps.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\usa_military_ops.png"))));
+        canvas.add(lblUSAOps);
+        canvas.setComponentZOrder(lblUSAOps, 1);
+        
+        lblUSSROps.setVerticalAlignment(SwingConstants.TOP);
+        lblUSSROps.setToolTipText("Current victory points");
+        lblUSSROps.setBounds(this.scaleCord(748), this.scaleCord(1430), this.scaleCord(42), this.scaleCord(42));
+        lblUSSROps.setIcon(new ImageIcon(resize(new File("img\\board_tokens\\ussr_military_ops.png"))));
+        canvas.add(lblUSSROps);
+        canvas.setComponentZOrder(lblUSSROps, 0);
+        
 
         setLayout(new BorderLayout());
         add(sp, BorderLayout.CENTER);
@@ -209,6 +231,17 @@ public class ScrollImage extends JPanel {
     }
     
     /**
+     * Advances the mil ops markers for USA and USSR
+     * @param b the current Board
+     */
+    private void milOpsAdvance(Board b) {
+    	int usaOpsNum = b.getUSMilitaryOps();
+    	int ussrOpsNum = b.getUSSRMilitaryOps();
+    	lblUSAOps.setBounds(this.scaleCord(738 + (usaOpsNum * 75)), this.scaleCord(1420), this.scaleCord(42), this.scaleCord(42));
+    	lblUSSROps.setBounds(this.scaleCord(748 + (ussrOpsNum * 75)), this.scaleCord(1430), this.scaleCord(42), this.scaleCord(42));
+    }
+    
+    /**
      * Uses current vp amount to find the y coordinate of vp marker location
      * @param vp current vp amount
      * @return the y coordinate for that vp amount
@@ -246,7 +279,7 @@ public class ScrollImage extends JPanel {
     		return 1722;
     	} else if (vp == 16 || vp == 7 || vp == -9 || vp == -18) {
     		return 1787;
-    	} else if (vp == 15 || vp == 6 || vp == 1 || vp == -10 || vp == -19) {
+    	} else if (vp == 15 || vp == 6 || vp == -1 || vp == -10 || vp == -19) {
     		return 1852;
     	} else if (vp == 14 || vp == 5 || vp == -2 || vp == -11) {
     		return 1915;
@@ -347,6 +380,7 @@ public class ScrollImage extends JPanel {
 		actionRoundAdvance(b);
 		turnAdvance(b);
 		defconAdvance(b);
+		milOpsAdvance(b);
 		vpAdvance(b);
 		repaintAllInfluence();
 		canvas.revalidate();

@@ -101,7 +101,7 @@ public class Window {
 	 * @param al The ArrayList of things to be put into the popUp, All Objects
 	 * @return Returns a string that is the desired input
 	 */
-	public static String popupDropDownWindow(String message, ArrayList<?> al) {
+	public static String popupDropDownWindow(String message, ArrayList<?> al, Side playingSide) {
 		// TODO make cool side icons
 		String[] listOfStrings = new String[al.size()];
 		if (al.get(0) instanceof Card) {
@@ -126,8 +126,14 @@ public class Window {
 			}
 		}
 		Arrays.sort(listOfStrings);
+		String path = "";
+		if (playingSide == Side.USA) {
+			path = "img\\board_tokens\\usa_action_round";
+		} else {
+			path = "img\\board_tokens\\ussr_action_round";
+		}
 		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
-									null, listOfStrings, listOfStrings[0]);
+									(new ImageIcon(path)), listOfStrings, listOfStrings[0]);
 		return toReturn;			
 		
 	}
@@ -139,7 +145,7 @@ public class Window {
 	 * @param continent the continent to limit options to
 	 * @return Returns a string that is the desired input
 	 */
-	public static String popupDropDownWindow(String message, ArrayList<?> al, Continents continent) {
+	public static String popupDropDownWindow(String message, ArrayList<?> al, Side playingSide, Continents continent) {
 		// TODO make cool side icons in the dialog
 		ArrayList<String> stringsInContinent = new ArrayList<String>();
 		String[] listOfStrings;
@@ -159,8 +165,14 @@ public class Window {
 			return "";
 		}
 		Arrays.sort(listOfStrings);
+		String path = "";
+		if (playingSide == Side.USA) {
+			path = "img\\board_tokens\\usa_action_round";
+		} else {
+			path = "img\\board_tokens\\ussr_action_round";
+		}
 		String toReturn = (String) JOptionPane.showInputDialog(null, message, "Press OK to Continue", JOptionPane.QUESTION_MESSAGE,
-									null, listOfStrings, listOfStrings[0]);
+									(new ImageIcon(path)), listOfStrings, listOfStrings[0]);
 		return toReturn;
 	}
 	
@@ -216,6 +228,14 @@ public class Window {
 	public void rePaintAll(Board b) {
 		frmWindowTest.repaint();
 		scrollImage.rePaintAll(b);
-		
+	}
+	
+	/**
+	 * Pop up a dialog to get simple user input string
+	 * @param message String to show above entry box
+	 * @return the user's input
+	 */
+	public String popupStringInputWindow(String message) {
+		return JOptionPane.showInputDialog(message);
 	}
 }
