@@ -48,6 +48,10 @@ public class Effects {
 	 */
 	private static boolean effectID023;
 	/**
+	 * Contianment
+	 */
+	private static boolean effectID025;
+	/**
 	 * 
 	 */
 	private static boolean effectID065;
@@ -62,6 +66,7 @@ public class Effects {
 		effectID016 = false;
 		effectID017 = false;
 		effectID021 = false;
+		effectID023 = false;
 		effectID023 = false;
 		effectID065 = false;
 		effectID083 = false;
@@ -149,6 +154,12 @@ public class Effects {
 				break;
 			case 23:
 				effectID023();
+				break;
+			case 24:
+				effectID024();
+				break;
+			case 25:
+				effectID025();
 				break;
 			case 26:
 				effectID026();
@@ -790,6 +801,53 @@ public class Effects {
 		effectID023 = true;
 	}
 	
+	/**
+	 * Indo-Pakastani War
+	 */
+	private static void effectID024() {
+		String loc = "";
+		ArrayList<Object> al = new ArrayList<Object>();
+		al.add("India invades Pakistan");
+		al.add("Pakistan invades India");
+		if (0 == Window.popupButtonWindow("Whats happening?", al)) {
+			loc = "PAK";
+		}
+		else {
+			loc = "IND";
+		}
+		Random rand = new Random();
+		int user = rand.nextInt(6) + 1;
+		int enemy = rand.nextInt(6) +1;
+		for (Country c : Map.getCountry(loc).getConnectedCountries()) {
+			if (c.userHasControl(Side.USA)) {
+				user += 1;
+			}
+		}
+		Side opponent = null;
+		if (currentBoard.getCurrentPlayer().equals(Side.USA)) {
+			opponent = Side.USSR;
+		}
+		else {
+			opponent = Side.USA;
+		}
+		UI.announce(currentBoard.getCurrentPlayer() + " Rolled Modified: " + user + "\n" + opponent + " Rolled Modified:" + enemy);
+		if ((user - enemy) >= 4) {
+			currentBoard.modifyVictoryPoints(2);
+			currentBoard.getPlayer(currentBoard.getCurrentPlayer()).setMilOps(2);
+			int usa = Map.getCountry(loc).getUSInfluence();
+			usa = usa * -1;
+			Map.getCountry(loc).modifyInfluence(usa, opponent);
+			Map.getCountry(loc).modifyInfluence(-usa, currentBoard.getCurrentPlayer());
+		}
+	}
+	
+	
+	/**
+	 * Containment
+	 */
+	private static void effectID025() {
+		effectID025 = true;
+	}
 	
 	/**
 	 * CIA Created
