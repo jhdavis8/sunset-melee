@@ -342,6 +342,11 @@ public class Board {
 		else USA.placeInfluence(tCard, ui, c);
 	}
 
+	public void placeInfluence(TurnCard tCard, UICore ui, ArrayList<Object> al, Side s, Continents c) {
+		if (s.equals(Side.USSR)) USSR.placeInfluence(tCard, ui, al, c);
+		else USA.placeInfluence(tCard, ui, al, c);
+	}
+
 	/**
 	 * Remove influence from countries
 	 * @param tCard card to use for removing influence
@@ -474,6 +479,5 @@ public class Board {
 		if (playerTurn) return Side.USSR;
 		else return Side.USA;
 	}
-
 
 }

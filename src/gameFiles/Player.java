@@ -173,7 +173,22 @@ public class Player {
 			ui.updateUI();
 			ui.announce("You have " + influenceLeft + " influence left.");
 			country = ui.promptExceptionInfluenceTarget(side);
-			if (country.opponentHasControl(side) && country.isCountryInContinent(c)) {
+			country.modifyInfluence(1, side);
+			influenceLeft--;
+			ui.announce("1 influence placed in " + country);
+		}
+		ui.announce("All influence expended.");
+	}
+
+
+	public void placeInfluence(TurnCard tCard, UICore ui, ArrayList<Object> al, Continents c) {
+		int influenceLeft = tCard.getOps();
+		Country country = null;
+		while (influenceLeft > 0) {
+			ui.updateUI();
+			ui.announce("You have " + influenceLeft + " influence left.");
+			country = ui.promptExceptionInfluenceTarget(side, al, c);
+			if (country.opponentHasControl(side)) {
 				if (influenceLeft > 1) {
 					country.modifyInfluence(1, side);
 					influenceLeft -= 2;
@@ -188,7 +203,6 @@ public class Player {
 		}
 		ui.announce("All influence expended.");
 	}
-
 
 	/**
 	 * Remove influence from a region
@@ -320,7 +334,7 @@ public class Player {
 	 * @param milOps the milOps to set
 	 */
 	public void setMilOps(int milOps) {
-		this.milOps = milOps;
+		this.milOps += milOps;
 	}
 	
 	/**

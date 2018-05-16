@@ -218,5 +218,10 @@ public class UIGraphic implements UICore {
 		}
 		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", countries, side, target));
 	}
+	
+	@Override
+	public Country promptExceptionInfluenceTarget(Side side, ArrayList<Object> al, Continents c) {
+		return Map.getCountryByName(Window.popupDropDownWindow("Please choose a country to influence", al, side, c));
+	}
 
 }

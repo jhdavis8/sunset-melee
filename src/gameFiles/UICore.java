@@ -3,6 +3,7 @@
  */
 package gameFiles;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -84,5 +85,7 @@ public interface UICore {
 	 * @return a County
 	 */
 	public Country promptExceptionInfluenceTarget(Side side);
+
+	public Country promptExceptionInfluenceTarget(Side side, ArrayList<Object> al, Continents c);
 
 }

@@ -590,4 +590,10 @@ public class UIText implements UICore {
 	public Scanner getScanner() {
 		return scan;
 	}
+
+	@Override
+	public Country promptExceptionInfluenceTarget(Side side, ArrayList<Object> al, Continents c) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

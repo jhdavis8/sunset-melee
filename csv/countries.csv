@@ -80,5 +80,5 @@ ABB.UUU,IDN,Indonesia,1,F,XXX
 ABB.UUU,PHL,Philippines,2,F,XXX
 ABB,JPN,Japan,4,T,XXX
 ABB,TWN,Taiwan,3,F,XXX
-ABB,KOR,S. Korea,3,T,XXX
-ABB,PRK,N. Korea,3,T,XXX
+ABB,KOR,S. Korea,3,T,PRK.TWN.JPN
+ABB,PRK,N. Korea,3,T,USSR.KOR

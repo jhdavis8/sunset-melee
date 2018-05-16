@@ -4,6 +4,7 @@
 package gameFiles;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 import graphics.Window;
@@ -30,6 +31,26 @@ public class Effects {
 	 * UI object used
 	 */
 	private static UICore UI;
+	/**
+	 * Warsaw Pack Founded
+	 */
+	private static boolean effectID016;
+	/**
+	 * Cancle NATO for France
+	 */
+	private static boolean effectID017;
+	/**
+	 * NATO enacted
+	 */
+	private static boolean effectID021;
+	/**
+	 * The Marshel Plan in effect
+	 */
+	private static boolean effectID023;
+	/**
+	 * 
+	 */
+	private static boolean effectID065;
 	private static boolean effectID083;
 	
 	/**
@@ -38,6 +59,11 @@ public class Effects {
 	 */
 	public static void setCurrentBoard(Board b) {
 		currentBoard = b;
+		effectID016 = false;
+		effectID017 = false;
+		effectID021 = false;
+		effectID023 = false;
+		effectID065 = false;
 		effectID083 = false;
 	}
 	
@@ -85,11 +111,23 @@ public class Effects {
 			case 10:
 				effectID010();
 				break;
+			case 11:
+				effectID011();
+				break;
 			case 12:
 				effectID012();
 				break;
+			case 13:
+				effectID013();
+				break;
+			case 14:
+				effectID014();
+				break;
 			case 15:
 				effectID015();
+				break;
+			case 16:
+				effectID016();
 				break;
 			case 17:
 				effectID017();
@@ -99,6 +137,12 @@ public class Effects {
 				break;
 			case 19:
 				effectID019();
+				break;
+			case 20:
+				effectID020();
+				break;
+			case 21:
+				effectID021();
 				break;
 			case 22:
 				effectID022();
@@ -469,6 +513,29 @@ public class Effects {
 	}
 	
 	/**
+	 * Koraean War
+	 */
+	private static void effectID011() {
+		Random rand = new Random();
+		int US = rand.nextInt(6) + 1;
+		int USSR = rand.nextInt(6) +1;
+		for (Country c : Map.getCountry("KOR").getConnectedCountries()) {
+			if (c.userHasControl(Side.USA)) {
+				US += 1;
+			}
+		}
+		UI.announce("USA Rolled Modified: " + US + "\nUSSR Rolled Modified:" + USSR);
+		if ((USSR - US) >= 4) {
+			currentBoard.modifyVictoryPoints(2);
+			currentBoard.getPlayer(Side.USSR).setMilOps(2);
+			int usa = Map.getCountry("KOR").getUSInfluence();
+			usa = usa * -1;
+			Map.getCountry("KOR").modifyInfluence(usa, Side.USA);
+			Map.getCountry("KOR").modifyInfluence(-usa, Side.USSR);
+		}
+	}
+	
+	/**
 	 * Romanian Abdication card effect
 	 */
 	private static void effectID012() {
@@ -486,6 +553,49 @@ public class Effects {
 		t.modifyInfluence(USSR, Side.USSR);
 	}
 	
+	
+	/**
+	 * Arab-Isralli War
+	 */
+	private static void effectID013() {
+		if (effectID065) {
+			UI.announce("Effect of Arab-Isralli War Cancled by effectID065");
+		}
+		else {
+			Random rand = new Random();
+			int US = rand.nextInt(6) + 1;
+			int USSR = rand.nextInt(6) +1;
+			for (Country c : Map.getCountry("ISR").getConnectedCountries()) {
+				if (c.userHasControl(Side.USA)) {
+					US += 1;
+				}
+			}
+			UI.announce("USA Rolled Modified: " + US + "\nUSSR Rolled Modified:" + USSR);
+			if ((USSR - US) >= 4) {
+				currentBoard.modifyVictoryPoints(2);
+				currentBoard.getPlayer(Side.USSR).setMilOps(2);
+				int usa = Map.getCountry("ISR").getUSInfluence();
+				usa = usa * -1;
+				Map.getCountry("ISR").modifyInfluence(usa, Side.USA);
+				Map.getCountry("ISR").modifyInfluence(-usa, Side.USSR);
+			}
+		}
+	}
+	
+	
+	/**
+	 * Comecon
+	 */
+	private static void effectID014() {
+		ArrayList<Object> al = new ArrayList<Object>();
+		for (Country c : Map.getWorld()) {
+			if (c.isCountryInContinent(Continents.EEE) && c.opponentHasInfluence(Side.USA) && !c.opponentHasControl(Side.USA)) {
+				al.add(c);
+			}
+		}
+		currentBoard.placeInfluence((TurnCard)Deck.getAllCard(014), UI, al, Side.USSR, Continents.EEE);
+	}
+	
 	/**
 	 * Nasser
 	 */
@@ -497,12 +607,30 @@ public class Effects {
 	}
 
 	/**
+	 * Warsaw Pack Founded
+	 */
+	private static void effectID016() {
+		ArrayList<Object> al = new ArrayList<Object>();
+		al.add("Remove 4 US influence");
+		al.add("Add 5 USSR influence");
+		int choice = Window.popupButtonWindow("Select to either remove 4 US influnce or add 5 USSR", al);
+		System.out.println(choice);
+		if (choice == 0) {
+			currentBoard.removeInfluence((TurnCard)Deck.getAllCard(6), UI, Continents.WEE, Side.USSR);
+		}
+		else if (choice ==1){
+			currentBoard.placeInfluenceException((TurnCard)Deck.getAllCard(6), UI, Continents.EEE, Side.USSR);
+		}
+		effectID016 = true;
+	}
+
+	/**
 	 * De Gaulle Leads France card effect
 	 */
 	private static void effectID017() {
 		Map.getCountry("FRA").modifyInfluence(-2, Side.USA);
 		Map.getCountry("FRA").modifyInfluence(1, Side.USSR);
-		// TODO Cancel NATO
+		effectID017 = true;
 	}
 	
 	/**
@@ -553,10 +681,62 @@ public class Effects {
 			country = Map.getCountryByName(Window.popupDropDownWindow("Please select a country to remove all influence from.", 
 										   specificWorld, Side.USA));
 		}
-		//To push
 		int USSRInf = country.getInfluence(Side.USSR);
 		USSRInf = -1 * USSRInf;
 		country.modifyInfluence(USSRInf, Side.USSR);
+	}
+	
+	
+	/**
+	 * Olynpic Games
+	 */
+	private static void effectID020() {
+		ArrayList<Object> al = new ArrayList<Object>();
+		al.add("We shall participate\nin these games");
+		al.add("We shall and call our allies\nto boycott these farsiacl games!");
+		int choice = Window.popupButtonWindow("The Olympic Games are upon us, what shall we do?", al);
+		if (choice == 0) {
+			boolean reroll = true;
+			while (reroll) {
+				Random rand = new Random();
+				int us = rand.nextInt(6) + 1;
+				int ussr = rand.nextInt(6) + 1;
+				if (currentBoard.getCurrentPlayer().equals(Side.USA)) {
+					us += 2;
+				}
+				else {
+					ussr += 2;
+				}
+				
+				if (us > ussr) {
+					currentBoard.modifyVictoryPoints(-2);
+					reroll = false;
+					UI.announce("USA Wins Games!  Add 2 VP.");
+				}
+				else if (ussr > us) {
+					currentBoard.modifyVictoryPoints(2);
+					reroll = false;
+					UI.announce("USSR Wins Games!  Add 2 VP.");
+				}
+				else {
+					UI.announce("We're redeciding the games...");
+				}
+			}
+		}
+		else {
+			currentBoard.modifyDefcon(-1);
+			currentBoard.placeInfluence((TurnCard)Deck.getCard(6), UI);
+		}
+	}
+	
+	/**
+	 * NATO
+	 */
+	private static void effectID021() {
+		if (effectID016 || effectID023) {
+			effectID021 = true;
+			UI.announce("NATO Founded");
+		}
 	}
 	
 	/**
@@ -607,6 +787,7 @@ public class Effects {
 	 */
 	private static void effectID023() {
 		effectID998();
+		effectID023 = true;
 	}
 	
 	
