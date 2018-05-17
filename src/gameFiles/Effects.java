@@ -624,7 +624,7 @@ public class Effects {
 		ArrayList<Object> al = new ArrayList<Object>();
 		al.add("Remove 4 US influence");
 		al.add("Add 5 USSR influence");
-		int choice = Window.popupButtonWindow("Select to either remove 4 US influnce or add 5 USSR", al);
+		int choice = Window.popupButtonWindow("Select to either remove 4 US influnce or add 5 USSR", al, currentBoard.getCurrentPlayer());
 		System.out.println(choice);
 		if (choice == 0) {
 			currentBoard.removeInfluence((TurnCard)Deck.getAllCard(6), UI, Continents.WEE, Side.USSR);
@@ -704,8 +704,8 @@ public class Effects {
 	private static void effectID020() {
 		ArrayList<Object> al = new ArrayList<Object>();
 		al.add("We shall participate\nin these games");
-		al.add("We shall and call our allies\nto boycott these farsiacl games!");
-		int choice = Window.popupButtonWindow("The Olympic Games are upon us, what shall we do?", al);
+		al.add("We shall and call our allies\nto boycott these farsical games!");
+		int choice = Window.popupButtonWindow("The Olympic Games are upon us, what shall we do?", al, currentBoard.getCurrentPlayer());
 		if (choice == 0) {
 			boolean reroll = true;
 			while (reroll) {
@@ -809,7 +809,7 @@ public class Effects {
 		ArrayList<Object> al = new ArrayList<Object>();
 		al.add("India invades Pakistan");
 		al.add("Pakistan invades India");
-		if (0 == Window.popupButtonWindow("Whats happening?", al)) {
+		if (0 == Window.popupButtonWindow("What's happening?", al, currentBoard.getCurrentPlayer())) {
 			loc = "PAK";
 		}
 		else {

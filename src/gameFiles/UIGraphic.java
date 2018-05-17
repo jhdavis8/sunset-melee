@@ -83,17 +83,17 @@ public class UIGraphic implements UICore {
 	public int promptSelectCard(Side side) {
 		ArrayList<Object> hand = new ArrayList<Object>();
 		hand.addAll(currentBoard.getPlayer(side).getHand());
-		return Window.popupButtonWindow("Please choose a card to play", hand);
+		return Window.popupButtonWindow("Please choose a card to play", hand, side);
 	}
 
 	@Override
 	public String promptUSA(String message) {
-		return Window.popupStringInputWindow(message);
+		return Window.popupStringInputWindow(message, Side.USA);
 	}
 
 	@Override
 	public String promptUSSR(String message) {
-		return Window.popupStringInputWindow(message);
+		return Window.popupStringInputWindow(message, Side.USSR);
 	}
 
 	@Override
@@ -121,7 +121,7 @@ public class UIGraphic implements UICore {
 			options.add("Roll for Realignment");
 			options.add("Attempt a coup");
 			options.add("Play card event");
-			sel = 1 + Window.popupButtonWindow(toReturn, options);
+			sel = 1 + Window.popupButtonWindow(toReturn, options, currentBoard.getCurrentPlayer());
 			TurnCard tCard = (TurnCard) card;
 			switch (sel) {
 				case 1:
@@ -157,7 +157,7 @@ public class UIGraphic implements UICore {
 			options.add("Place Influence");
 			options.add("Roll for Realignment");
 			options.add("Attempt a coup");
-			sel = 1 + Window.popupButtonWindow(toReturn, options);
+			sel = 1 + Window.popupButtonWindow(toReturn, options, currentBoard.getCurrentPlayer());
 			switch (sel) {
 				case 1:
 					currentBoard.placeInfluence(tCard, this);
@@ -178,7 +178,7 @@ public class UIGraphic implements UICore {
 
 	@Override
 	public void announce(String s) {
-		Window.popupMessage(s);
+		Window.popupMessage(s, currentBoard.getCurrentPlayer());
 	}
 
 	@Override

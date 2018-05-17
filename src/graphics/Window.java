@@ -129,9 +129,9 @@ public class Window {
 		String path = "";
 		Icon icon;
 		if (playingSide == Side.USA) {
-			path = "img\\board_tokens\\usa_action_round";
+			path = "img\\board_tokens\\usa_action_round.png";
 		} else if (playingSide == Side.USSR) {
-			path = "img\\board_tokens\\ussr_action_round";
+			path = "img\\board_tokens\\ussr_action_round.png";
 		}
 		if (!path.equals("")) {
 			icon = new ImageIcon(path);
@@ -174,9 +174,9 @@ public class Window {
 		String path = "";
 		Icon icon;
 		if (playingSide == Side.USA) {
-			path = "img\\board_tokens\\usa_action_round";
+			path = "img\\board_tokens\\usa_action_round.png";
 		} else if (playingSide == Side.USSR) {
-			path = "img\\board_tokens\\ussr_action_round";
+			path = "img\\board_tokens\\ussr_action_round.png";
 		}
 		if (!path.equals("")) {
 			icon = new ImageIcon(path);
@@ -192,9 +192,9 @@ public class Window {
 	 * Produces a list of buttons for selection objects
 	 * @param message Message to print
 	 * @param al The ArrayList of things to be put into the popUp, All Objects
-	 * @return Returns a init that is the desired input location
+	 * @return Returns a int that is the desired input location
 	 */
-	public static int popupButtonWindow(String message, ArrayList<?> al) {
+	public static int popupButtonWindow(String message, ArrayList<?> al, Side playingSide) {
 		String[] listOfStrings = new String[al.size()];
 		if (al.get(0) instanceof Card) {
 			Card c = null;
@@ -217,10 +217,21 @@ public class Window {
 				listOfStrings[k] = c;
 			}
 		}
-
+		String path = "";
+		Icon icon;
+		if (playingSide == Side.USA) {
+			path = "img\\board_tokens\\usa_action_round.png";
+		} else if (playingSide == Side.USSR) {
+			path = "img\\board_tokens\\ussr_action_round.png";
+		}
+		if (!path.equals("")) {
+			icon = new ImageIcon(path);
+		} else {
+			icon = null;
+		}
 		int toReturn = JOptionPane.showOptionDialog(null, message, "Please Choose",
 	             												JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-	             												null, listOfStrings, listOfStrings[0]);
+	             												icon, listOfStrings, listOfStrings[0]);
 		return toReturn;			
 		
 	}
@@ -229,8 +240,20 @@ public class Window {
 	 * Pops up a message, called by announceUI
 	 * @param message Message to be displayed
 	 */
-	public static void popupMessage(String message) {
-		JOptionPane.showMessageDialog(null, message);
+	public static void popupMessage(String message, Side playingSide) {
+		String path = "";
+		Icon icon;
+		if (playingSide == Side.USA) {
+			path = "img\\board_tokens\\usa_action_round.png";
+		} else if (playingSide == Side.USSR) {
+			path = "img\\board_tokens\\ussr_action_round.png";
+		}
+		if (!path.equals("")) {
+			icon = new ImageIcon(path);
+		} else {
+			icon = null;
+		}
+		JOptionPane.showMessageDialog(null, message, "Alert", JOptionPane.INFORMATION_MESSAGE, icon);
 	}
 	
 	/**
@@ -247,7 +270,19 @@ public class Window {
 	 * @param message String to show above entry box
 	 * @return the user's input
 	 */
-	public static String popupStringInputWindow(String message) {
-		return JOptionPane.showInputDialog(message);
+	public static String popupStringInputWindow(String message, Side playingSide) {
+		String path = "";
+		Icon icon;
+		if (playingSide == Side.USA) {
+			path = "img\\board_tokens\\usa_action_round.png";
+		} else if (playingSide == Side.USSR) {
+			path = "img\\board_tokens\\ussr_action_round.png";
+		}
+		if (!path.equals("")) {
+			icon = new ImageIcon(path);
+		} else {
+			icon = null;
+		}
+		return (String) JOptionPane.showInputDialog(null, message, "Input request", JOptionPane.DEFAULT_OPTION, icon, null, null);
 	}
 }
