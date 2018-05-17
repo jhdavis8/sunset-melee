@@ -345,4 +345,13 @@ public class Player {
 		Random randy = new Random();
 		return hand.get(randy.nextInt(hand.size()));
 	}
+
+	public boolean endedTurnWithScoringCard() {
+		for (Card c : hand) {
+			if (c instanceof ScoringCard) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

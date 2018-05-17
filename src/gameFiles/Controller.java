@@ -117,7 +117,6 @@ public class Controller {
 		game.flipChinaCard();
 		game.advanceTurn();
 		game.finalScoring();
-		
 	}
 	
 	/**
@@ -126,7 +125,13 @@ public class Controller {
 	 * @return Side that has won
 	 */
 	private static Side getVictor(Board b) {
-		if (b.getVictoryPoints() > 0) {
+		if (b.getPlayer(Side.USA).endedTurnWithScoringCard()) {
+			return Side.USSR;
+		}
+		else if (b.getPlayer(Side.USSR).endedTurnWithScoringCard()) {
+			return Side.USA;
+		}
+		else if (b.getVictoryPoints() > 0) {
 			return Side.USSR;
 		}
 		else if (b.getVictoryPoints() < 0) {
