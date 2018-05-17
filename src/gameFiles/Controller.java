@@ -60,7 +60,7 @@ public class Controller {
 		
 		for (int k = 0; k < 10; k ++) {
 			turn(game, UI);
-			if (game.gameEnd() && (game.getPlayer(Side.USA).endedTurnWithScoringCard() || game.getPlayer(Side.USSR).endedTurnWithScoringCard())) {
+			if (game.gameEnd() || (game.getPlayer(Side.USA).endedTurnWithScoringCard() || game.getPlayer(Side.USSR).endedTurnWithScoringCard())) {
 				k = 11;
 			}
 		}
