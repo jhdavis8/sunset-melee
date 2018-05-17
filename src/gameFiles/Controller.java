@@ -64,8 +64,8 @@ public class Controller {
 				k = 11;
 			}
 		}
-		UI.announce("Congratulations " + getVictor(game).toString() + " You have vanquished the forces of evil in the world\\n"
-				+ "to become the one true superpower in the world.\\n"
+		UI.announce("Congratulations " + getVictor(game).toString() + " You have vanquished the forces of evil in the world "
+				+ "to become the one true superpower in the world. "
 				+ "Thank you so much for playing our game!");
 		
 		//UI.runUI();
