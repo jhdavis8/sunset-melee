@@ -596,4 +596,10 @@ public class UIText implements UICore {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void announce(String string, Side side) {
+		// TODO Auto-generated method stub
+		
+	}
 }
