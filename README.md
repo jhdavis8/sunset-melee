@@ -17,3 +17,30 @@ UIGraphic UI = new UIGraphic(game);
 
 ### How to play the game:
 
+Run the game with your choice of UI.  If you use text it will consist of user input, mosty with the 3-digit ISO Codes, found (with exceptions) at
+```
+https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
+```
+Most intractions will require manual input.
+
+For the Graphical User Interface, it consists of JOptionPanes.  The play should be mostly self explanitory, just follow the prompts.
+
+### Goals
+
+Pick a player to build up your influence to try and dominate the world.
+###### **DO NOT TRY TO USE THINGS OUTSIDE OF EUROPE!**
+Althouht they work, it is not optimized for this version.
+
+You can lose via Vicotry Points, If Defcon hits 0, or if you hold on to a scoring card through turns.
+
+
+Anything else can be found here
+```
+http://www.gmtgames.com/nnts/TS_Rules-2015.pdf
+```
+As the game follows the rule book.
+
+
+
+
+Happy World Domination!
