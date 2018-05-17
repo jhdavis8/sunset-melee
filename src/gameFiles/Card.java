@@ -61,7 +61,7 @@ public abstract class Card {
 		while (disc.hasNext()) {
 			temp = disc.next();
 			if ((temp.length() + count) > split) {
-				toReturn += "\n" + temp;
+				toReturn += "\n \t \t \t \t \t" + temp;
 				count = temp.length();
 			}
 			else {

@@ -196,10 +196,13 @@ public class Window {
 	 */
 	public static int popupButtonWindow(String message, ArrayList<?> al, Side playingSide) {
 		String[] listOfStrings = new String[al.size()];
+		String newMessage = "";
 		if (al.get(0) instanceof Card) {
 			Card c = null;
+			newMessage = message + "\n";
 			for (int k = 0; k < listOfStrings.length; k ++) {
 				c = (Card) al.get(k);
+				newMessage += "Card " + k + ": " + c.getWrapDiscription(120) + "\n\n";
 				listOfStrings[k] = c.name;
 			}
 		}
@@ -208,6 +211,7 @@ public class Window {
 			for (int k = 0; k < listOfStrings.length; k ++) {
 				c = (Country) al.get(k);
 				listOfStrings[k] = c.getFullName();
+				newMessage = message;
 			}
 		}
 		else if (al.get(0) instanceof String) {
@@ -215,6 +219,7 @@ public class Window {
 			for (int k = 0; k < listOfStrings.length; k ++) {
 				c = (String) al.get(k);
 				listOfStrings[k] = c;
+				newMessage = message;
 			}
 		}
 		String path = "";
@@ -229,7 +234,7 @@ public class Window {
 		} else {
 			icon = null;
 		}
-		int toReturn = JOptionPane.showOptionDialog(null, message, "Please Choose",
+		int toReturn = JOptionPane.showOptionDialog(null, newMessage, "Please Choose",
 	             												JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
 	             												icon, listOfStrings, listOfStrings[0]);
 		return toReturn;			
