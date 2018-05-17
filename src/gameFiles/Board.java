@@ -398,9 +398,6 @@ public class Board {
 		else if (this.getDefcon() == 0) {
 			endGame = true;
 		}
-		else if (USA.endedTurnWithScoringCard() || USSR.endedTurnWithScoringCard()) {
-			endGame = true;
-		}
 		
 		return endGame;
 	}
