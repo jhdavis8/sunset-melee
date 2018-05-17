@@ -223,15 +223,15 @@ public class Controller {
 		if (usaSC == null && ussrSC == null) { // 		USA TurnCard and USSR TurnCard
 			if ((ussrTC.getOps() > usaTC.getOps()) && (usaTC.cardNum != 103)) {
 				ussrTC.runEffect();
-				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription());
+				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription(), Side.USSR);
 				usaTC.runEffect();
-				ui.announce("USA Headline Effect: "+ usaTC.getDescription());
+				ui.announce("USA Headline Effect: "+ usaTC.getDescription(), Side.USA);
 			}
 			else if (usaTC.cardNum != 103) {
 				usaTC.runEffect();
-				ui.announce("USA Headline Effect: "+ usaTC.getDescription());
+				ui.announce("USA Headline Effect: "+ usaTC.getDescription(), Side.USA);
 				ussrTC.runEffect();
-				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription());
+				ui.announce("USSR Headline Effect: "+ ussrTC.getDescription(), Side.USSR);
 			}
 			else {	// If the card is num 103 Defectors, the USSR cards is invalidated
 				usaTC.runEffect();

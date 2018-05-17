@@ -88,4 +88,6 @@ public interface UICore {
 
 	public Country promptExceptionInfluenceTarget(Side side, ArrayList<Object> al, Continents c);
 
+	public void announce(String string, Side side);
+
 }

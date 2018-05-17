@@ -180,6 +180,15 @@ public class UIGraphic implements UICore {
 	public void announce(String s) {
 		Window.popupMessage(s, currentBoard.getCurrentPlayer());
 	}
+	
+	/**
+	 * Overloaded version of announce that shows a user determined side instead of board current player
+	 * @param s message to show
+	 * @param side the side the message is for
+	 */
+	public void announce(String s, Side side) {
+		Window.popupMessage(s, side);
+	}
 
 	@Override
 	public Country promptValidInfluenceTarget(Side side) {
