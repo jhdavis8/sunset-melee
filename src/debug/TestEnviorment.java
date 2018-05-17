@@ -27,6 +27,7 @@ public class TestEnviorment {
 //		UIGraphic UI = new UIGraphic(); // TODO unify constructor signatures
 		UIText UI = new UIText(game);
 		Effects.setUI(UI);
+		System.out.println(Deck.getAllCard(25).getWrapDiscription(40));
 		game.dealCards();
 		
 		String[] hand = new String[game.getPlayer(Side.USA).getHand().size()];

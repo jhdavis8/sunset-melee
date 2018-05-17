@@ -1,5 +1,7 @@
 package gameFiles;
 
+import java.util.Scanner;
+
 /**
  * Abstract class for all cards 
  * @author Mark Wolgin
@@ -48,6 +50,26 @@ public abstract class Card {
 		cardNum = c;
 		effectID = e;
 		cardTiming = cT;
+	}
+	
+	public String getWrapDiscription(int split) {
+		Scanner disc = new Scanner(description);
+		disc.useDelimiter("[ ]");
+		int count = 0;
+		String toReturn = "";
+		String temp = "";
+		while (disc.hasNext()) {
+			temp = disc.next();
+			if ((temp.length() + count) > split) {
+				toReturn += "\n" + temp;
+				count = temp.length();
+			}
+			else {
+				toReturn += temp + " ";
+				count += temp.length();
+			}
+		}
+		return toReturn;
 	}
 
 	/**
