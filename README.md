@@ -31,7 +31,7 @@ Pick a player to build up your influence to try and dominate the world.
 ###### **DO NOT TRY TO USE THINGS OUTSIDE OF EUROPE!**
 Althouht they work, it is not optimized for this version.
 
-You can lose via Vicotry Points, If Defcon hits 0, or if you hold on to a scoring card through turns.
+You can lose by the following circumstances: Vicotry Points goes to +/- 20, if Defcon hits 0, or if you hold on to a scoring card through turns.
 
 
 Anything else can be found here
