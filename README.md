@@ -3,7 +3,7 @@ A *(poor)* Java implementation of the Twilight Struggle board game
 
 
 ### How to run the game:
-The game runs the same if you run vui the console or GUI
+The game runs the same if you run via the console or GUI
 
 To run the game via console set the Object if UI to be UIText in the Controller Class
 ```java
@@ -23,24 +23,21 @@ https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3
 ```
 Most intractions will require manual input.
 
-For the Graphical User Interface, it consists of JOptionPanes.  The play should be mostly self explanitory, just follow the prompts.
+The Graphical User Interface consists of JOptionPanes.  The play should be mostly self-explanatory, just follow the prompts.
 
 ### Goals
 
-Pick a player to build up your influence to try and dominate the world.
+Pick a player to build up your influence and try to dominate the world.
 ###### **DO NOT TRY TO USE THINGS OUTSIDE OF EUROPE!**
-Althouht they work, it is not optimized for this version.
+Although they work, it is not optimized for this version.
 
-You can lose by the following circumstances: Vicotry Points goes to +/- 20, if Defcon hits 0, or if you hold on to a scoring card through turns.
+You can lose by any of the following: if Victory Points goes to +/- 20, if Defcon hits 0, or if you hold on to a scoring card across turns.
 
 
-Anything else can be found here
+Anything else can be found here, as the game follows the rule book.
 ```
 http://www.gmtgames.com/nnts/TS_Rules-2015.pdf
 ```
-As the game follows the rule book.
-
-
 
 
 Happy World Domination!
